@@ -1,0 +1,7 @@
+{
+  "name": "Fit_Logger",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
