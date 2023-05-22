@@ -13,8 +13,14 @@
         </ion-header>
   
         <ExploreContainer name="Produkte hinzufügen" />
+
+        <ion-item>
+      <ion-input label="Default input" placeholder="Produkt suchen" :clear-input="true"></ion-input>
+    </ion-item> 
       </ion-content>
     </ion-page>
+
+
   </template>
   
   <script setup lang="ts">

@@ -16,11 +16,7 @@
           <ion-label>Logbuch</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button >
-           
-          <!-- Platzhalter, wird später  it Padding ersetzt -->
-          
-        </ion-tab-button> 
+        
 
         
         <ion-fab  bottom> 
@@ -46,9 +42,20 @@
   </ion-page>
 </template>
 
+
+
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
 import { add, book, ellipse, home, person, square, triangle, addCircleOutline, serverOutline } from 'ionicons/icons';
 
 import { IonFabButton } from '@ionic/vue';
+
+
 </script>
+
+
+<style>
+ion-tab-bar:active{
+    color: blue;
+}
+</style>

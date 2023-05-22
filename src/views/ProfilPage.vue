@@ -25,9 +25,8 @@
 
     <p>Here's a small text description for the content. Nothing more, nothing less.</p>
       
-
-
-
+        <componentButton> Button </componentButton>
+   
    
   </ion-content>
   </ion-page>
@@ -38,6 +37,9 @@
   <script setup lang="ts">
   import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent , IonIcon} from '@ionic/vue';
   import { add, book, ellipse, home, person, square, triangle, addCircleOutline, serverOutline, star } from 'ionicons/icons';
+
+
+   import('@/components/ButtonTest.vue');
 
   </script>
   
