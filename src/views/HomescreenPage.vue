@@ -12,6 +12,9 @@
         </ion-toolbar>
       </ion-header>
 
+      
+      <q-circular-progress :value="80"/>
+
 
       <button> </button>
       <ExploreContainer name="Dashboard/Homescreen" />
