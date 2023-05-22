@@ -11,24 +11,36 @@
           <ion-title size="large"> Add </ion-title>  
         </ion-toolbar>
       </ion-header>
+      
 
       <ExploreContainer name="Add page" />
 
       test blabla
 
       <div> 
-        <router-link to="/tabs/logbuch" tag="button">Logbuch</router-link>
-
+        <ion-button > 
+        
+          Lucas Button
+        </ion-button>
+        
+<button   <router-link to="/tabs/logbuch" tag="button"></router-link> Test</button>
       </div>
+      <Counter/>
 
       <h1> Hier kommt der Testbutton</h1>
-      <ButtonTest></ButtonTest>
+      
+      <counter/>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+
+
+
+
+
 
 
 
