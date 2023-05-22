@@ -25,6 +25,22 @@ const routes: Array<RouteRecordRaw> = [
         path: 'logbuch',
         component: () => import('@/views/LogbuchPage.vue')
       },
+      
+      {
+        path: 'essen-erstellen',
+        component: () => import('@/views/Essenerstellen.vue')
+      },
+
+      {
+        path: 'produkt-erstellen',
+        component: () => import('@/views/Produkterstellen.vue')
+      },
+
+      {
+        path: 'greetings-page',
+        component: () => import('@/views/GreetingsPage.vue')
+      },
+
       {
         path: 'plus_hinzufuegen',
         component: () => import('@/views/AddPage.vue')
