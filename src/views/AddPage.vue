@@ -16,6 +16,11 @@
 
       test blabla
 
+      <div> 
+        <router-link to="/tabs/logbuch" tag="button">Logbuch</router-link>
+
+      </div>
+
       <h1> Hier kommt der Testbutton</h1>
       <ButtonTest></ButtonTest>
     </ion-content>
