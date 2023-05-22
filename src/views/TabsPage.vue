@@ -16,10 +16,11 @@
           <ion-label>Logbuch</ion-label>
         </ion-tab-button>
 
-        <!-- <ion-tab-button tab="plus_hinzufuegen" href="/tabs/plus_hinzufuegen">
-          <ion-icon aria-hidden="true" :icon="addCircleOutline" />
-          <ion-label>Hinzufügen</ion-label>
-        </ion-tab-button>  -->
+        <ion-tab-button >
+           
+          <!-- Platzhalter, wird später  it Padding ersetzt -->
+          
+        </ion-tab-button> 
 
         
         <ion-fab  bottom> 
