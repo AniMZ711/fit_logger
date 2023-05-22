@@ -2,7 +2,7 @@
     <ion-page>
       <ion-header>
         <ion-toolbar>
-          <ion-title>Produkte</ion-title>
+          <ion-title>Produkt einpflegen</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content :fullscreen="true">
@@ -11,12 +11,25 @@
             <ion-title size="large">Produkt einpflegen </ion-title>
           </ion-toolbar>
         </ion-header>
-  
+        
+        <ion-button color="success">
+          <ion-icon aria-hidden="true"/>
+          <router-link to="/tabs/produkt-erstellen" tag="button">Produkt erstellen</router-link>
+        </ion-button>
+
+        <ion-button color="success">
+        
+          <ion-icon aria-hidden="true"/>
+          <router-link to="/tabs/essen-erstellen" tag="button">Standard-Mahlzeit erstellen</router-link>
+        
+      </ion-button>
+
+      <ion-item>
+      <ion-input label="Name:" placeholder="Wie heißt die Mahlzeit?" :clear-input="true"></ion-input>
+    </ion-item> 
+
         <ExploreContainer name="Produkte hinzufügen" />
 
-        <ion-item>
-      <ion-input label="Default input" placeholder="Produkt suchen" :clear-input="true"></ion-input>
-    </ion-item> 
       </ion-content>
     </ion-page>
 

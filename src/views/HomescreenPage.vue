@@ -12,6 +12,13 @@
         </ion-toolbar>
       </ion-header>
 
+      <ion-button color="success">
+        
+        <ion-icon aria-hidden="true"/>
+        <router-link to="/tabs/greetings-page" tag="button">About this App</router-link>
+      
+    </ion-button>
+
       
       <q-circular-progress :value="80"/>
 

@@ -11,18 +11,16 @@
           <ion-label>Homescreen</ion-label>
         </ion-tab-button>
 
+
         <ion-tab-button tab="logbuch" href="/tabs/logbuch">
           <ion-icon aria-hidden="true" :icon ="book"/>
           <ion-label>Logbuch</ion-label>
         </ion-tab-button>
 
-        
 
-        
         <ion-fab  bottom> 
           <ion-fab-button color="success" tab="plus_hinzufuegen" href="/tabs/plus_hinzufuegen" >
             <ion-icon :icon="add"> </ion-icon>
-           
           </ion-fab-button>
         </ion-fab>
         
@@ -31,6 +29,7 @@
           <ion-icon aria-hidden="true" :icon="serverOutline" />
           <ion-label>Produkt einpflegen</ion-label>
         </ion-tab-button> 
+
 
         <ion-tab-button tab="Profil" href="/tabs/profil">
           <ion-icon aria-hidden="true" :icon="person" />
