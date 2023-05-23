@@ -251,6 +251,9 @@ http://ionicframework.com/docs/theming/ */
 --ion-color-tint: var(--ion-color-bgColor-tint) !important;
 
   }
+  .new-background-color{
+    --background: #54d61c;
+}
   
 
   
