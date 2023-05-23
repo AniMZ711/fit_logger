@@ -27,7 +27,7 @@
 
         <ion-tab-button tab="Produkte" href="/tabs/produkt_einpflegen">
           <ion-icon aria-hidden="true" :icon="serverOutline" />
-          <ion-label>Produkt einpflegen</ion-label>
+          <ion-label> Datenbank</ion-label>
         </ion-tab-button> 
 
 

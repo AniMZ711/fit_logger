@@ -234,8 +234,28 @@ http://ionicframework.com/docs/theming/ */
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
+
+    --ion-color-bgColor: #1c1c1c;
+--ion-color-bgColor-rgb: 28, 28, 28;
+--ion-color-bgColor-contrast: #ffffff;
+--ion-color-bgColor-contrast-rgb: 255, 255, 255;
+--ion-color-bgColor-shade: #414040;
+--ion-color-bgColor-tint: #050404;
+
+  .ion-color-bgColor {
+--ion-color-base: var(--ion-color-bgColor) !important;
+--ion-color-base-rgb: var(--ion-color-bgColor-rgb) !important;
+--ion-color-contrast: var(--ion-color-bgColor-contrast) !important;
+--ion-color-contrast-rgb: var(--ion-color-bgColor-contrast-rgb) !important;
+--ion-color-shade: var(--ion-color-bgColor-shade) !important;
+--ion-color-tint: var(--ion-color-bgColor-tint) !important;
+
   }
+  .new-background-color{
+    --background: #54d61c;
+}
   
 
   
+}
 }

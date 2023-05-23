@@ -1,9 +1,9 @@
 <template>
     <ion-page>
       <ion-header>
-        <ion-toolbar>
-          <ion-title>Standard-Mahlzeit erstellen</ion-title>
-        </ion-toolbar>
+             <ion-toolbar color="success">
+                <ion-title>Standard-Mahlzeit erstellen</ion-title>
+            </ion-toolbar>
       </ion-header>
       <ion-content :fullscreen="true">
         <ion-header collapse="condense">
@@ -14,7 +14,7 @@
   
         <ExploreContainer name="Add page" />
   
-        <h1> Bitte gebe die Daten der Mahlzeit ein: </h1>
+        <h1 color="success"> Bitte gebe die Daten der Mahlzeit ein: </h1>
   
        
        <p> Gebe den Namen ein: </p>
@@ -24,6 +24,7 @@
         <p> Gebe die Kalorien ein: </p>
         <input type ="text" placeholder="Kalorien"/>
         <br /> 
+
 
         <p> Gebe das Gewicht ein: </p>
         <input type ="text" placeholder="Gewicht"/>
@@ -43,8 +44,13 @@
 
         <br />
 
-        <ion-button color="success">
-          <ion-icon aria-hidden="true" />
+        <ion-button color="success" shape="round">
+          <router-link to="/tabs/produkt_einpflegen" tag="button">Speichern</router-link>
+        </ion-button>
+
+
+        <br /><br /><br /><br />
+        <ion-button color="success" shape="round">
           <router-link to="/tabs/produkt_einpflegen" tag="button">Speichern</router-link>
         </ion-button>
         
