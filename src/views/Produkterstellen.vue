@@ -1,9 +1,9 @@
 <template>
     <ion-page>
       <ion-header>
-        <ion-toolbar>
-          <ion-title>Produkt erstellen</ion-title>
-        </ion-toolbar>
+        <ion-toolbar color="success">
+                <ion-title>Produkt hinzufügen</ion-title>
+         </ion-toolbar>
       </ion-header>
       <ion-content :fullscreen="true">
         <ion-header collapse="condense">
@@ -14,8 +14,41 @@
   
         <ExploreContainer name="Add page" />
   
-        <h1> Hier kommt die Produkt erstellen Seite </h1>
-  
+        <br /> <br /> 
+  <p> Name: </p>
+       <input type ="text" placeholder="..."/>
+   <br /> 
+   
+   <p> Marke: </p>
+            <input type ="text" placeholder="..."/>
+        <br /> 
+
+    <p> Gewicht/Packung </p>
+   <input type ="text" placeholder="..."/>
+   <br /> 
+
+   <p> Kalorien/100g: </p>
+   <input type ="text" placeholder="..."/>
+   <br /> 
+
+   <p> Eiweiß/100g: </p>
+   <input type ="text" placeholder="..."/>
+   <br /> 
+
+   <p> Fett/100g </p>
+   <input type ="text" placeholder="..."/>
+   <br /> 
+
+   <p> Kohlenhydrate/100g: </p>
+   <input type ="text" placeholder="..."/>
+   <br /> 
+
+   <br />
+
+   <ion-button color="success" shape="round">
+     <router-link to="/tabs/produkt_einpflegen" tag="button">Speichern</router-link>
+   </ion-button>
+
         
         <ButtonTest></ButtonTest>
       </ion-content>
