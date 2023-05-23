@@ -1,9 +1,9 @@
 <template>
     <ion-page>
       <ion-header>
-        <ion-toolbar>
-          <ion-title>Produkt einpflegen</ion-title>
-        </ion-toolbar>
+             <ion-toolbar color="success">
+                <ion-title>Produkt Datenbank</ion-title>
+            </ion-toolbar>
       </ion-header>
       <ion-content :fullscreen="true">
         <ion-header collapse="condense">
@@ -11,33 +11,40 @@
             <ion-title size="large">Produkt einpflegen </ion-title>
           </ion-toolbar>
         </ion-header>
-        
-        <ion-button color="success">
-          <ion-icon aria-hidden="true"/>
+
+        <ion-item>
+      <ion-input label="Suche:" placeholder="Wie heißt die Mahlzeit/ Das Produkt?" :clear-input="true"></ion-input>
+      </ion-item> 
+
+        <br/><br/>
+        <ion-button color="success"  shape="round">
           <router-link to="/tabs/produkt-erstellen" tag="button">Produkt erstellen</router-link>
         </ion-button>
-
-        <ion-button color="success">
-        
-          <ion-icon aria-hidden="true"/>
+      <br/><br/>
+        <ion-button color="success" shape="round">
           <router-link to="/tabs/essen-erstellen" tag="button">Standard-Mahlzeit erstellen</router-link>
-        
       </ion-button>
 
-      <ion-item>
-      <ion-input label="Name:" placeholder="Wie heißt die Mahlzeit?" :clear-input="true"></ion-input>
-    </ion-item> 
+      <br/>
+
+  
 
         <ExploreContainer name="Produkte hinzufügen" />
 
       </ion-content>
     </ion-page>
 
-
-  </template>
+</template>
   
   <script setup lang="ts">
   import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent , IonIcon} from '@ionic/vue';
   
-  </script>
+</script>
   
+
+
+<style>
+  
+
+
+</style>

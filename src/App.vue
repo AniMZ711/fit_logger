@@ -4,9 +4,6 @@
   </ion-app>
 
   <div id ="app"> 
-    <LoadingPage />
-    
-
   </div>
 </template>
 
@@ -14,3 +11,10 @@
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
 
 </script>
+
+
+<style>
+#app {
+    text-align: center;
+  }
+</style>
