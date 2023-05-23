@@ -19,7 +19,7 @@
           <ion-icon :icon= 'star' />
          Meine Ziele
         </ion-button>
-    <ion-button>Statistik</ion-button>
+        <ion-button>Statistik</ion-button>
 
    
 
