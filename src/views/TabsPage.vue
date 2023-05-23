@@ -53,8 +53,3 @@ import { IonFabButton } from '@ionic/vue';
 </script>
 
 
-<style>
-ion-tab-bar:active{
-    color: blue;
-}
-</style>
