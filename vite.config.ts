@@ -4,6 +4,10 @@ import path from 'path'
 import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
+
+import Components from 'unplugin-vue-components/vite' // This imports the plugin
+
+
 export default defineConfig({
   plugins: [
     vue(),

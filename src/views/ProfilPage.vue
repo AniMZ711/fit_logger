@@ -16,7 +16,7 @@
        
        
         <ion-button color="success">
-          <ion-icon aria-hidden="true" :icon="star" />
+          <ion-icon :icon= 'star' />
          Meine Ziele
         </ion-button>
     <ion-button>Statistik</ion-button>
@@ -25,9 +25,8 @@
 
     <p>Here's a small text description for the content. Nothing more, nothing less.</p>
       
-
-
-
+        
+   
    
   </ion-content>
   </ion-page>
@@ -39,5 +38,8 @@
   import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent , IonIcon} from '@ionic/vue';
   import { add, book, ellipse, home, person, square, triangle, addCircleOutline, serverOutline, star } from 'ionicons/icons';
 
+
+
   </script>
   
+
