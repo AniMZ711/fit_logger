@@ -1,20 +1,11 @@
 <template>
-  <ion-app>
-    <ion-router-outlet />
-  </ion-app>
-
-  <div id ="app"> 
-  </div>
+  <router-view />
 </template>
 
-<script setup lang="ts">
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+<script>
+import { defineComponent } from 'vue'
 
+export default defineComponent({
+  name: 'App'
+})
 </script>
-
-
-<style>
-#app {
-    text-align: center;
-  }
-</style>
