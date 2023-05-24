@@ -5,7 +5,6 @@
             <q-page>
                 <h1> Das ist die Produkt Erstellen Seite</h1>
 
-
                 <br /> <br />
                 <p> Name: </p>
                 <input type="text" placeholder="..." />

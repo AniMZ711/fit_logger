@@ -3,10 +3,10 @@
 
         <q-page-container>
             <q-page>
-                <h1> Das ist die Essen erstellen Seite</h1>
+                <h1> Das ist die Essen erstellen Seite </h1>
 
 
-                <br /> <br />
+                <br/><br/>
                 <p> Name: </p>
                 <input type="text" placeholder="..." />
                 <br />
