@@ -11,6 +11,8 @@
 
                 <div class=" progressBarKohlenhydrate">
 
+                    Kohlenhydrate
+
                     <q-linear-progress :value="progressKohlenhydrate" :label="Eiweiss" color="green" track-color="grey"
                         size="small" rounded="true">
 
@@ -21,6 +23,8 @@
                 <br>
 
                 <div class=" progressBarEiweiss">
+
+                    Eiweiss
 
                     <q-linear-progress :value="progressEiweiss" :label="Kohlenhydrate" color="green" track-color="grey"
                         size="small" rounded="true">
@@ -33,6 +37,8 @@
 
 
                 <div class=" progressBarFett">
+
+                    Fett
 
                     <q-linear-progress :value="progressFett" :label="Fett" color="green" track-color="grey" size="small"
                         rounded="true">
