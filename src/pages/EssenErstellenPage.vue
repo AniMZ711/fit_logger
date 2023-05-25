@@ -1,6 +1,6 @@
 <template>
     <div>
-      <h2>Essen hinzufügen</h2>
+      <h2>Essen erstellen</h2>
   
       <form v-if="!editMode" @submit.prevent="addProduct">
         <label for="name">Name:</label>

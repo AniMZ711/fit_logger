@@ -1,13 +1,13 @@
 <template>
     <div>
-     
-    <head>
+    
         <h5 >Meine Statistik</h5>
-      </head>
+        <p> Hier folgt die Statistik </p>
+    
       
     </div>
   </template>
   
 <script>
-import { defineComponent } from 'vue'
+
 </script>

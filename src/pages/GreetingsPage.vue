@@ -1,22 +1,8 @@
 <template>
-    <ion-page>
-        <ion-header>
-            <ion-toolbar>
-                <ion-title>Welcome</ion-title>
-            </ion-toolbar>
-        </ion-header>
-        <ion-content :fullscreen="true">
-            <ion-header collapse="condense">
-                <ion-toolbar>
-                    <ion-title size="large"> Welcome! </ion-title>
-                </ion-toolbar>
-            </ion-header>
-
-            <ExploreContainer name="Add page" />
-
+   
             <div class="home">
                 <h1> Willkommen! </h1>
-
+                <br/> <br/> <br/>
                 <p> Danke, dass du dich für den FIT-Logger entschieden hast! </p>
                 <p> Der FIT-Logger hilft dir, deine Ernährung zu überwachen & zu planen. </p>
                 <p> Du kannst zu Beginn Kalorien- & Makroziele eingeben </p>
@@ -28,13 +14,10 @@
 
             </div>
 
-            <ButtonTest></ButtonTest>
-        </ion-content>
-    </ion-page>
+        
 </template>
   
-<script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+<script>
 
 </script>
   

@@ -46,6 +46,11 @@ const routes = [
        component: () => import("pages/EssenErstellenPage.vue"),
       },
 
+      {
+        path: "/greetingspage",
+       component: () => import("pages/GreetingsPage.vue"),
+      },
+
     ],
   },
 
