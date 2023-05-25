@@ -26,7 +26,7 @@
         />
         <br/>
 
-      <q-btn color="green"> speichern </q-btn>
+      <q-btn rounded color="green" icon="save"> speichern </q-btn>
     </div>
   </template>
   

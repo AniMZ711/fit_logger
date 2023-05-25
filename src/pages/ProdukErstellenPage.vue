@@ -13,7 +13,7 @@
         <input type="number" id="protein" v-model.number="newProduct.protein" min="0" max="5000" required>
         <label for="fat">Fett:</label>
         <input type="number" id="fat" v-model.number="newProduct.fat" min="0" max="5000" required>
-        <button type="submit">Produkt hinzufügen</button>
+        <q-btn rounded color="green" icon="add" type="submit"></q-btn>
       </form>
     
       <form v-else @submit.prevent="updateProduct">
@@ -27,15 +27,15 @@
         <input type="number" id="protein" v-model.number="newProduct.protein" min="0" max="5000" required>
         <label for="fat">Fett:</label>
         <input type="number" id="fat" v-model.number="newProduct.fat" min="0" max="5000" required>
-        <button type="submit">Produkt aktualisieren</button>
-        <button @click="cancelEdit">Abbrechen</button>
+        <q-btn rounded color="green" icon="update"  type="submit"></q-btn>
+        <q-btn rounded color="green" icon="cancel"  @click="cancelEdit"></q-btn>
       </form>
   
       <ul>
         <li v-for="item in items" :key="item.id">
           {{ item.name }} - {{ item.calories }} Kalorien
-          <button @click="editProduct(item)">Bearbeiten</button>
-          <button @click="deleteProduct(item)">Löschen</button>
+          <q-btn rounded color="green" icon="edit" @click="editProduct(item)"> </q-btn>
+          <q-btn rounded color="green" icon="delete" @click="deleteProduct(item)"></q-btn>
         </li>
       </ul>
     </div>
