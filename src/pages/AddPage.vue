@@ -3,9 +3,36 @@
 
         <q-page-container>
             <q-page>
-                <h1> Das ist die AddProdukt (Plus) Page</h1>
+                <h1> Produkt hinzufügen</h1>
 
-               
+                <div class="addIcon">
+                    <q-btn round color="green" icon="add_circle" size="24px" padding="5px" />
+                </div>
+
+                <div class="searchBar" style="max-width: 300px;">
+                    <q-input color="teal" filled v-model="text" label="Nahrungsmittel suchen">
+                        <template v-slot:prepend>
+                            <q-icon name="search" />
+                        </template>
+                    </q-input>
+                </div>
+
+                <div class="auswahlButtons">
+
+
+                    <div>
+                        <q-btn rounded color="green" icon="edit"> Manuell eingeben </q-btn>
+                    </div>
+
+                    <br>
+
+                    <div>
+                        <q-btn rounded color="green" icon="qr_code_scanner"> Produkt scannen </q-btn>
+                    </div>
+
+                </div>
+
+
             </q-page>
         </q-page-container>
 
@@ -19,4 +46,64 @@ export default defineComponent({
     name: 'AddPage'
 })
 </script>
+
+<style scoped>
+@import url('https://fonts.cdnfonts.com/css/inter');
+
+h1 {
+
+    position: absolute;
+    width: 185px;
+    height: 88px;
+    left: 63px;
+    top: 74px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+    text-align: right;
+    letter-spacing: -0.05em;
+
+    color: #323232;
+
+
+
+}
+
+.addIcon {
+
+    position: absolute;
+    width: 185px;
+    height: 88px;
+    left: 270px;
+    top: 120px;
+}
+
+.searchBar {
+
+    position: absolute;
+    width: 100%;
+    max-width: 40rem;
+    left: 40px;
+
+    top: 200px;
+
+
+}
+
+.auswahlButtons {
+
+    position: absolute;
+    width: 100%;
+    max-width: 40rem;
+    left: 100px;
+
+    top: 580px;
+
+}
+</style> 
+
+
 
