@@ -1,48 +1,45 @@
 <template>
-    <q-layout>
-
-        <q-page-container>
-            <q-page>
-                <h1> Das ist die Essen erstellen Seite </h1>
-
-
-                <br/><br/>
-                <p> Name: </p>
-                <input type="text" placeholder="..." />
-                <br />
-
-                <p> Gesamtgewicht: </p>
-                <input type="text" placeholder="..." />
-                <br />
-
-                <p> Kalorien/100g: </p>
-                <input type="text" placeholder="..." />
-                <br />
-
-                <p> Eiweiß/100g: </p>
-                <input type="text" placeholder="..." />
-                <br />
-
-                <p> Fett/100g </p>
-                <input type="text" placeholder="..." />
-                <br />
-
-                <p> Kohlenhydrate/100g: </p>
-                <input type="text" placeholder="..." />
-                <br />
-                <br />
-
-                <q-btn color="green" to="/produkteinpflegen"> Speichern </q-btn>
-            </q-page>
-        </q-page-container>
-
-    </q-layout>
-</template>
+    <div>
+      <h2>Produkte suchen</h2>
+      <input type="text" v-model="searchQuery" placeholder="Produktname eingeben">
+      <button @click="searchProduct">Suchen</button>
+  
+      <ul>
+        <li v-for="product in filteredProducts" :key="product.id">
+          {{ product.name }} - {{ product.calories }} Kalorien
+        </li>
+      </ul>
+    </div>
+  </template>
   
 <script>
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'EssenErstellenPage'
-})
+    name: 'EssenErstellenPage',
+    data() {
+      return {
+        searchQuery: '',
+        products: [],
+        filteredProducts: []
+      };
+    },
+    created() {
+      this.loadProducts();
+    },
+    methods: {
+      loadProducts() {
+        const savedProducts = localStorage.getItem('products');
+        if (savedProducts) {
+          this.products = JSON.parse(savedProducts);
+        }
+      },
+      searchProduct() {
+        const filteredProducts = this.products.filter(product => {
+          return product.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+        });
+        this.filteredProducts = filteredProducts;
+      }
+    }
+  });
 </script>
