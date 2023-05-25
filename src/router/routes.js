@@ -25,11 +25,27 @@ const routes = [
       },
 
       {
-        path: "/essenerstellen",
-        component: () => import("pages/EssenErstellenPage.vue"),
+        path: "/produktsuchen",
+        component: () => import("src/pages/ProduktSuchenPage.vue"),
       },
 
       { path: "/profil", component: () => import("pages/ProfilPage.vue") },
+
+      {
+       path: "/ziele",
+       component: () => import("pages/ZielePage.vue"),
+      },
+
+       {
+         path: "/statistik",
+        component: () => import("pages/StatistikPage.vue"),
+       },
+
+       {
+        path: "/essenerstellen",
+       component: () => import("pages/EssenErstellenPage.vue"),
+      },
+
     ],
   },
 

@@ -3,7 +3,19 @@
 
         <q-page-container>
             <q-page>
-                <h1> Das ist die Profil Seite</h1>
+               
+                <p> Profil </p>
+
+
+                <q-btn color="green" to="/ziele"> Meine Ziele </q-btn>
+
+
+                <br><br><br>
+
+                <q-btn color="green" to="/statistik"> Statistik </q-btn>
+
+
+                <br />
             </q-page>
         </q-page-container>
         ...
