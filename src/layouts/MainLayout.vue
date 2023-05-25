@@ -29,7 +29,7 @@
           <q-route-tab icon="home" to="/dashboard" label="Home" />
           <q-route-tab icon="menu_book" to="/logbuch" label="Logbuch" />
           <q-route-tab icon="add_circle" to="/addproduct" label="Hinzufügen" />
-          <q-route-tab icon=storage to="/produkteinpflegen" label="Produkt einpflegen" />
+          <q-route-tab icon=storage to="/produkteinpflegen" label="Produkte" />
           <q-route-tab icon="account_circle" to="/profil" label="Profil" />
         </q-tabs>
       </q-toolbar>
