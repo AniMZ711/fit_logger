@@ -71,7 +71,15 @@
       saveProducts() {
         window.localStorage.setItem('products', JSON.stringify(this.items));
       },
+
   addProduct() {
+  // JS eingefügt 27.05 Teil zur Logik
+  if (!this.isValidProduct(this.newProduct)) {
+    console.log("Ungültige Eingabe");
+    return;
+  }
+  // bis hier hin
+
   const product = {
   id: Date.now(),
   name: this.newProduct.name,
@@ -84,7 +92,15 @@
   this.saveProducts();
   this.resetForm();
   },
+
   updateProduct() {
+  // JS eingefügt 27.05 Teil zur Logik
+  if (!this.isValidProduct(this.newProduct)) {
+    console.log("Ungültige Eingabe");
+    return;
+  }
+  // bis hier hin
+
   const updatedProduct = {
   id: this.newProduct.id,
   name: this.newProduct.name,
@@ -123,7 +139,42 @@
   protein: 0,
   fat: 0
   };
+  },
+
+//JS 27.05
+// prueft ob der Produktname eingegeben wurde - JS
+  isValidProduct(product) {
+    if (!product.name.trim()) {
+      return false
+    }
+
+
+// prueft ob die Werte positive Zahlen sind - JS
+  if (
+    product.calories <= 0 ||
+    product.carbs <= 0 ||
+    product.protein <= 0 ||
+    product.fat <= 0
+  ) {
+    return false;
   }
+
+// prueft ob die Werte fuer Kohlenhydrate, Protein und Fett insgesamt nicht über 100gramm kommen - JS
+  if (
+    product.carbs > 100 ||
+    product.protein > 100 ||
+    product.fat > 100
+  ) {
+    return false;
+  }
+
+// prueft ob die Kombination der Werte für Kohlenhydrate, Protein und Fett insgesamt nicht über 100g beträgt - JS
+  if(product.carbs + product.protein + product.fat > 100) {
+    return false;
+  }
+
+  return true;
+  }  
   }
   };
   </script>
