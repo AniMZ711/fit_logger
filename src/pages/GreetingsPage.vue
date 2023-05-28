@@ -1,7 +1,7 @@
 <template>
    
             <div class="home">
-                <h1> Willkommen! </h1>
+                <h1 > Willkommen! </h1>
                 <br/> <br/> <br/>
                 <p> Danke, dass du dich für den FIT-Logger entschieden hast! </p>
                 <p> Der FIT-Logger hilft dir, deine Ernährung zu überwachen & zu planen. </p>
