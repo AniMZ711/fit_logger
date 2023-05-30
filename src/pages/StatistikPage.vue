@@ -11,7 +11,13 @@
         :options="options.daten"
         label="Zeitraum"
         style="width: 250px"
-      />
+        color="black"
+        bg-color="green"
+      >
+        <template v-slot:prepend>
+          <q-icon name="event" />
+        </template>
+      </q-select>
 
       <q-select
         filled
@@ -20,7 +26,13 @@
         :options="options.werte"
         label="Daten"
         style="width: 250px"
-      />
+        color="black"
+        bg-color="green"
+      >
+        <template v-slot:prepend>
+          <q-icon name="addchart" />
+        </template>
+      </q-select>
     </div>
   </div>
 </template>
