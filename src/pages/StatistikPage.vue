@@ -8,7 +8,7 @@
       <q-select
         filled
         v-model="single"
-        :options="options[0]"
+        :options="options.daten"
         label="Zeitraum"
         style="width: 250px"
       />
@@ -17,7 +17,7 @@
         filled
         v-model="multiple"
         multiple
-        :options="options[1]"
+        :options="options.werte"
         label="Daten"
         style="width: 250px"
       />
@@ -32,10 +32,15 @@ export default {
     return {
       single: ref(null),
       multiple: ref(null),
-      options: [
-        ["letzte Woche", "letzte 2 Wochen", "letzter Monat", "letztes Jahr"],
-        ["Kalorien", "Proteine", "Fett", "Zucker"],
-      ],
+      options: {
+        daten: [
+          "letzte Woche",
+          "letzte 2 Wochen",
+          "letzter Monat",
+          "letztes Jahr",
+        ],
+        werte: ["Kalorien", "Proteine", "Fett", "Zucker"],
+      },
     };
   },
 };
