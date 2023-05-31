@@ -1,10 +1,16 @@
 <template>
     <q-layout>
 
+        <q-header>
+            <q-toolbar>
+
+                <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+            </q-toolbar>
+        </q-header>
+
         <q-page-container>
             <q-page>
-               
-                <p> Profil </p>
+
 
 
                 <q-btn rounded color="green" icon="grade" to="/ziele"> Meine Ziele </q-btn>
@@ -26,6 +32,18 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'ProfilPage'
+
+    setup() {
+
+        return {
+            name: 'Profil'
+
+        }
+
+
+    }
+
+
+
 })
 </script>

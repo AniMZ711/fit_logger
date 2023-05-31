@@ -3,7 +3,7 @@
 
     <q-header>
       <q-toolbar>
-        <q-btn to="/dashboard" icon="arrow_back" />
+        <q-btn flat to="/dashboard" icon="arrow_back" />
         <q-toolbar-title> {{ name }}</q-toolbar-title>
       </q-toolbar>
     </q-header>

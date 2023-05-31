@@ -1,10 +1,12 @@
 <template>
   <q-header>
     <q-toolbar>
-      <q-btn to="/produkteinpflegen" icon="arrow_back" />
+      <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
       <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
     </q-toolbar>
   </q-header>
+
+
   <div>
     <h2>Essen erstellen</h2>
 

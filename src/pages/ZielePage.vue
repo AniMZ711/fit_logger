@@ -1,7 +1,7 @@
 <template>
   <q-header>
     <q-toolbar>
-      <q-btn to="/profil" icon="arrow_back" />
+      <q-btn flat to="/profil" icon="arrow_back" />
       <q-toolbar-title> {{ name }}</q-toolbar-title>
     </q-toolbar>
   </q-header>

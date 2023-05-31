@@ -3,13 +3,20 @@
 
 
 
+        <q-header>
+            <q-toolbar>
+                <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
 
+                <q-space> </q-space>
+                <q-btn position=right color="green" to="/greetingspage"> About </q-btn>
+            </q-toolbar>
+        </q-header>
 
         <q-page-container>
             <q-page>
                 <h1> Hallo, Name!</h1>
 
-                <q-btn position=top color="green" to="/greetingspage"> About </q-btn>
+
 
                 <div class="offeneKalKreis">
                     <q-circular-progress rounded :value="value" show-value size="80px" color="green" track-color="grey"
@@ -100,7 +107,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
 
-    name: 'DashboardPage',
+
 
     setup() {
 
@@ -129,6 +136,10 @@ export default defineComponent({
             aktuellEiweiss: 0.0,
 
             aktuellFett: 0.0,
+
+            name: 'Dashboard',
+
+
         }
     },
 

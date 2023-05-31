@@ -1,8 +1,20 @@
 <template>
-   
+    <q-layout>
+
+        <q-header>
+            <q-toolbar>
+                <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+
+
+                <q-btn icon="arrow_back" position=right color="green" to="/dashboard"> </q-btn>
+            </q-toolbar>
+        </q-header>
+
+
+        <q-page-container>
             <div class="home">
-                <h1 > Willkommen! </h1>
-                <br/> <br/> <br/>
+                <h1> Willkommen! </h1>
+                <br /> <br /> <br />
                 <p> Danke, dass du dich für den FIT-Logger entschieden hast! </p>
                 <p> Der FIT-Logger hilft dir, deine Ernährung zu überwachen & zu planen. </p>
                 <p> Du kannst zu Beginn Kalorien- & Makroziele eingeben </p>
@@ -14,10 +26,26 @@
 
             </div>
 
-        
+
+        </q-page-container>
+
+    </q-layout>
 </template>
   
 <script>
+
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+
+    setup() {
+
+        return {
+
+            name: "About"
+        }
+    }
+})
 
 </script>
   
