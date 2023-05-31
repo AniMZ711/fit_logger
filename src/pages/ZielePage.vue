@@ -37,11 +37,11 @@
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
 
-    <ul v-if="item.length > 0">
+    <ul v-if="goal.length > 0">
      <li>
-      {{ item[0].name }} - {{ item[0].calories }} Kalorien
-      <q-btn rounded color="green" icon="edit" @click="editGoal(item[0])"></q-btn>
-      <q-btn rounded color="green" icon="delete" @click="deleteGoal(item[0])"></q-btn>
+      {{ goal[0].name }} - {{ goal[0].calories }} Kalorien
+      <q-btn rounded color="green" icon="edit" @click="editGoal(goal[0])"></q-btn>
+      <q-btn rounded color="green" icon="delete" @click="deleteGoal(goal[0])"></q-btn>
     </li>
   </ul>
   </div>
@@ -54,7 +54,7 @@ export default defineComponent({
 
   data() {
     return {
-      item: localStorage.Goals || [1],
+      goal: localStorage.Goal || [],
       newGoal: {
         id: null,
         name: "",
@@ -76,16 +76,16 @@ export default defineComponent({
     loadGoal() {
       const savedGoal = window.localStorage.getItem("Goal");
       if (savedGoal) {
-        this.item = JSON.parse(savedGoal);
+        this.goal = JSON.parse(savedGoal);
       }
     },
     saveGoal() {
-      window.localStorage.setItem("Goal", JSON.stringify(this.item));
+      window.localStorage.setItem("Goal", JSON.stringify(this.goal));
     },
     addGoal() {
-    if (this.item.length > 0) {
+    if (this.goal.length > 0) {
     // Nur ein Ziel erlaubt, überschreibt das vorhandene Ziel
-    this.item.splice(0, 1, {
+    this.goal.splice(0, 1, {
     id: Date.now(),
     name: this.newGoal.name,
     calories: this.newGoal.calories,
@@ -95,7 +95,7 @@ export default defineComponent({
     });
     } else {
     // Kein vorhandenes Ziel, fügt das neue Ziel hinzu
-    this.item.push({
+    this.goal.push({
     id: Date.now(),
     name: this.newGoal.name,
     calories: this.newGoal.calories,
@@ -116,12 +116,12 @@ export default defineComponent({
         protein: this.newGoal.protein,
         fat: this.newGoal.fat,
       };
-      this.item.splice(0, 1, updatedGoal);
+      this.goal.splice(0, 1, updatedGoal);
       this.saveGoal();
       this.cancelEdit();
     },
     deleteGoal(Goal) {
-        this.item.splice(0, 1);
+        this.goal.splice(0, 1);
         this.saveGoal();
       }
     },

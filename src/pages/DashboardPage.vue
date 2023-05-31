@@ -143,14 +143,25 @@ const rows = [
 
 export default defineComponent({
 
+    /*loadGoal() {
+    const savedGoal = window.localStorage.getItem("Goal");
+    if (savedGoal) {
+    const goalData = JSON.parse(savedGoal);
+    this.goal = goalData.goal;
+    this.zielGesamtKcal = goalData.zielGesamtKcal;
+    this.zielKohlenhydrate = goalData.zielKohlenhydrate;
+    this.zielEiweiss = goalData.zielEiweiss;
+    this.zielFett = goalData.zielFett;
+  }
+},*/
     setup() {
-
+        
 
 
         return {
             value: 61,  // gibt den Wert für die Füllung des Progress-Circles 
 
-            zielGesamteKcal: 0.0,
+            zielGesamteKcal: 1000,
 
             aktuellGesamtKcal: 0.0,
 
@@ -160,11 +171,11 @@ export default defineComponent({
 
             progressFett: 0.1, // gibt den Wert für die Füllung des Progress-Bars Fett
 
-            zielKohlenhydrate: 0.0, // vom User festgelegter Tagesziel-Wert für Kohlenhydrate
+            zielKohlenhydrate: 100, // vom User festgelegter Tagesziel-Wert für Kohlenhydrate
 
             zielEiweiss: 100,   // vom User festgelegter Tagesziel-Wert für Eiweiss
 
-            zielFett: 0.0,  // vom User festgelegter Tagesziel-Wert für Fett
+            zielFett: 100,  // vom User festgelegter Tagesziel-Wert für Fett
 
             aktuellKohlenhydrate: 0.0,
 
@@ -190,11 +201,6 @@ export default defineComponent({
     },
 
     //die Mahlzeiten müssen importiert werden, damit man sie anzeigen lassen kann
-
-    data() {
-
-
-    }
 })
 </script>
 
