@@ -221,9 +221,13 @@ export default defineComponent({
 
 
      position: absolute;
-     width: auto;
-     height: 10px;
-     left: 50px;
+     width: 75%;
+     margin-right: 50px;
+     margin-left: 50px;
+     height: auto;
+
+
+
      top: 400px;
 
  }
