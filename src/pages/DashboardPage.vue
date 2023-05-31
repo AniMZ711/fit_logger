@@ -16,58 +16,63 @@
             <q-page>
                 <h1> Hallo, Name!</h1>
 
+                <div class="DashboardAnzeige">
 
+                    <div class="offeneKalKreis">
+                        <q-circular-progress rounded :value="value" show-value size="80px" color="green" track-color="grey"
+                            class="q-ma-md">
+                            {{ value }} %
+                        </q-circular-progress>
 
-                <div class="offeneKalKreis">
-                    <q-circular-progress rounded :value="value" show-value size="80px" color="green" track-color="grey"
-                        class="q-ma-md">
-                        {{ value }} %
-                    </q-circular-progress>
+                        <br>
+
+                        <p class=" anzeigeGesamteZielKalorien"> {{ aktuellGesamtKcal }} / {{ zielGesamteKcal }} kcal </p>
+
+                    </div>
+
+                    <div class=" progressBarKohlenhydrate">
+
+                        Kohlenhydrate {{ aktuellKohlenhydrate }}/{{ zielKohlenhydrate }} g
+
+                        <q-linear-progress :value="progressKohlenhydrate" :label="Eiweiss" color="green" track-color="grey"
+                            size="small" rounded="true">
+
+                        </q-linear-progress>
+
+                    </div>
 
                     <br>
 
-                    <p class=" anzeigeGesamteZielKalorien"> {{ aktuellGesamtKcal }} / {{ zielGesamteKcal }} kcal </p>
+                    <div class=" progressBarEiweiss">
 
-                </div>
+                        Eiweiss {{ aktuellEiweiss }}/{{ zielEiweiss }} g
 
-                <div class=" progressBarKohlenhydrate">
+                        <q-linear-progress :value="progressEiweiss" :label="Kohlenhydrate" color="green" track-color="grey"
+                            size="small" rounded="true">
 
-                    Kohlenhydrate {{ aktuellKohlenhydrate }}/{{ zielKohlenhydrate }} g
+                        </q-linear-progress>
 
-                    <q-linear-progress :value="progressKohlenhydrate" :label="Eiweiss" color="green" track-color="grey"
-                        size="small" rounded="true">
+                    </div>
 
-                    </q-linear-progress>
+                    <br>
 
-                </div>
+                    <div class=" progressBarFett">
 
-                <br>
+                        Fett {{ aktuellFett }}/{{ zielFett }} g
 
-                <div class=" progressBarEiweiss">
+                        <q-linear-progress :value="progressFett" :label="Fett" color="green" track-color="grey" size="small"
+                            rounded="true">
 
-                    Eiweiss {{ aktuellEiweiss }}/{{ zielEiweiss }} g
+                        </q-linear-progress>
 
-                    <q-linear-progress :value="progressEiweiss" :label="Kohlenhydrate" color="green" track-color="grey"
-                        size="small" rounded="true">
 
-                    </q-linear-progress>
 
-                </div>
-
-                <br>
-
-                <div class=" progressBarFett">
-
-                    Fett {{ aktuellFett }}/{{ zielFett }} g
-
-                    <q-linear-progress :value="progressFett" :label="Fett" color="green" track-color="grey" size="small"
-                        rounded="true">
-
-                    </q-linear-progress>
-
+                    </div>
 
 
                 </div>
+
+
 
                 <div class="q-pa-md">
                     <q-responsive :ratio="1 / 1">
@@ -192,7 +197,6 @@ export default defineComponent({
     }
 })
 </script>
-
 
 <style> h1 {
 
