@@ -3,7 +3,7 @@ const routes = [
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/IndexPage.vue") },
+      { path: "", component: () => import("pages/DashboardPage.vue") },
 
       {
         path: "/dashboard",
@@ -32,25 +32,24 @@ const routes = [
       { path: "/profil", component: () => import("pages/ProfilPage.vue") },
 
       {
-       path: "/ziele",
-       component: () => import("pages/ZielePage.vue"),
+        path: "/ziele",
+        component: () => import("pages/ZielePage.vue"),
       },
 
-       {
-         path: "/statistik",
+      {
+        path: "/statistik",
         component: () => import("pages/StatistikPage.vue"),
-       },
+      },
 
-       {
+      {
         path: "/essenerstellen",
-       component: () => import("pages/EssenErstellenPage.vue"),
+        component: () => import("pages/EssenErstellenPage.vue"),
       },
 
       {
         path: "/greetingspage",
-       component: () => import("pages/GreetingsPage.vue"),
+        component: () => import("pages/GreetingsPage.vue"),
       },
-
     ],
   },
 

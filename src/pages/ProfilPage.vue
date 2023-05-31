@@ -3,7 +3,6 @@
 
         <q-header>
             <q-toolbar>
-
                 <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
             </q-toolbar>
         </q-header>
