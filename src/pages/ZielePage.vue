@@ -6,35 +6,137 @@
     </q-toolbar>
   </q-header>
   <div>
+    <h2>Mein Ziel</h2>
 
+    <form v-if="!editMode" @submit.prevent="addGoal">
+      <label for="name">Name:</label>
+      <input type="text" id="name" v-model="newGoal.name" required />
+      <label for="calories">Kalorien:</label>
+      <input type="number" id="calories" v-model.number="newGoal.calories" min="0" max="15000" required />
+      <label for="carbs">Kohlenhydrate:</label>
+      <input type="number" id="carbs" v-model.number="newGoal.carbs" min="0" max="5000" required />
+      <label for="protein">Protein:</label>
+      <input type="number" id="protein" v-model.number="newGoal.protein" min="0" max="5000" required />
+      <label for="fat">Fett:</label>
+      <input type="number" id="fat" v-model.number="newGoal.fat" min="0" max="5000" required />
+      <q-btn rounded color="green" icon="add" type="submit"></q-btn>
+    </form>
 
-    <q-input v-model="text" label="Kalorien" />
-    <br />
+    <form v-else @submit.prevent="updateGoal">
+      <label for="name">Name:</label>
+      <input type="text" id="name" v-model="newGoal.name" required />
+      <label for="calories">Kalorien:</label>
+      <input type="number" id="calories" v-model.number="newGoal.calories" min="0" max="5000" required />
+      <label for="carbs">Kohlenhydrate:</label>
+      <input type="number" id="carbs" v-model.number="newGoal.carbs" min="0" max="5000" required />
+      <label for="protein">Protein:</label>
+      <input type="number" id="protein" v-model.number="newGoal.protein" min="0" max="5000" required />
+      <label for="fat">Fett:</label>
+      <input type="number" id="fat" v-model.number="newGoal.fat" min="0" max="5000" required />
+      <q-btn rounded color="green" icon="update" type="submit"></q-btn>
+      <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
+    </form>
 
-    <q-input v-model="text" label="Eiweiß" />
-    <br />
-
-    <q-input v-model="text" label="Kolenhydrate" />
-    <br />
-
-    <q-input v-model="text" label="Fett" />
-    <br />
-
-    <q-btn rounded color="green" icon="save"> speichern </q-btn>
+    <ul>
+      <li v-for="item in item" :key="item.id">
+        {{ item.name }} - {{ item.calories }} Kalorien
+        <q-btn rounded color="green" icon="edit" @click="editGoal(item)">
+        </q-btn>
+        <q-btn rounded color="green" icon="delete" @click="deleteGoal(item)"></q-btn>
+      </li>
+    </ul>
   </div>
 </template>
-  
+
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
 
-  setup() {
-
+  data() {
     return {
+      item: localStorage.Goals || [1],
+      newGoal: {
+        id: null,
+        name: "",
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fat: 0,
+      },
+      editMode: false,
+      editGoalIndex: null,
+      name: "Mein Ziel", //bei Veränderung wird der Seitentitel automatisch angepasst
 
-      name: "Meine Ziele"
-    }
-  }
-}
+    };
+  },
+  created() {
+    this.loadGoal();
+  },
+  methods: {
+    loadGoal() {
+      const savedGoal = window.localStorage.getItem("Goal");
+      if (savedGoal) {
+        this.item = JSON.parse(savedGoal);
+      }
+    },
+    saveGoal() {
+      window.localStorage.setItem("Goal", JSON.stringify(this.item));
+    },
+    addGoal() {
+      const Goal = {
+        id: Date.now(),
+        name: this.newGoal.name,
+        calories: this.newGoal.calories,
+        carbs: this.newGoal.carbs,
+        protein: this.newGoal.protein,
+        fat: this.newGoal.fat,
+      };
+      this.item.push(Goal);
+      this.saveGoal();
+      this.resetForm();
+    },
+    updateGoal() {
+      const updatedGoal = {
+        id: this.newGoal.id,
+        name: this.newGoal.name,
+        calories: this.newGoal.calories,
+        carbs: this.newGoal.carbs,
+        protein: this.newGoal.protein,
+        fat: this.newGoal.fat,
+      };
+      this.item.splice(this.editGoalIndex, 1, updatedGoal);
+      this.saveGoal();
+      this.cancelEdit();
+    },
+    deleteGoal(Goal) {
+      const index = this.item.indexOf(Goal);
+      if (index !== -1) {
+        this.item.splice(index, 1);
+        this.saveGoal();
+      }
+    },
+    editGoal(Goal) {
+      this.editMode = true;
+      this.editGoalIndex = this.item.indexOf(Goal);
+      this.newGoal = { ...Goal };
+    },
+    cancelEdit() {
+      this.editMode = false;
+      this.editGoalIndex = null;
+      this.resetForm();
+    },
+    resetForm() {
+      this.newGoal = {
+        id: null,
+        name: "",
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fat: 0,
+      };
+    },
+  },
+});
 </script>
+  
