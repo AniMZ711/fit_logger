@@ -65,30 +65,72 @@
 
                     </q-linear-progress>
 
+
+
                 </div>
 
                 <div class="q-pa-md">
                     <q-responsive :ratio="1 / 1">
-                        <q-table title="Letzte Mahlzeiten" class="my-sticky-table" virtual-scroll
-                            v-model:pagination="pagination" :rows-per-page-options="[0]"
-                            :virtual-scroll-sticky-size-start="48" row-key="index" :rows="rows" :columns="columns" />
+                        <q-table dense flat bordered title="Letzte Mahlzeiten" :rows="rows" :columns="columns"
+                            row-key="name" align="left">
+
+
+
+                        </q-table>
                     </q-responsive>
                 </div>
 
             </q-page>
         </q-page-container>
-        ...
+
     </q-layout>
 </template>
   
 <script>
 import { defineComponent } from 'vue'
 
-import { ref } from 'vue'
 
 
 
-// we generate lots of rows here
+
+const columns = [
+    {
+        name: 'name',
+        required: true,
+        label: 'Name',
+        align: 'left',
+        field: row => row.name,
+        format: val => `${val}`,
+        sortable: true
+    },
+    { name: 'kcal', align: 'left', label: 'kcal', field: 'kcal', sortable: true },
+    { name: 'fat', align: 'left', label: 'Fat (g)', field: 'fat', sortable: true },
+    { name: 'carbs', align: 'left', label: 'Carbs (g)', field: 'carbs' },
+    { name: 'protein', align: 'left', label: 'Protein (g)', field: 'protein' },
+
+]
+
+const rows = [
+    {
+        name: 'Mahlzeit1',
+        kcal: 159,
+        fat: 6.0,
+        carbs: 24,
+        protein: 4.0,
+
+    },
+
+    {
+        name: 'Mahlzeit2',
+        kcal: 159,
+        fat: 6.0,
+        carbs: 24,
+        protein: 4.0,
+
+    }
+
+]
+
 
 
 
@@ -97,6 +139,7 @@ import { ref } from 'vue'
 export default defineComponent({
 
     setup() {
+
 
 
         return {
@@ -125,6 +168,10 @@ export default defineComponent({
             aktuellFett: 0.0,
 
             name: 'Dashboard',
+
+            columns,
+
+            rows
 
 
 
@@ -215,10 +262,11 @@ export default defineComponent({
 
 
      position: absolute;
-     width: 75%;
-     margin-right: 50px;
-     margin-left: 50px;
-     height: auto;
+     width: 100%;
+
+
+
+     height: fit-content;
 
 
 

@@ -13,7 +13,7 @@
 
     <q-footer reveal elevated class="bg-grey-8 text-white">
 
-      <q-tabs align="justify" :breakpoint="0">
+      <q-tabs align="justify" :breakpoint="0"> 
         <q-route-tab icon="home" to="/dashboard" label="Home" />
         <q-route-tab icon="menu_book" to="/logbuch" label="Logbuch" />
         <q-page-sticky position="bottom" :offset="[18, 18]" class="fabbutton ">
@@ -30,12 +30,6 @@
 
 
 <script>
-import { defineComponent, ref } from 'vue'
-import VueBottomNavigation from "bottom-navigation-vue";
-
-
-
-
 
 // export default defineComponent({
 

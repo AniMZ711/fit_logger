@@ -11,6 +11,9 @@
         <q-page-container>
             <q-page>
                 <h1> Das ist die Logbuch Seite</h1>
+
+
+                
             </q-page>
         </q-page-container>
         ...
