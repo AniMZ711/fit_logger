@@ -1,11 +1,15 @@
 <template>
     <q-layout>
 
+
+
+
+
         <q-page-container>
             <q-page>
                 <h1> Hallo, Name!</h1>
 
-                <q-btn color="green" to="/greetingspage"> About </q-btn>
+                <q-btn position=top color="green" to="/greetingspage"> About </q-btn>
 
                 <div class="offeneKalKreis">
                     <q-circular-progress rounded :value="value" show-value size="80px" color="green" track-color="grey"

@@ -1,13 +1,19 @@
 <template>
+    <q-header>
+        <q-toolbar>
+
+            <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+        </q-toolbar>
+    </q-header>
     <q-layout>
 
         <q-page-container>
             <q-page>
-               
+
                 <p> Produkt Datenbank </p>
 
 
-                
+
                 <q-btn rounded color="green" icon="search" to="/produktsuchen"> Produkt suchen</q-btn>
 
                 <br><br><br>
@@ -26,6 +32,14 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'ProduktEinfplegenPage'
+
+    setup() {
+        return {
+
+            name: 'Produkte'
+
+        }
+    }
+
 })
 </script>

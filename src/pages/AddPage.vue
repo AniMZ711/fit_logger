@@ -1,26 +1,22 @@
 <template>
   <q-layout>
+
+    <q-header>
+      <q-toolbar>
+        <q-btn to="/dashboard" icon="arrow_back" />
+        <q-toolbar-title> {{ name }}</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
     <q-page-container>
       <q-page>
         <h1>Produkt hinzufügen</h1>
 
         <div class="addIcon">
-          <q-btn
-            round
-            color="green"
-            icon="add_circle"
-            size="24px"
-            padding="5px"
-          />
+          <q-btn round color="green" icon="add_circle" size="24px" padding="5px" />
         </div>
 
         <div class="searchBar" style="max-width: 300px">
-          <q-input
-            color="teal"
-            filled
-            v-model="text"
-            label="Nahrungsmittel suchen"
-          >
+          <q-input color="teal" filled v-model="text" label="Nahrungsmittel suchen">
             <template v-slot:prepend>
               <q-icon name="search" />
             </template>
@@ -35,21 +31,12 @@
           <br />
 
           <div>
-            <q-btn
-              rounded
-              color="green"
-              icon="qr_code_scanner"
-              @click="toggleScanner"
-            >
+            <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
               Produkt scannen
             </q-btn>
           </div>
 
-          <StreamBarcodeReader
-            v-show="showScanner"
-            @decode="onDecode"
-            @loaded="onLoaded"
-          ></StreamBarcodeReader>
+          <StreamBarcodeReader v-show="showScanner" @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
         </div>
       </q-page>
     </q-page-container>
@@ -61,11 +48,12 @@ import { defineComponent } from "vue";
 import { StreamBarcodeReader } from "vue-barcode-reader";
 
 export default defineComponent({
-  name: "AddPage",
+
   components: { StreamBarcodeReader },
   data() {
     return {
       showScanner: false,
+      name: "Produkt hinzufügen",
     };
   },
   methods: {
@@ -110,6 +98,7 @@ h1 {
   height: 88px;
   left: 270px;
   top: 120px;
+  pointer-events: none;
 }
 
 .searchBar {

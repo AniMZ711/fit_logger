@@ -34,7 +34,7 @@
           <!-- <q-route-tab icon="add_circle" to="/addproduct" label="Hinzufügen" /> -->
 
           <q-page-sticky position="bottom" :offset="[18, 18]" class="fabbutton ">
-            <q-btn fab icon="add_circle" color="green" to="/addproduct" />
+            <q-btn round color="green" icon="add_circle" size="28px" padding="5px" to="/addproduct" />
           </q-page-sticky>
           <q-route-tab icon=storage to="/produkteinpflegen" label="Produkte" />
           <q-route-tab icon="account_circle" to="/profil" label="Profil" />
@@ -77,12 +77,14 @@ q-page {
 
   position: fixed;
 
-  bottom: -40px;
+  bottom: -45px;
 
   margin-left: auto;
   margin-right: auto;
 
   z-index: 3000;
+
+
 
 
 

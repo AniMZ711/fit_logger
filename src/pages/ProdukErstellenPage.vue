@@ -1,46 +1,26 @@
 <template>
+  <q-header>
+    <q-toolbar>
+      <q-btn to="/produkteinpflegen" icon="arrow_back" />
+      <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+    </q-toolbar>
+  </q-header>
+
+
   <div>
-    <h2>Produkt hinzufügen</h2>
+    <h2>Produkt erstellen</h2>
 
     <form v-if="!editMode" @submit.prevent="addProduct">
       <label for="name">Name:</label>
       <input type="text" id="name" v-model="newProduct.name" required />
       <label for="calories">Kalorien:</label>
-      <input
-        type="number"
-        id="calories"
-        v-model.number="newProduct.calories"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="calories" v-model.number="newProduct.calories" min="0" max="5000" required />
       <label for="carbs">Kohlenhydrate:</label>
-      <input
-        type="number"
-        id="carbs"
-        v-model.number="newProduct.carbs"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="carbs" v-model.number="newProduct.carbs" min="0" max="5000" required />
       <label for="protein">Protein:</label>
-      <input
-        type="number"
-        id="protein"
-        v-model.number="newProduct.protein"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="protein" v-model.number="newProduct.protein" min="0" max="5000" required />
       <label for="fat">Fett:</label>
-      <input
-        type="number"
-        id="fat"
-        v-model.number="newProduct.fat"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="fat" v-model.number="newProduct.fat" min="0" max="5000" required />
       <q-btn rounded color="green" icon="add" type="submit"></q-btn>
     </form>
 
@@ -48,41 +28,13 @@
       <label for="name">Name:</label>
       <input type="text" id="name" v-model="newProduct.name" required />
       <label for="calories">Kalorien:</label>
-      <input
-        type="number"
-        id="calories"
-        v-model.number="newProduct.calories"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="calories" v-model.number="newProduct.calories" min="0" max="5000" required />
       <label for="carbs">Kohlenhydrate:</label>
-      <input
-        type="number"
-        id="carbs"
-        v-model.number="newProduct.carbs"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="carbs" v-model.number="newProduct.carbs" min="0" max="5000" required />
       <label for="protein">Protein:</label>
-      <input
-        type="number"
-        id="protein"
-        v-model.number="newProduct.protein"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="protein" v-model.number="newProduct.protein" min="0" max="5000" required />
       <label for="fat">Fett:</label>
-      <input
-        type="number"
-        id="fat"
-        v-model.number="newProduct.fat"
-        min="0"
-        max="5000"
-        required
-      />
+      <input type="number" id="fat" v-model.number="newProduct.fat" min="0" max="5000" required />
       <q-btn rounded color="green" icon="update" type="submit"></q-btn>
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
@@ -92,12 +44,7 @@
         {{ item.name }} - {{ item.calories }} Kalorien
         <q-btn rounded color="green" icon="edit" @click="editProduct(item)">
         </q-btn>
-        <q-btn
-          rounded
-          color="green"
-          icon="delete"
-          @click="deleteProduct(item)"
-        ></q-btn>
+        <q-btn rounded color="green" icon="delete" @click="deleteProduct(item)"></q-btn>
       </li>
     </ul>
   </div>
@@ -107,7 +54,8 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "EssenErstellenPage",
+
+
 
   data() {
     return {
@@ -122,6 +70,8 @@ export default defineComponent({
       },
       editMode: false,
       editProductIndex: null,
+      name: "Produkt erstellen", //bei Veränderung wird der Seitentitel automatisch angepasst
+
     };
   },
   created() {
