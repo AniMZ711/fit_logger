@@ -17,10 +17,7 @@
                 <q-btn rounded color="green" icon="search" to="/produktsuchen"> Produkt suchen</q-btn>
 
                 <br><br><br>
-                <q-btn rounded color="green" icon="edit" to="/produkterstellen"> Produkt Erstellen</q-btn>
-
-                <br><br><br>
-                <q-btn rounded color="green" icon="edit" to="/essenerstellen"> Essen Erstellen</q-btn>
+                <q-btn rounded color="green" icon="edit" to="/produkterstellen"> Produkt/Essen hinzufügen</q-btn>
 
             </q-page>
         </q-page-container>

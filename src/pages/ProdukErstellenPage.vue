@@ -8,7 +8,7 @@
 
 
   <div>
-    <h2>Produkt erstellen</h2>
+    <h2>Produkt / Essen hinzufügen</h2>
 
     <form v-if="!editMode" @submit.prevent="addProduct">
       <label for="name">Name:</label>
@@ -70,7 +70,7 @@ export default defineComponent({
       },
       editMode: false,
       editProductIndex: null,
-      name: "Produkt erstellen", //bei Veränderung wird der Seitentitel automatisch angepasst
+      name: "Produkt / Essen hinzufügen", //bei Veränderung wird der Seitentitel automatisch angepasst
 
     };
   },
