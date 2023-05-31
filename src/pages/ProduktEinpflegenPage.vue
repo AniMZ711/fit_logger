@@ -10,14 +10,20 @@
         <q-page-container>
             <q-page>
 
-                <p> Produkt Datenbank </p>
 
 
+                <div class="actionButtons">
+                    <q-btn class="searchButton" rounded color="green" icon="search" to="/produktsuchen"> Produkt
+                        suchen</q-btn>
 
-                <q-btn rounded color="green" icon="search" to="/produktsuchen"> Produkt suchen</q-btn>
 
-                <br><br><br>
-                <q-btn rounded color="green" icon="edit" to="/produkterstellen"> Produkt/Essen hinzufügen</q-btn>
+                    <q-btn class="addButton" rounded color="green" icon="edit" to="/produkterstellen"> Produkt/Essen
+                        hinzufügen</q-btn>
+
+
+                </div>
+
+
 
             </q-page>
         </q-page-container>
@@ -40,3 +46,27 @@ export default defineComponent({
 
 })
 </script>
+
+<style>
+.actionButtons {
+
+    position: absolute;
+    top: 100px;
+    left: 50%;
+
+
+    transform: translate(-50%, -50%)
+}
+
+.searchButton {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.addButton {
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+</style>

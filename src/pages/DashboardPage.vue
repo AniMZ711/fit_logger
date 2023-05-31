@@ -74,7 +74,7 @@
 
 
 
-                <div class="q-pa-md">
+                <div class="anzeigeMahlzeiten">
                     <q-responsive :ratio="1 / 1">
                         <q-table dense flat bordered title="Letzte Mahlzeiten" :rows="rows" :columns="columns"
                             row-key="name" align="left">
@@ -262,20 +262,15 @@ export default defineComponent({
 
  }
 
- .q-pa-md {
+ .anzeigeMahlzeiten {
 
 
      position: absolute;
-     width: 100%;
-
-
-
-     height: fit-content;
-
-
-
-     top: 300px;
-
+     width: 80%;
+     top: 400px;
+     left: 50%;
+     margin-right: -50%;
+     transform: translate(-50%, -50%)
  }
 </style>
 
