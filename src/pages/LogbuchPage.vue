@@ -17,7 +17,8 @@
 
             <div class="DatePicker">
 
-                <DatePicker message=" hi"></DatePicker>
+                <DatePicker> </DatePicker>
+
             </div>
 
 
@@ -32,6 +33,7 @@ import { defineComponent } from 'vue'
 import DatePicker from 'src/components/DatePicker.vue';
 
 
+
 export default defineComponent({
 
     components: {
@@ -43,8 +45,7 @@ export default defineComponent({
         };
     },
 
-})
-    ;
+});
 </script>
 
 
@@ -53,8 +54,10 @@ export default defineComponent({
 
     position: absolute;
 
-    top: 50px;
-
-    right: 50px;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
 }
 </style>
