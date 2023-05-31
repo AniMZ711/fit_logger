@@ -1,36 +1,60 @@
 <template>
     <q-layout>
 
+
+
         <q-header>
             <q-toolbar>
+                <q-btn flat icon="menu_book" color="white"> </q-btn>
                 <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+
 
             </q-toolbar>
         </q-header>
 
-        <q-page-container>
-            <q-page>
-                <h1> Das ist die Logbuch Seite</h1>
+
+        <q-page>
+
+            <div class="DatePicker">
+
+                <DatePicker message=" hi"></DatePicker>
+            </div>
 
 
-                
-            </q-page>
-        </q-page-container>
-        ...
+        </q-page>
+
+
     </q-layout>
 </template>
   
 <script>
 import { defineComponent } from 'vue'
+import DatePicker from 'src/components/DatePicker.vue';
+
 
 export default defineComponent({
 
-    setup() {
+    components: {
+        DatePicker
+    },
+    data() {
         return {
-            name: 'Logbuch'
-
-        }
-    }
+            name: "Logbuch",
+        };
+    },
 
 })
+    ;
 </script>
+
+
+<style>
+.DatePicker {
+
+    position: absolute;
+
+    top: 50px;
+
+    right: 50px;
+}
+</style>
