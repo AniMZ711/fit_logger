@@ -67,33 +67,12 @@
 
                 </div>
 
-                <div class="anzeigeLetzteMahlzeiten">
-
-                    <q-list bordered separator>
-                        <q-item clickable v-ripple>
-                            <q-item-section strech>Brezel</q-item-section>
-                        </q-item>
-
-                        <q-item clickable v-ripple>
-                            <q-item-section>
-                                <q-item-label>Riegel</q-item-label>
-                                <q-item-label caption>Snack</q-item-label>
-                            </q-item-section>
-                        </q-item>
-
-
-
-                        <q-item clickable v-ripple>
-                            <q-item-section>
-                                <q-item-label overline>Nahrungsmittel Titel</q-item-label>
-                                <q-item-label> Bestandteil1</q-item-label>
-                                <q-item-label> Bestandteil2</q-item-label>
-                            </q-item-section>
-                        </q-item>
-
-                    </q-list>
-
-
+                <div class="q-pa-md">
+                    <q-responsive :ratio="1 / 1">
+                        <q-table title="Letzte Mahlzeiten" class="my-sticky-table" virtual-scroll
+                            v-model:pagination="pagination" :rows-per-page-options="[0]"
+                            :virtual-scroll-sticky-size-start="48" row-key="index" :rows="rows" :columns="columns" />
+                    </q-responsive>
                 </div>
 
             </q-page>
@@ -105,9 +84,17 @@
 <script>
 import { defineComponent } from 'vue'
 
+import { ref } from 'vue'
+
+
+
+// we generate lots of rows here
+
+
+
+
+
 export default defineComponent({
-
-
 
     setup() {
 
@@ -138,6 +125,13 @@ export default defineComponent({
             aktuellFett: 0.0,
 
             name: 'Dashboard',
+
+
+
+
+
+
+
 
 
         }
@@ -217,7 +211,7 @@ export default defineComponent({
 
  }
 
- .anzeigeLetzteMahlzeiten {
+ .q-pa-md {
 
 
      position: absolute;
@@ -228,7 +222,7 @@ export default defineComponent({
 
 
 
-     top: 400px;
+     top: 300px;
 
  }
 </style>
