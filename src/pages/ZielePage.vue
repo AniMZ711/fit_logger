@@ -37,14 +37,13 @@
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
 
-    <ul>
-      <li v-for="item in item" :key="item.id">
-        {{ item.name }} - {{ item.calories }} Kalorien
-        <q-btn rounded color="green" icon="edit" @click="editGoal(item)">
-        </q-btn>
-        <q-btn rounded color="green" icon="delete" @click="deleteGoal(item)"></q-btn>
-      </li>
-    </ul>
+    <ul v-if="item.length > 0">
+     <li>
+      {{ item[0].name }} - {{ item[0].calories }} Kalorien
+      <q-btn rounded color="green" icon="edit" @click="editGoal(item[0])"></q-btn>
+      <q-btn rounded color="green" icon="delete" @click="deleteGoal(item[0])"></q-btn>
+    </li>
+  </ul>
   </div>
 </template>
 
@@ -84,17 +83,29 @@ export default defineComponent({
       window.localStorage.setItem("Goal", JSON.stringify(this.item));
     },
     addGoal() {
-      const Goal = {
-        id: Date.now(),
-        name: this.newGoal.name,
-        calories: this.newGoal.calories,
-        carbs: this.newGoal.carbs,
-        protein: this.newGoal.protein,
-        fat: this.newGoal.fat,
-      };
-      this.item.push(Goal);
-      this.saveGoal();
-      this.resetForm();
+    if (this.item.length > 0) {
+    // Nur ein Ziel erlaubt, überschreibt das vorhandene Ziel
+    this.item.splice(0, 1, {
+    id: Date.now(),
+    name: this.newGoal.name,
+    calories: this.newGoal.calories,
+    carbs: this.newGoal.carbs,
+    protein: this.newGoal.protein,
+    fat: this.newGoal.fat,
+    });
+    } else {
+    // Kein vorhandenes Ziel, fügt das neue Ziel hinzu
+    this.item.push({
+    id: Date.now(),
+    name: this.newGoal.name,
+    calories: this.newGoal.calories,
+    carbs: this.newGoal.carbs,
+    protein: this.newGoal.protein,
+    fat: this.newGoal.fat,
+    });
+    }
+    this.saveGoal();
+    this.resetForm();
     },
     updateGoal() {
       const updatedGoal = {
@@ -105,20 +116,18 @@ export default defineComponent({
         protein: this.newGoal.protein,
         fat: this.newGoal.fat,
       };
-      this.item.splice(this.editGoalIndex, 1, updatedGoal);
+      this.item.splice(0, 1, updatedGoal);
       this.saveGoal();
       this.cancelEdit();
     },
     deleteGoal(Goal) {
-      const index = this.item.indexOf(Goal);
-      if (index !== -1) {
-        this.item.splice(index, 1);
+        this.item.splice(0, 1);
         this.saveGoal();
       }
     },
     editGoal(Goal) {
       this.editMode = true;
-      this.editGoalIndex = this.item.indexOf(Goal);
+      this.editGoalIndex = 0;
       this.newGoal = { ...Goal };
     },
     cancelEdit() {
@@ -136,7 +145,6 @@ export default defineComponent({
         fat: 0,
       };
     },
-  },
-});
+  })
 </script>
   
