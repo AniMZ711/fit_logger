@@ -4,9 +4,9 @@
         <q-page-container>
             <q-page>
                 <h1> Hallo, Name!</h1>
-                
+
                 <q-btn color="green" to="/greetingspage"> About </q-btn>
-                
+
                 <div class="offeneKalKreis">
                     <q-circular-progress rounded :value="value" show-value size="80px" color="green" track-color="grey"
                         class="q-ma-md">
@@ -89,7 +89,6 @@
         </q-page-container>
         ...
     </q-layout>
-
 </template>
   
 <script>
@@ -205,15 +204,12 @@ export default defineComponent({
 
  .anzeigeLetzteMahlzeiten {
 
-     border: 5px solid;
-     position: fixed;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50%, -50%);
-     padding: 10px;
-     width: 350px;
-     height: auto;
 
+     position: absolute;
+     width: auto;
+     height: 10px;
+     left: 50px;
+     top: 400px;
 
  }
 </style>

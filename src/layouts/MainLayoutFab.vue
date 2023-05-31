@@ -18,24 +18,17 @@
     </q-header>
 
     <q-page-container>
-
-
-
       <router-view />
     </q-page-container>
 
     <q-footer reveal elevated class="bg-grey-8 text-white">
-      <q-toolbar class="toolbar">
+      <q-toolbar>
 
 
         <q-tabs align="left">
           <q-route-tab icon="home" to="/dashboard" label="Home" />
           <q-route-tab icon="menu_book" to="/logbuch" label="Logbuch" />
-          <!-- <q-route-tab icon="add_circle" to="/addproduct" label="Hinzufügen" /> -->
-
-          <q-page-sticky position="bottom" :offset="[18, 18]" class="fabbutton ">
-            <q-btn fab icon="add_circle" color="green" to="/addproduct" />
-          </q-page-sticky>
+          <q-route-tab icon="add_circle" to="/addproduct" label="Hinzufügen" />
           <q-route-tab icon=storage to="/produkteinpflegen" label="Produkte" />
           <q-route-tab icon="account_circle" to="/profil" label="Profil" />
         </q-tabs>
@@ -67,30 +60,5 @@ import VueBottomNavigation from "bottom-navigation-vue";
 <style>
 Q-header {
   color: green
-}
-
-q-page {
-  overflow: hidden;
-}
-
-.fabbutton {
-
-  position: fixed;
-
-  bottom: -40px;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  z-index: 3000;
-
-
-
-}
-
-.toolbar {
-
-  margin-left: auto;
-  margin-right: auto;
 }
 </style>
