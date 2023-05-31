@@ -1,79 +1,71 @@
 <template>
-    <q-layout>
+  <q-layout>
+    <q-header>
+      <q-toolbar>
+        <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+      </q-toolbar>
+    </q-header>
 
-        <q-header>
-            <q-toolbar>
-                <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
-            </q-toolbar>
-        </q-header>
+    <q-page-container>
+      <q-page>
+        <div class="actionButtons">
+          <q-btn
+            class="zielButton"
+            rounded
+            color="green"
+            icon="grade"
+            to="/ziele"
+          >
+            Meine Ziel
+          </q-btn>
 
-        <q-page-container>
-            <q-page>
+          <q-btn
+            class="statistikButton"
+            rounded
+            color="green"
+            icon="auto_graph"
+            to="/statistik"
+          >
+            Statistik
+          </q-btn>
+        </div>
 
-
-                <div class="actionButtons">
-
-                    <q-btn class="zielButton" rounded color="green" icon="grade" to="/ziele"> Meine Ziele </q-btn>
-
-                    <q-btn class="statistikButton" rounded color="green" icon="auto_graph" to="/statistik"> Statistik
-                    </q-btn>
-
-
-                </div>
-
-
-
-                <br />
-            </q-page>
-        </q-page-container>
-        ...
-    </q-layout>
+        <br />
+      </q-page>
+    </q-page-container>
+    ...
+  </q-layout>
 </template>
-  
+
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-
-    setup() {
-
-        return {
-            name: 'Profil'
-
-        }
-
-
-    }
-
-
-
-})
+  setup() {
+    return {
+      name: "Profil",
+    };
+  },
+});
 </script>
-
-
 
 <style>
 .actionButtons {
-
-    position: absolute;
-    top: 100px;
-    left: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    transform: translate(-50%, -50%)
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translate(-50%, -50%);
 }
 
 .zielButton {
-
-    margin-top: 10px;
-    margin-bottom: 10px;
-
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .statistikButton {
-
-    margin-top: 10px;
-    margin-bottom: 10px;
-
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 </style>

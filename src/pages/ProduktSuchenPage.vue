@@ -6,33 +6,34 @@
     </q-toolbar>
   </q-header>
 
-
   <div class="searchbar">
-
-    <input type="text" v-model="searchQuery" placeholder="Produktname eingeben">
+    <input
+      type="text"
+      v-model="searchQuery"
+      placeholder="Produktname eingeben"
+    />
     <button @click="searchProduct">Suchen</button>
 
     <ul>
       <li v-for="product in filteredProducts" :key="product.id">
-        {{ product.name }}: - {{ product.calories }} Gramm Kalorien, {{ product.carbs }} Gramm Kohlenhydrate, {{
-          product.protein }} Gramm Protein, {{ product.fat }} Gramm Fett
+        {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
+        {{ product.carbs }} Gramm Kohlenhydrate, {{ product.protein }} Gramm
+        Protein, {{ product.fat }} Gramm Fett
       </li>
     </ul>
   </div>
 </template>
-  
+
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 export default defineComponent({
-
   data() {
     return {
-      searchQuery: '',
+      searchQuery: "",
       products: [],
       filteredProducts: [],
-      name: 'Produkt suchen'
-
+      name: "Produkt suchen",
     };
   },
   created() {
@@ -40,28 +41,30 @@ export default defineComponent({
   },
   methods: {
     loadProducts() {
-      const savedProducts = localStorage.getItem('products');
+      const savedProducts = localStorage.getItem("products");
       if (savedProducts) {
         this.products = JSON.parse(savedProducts);
       }
     },
     searchProduct() {
-      const filteredProducts = this.products.filter(product => {
-        return product.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+      const filteredProducts = this.products.filter((product) => {
+        return product.name
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
       });
       this.filteredProducts = filteredProducts;
-    }
-  }
+    },
+  },
 });
 </script>
 
-<style> .searchbar {
-   position: absolute;
-   width: 100%;
-   max-width: 40rem;
-   left: 40px;
+<style>
+.searchbar {
+  position: absolute;
+  width: 100%;
+  max-width: 40rem;
+  left: 40px;
 
-   top: 200px;
-
- }
+  top: 200px;
+}
 </style>
