@@ -1,6 +1,5 @@
 <template>
   <q-layout>
-
     <q-header>
       <q-toolbar>
         <q-btn flat to="/dashboard" icon="arrow_back" />
@@ -12,11 +11,22 @@
         <h1>Produkt hinzufügen</h1>
 
         <div class="addIcon">
-          <q-btn round color="green" icon="add_circle" size="24px" padding="5px" />
+          <q-btn
+            round
+            color="green"
+            icon="add_circle"
+            size="24px"
+            padding="5px"
+          />
         </div>
 
         <div class="searchBar" style="max-width: 300px">
-          <q-input color="teal" filled v-model="text" label="Nahrungsmittel suchen">
+          <q-input
+            color="teal"
+            filled
+            v-model="text"
+            label="Nahrungsmittel suchen"
+          >
             <template v-slot:prepend>
               <q-icon name="search" />
             </template>
@@ -31,12 +41,37 @@
           <br />
 
           <div>
-            <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+            <q-btn
+              rounded
+              color="green"
+              icon="qr_code_scanner"
+              @click="toggleScanner"
+            >
               Produkt scannen
             </q-btn>
           </div>
 
-          <StreamBarcodeReader v-show="showScanner" @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
+          <teleport to="body">
+            <div class="modal" v-if="showScanner">
+              <div>
+                <h4>Es wird gescannt</h4>
+                <StreamBarcodeReader
+                  @decode="onDecode"
+                  @loaded="onLoaded"
+                ></StreamBarcodeReader>
+                <div>
+                  <q-btn
+                    rounded
+                    color="green"
+                    icon="qr_code_scanner"
+                    @click="toggleScanner"
+                  >
+                    Scan beenden
+                  </q-btn>
+                </div>
+              </div>
+            </div>
+          </teleport>
         </div>
       </q-page>
     </q-page-container>
@@ -48,7 +83,6 @@ import { defineComponent } from "vue";
 import { StreamBarcodeReader } from "vue-barcode-reader";
 
 export default defineComponent({
-
   components: { StreamBarcodeReader },
   data() {
     return {
@@ -59,6 +93,7 @@ export default defineComponent({
   methods: {
     toggleScanner() {
       this.showScanner = !this.showScanner;
+      //this.open = !this.open;
     },
     onLoaded() {
       console.log(`Scanning now`);
@@ -117,5 +152,29 @@ h1 {
   left: 100px;
 
   top: 580px;
+}
+
+.root {
+  position: relative;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal > div {
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
 }
 </style>
