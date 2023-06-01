@@ -6,7 +6,7 @@
     </q-toolbar>
   </q-header>
   <div class="Eingabebereich">
-    <form v-if="!editMode" @submit.prevent="addGoal">
+    <form v-if="!editMode" @submit.prevent="saveGoal">
       <q-input
         filled
         label="Name"
@@ -64,18 +64,18 @@
         max="5000"
         required
       />
-      <div class ="AddButton">
-      <q-btn 
-      rounded color="green" 
-      icon="add" 
-      round
-      type="submit"
-      padding ="10px"
-      >
-    </q-btn>
-  </div>
-
-  </form>
+      <div class="AddButton">
+        <q-btn
+          rounded
+          color="green"
+          icon="add"
+          round
+          type="submit"
+          padding="10px"
+        >
+        </q-btn>
+      </div>
+    </form>
 
     <form v-else @submit.prevent="updateGoal">
       <label for="name">Name:</label>
@@ -120,20 +120,20 @@
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
 
-    <ul v-if="goal.length > 0">
+    <ul v-if="goal" style="margin-top: 40px">
       <li>
-        {{ goal[0].name }} - {{ goal[0].calories }} Kalorien
+        {{ goal.name }} - {{ goal.calories }} Kalorien
         <q-btn
           rounded
           color="green"
           icon="edit"
-          @click="editGoal(goal[0])"
+          @click="editGoal(goal)"
         ></q-btn>
         <q-btn
           rounded
           color="green"
           icon="delete"
-          @click="deleteGoal(goal[0])"
+          @click="deleteGoal(goal)"
         ></q-btn>
       </li>
     </ul>
@@ -171,20 +171,35 @@ export default defineComponent({
       }
     },
     saveGoal() {
-      window.localStorage.setItem("Goal", JSON.stringify(this.goal));
-    },
-    addGoal() {
-      if (this.goal.length > 0) {
-        // Nur ein Ziel erlaubt, überschreibt das vorhandene Ziel
-        this.goal.splice(0, 1, {
+      window.localStorage.setItem(
+        "Goal",
+        JSON.stringify({
           id: Date.now(),
           name: this.newGoal.name,
           calories: this.newGoal.calories,
           carbs: this.newGoal.carbs,
           protein: this.newGoal.protein,
           fat: this.newGoal.fat,
-        });
-      } else {
+        })
+      );
+      this.resetForm();
+    },
+    addGoal() {
+      // raus
+      //if (this.goal.length > 0) {
+      if (true) {
+        // Nur ein Ziel erlaubt, überschreibt das vorhandene Ziel
+        //this.goal.splice(0, 1, {
+        this.goal = {
+          id: Date.now(),
+          name: this.newGoal.name,
+          calories: this.newGoal.calories,
+          carbs: this.newGoal.carbs,
+          protein: this.newGoal.protein,
+          fat: this.newGoal.fat,
+        };
+      }
+      /* } else {
         // Kein vorhandenes Ziel, fügt das neue Ziel hinzu
         this.goal.push({
           id: Date.now(),
@@ -194,11 +209,12 @@ export default defineComponent({
           protein: this.newGoal.protein,
           fat: this.newGoal.fat,
         });
-      }
+      } */
       this.saveGoal();
       this.resetForm();
     },
     updateGoal() {
+      //raus
       const updatedGoal = {
         id: this.newGoal.id,
         name: this.newGoal.name,
@@ -210,31 +226,37 @@ export default defineComponent({
       this.goal.splice(0, 1, updatedGoal);
       this.saveGoal();
       this.cancelEdit();
+      this.resetForm();
     },
-    deleteGoal(Goal) {
-      this.goal.splice(0, 1);
+    deleteGoal() {
+      // raus bzw. ändern
+      /* this.goal.splice(0, 1);
       this.saveGoal();
+ */
+      this.goal = {};
     },
-  },
-  editGoal(Goal) {
-    this.editMode = true;
-    this.editGoalIndex = 0;
-    this.newGoal = { ...Goal };
-  },
-  cancelEdit() {
-    this.editMode = false;
-    this.editGoalIndex = null;
-    this.resetForm();
-  },
-  resetForm() {
-    this.newGoal = {
-      id: null,
-      name: "",
-      calories: 0,
-      carbs: 0,
-      protein: 0,
-      fat: 0,
-    };
+    editGoal(Goal) {
+      // raus bzw. ändern || wurde geändert
+      // this.editMode = true; das ist nicht nötig - raus
+      this.editGoalIndex = 0;
+      this.newGoal = { ...Goal };
+    },
+    cancelEdit() {
+      // ändern resetForm
+      this.editMode = false;
+      this.editGoalIndex = null;
+      this.resetForm();
+    },
+    resetForm() {
+      this.newGoal = {
+        id: null,
+        name: "",
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fat: 0,
+      };
+    },
   },
 });
 </script>

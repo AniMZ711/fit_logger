@@ -6,7 +6,7 @@
     </q-toolbar>
   </q-header>
 
-  <div class="Eingabebereich">
+  <div class="Eingabebereich" style="padding-bottom: 50px, margin: 300px;">
     <form v-if="!editMode" @submit.prevent="addProduct">
       <q-input
         filled
@@ -65,9 +65,8 @@
         max="5000"
         required
       />
-    
-        <q-btn rounded color="green" icon="add" type="submit"></q-btn>
-      
+
+      <q-btn rounded color="green" icon="add" type="submit"></q-btn>
     </form>
 
     <form v-else @submit.prevent="updateProduct">
@@ -155,9 +154,20 @@ import { defineComponent } from "vue";
 export default defineComponent({
   data() {
     return {
+      // is localStorage needed here?
       items: localStorage.products || [],
+      dailyConsumption: JSON.parse(
+        localStorage.getItem("dailyConsumption")
+      ) || {
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fat: 0,
+      },
+
       newProduct: {
         id: null,
+        date: "",
         name: "",
         calories: 0,
         carbs: 0,
@@ -175,40 +185,84 @@ export default defineComponent({
   methods: {
     loadProducts() {
       const savedProducts = window.localStorage.getItem("products");
+      const savedConsumption = window.localStorage.getItem("dailyConsumption");
       if (savedProducts) {
         this.items = JSON.parse(savedProducts);
+      }
+      if (savedConsumption) {
+        this.dailyConsumption = JSON.parse(savedConsumption);
       }
     },
     saveProducts() {
       window.localStorage.setItem("products", JSON.stringify(this.items));
+      window.localStorage.setItem(
+        "dailyConsumption",
+        JSON.stringify(this.dailyConsumption)
+      );
     },
     addProduct() {
+      const today = new Date();
       const product = {
         id: Date.now(),
+        date:
+          today.getFullYear() +
+          "-" +
+          (today.getMonth() + 1) +
+          "-" +
+          today.getDate() +
+          1,
         name: this.newProduct.name,
         calories: this.newProduct.calories,
         carbs: this.newProduct.carbs,
         protein: this.newProduct.protein,
         fat: this.newProduct.fat,
+      };
+
+      //aktuelles Zieltracking
+      this.dailyConsumption = {
+        calories: this.dailyConsumption.calories + this.newProduct.calories,
+        carbs: this.dailyConsumption.carbs + this.newProduct.carbs,
+        protein: this.dailyConsumption.protein + this.newProduct.protein,
+        fat: this.dailyConsumption.fat + this.newProduct.fat,
       };
       this.items.push(product);
       this.saveProducts();
       this.resetForm();
     },
     updateProduct() {
+      const today = new Date();
       const updatedProduct = {
         id: this.newProduct.id,
+        date:
+          today.getFullYear() +
+          "-" +
+          (today.getMonth() + 1) +
+          "-" +
+          today.getDate() +
+          1,
         name: this.newProduct.name,
         calories: this.newProduct.calories,
         carbs: this.newProduct.carbs,
         protein: this.newProduct.protein,
         fat: this.newProduct.fat,
       };
+      this.dailyConsumption = {
+        calories: this.dailyConsumption.calories + this.newProduct.calories,
+        carbs: this.dailyConsumption.carbs + this.newProduct.carbs,
+        protein: this.dailyConsumption.protein + this.newProduct.protein,
+        fat: this.dailyConsumption.fat + this.newProduct.fat,
+      };
       this.items.splice(this.editProductIndex, 1, updatedProduct);
       this.saveProducts();
       this.cancelEdit();
     },
     deleteProduct(product) {
+      this.dailyConsumption = {
+        calories: this.dailyConsumption.calories - product.calories,
+        carbs: this.dailyConsumption.carbs - product.carbs,
+        protein: this.dailyConsumption.protein - product.protein,
+        fat: this.dailyConsumption.fat - product.fat,
+      };
       const index = this.items.indexOf(product);
       if (index !== -1) {
         this.items.splice(index, 1);
@@ -216,11 +270,31 @@ export default defineComponent({
       }
     },
     editProduct(product) {
+      this.dailyConsumption = {
+        calories: this.dailyConsumption.calories - product.calories,
+        carbs: this.dailyConsumption.carbs - product.carbs,
+        protein: this.dailyConsumption.protein - product.protein,
+        fat: this.dailyConsumption.fat - product.fat,
+      };
+      window.localStorage.setItem(
+        "dailyConsumption",
+        JSON.stringify(this.dailyConsumption)
+      );
       this.editMode = true;
       this.editProductIndex = this.items.indexOf(product);
       this.newProduct = { ...product };
     },
     cancelEdit() {
+      this.dailyConsumption = {
+        calories: this.dailyConsumption.calories + this.newProduct.calories,
+        carbs: this.dailyConsumption.carbs + this.newProduct.carbs,
+        protein: this.dailyConsumption.protein + this.newProduct.protein,
+        fat: this.dailyConsumption.fat + this.newProduct.fat,
+      };
+      window.localStorage.setItem(
+        "dailyConsumption",
+        JSON.stringify(this.dailyConsumption)
+      );
       this.editMode = false;
       this.editProductIndex = null;
       this.resetForm();
@@ -248,5 +322,4 @@ export default defineComponent({
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
-
 </style>
