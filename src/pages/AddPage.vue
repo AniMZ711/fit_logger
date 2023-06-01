@@ -54,12 +54,11 @@
           <teleport to="body">
             <div class="modal" v-if="showScanner">
               <div>
-                <h4>Es wird gescannt</h4>
                 <StreamBarcodeReader
                   @decode="onDecode"
                   @loaded="onLoaded"
                 ></StreamBarcodeReader>
-                <div>
+                <div style="padding-top: 10px">
                   <q-btn
                     rounded
                     color="green"
@@ -162,7 +161,8 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0);
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.1);
   width: 100%;
   height: 100%;
   display: flex;
@@ -172,7 +172,7 @@ h1 {
 
 .modal > div {
   background-color: #fff;
-  padding: 50px;
+  padding: 20px;
   border-radius: 10px;
   align-items: center;
   text-align: center;
