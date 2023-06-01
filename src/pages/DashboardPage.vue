@@ -28,7 +28,8 @@
               track-color="grey"
               class="q-ma-md"
             >
-              {{ dailyConsumption.calories }} %
+              <!-- das muss noch gerundet werden -->
+              {{ dailyConsumption.calories / goal.calories }} %
             </q-circular-progress>
 
             <br />
