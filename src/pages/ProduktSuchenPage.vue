@@ -6,14 +6,18 @@
     </q-toolbar>
   </q-header>
 
-  <div class="searchbar">
-    <input
-      type="text"
-      v-model="searchQuery"
-      placeholder="Produktname eingeben"
-    />
-    <button @click="searchProduct">Suchen</button>
+  <div class="searchbar" style="max-width: 300px">
 
+      <q-input 
+      color="green" 
+      filled 
+      v-model="searchQuery" 
+      label="Produkt suchen" 
+      type="text"
+      >     
+        </q-input>
+        <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
+        
     <ul>
       <li v-for="product in filteredProducts" :key="product.id">
         {{ product.name }}: - {{ product.calories }} Gramm Kalorien,

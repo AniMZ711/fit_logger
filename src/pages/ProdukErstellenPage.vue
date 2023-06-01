@@ -65,9 +65,9 @@
         max="5000"
         required
       />
-      <div class="AddButton">
+    
         <q-btn rounded color="green" icon="add" type="submit"></q-btn>
-      </div>
+      
     </form>
 
     <form v-else @submit.prevent="updateProduct">
@@ -248,6 +248,5 @@ export default defineComponent({
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
-.AddButton {
-}
+
 </style>

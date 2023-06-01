@@ -64,9 +64,18 @@
         max="5000"
         required
       />
+      <div class ="AddButton">
+      <q-btn 
+      rounded color="green" 
+      icon="add" 
+      round
+      type="submit"
+      padding ="10px"
+      >
+    </q-btn>
+  </div>
 
-      <q-btn rounded color="green" icon="add" type="submit"></q-btn>
-    </form>
+  </form>
 
     <form v-else @submit.prevent="updateGoal">
       <label for="name">Name:</label>
@@ -232,6 +241,15 @@ export default defineComponent({
 
 <style>
 .Eingabebereich {
+  position: absolute;
+  width: 90%;
+  top: 300px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.AddButton {
   position: absolute;
   width: 90%;
   top: 300px;
