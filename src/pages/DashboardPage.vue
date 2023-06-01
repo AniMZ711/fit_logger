@@ -75,7 +75,7 @@
 
 
                 <div class="anzeigeMahlzeiten">
-                    <q-responsive :ratio="1 / 1">
+                    <q-responsive :ratio="16 / 9">
                         <q-table dense flat bordered title="Letzte Mahlzeiten" :rows="rows" :columns="columns"
                             row-key="name" align="left">
 
@@ -155,7 +155,7 @@ export default defineComponent({
   }
 },*/
     setup() {
-        
+
 
 
         return {
@@ -272,6 +272,7 @@ export default defineComponent({
 
 
      position: absolute;
+     margin-top: auto;
      width: 80%;
      top: 400px;
      left: 50%;
