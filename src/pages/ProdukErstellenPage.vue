@@ -128,7 +128,13 @@
         required
       />
 
-      <q-btn rounded color="green" icon="update" type="submit"></q-btn>
+      <q-btn
+        rounded
+        color="green"
+        icon="update"
+        @click="updateProduct"
+        type="submit"
+      ></q-btn>
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
 
@@ -230,16 +236,9 @@ export default defineComponent({
       this.resetForm();
     },
     updateProduct() {
-      const today = new Date();
       const updatedProduct = {
         id: this.newProduct.id,
-        date:
-          today.getFullYear() +
-          "-" +
-          (today.getMonth() + 1) +
-          "-" +
-          today.getDate() +
-          1,
+        date: this.newProduct.date,
         name: this.newProduct.name,
         calories: this.newProduct.calories,
         carbs: this.newProduct.carbs,
@@ -252,6 +251,7 @@ export default defineComponent({
         protein: this.dailyConsumption.protein + this.newProduct.protein,
         fat: this.dailyConsumption.fat + this.newProduct.fat,
       };
+
       this.items.splice(this.editProductIndex, 1, updatedProduct);
       this.saveProducts();
       this.cancelEdit();
@@ -279,6 +279,9 @@ export default defineComponent({
       window.localStorage.setItem(
         "dailyConsumption",
         JSON.stringify(this.dailyConsumption)
+      );
+      this.dailyConsumption = JSON.parse(
+        window.localStorage.setItem("dailyConsumption")
       );
       this.editMode = true;
       this.editProductIndex = this.items.indexOf(product);

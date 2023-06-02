@@ -123,12 +123,7 @@
     <ul v-if="goal" style="margin-top: 40px">
       <li>
         {{ goal.name }} - {{ goal.calories }} Kalorien
-        <q-btn
-          rounded
-          color="green"
-          icon="edit"
-          @click="editGoal(goal)"
-        ></q-btn>
+        <q-btn rounded color="green" icon="edit" @click="editGoal()"></q-btn>
         <q-btn
           rounded
           color="green"
@@ -146,13 +141,8 @@ import { defineComponent } from "vue";
 export default defineComponent({
   data() {
     return {
-      goal: localStorage.Goal || {
-        name: Goal,
-        calories: 1800,
-        carbs: 250,
-        protein: 80,
-        fat: 50,
-      },
+      goal: {},
+
       newGoal: {
         id: null,
         name: "",
@@ -171,9 +161,28 @@ export default defineComponent({
   },
   methods: {
     loadGoal() {
-      const savedGoal = window.localStorage.getItem("Goal");
-      if (savedGoal) {
-        this.goal = JSON.parse(savedGoal);
+      if (window.localStorage.getItem("Goal")) {
+        this.goal = JSON.parse(window.localStorage.getItem("Goal"));
+      } else {
+        window.localStorage.setItem(
+          "Goal",
+          JSON.stringify({
+            id: Date.now(),
+            name: "Goal",
+            calories: 1800,
+            carbs: 250,
+            protein: 80,
+            fat: 50,
+          })
+        );
+        this.goal = {
+          id: Date.now(),
+          name: "Goal",
+          calories: 1800,
+          carbs: 250,
+          protein: 80,
+          fat: 50,
+        };
       }
     },
     saveGoal() {
@@ -249,11 +258,11 @@ export default defineComponent({
  */
       this.goal = {};
     },
-    editGoal(Goal) {
+    editGoal() {
       // raus bzw. ändern || wurde geändert
       // this.editMode = true; das ist nicht nötig - raus
-      this.editGoalIndex = 0;
-      this.newGoal = { ...Goal };
+      //this.editGoalIndex = 0;
+      this.newGoal = { ...this.goal };
     },
     cancelEdit() {
       // ändern resetForm

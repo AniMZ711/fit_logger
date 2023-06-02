@@ -29,7 +29,7 @@
               class="q-ma-md"
             >
               <!-- das muss noch gerundet werden -->
-              {{ dailyConsumption.calories / goal.calories }} %
+              {{ (dailyConsumption.calories / goal.calories).toFixed(2) }}%
             </q-circular-progress>
 
             <br />
