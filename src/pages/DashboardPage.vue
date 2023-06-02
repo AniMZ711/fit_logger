@@ -186,11 +186,21 @@ export default defineComponent({
 
       meals: JSON.parse(window.localStorage.getItem("products")),
 
-      goal: JSON.parse(window.localStorage.getItem("Goal")),
+      goal: JSON.parse(window.localStorage.getItem("Goal")) || {
+        calories: 1800,
+        carbs: 250,
+        protein: 80,
+        fat: 50,
+      },
 
       dailyConsumption: JSON.parse(
         window.localStorage.getItem("dailyConsumption")
-      ),
+      ) || {
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fat: 0,
+      },
     };
   },
 

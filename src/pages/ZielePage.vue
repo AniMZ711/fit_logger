@@ -146,7 +146,13 @@ import { defineComponent } from "vue";
 export default defineComponent({
   data() {
     return {
-      goal: localStorage.Goal || [],
+      goal: localStorage.Goal || {
+        name: Goal,
+        calories: 1800,
+        carbs: 250,
+        protein: 80,
+        fat: 50,
+      },
       newGoal: {
         id: null,
         name: "",
@@ -171,6 +177,14 @@ export default defineComponent({
       }
     },
     saveGoal() {
+      this.goal = {
+        id: Date.now(),
+        name: this.newGoal.name,
+        calories: this.newGoal.calories,
+        carbs: this.newGoal.carbs,
+        protein: this.newGoal.protein,
+        fat: this.newGoal.fat,
+      };
       window.localStorage.setItem(
         "Goal",
         JSON.stringify({
