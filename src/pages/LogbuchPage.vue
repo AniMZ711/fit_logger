@@ -4,14 +4,14 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title
-        >
+          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
 
     <q-page>
       <div class="DatePicker">
         <DatePicker> </DatePicker>
+        <!-- lädt den Component Date Picker aus /src/components/DatePicker.vue und zeigt den Date Picker an-->
       </div>
 
       <div class="Liste">
@@ -32,17 +32,8 @@
 
       <div class="kreis">
         <q-btn round flat>
-          <q-circular-progress
-            fab
-            rounded
-            :value="value"
-            show-value
-            size="60px"
-            color="green"
-            track-color="grey"
-            class="q-ma-md"
-            @click="toggle = !toggle"
-          >
+          <q-circular-progress fab rounded :value="value" show-value size="60px" color="green" track-color="grey"
+            class="q-ma-md" @click="toggle = !toggle">
             {{ value }} %
           </q-circular-progress>
 
@@ -71,7 +62,7 @@ export default defineComponent({
   data() {
     return {
       toggle: true,
-      pageName: "Logbuch",
+      pageName: "Logbuch", // bei Veränderung ändert sich der Seitentitel automatisch
       value: 61, //value muss übereinstimmen
       gesamteKcal: 1111,
       meals: JSON.parse(window.localStorage.getItem("products")) || [],

@@ -3,8 +3,7 @@
     <q-header>
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title
-        >
+          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
 
         <q-space> </q-space>
         <q-btn position="right" color="green" to="/greetingspage">
@@ -19,15 +18,8 @@
 
         <div class="DashboardAnzeige">
           <div class="offeneKalKreis">
-            <q-circular-progress
-              rounded
-              :value="goal.calories / goal.calories"
-              show-value
-              size="80px"
-              color="green"
-              track-color="grey"
-              class="q-ma-md"
-            >
+            <q-circular-progress rounded :value="goal.calories / goal.calories" show-value size="80px" color="green"
+              track-color="grey" class="q-ma-md">
               <!-- das muss noch gerundet werden -->
               {{ (dailyConsumption.calories / goal.calories).toFixed(2) }}%
             </q-circular-progress>
@@ -42,14 +34,8 @@
           <div class="progressBarKohlenhydrate">
             Kohlenhydrate {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
 
-            <q-linear-progress
-              :value="dailyConsumption.carbs / goal.carbs"
-              :label="Kohlenhydrate"
-              color="green"
-              track-color="grey"
-              size="small"
-              rounded="true"
-            >
+            <q-linear-progress :value="dailyConsumption.carbs / goal.carbs" :label="Kohlenhydrate" color="green"
+              track-color="grey" size="small" rounded="true">
             </q-linear-progress>
           </div>
 
@@ -58,14 +44,8 @@
           <div class="progressBarEiweiss">
             Eiweiss {{ dailyConsumption.protein }}/{{ goal.protein }} g
 
-            <q-linear-progress
-              :value="dailyConsumption.protein / goal.protein"
-              :label="Eiweiss"
-              color="green"
-              track-color="grey"
-              size="small"
-              rounded="true"
-            >
+            <q-linear-progress :value="dailyConsumption.protein / goal.protein" :label="Eiweiss" color="green"
+              track-color="grey" size="small" rounded="true">
             </q-linear-progress>
           </div>
 
@@ -74,30 +54,16 @@
           <div class="progressBarFett">
             Fett {{ dailyConsumption.fat }}/{{ goal.fat }} g
 
-            <q-linear-progress
-              :value="dailyConsumption.fat / goal.fat"
-              :label="Fett"
-              color="green"
-              track-color="grey"
-              size="small"
-              rounded="true"
-            >
+            <q-linear-progress :value="dailyConsumption.fat / goal.fat" :label="Fett" color="green" track-color="grey"
+              size="small" rounded="true">
             </q-linear-progress>
           </div>
         </div>
 
         <div class="anzeigeMahlzeiten" v-if="true">
           <q-responsive :ratio="16 / 9" v-if="false">
-            <q-table
-              dense
-              flat
-              bordered
-              title="Letzte Mahlzeiten"
-              :rows="rows"
-              :columns="columns"
-              row-key="name"
-              align="left"
-            >
+            <q-table dense flat bordered title="Letzte Mahlzeiten" :rows="rows" :columns="columns" row-key="name"
+              align="left">
             </q-table>
           </q-responsive>
           <p>Mahlzeiten</p>
@@ -178,7 +144,7 @@ export default defineComponent({
 },*/
   setup() {
     return {
-      pageName: "Dashboard",
+      pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
 
       //columns,
 
