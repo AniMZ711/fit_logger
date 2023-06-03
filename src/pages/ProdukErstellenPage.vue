@@ -219,10 +219,14 @@ export default defineComponent({
 </script>
 
 <style>
+* {
+  overflow: y;
+}
+
 .Eingabebereich {
-  position: absolute;
+  position: fixed;
   width: 90%;
-  top: 300px;
+  top: 450px;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);

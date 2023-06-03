@@ -7,16 +7,18 @@
           {{ pageName }}</q-toolbar-title>
 
         <q-space> </q-space>
-        <q-btn position="right" color="green" to="/greetingspage">
+        <q-btn position="right" color="primary" to="/greetingspage">
           About
         </q-btn>
       </q-toolbar>
     </q-header>
 
     <q-page-container class="fit column wrap justify-start items-center content-center">
+      <!--Container für den Progress Circle mit Anzeige-->
 
       <!-- <h1>Hallo, Name! </h1> -->
       <!--hier soll später der Name des Nutzers {{userName}}stehen -->
+
       <div id="AnzeigeKalorienCircleBar" class="self-center q-pt-lg q-px-md ">
 
         <!-- die Klassenangeben können bei Quasar/layout nachgelesen werden-->
@@ -29,8 +31,6 @@
 
       </div>
 
-
-
       <p class="self-center">
 
         {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
@@ -38,69 +38,71 @@
         <!-- Verhältnisanzeige aus konsumierten und noch offenen täglichen Kalorien-->
       </p>
 
+    </q-page-container>
 
 
+    <q-page-container class="fit row wrap justify-around items-start content-center">
+      <!--Container für die Makro Anzeige-->
+
+      <div id="AnzeigeKohlenhydrate" class="col-xs-5 self-center q-px-md"> <!-- Anzeige Kohlenhydrate-->
+        Kohlenhydrate
+        <q-linear-progress :value="dailyConsumption.carbs / goal.carbs" :label="Kohlenhydrate" color="green"
+          track-color="grey" size="medium" rounded="true">
+        </q-linear-progress>
+        {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
+      </div>
+
+      <div id="AnzeigeEiweiss" class="col-xs-5 self-center q-px-md"> <!--Anzeige Eiweiss-->
+        Eiweiss
+        <q-linear-progress :value="dailyConsumption.protein / goal.protein" :label="Eiweiss" color="green"
+          track-color="grey" size="medium" rounded="true">
+        </q-linear-progress>
+        {{ dailyConsumption.protein }}/{{ goal.protein }} g
+      </div>
+
+      <div id="AnzeigeFett" class="col-xs-5 self-center q-px-md"> <!-- Anzeige Fett-->
+        Fett
+        <q-linear-progress :value="dailyConsumption.fat / goal.fat" :label="Fett" color="green" track-color="grey"
+          size="medium" rounded="true">
+        </q-linear-progress>
+        {{ dailyConsumption.fat }}/{{ goal.fat }} g
+      </div>
+
+    </q-page-container>
+
+    <q-page-container class="q-pa-sm  full-width column wrap justify-around items-stretch content-stretch">
+      <!--Container für Anzeige der letzen Mahlzeiten-->
+
+      <div class=" self-center">
+
+        <p> Letzte Mahlzeiten</p>
+        <ul>
+          <li v-for="product in meals" :key="product.id">
+            <p>
+              {{ product.name }} Kalorien:
+              {{ product.calories }} Kohlenhydrate:
+              {{ product.carbs }} Proteine: {{ product.protein }} Fett:
+              {{ product.fat }}
+            </p>
+          </li>
+        </ul>
 
 
+      </div>
 
-
-
-
-
-
-
-
-
-
-      <q-page-container class="fit row wrap justify-around items-start content-center">
-
-        <div id="AnzeigeKohlenhydrate" class="col-xs-5 self-center q-px-md"> <!-- Anzeige Kohlenhydrate-->
-          Kohlenhydrate
-          <q-linear-progress :value="dailyConsumption.carbs / goal.carbs" :label="Kohlenhydrate" color="green"
-            track-color="grey" size="small" rounded="true">
-          </q-linear-progress>
-          {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
-        </div>
-
-
-
-        <div id="AnzeigeEiweiss" class="col-xs-5 self-center q-px-md"> <!--Anzeige Eiweiss-->
-          Eiweiss
-          <q-linear-progress :value="dailyConsumption.protein / goal.protein" :label="Eiweiss" color="green"
-            track-color="grey" size="small" rounded="true">
-          </q-linear-progress>
-          {{ dailyConsumption.protein }}/{{ goal.protein }} g
-        </div>
-
-
-
-        <div id="AnzeigeFett" class="col-xs-5 self-center q-px-md"> <!-- Anzeige Fett-->
-          Fett
-          <q-linear-progress :value="dailyConsumption.fat / goal.fat" :label="Fett" color="green" track-color="grey"
-            size="small" rounded="true">
-          </q-linear-progress>
-          {{ dailyConsumption.fat }}/{{ goal.fat }} g
-        </div>
-
-      </q-page-container>
-
-
-      <p>Mahlzeiten</p>
-      <ul>
-        <li v-for="product in meals" :key="product.id">
-          <p>
-            {{ product.name }} Kalorien:
-            {{ product.calories }} Kohlenhydrate:
-            {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-            {{ product.fat }}
-          </p>
-        </li>
-      </ul>
 
 
 
 
     </q-page-container>
+
+
+
+
+
+
+
+
 
 
   </q-layout>
@@ -158,13 +160,16 @@ export default defineComponent({
 
 
 
+
+
 }
 
 #AnzeigeKalorienCircleBar {
 
   overflow: hidden;
 
-  top: 100px;
+  top: 200px;
+
 
 }
 

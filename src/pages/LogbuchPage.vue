@@ -9,44 +9,75 @@
     </q-header>
 
     <q-page>
-      <div class="DatePicker">
-        <DatePicker> </DatePicker>
-        <!-- lädt den Component Date Picker aus /src/components/DatePicker.vue und zeigt den Date Picker an-->
+
+
+
+      <div class="rectangle">
+        <div id="DatePickerLogbuch" class="DatePicker">
+          <DatePicker> </DatePicker>
+          <!-- lädt den Component Date Picker aus /src/components/DatePicker.vue und zeigt den Date Picker an-->
+        </div>
+
       </div>
 
-      <div class="Liste">
-        <!--         <q-table title="Mahlzeiten heute"></q-table>
- -->
-        <ul style="padding-top: 50px">
-          <li v-for="product in meals" :key="product.id">
-            <p>
-              {{ product.name }} Kalorien: {{ product.calories }} Kohlenhydrate:
-              {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-              {{ product.fat }}
-            </p>
-          </li>
-        </ul>
-      </div>
+
+
+
+
+
+
+      <q-page-container class="q-pa-sm  full-width column wrap justify-around items-stretch content-stretch">
+
+
+        <div id="Liste" class="self-center q-pt-lg q-px-md">
+
+
+          <ul style="padding-top: 50px">
+            <li v-for="product in meals" :key="product.id">
+              <p>
+                {{ product.name }} Kalorien: {{ product.calories }} Kohlenhydrate:
+                {{ product.carbs }} Proteine: {{ product.protein }} Fett:
+                {{ product.fat }}
+              </p>
+            </li>
+          </ul>
+        </div>
+
+      </q-page-container>
 
       <q-separator></q-separator>
 
-      <div class="kreis">
-        <q-btn round flat>
-          <q-circular-progress fab rounded :value="value" show-value size="60px" color="green" track-color="grey"
-            class="q-ma-md" @click="toggle = !toggle">
-            {{ value }} %
-          </q-circular-progress>
+      <q-page-container>
 
-          {{ gesamteKcal }} kcal
-        </q-btn>
+        <q-page-sticky id="tageszusammenfassung" class="fixed-bottom">
 
-        <div id="AnzeigeWerte">
-          <div v-show="toggle">
-            gesamte Kcal x g gesamte Proteine x g gesamte Fett x g gesamte
-            Kohlenhydrate x g
+          <div class="kreis">
+            <q-btn round flat>
+              <q-circular-progress fab rounded :value="value" show-value size="60px" color="green" track-color="grey"
+                class="q-ma-md" @click="toggle = !toggle">
+                {{ value }} %
+              </q-circular-progress>
+
+              {{ gesamteKcal }} kcal
+            </q-btn>
+
+            <div id="AnzeigeWerte">
+              <div v-show="!toggle">
+                gesamte Kcal x g gesamte Proteine x g gesamte Fett x g gesamte
+                Kohlenhydrate x g
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+
+
+        </q-page-sticky>
+
+      </q-page-container>
+
+
+
+
+
     </q-page>
   </q-layout>
 </template>
@@ -83,28 +114,35 @@ export default defineComponent({
 </script>
 
 <style>
-.Liste {
-  position: absolute;
-  width: 80%;
-  top: 250px;
+#Liste {
+
+  overflow: auto;
+  z-index: 1;
+}
+
+#DatePickerLogbuch {
+  position: fixed;
+  top: 10%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
 
-.DatePicker {
-  position: absolute;
-  top: 100px;
+.rectangle {
+  position: fixed;
+  width: 100%;
+  height: 25px;
+  background-color: white;
+  top: 10%;
   left: 50%;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
+  z-index: 999;
 }
 
-.kreis {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+
+
+#tageszusammenfassung {
+
+  bottom: 100px;
 }
 </style>

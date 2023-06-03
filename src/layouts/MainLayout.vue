@@ -28,8 +28,17 @@
 </script>
 
 <style>
+@import url("https://fonts.cdnfonts.com/css/inter");
+
 * {
   box-sizing: border-box;
+  font-family: "Inter";
+  font-style: light 300;
+  font-weight: 500;
+
+  line-height: 44px;
+
+  letter-spacing: -0.05em;
 }
 
 #middleAddButton {
@@ -42,11 +51,6 @@
 
   z-index: 3000;
 }
-
-
-
-
-
 
 
 /* media querries erstmal nur für 3 verschiedene Größen, später kommen evtl noch mehr dazu */
@@ -72,12 +76,6 @@
 
 
   }
-
-  [class*="col-"] {
-    width: 100%;
-  }
-
-
 
 
 
