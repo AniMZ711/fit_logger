@@ -13,77 +13,93 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
-      <q-page>
-        <h1>Hallo, Name! </h1> <!--hier soll später der Name des Nutzers {{userName}}stehen -->
+    <q-page-container class="fit column wrap justify-start items-center content-center">
+
+      <!-- <h1>Hallo, Name! </h1> -->
+      <!--hier soll später der Name des Nutzers {{userName}}stehen -->
+      <div id="AnzeigeKalorienCircleBar" class="self-center q-pt-lg q-px-md ">
+
+        <!-- die Klassenangeben können bei Quasar/layout nachgelesen werden-->
+        <q-circular-progress size="15vh" rounded :value="goal.calories / goal.calories" show-value color="green"
+          track-color="grey" float-right>
+          <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
+          <!-- das muss noch gerundet werden -->
+          {{ (dailyConsumption.calories / goal.calories).toFixed(2) }}%
+        </q-circular-progress>
+
+      </div>
 
 
 
-        <div class="DashboardAnzeige">
-          <div class="offeneKalKreis">
-            <q-circular-progress rounded :value="goal.calories / goal.calories" show-value color="green"
-              track-color="grey" size=" 80px">
-              <!-- das muss noch gerundet werden -->
-              {{ (dailyConsumption.calories / goal.calories).toFixed(2) }}%
-            </q-circular-progress>
+      <p class="self-center">
 
-            <br />
+        {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
 
-            <p class="anzeigeGesamteZielKalorien">
-              {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
-            </p>
-          </div>
+        <!-- Verhältnisanzeige aus konsumierten und noch offenen täglichen Kalorien-->
+      </p>
 
-          <div class="progressBarKohlenhydrate">
-            Kohlenhydrate {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
 
-            <q-linear-progress :value="dailyConsumption.carbs / goal.carbs" :label="Kohlenhydrate" color="green"
-              track-color="grey" size="small" rounded="true">
-            </q-linear-progress>
-          </div>
 
-          <br />
 
-          <div class="progressBarEiweiss">
-            Eiweiss {{ dailyConsumption.protein }}/{{ goal.protein }} g
 
-            <q-linear-progress :value="dailyConsumption.protein / goal.protein" :label="Eiweiss" color="green"
-              track-color="grey" size="small" rounded="true">
-            </q-linear-progress>
-          </div>
 
-          <br />
 
-          <div class="progressBarFett">
-            Fett {{ dailyConsumption.fat }}/{{ goal.fat }} g
 
-            <q-linear-progress :value="dailyConsumption.fat / goal.fat" :label="Fett" color="green" track-color="grey"
-              size="small" rounded="true">
-            </q-linear-progress>
-          </div>
-        </div>
 
-        <div class="anzeigeMahlzeiten" v-if="true">
-          <q-responsive :ratio="16 / 9" v-if="false">
-            <q-table dense flat bordered title="Letzte Mahlzeiten" :rows="rows" :columns="columns" row-key="name"
-              align="left">
-            </q-table>
-          </q-responsive>
-          <p>Mahlzeiten</p>
-          <ul>
-            <li v-for="product in meals" :key="product.id">
-              <p>
-                {{ product.name }} Kalorien:
-                {{ product.calories }} Kohlenhydrate:
-                {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-                {{ product.fat }}
-              </p>
-            </li>
-          </ul>
+
+
+
+
+
+
+      <q-page-container class="fit row wrap justify-around items-start content-center">
+
+        <div id="AnzeigeKohlenhydrate" class="col-xs-5 self-center q-px-md"> <!-- Anzeige Kohlenhydrate-->
+          Kohlenhydrate
+          <q-linear-progress :value="dailyConsumption.carbs / goal.carbs" :label="Kohlenhydrate" color="green"
+            track-color="grey" size="small" rounded="true">
+          </q-linear-progress>
+          {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
         </div>
 
 
-      </q-page>
+
+        <div id="AnzeigeEiweiss" class="col-xs-5 self-center q-px-md"> <!--Anzeige Eiweiss-->
+          Eiweiss
+          <q-linear-progress :value="dailyConsumption.protein / goal.protein" :label="Eiweiss" color="green"
+            track-color="grey" size="small" rounded="true">
+          </q-linear-progress>
+          {{ dailyConsumption.protein }}/{{ goal.protein }} g
+        </div>
+
+
+
+        <div id="AnzeigeFett" class="col-xs-5 self-center q-px-md"> <!-- Anzeige Fett-->
+          Fett
+          <q-linear-progress :value="dailyConsumption.fat / goal.fat" :label="Fett" color="green" track-color="grey"
+            size="small" rounded="true">
+          </q-linear-progress>
+          {{ dailyConsumption.fat }}/{{ goal.fat }} g
+        </div>
+
+      </q-page-container>
+
+
+      <p>Mahlzeiten</p>
+      <ul>
+        <li v-for="product in meals" :key="product.id">
+          <p>
+            {{ product.name }} Kalorien:
+            {{ product.calories }} Kohlenhydrate:
+            {{ product.carbs }} Proteine: {{ product.protein }} Fett:
+            {{ product.fat }}
+          </p>
+        </li>
+      </ul>
+
+
+
+
     </q-page-container>
 
 
@@ -129,7 +145,35 @@ export default defineComponent({
 });
 </script>
 
+
+
 <style>
+#AnzeigeKohlenhydrate,
+#AnzeigeEiweiss,
+#AnzeigeFett {
+
+  overflow: auto;
+  min-width: 350px;
+  max-width: 400px;
+
+
+
+}
+
+#AnzeigeKalorienCircleBar {
+
+  overflow: hidden;
+
+  top: 100px;
+
+}
+
+
+
+
+
+
+
 h1 {
   font-size: 24px;
   position: absolute;
@@ -137,56 +181,5 @@ h1 {
   height: 33px;
   left: 30px;
   top: 0px;
-}
-
-.offeneKalKreis {
-  position: relative;
-  size: 80px;
-  width: 30vh;
-  height: 50px;
-  left: 30px;
-  top: 90px;
-}
-
-.anzeigeGesamteZielKalorien {
-  position: absolute;
-  width: 135px;
-  height: 33px;
-  left: 30px;
-  top: 109px;
-}
-
-.progressBarFett {
-  position: absolute;
-  width: 160px;
-  height: 10px;
-  left: 160px;
-  top: 180px;
-}
-
-.progressBarEiweiss {
-  position: absolute;
-  width: 160px;
-  height: 10px;
-  left: 160px;
-  top: 140px;
-}
-
-.progressBarKohlenhydrate {
-  position: absolute;
-  width: 160px;
-  height: 10px;
-  left: 160px;
-  top: 100px;
-}
-
-.anzeigeMahlzeiten {
-  position: absolute;
-  margin-top: auto;
-  width: 80%;
-  top: 400px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
 }
 </style>

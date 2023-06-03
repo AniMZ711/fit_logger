@@ -28,6 +28,10 @@
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 #middleAddButton {
   position: fixed;
 
@@ -38,6 +42,11 @@
 
   z-index: 3000;
 }
+
+
+
+
+
 
 
 /* media querries erstmal nur für 3 verschiedene Größen, später kommen evtl noch mehr dazu */
@@ -54,21 +63,21 @@
 }
 
 /* für kleine Bildschirme (Handys,..) */
-@media (max-width: 576px) {
+@media (min-width: 360px) {
 
 
   body {
 
-    font-size: 14px;
+    font-size: 16px;
 
 
   }
 
-  .DashboardAnzeige {
-
-    width: 40vh;
-    height: 20vh;
+  [class*="col-"] {
+    width: 100%;
   }
+
+
 
 
 
@@ -80,8 +89,10 @@
 
   body {
 
-    font-size: 16px;
+    font-size: 18px;
   }
+
+
 
 
 }
@@ -92,8 +103,10 @@
 
   body {
 
-    font-size: 18px;
+    font-size: 20px;
   }
+
+
 
 
 }
