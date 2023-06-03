@@ -1,37 +1,23 @@
 <template>
-  <q-header>
+  <q-header class="stickyHeader"> <!--header ist nicht scrollbar-->
     <q-toolbar>
       <q-btn flat to="/profil" icon="arrow_back" />
-      <q-toolbar-title> {{ name }}</q-toolbar-title>
+      <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
+      <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
 
   <div class="q-pa-md">
     <div class="q-gutter-md row items-start">
-      <q-select
-        filled
-        v-model="single"
-        :options="options.daten"
-        label="Zeitraum"
-        style="width: 250px"
-        color="black"
-        bg-color="green"
-      >
+      <q-select filled v-model="single" :options="options.daten" label="Zeitraum" style="width: 250px" color="black"
+        bg-color="green">
         <template v-slot:prepend>
           <q-icon name="event" />
         </template>
       </q-select>
 
-      <q-select
-        filled
-        v-model="multiple"
-        multiple
-        :options="options.werte"
-        label="Daten"
-        style="width: 250px"
-        color="black"
-        bg-color="green"
-      >
+      <q-select filled v-model="multiple" multiple :options="options.werte" label="Daten" style="width: 250px"
+        color="black" bg-color="green">
         <template v-slot:prepend>
           <q-icon name="addchart" />
         </template>

@@ -1,32 +1,19 @@
 <template>
-  <q-header>
+  <q-header class="stickyHeader">
     <q-toolbar>
-      <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+      <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
+      <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
   <q-layout>
     <q-page-container>
       <q-page>
         <div class="actionButtons">
-          <q-btn
-            class="searchButton"
-            rounded
-            color="green"
-            icon="search"
-            to="/produktsuchen"
-          >
-            Produkt suchen</q-btn
-          >
+          <q-btn class="searchButton" rounded color="green" icon="search" to="/produktsuchen">
+            Produkt suchen</q-btn>
 
-          <q-btn
-            class="addButton"
-            rounded
-            color="green"
-            icon="edit"
-            to="/produkterstellen"
-          >
-            Produkt/Essen hinzufügen</q-btn
-          >
+          <q-btn class="addButton" rounded color="green" icon="edit" to="/produkterstellen">
+            Produkt/Essen hinzufügen</q-btn>
         </div>
       </q-page>
     </q-page-container>
@@ -40,7 +27,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   setup() {
     return {
-      pageName: "Produkte",
+      pageName: "Produkte", // bei Veränderung ändert sich der Seitentitel automatisch
     };
   },
 });

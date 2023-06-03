@@ -1,9 +1,9 @@
 <template>
   <q-layout>
-    <q-header>
+    <q-header class="stickyHeader">
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title>
 
         <q-space> </q-space>
         <q-btn position="right" color="green" to="/greetingspage">
@@ -14,7 +14,7 @@
 
     <q-page-container>
       <q-page>
-        <h1>Hallo, Name!</h1>
+        <h1>Hallo, Name! </h1> <!--hier soll später der Name des Nutzers {{userName}}stehen -->
 
         <div class="DashboardAnzeige">
           <div class="offeneKalKreis">
@@ -88,46 +88,7 @@
 <script>
 import { defineComponent } from "vue";
 
-// columns und rows können entfernt werden
-/* const columns = [
-  {
-    name: "name",
-    required: true,
-    label: "Name",
-    align: "left",
-    field: (row) => row.name,
-    format: (val) => `${val}`,
-    sortable: true,
-  },
-  { name: "kcal", align: "left", label: "kcal", field: "kcal", sortable: true },
-  {
-    name: "fat",
-    align: "left",
-    label: "Fat (g)",
-    field: "fat",
-    sortable: true,
-  },
-  { name: "carbs", align: "left", label: "Carbs (g)", field: "carbs" },
-  { name: "protein", align: "left", label: "Protein (g)", field: "protein" },
-];
 
-const rows = [
-  {
-    name: "Mahlzeit1",
-    kcal: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-  },
-
-  {
-    name: "Mahlzeit2",
-    kcal: 159,
-    fat: 6.0,
-    carbs: 24,
-    protein: 4.0,
-  },
-]; */
 
 export default defineComponent({
   // kann entfernt werden
@@ -175,6 +136,10 @@ export default defineComponent({
 </script>
 
 <style>
+/* .stickyHeader {
+  position: fixed;
+} */
+
 h1 {
   font-size: 24px;
   position: absolute;

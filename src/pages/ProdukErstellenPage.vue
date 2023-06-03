@@ -1,140 +1,47 @@
 <template>
-  <q-header>
+  <q-header class="stickyHeader">
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
-      <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+      <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
+      <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
 
   <div class="Eingabebereich" style="padding-bottom: 50px, margin: 300px;">
     <form v-if="!editMode" @submit.prevent="addProduct">
-      <q-input
-        filled
-        label="Name"
-        color="green"
-        type="text"
-        id="name"
-        v-model="newProduct.name"
-        required
-      />
+      <q-input filled label="Name" color="green" type="text" id="name" v-model="newProduct.name" required />
 
-      <q-input
-        filled
-        color="green"
-        label="Kalorien"
-        type="number"
-        id="calories"
-        v-model.number="newProduct.calories"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled color="green" label="Kalorien" type="number" id="calories" v-model.number="newProduct.calories"
+        min="0" max="5000" required />
 
-      <q-input
-        filled
-        color="green"
-        label="Kohlenhydrate"
-        type="number"
-        id="carbs"
-        v-model.number="newProduct.carbs"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled color="green" label="Kohlenhydrate" type="number" id="carbs" v-model.number="newProduct.carbs"
+        min="0" max="5000" required />
 
-      <q-input
-        filled
-        color="green"
-        label="Proteine"
-        type="number"
-        id="protein"
-        v-model.number="newProduct.protein"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled color="green" label="Proteine" type="number" id="protein" v-model.number="newProduct.protein"
+        min="0" max="5000" required />
 
-      <q-input
-        filled
-        color="green"
-        label="Fett"
-        type="number"
-        id="fat"
-        v-model.number="newProduct.fat"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled color="green" label="Fett" type="number" id="fat" v-model.number="newProduct.fat" min="0" max="5000"
+        required />
 
       <q-btn rounded color="green" icon="add" type="submit"></q-btn>
     </form>
 
     <form v-else @submit.prevent="updateProduct">
-      <q-input
-        filled
-        label="Name"
-        color="green"
-        type="text"
-        id="name"
-        v-model="newProduct.name"
-        required
-      />
+      <q-input filled label="Name" color="green" type="text" id="name" v-model="newProduct.name" required />
 
-      <q-input
-        filled
-        label="Kalorien"
-        color="green"
-        type="number"
-        id="calories"
-        v-model.number="newProduct.calories"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled label="Kalorien" color="green" type="number" id="calories" v-model.number="newProduct.calories"
+        min="0" max="5000" required />
 
-      <q-input
-        filled
-        label="Kohlenhydrate"
-        color="green"
-        type="number"
-        id="carbs"
-        v-model.number="newProduct.carbs"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled label="Kohlenhydrate" color="green" type="number" id="carbs" v-model.number="newProduct.carbs"
+        min="0" max="5000" required />
 
-      <q-input
-        filled
-        label="Proteine"
-        color="green"
-        type="number"
-        id="protein"
-        v-model.number="newProduct.protein"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled label="Proteine" color="green" type="number" id="protein" v-model.number="newProduct.protein"
+        min="0" max="5000" required />
 
-      <q-input
-        filled
-        label="Fett"
-        color="green"
-        type="number"
-        id="fat"
-        v-model.number="newProduct.fat"
-        min="0"
-        max="5000"
-        required
-      />
+      <q-input filled label="Fett" color="green" type="number" id="fat" v-model.number="newProduct.fat" min="0" max="5000"
+        required />
 
-      <q-btn
-        rounded
-        color="green"
-        icon="update"
-        @click="updateProduct"
-        type="submit"
-      ></q-btn>
+      <q-btn rounded color="green" icon="update" @click="updateProduct" type="submit"></q-btn>
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
 
@@ -143,12 +50,7 @@
         {{ item.name }} - {{ item.calories }} Kalorien
         <q-btn rounded color="green" icon="edit" @click="editProduct(item)">
         </q-btn>
-        <q-btn
-          rounded
-          color="green"
-          icon="delete"
-          @click="deleteProduct(item)"
-        ></q-btn>
+        <q-btn rounded color="green" icon="delete" @click="deleteProduct(item)"></q-btn>
       </li>
     </ul>
   </div>
@@ -182,7 +84,7 @@ export default defineComponent({
       },
       editMode: false,
       editProductIndex: null,
-      name: "Produkt / Essen hinzufügen", //bei Veränderung wird der Seitentitel automatisch angepasst
+      pageName: "Produkt / Essen hinzufügen", //bei Veränderung wird der Seitentitel automatisch angepasst
     };
   },
   created() {

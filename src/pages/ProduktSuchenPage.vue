@@ -1,23 +1,18 @@
 <template>
-  <q-header>
+  <q-header clas="stickyHeader">
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
-      <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+      <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
+      <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
 
   <div class="searchbar" style="max-width: 300px">
 
-      <q-input 
-      color="green" 
-      filled 
-      v-model="searchQuery" 
-      label="Produkt suchen" 
-      type="text"
-      >     
-        </q-input>
-        <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
-        
+    <q-input color="green" filled v-model="searchQuery" label="Produkt suchen" type="text">
+    </q-input>
+    <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
+
     <ul>
       <li v-for="product in filteredProducts" :key="product.id">
         {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
@@ -37,7 +32,7 @@ export default defineComponent({
       searchQuery: "",
       products: [],
       filteredProducts: [],
-      name: "Produkt suchen",
+      pageName: "Produkt suchen", // bei Veränderung ändert sich der Seitentitel automatisch
     };
   },
   created() {

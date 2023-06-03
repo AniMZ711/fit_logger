@@ -1,8 +1,9 @@
 <template>
-  <q-header>
+  <q-header class="stickyHeader"> <!-- Header ist nicht scrollbar-->
     <q-toolbar>
       <q-btn flat to="/profil" icon="arrow_back" />
-      <q-toolbar-title> {{ pageName }}</q-toolbar-title> <!--Anzeige des Titels; Variable aus dem Script-->
+      <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
+      <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
   <div class="Eingabebereich">

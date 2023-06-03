@@ -1,6 +1,6 @@
 <template>
   <q-layout>
-    <q-header>
+    <q-header class="stickyHeader">
       <q-toolbar>
         <q-btn flat to="/dashboard" icon="arrow_back" />
         <q-toolbar-title> {{ pageName }}</q-toolbar-title> <!--Anzeige des Titels; Variable aus dem Script-->

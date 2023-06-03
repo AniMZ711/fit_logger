@@ -1,6 +1,6 @@
 <template>
   <q-layout>
-    <q-header>
+    <q-header class="stickyHeader">
       <q-toolbar>
         <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
         <!--Anzeige des Titels; Variable aus dem Script-->

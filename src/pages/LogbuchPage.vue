@@ -1,6 +1,6 @@
 <template>
   <q-layout>
-    <q-header>
+    <q-header class="stickyHeader">
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
