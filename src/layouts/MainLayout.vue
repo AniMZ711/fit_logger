@@ -42,6 +42,14 @@
 
 /* media querries erstmal nur für 3 verschiedene Größen, später kommen evtl noch mehr dazu */
 
+
+@media (max-width: 359px) {
+
+  .q-layout {
+    display: none;
+  }
+}
+
 @media (max-width: 576px) {
   /* für kleine Bildschirme (Handys,..) */
 

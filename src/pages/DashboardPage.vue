@@ -1,5 +1,6 @@
 <template>
   <q-layout>
+
     <q-header class="stickyHeader">
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
@@ -15,6 +16,8 @@
     <q-page-container>
       <q-page>
         <h1>Hallo, Name! </h1> <!--hier soll später der Name des Nutzers {{userName}}stehen -->
+
+
 
         <div class="DashboardAnzeige">
           <div class="offeneKalKreis">
@@ -79,9 +82,11 @@
           </ul>
         </div>
 
-        <div></div>
+
       </q-page>
     </q-page-container>
+
+
   </q-layout>
 </template>
 
@@ -91,18 +96,7 @@ import { defineComponent } from "vue";
 
 
 export default defineComponent({
-  // kann entfernt werden
-  /*loadGoal() {
-    const savedGoal = window.localStorage.getItem("Goal");
-    if (savedGoal) {
-    const goalData = JSON.parse(savedGoal);
-    this.goal = goalData.goal;
-    this.zielGesamtKcal = goalData.zielGesamtKcal;
-    this.zielKohlenhydrate = goalData.zielKohlenhydrate;
-    this.zielEiweiss = goalData.zielEiweiss;
-    this.zielFett = goalData.zielFett;
-  }
-},*/
+
   setup() {
     return {
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
@@ -136,9 +130,22 @@ export default defineComponent({
 </script>
 
 <style>
-/* .stickyHeader {
-  position: fixed;
-} */
+.errorMessage {
+  display: none;
+}
+
+@media (max-width: 359px) {
+  .errorMessage {
+    display: block;
+  }
+
+  .q-layout {
+    display: none;
+  }
+}
+
+
+
 
 h1 {
   font-size: 24px;
