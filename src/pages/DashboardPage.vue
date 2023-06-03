@@ -21,8 +21,8 @@
 
         <div class="DashboardAnzeige">
           <div class="offeneKalKreis">
-            <q-circular-progress rounded :value="goal.calories / goal.calories" show-value size="80px" color="green"
-              track-color="grey" class="q-ma-md">
+            <q-circular-progress rounded :value="goal.calories / goal.calories" show-value color="green"
+              track-color="grey" size=" 80px">
               <!-- das muss noch gerundet werden -->
               {{ (dailyConsumption.calories / goal.calories).toFixed(2) }}%
             </q-circular-progress>
@@ -130,23 +130,6 @@ export default defineComponent({
 </script>
 
 <style>
-.errorMessage {
-  display: none;
-}
-
-@media (max-width: 359px) {
-  .errorMessage {
-    display: block;
-  }
-
-  .q-layout {
-    display: none;
-  }
-}
-
-
-
-
 h1 {
   font-size: 24px;
   position: absolute;
@@ -157,9 +140,10 @@ h1 {
 }
 
 .offeneKalKreis {
-  position: absolute;
-  width: 135px;
-  height: 33px;
+  position: relative;
+  size: 80px;
+  width: 30vh;
+  height: 50px;
   left: 30px;
   top: 90px;
 }

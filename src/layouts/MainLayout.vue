@@ -42,22 +42,39 @@
 
 /* media querries erstmal nur für 3 verschiedene Größen, später kommen evtl noch mehr dazu */
 
+/* keine Anzeige für Bildschirme kleiner 360px*/
 
 @media (max-width: 359px) {
 
   .q-layout {
     display: none;
   }
+
+
 }
 
+/* für kleine Bildschirme (Handys,..) */
 @media (max-width: 576px) {
-  /* für kleine Bildschirme (Handys,..) */
+
 
   body {
 
     font-size: 14px;
+
+
   }
+
+  .DashboardAnzeige {
+
+    width: 40vh;
+    height: 20vh;
+  }
+
+
+
 }
+
+/* mittlere Bildschirme */
 
 @media (min-width: 768px) {
 
@@ -66,8 +83,10 @@
     font-size: 16px;
   }
 
-  /* mittlere Bildschirme */
+
 }
+
+/* große Bilschirme */
 
 @media (min-width: 992px) {
 
@@ -76,6 +95,6 @@
     font-size: 18px;
   }
 
-  /* große Bilschirme */
+
 }
 </style>
