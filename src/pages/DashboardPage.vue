@@ -15,6 +15,7 @@
 
 
 
+
     <div class="dashboard-container">
 
       <!--Container auf der linken oberen Seite-->
@@ -49,8 +50,8 @@
         </q-page-container>
 
       </q-page-container>
-    </div>
 
+    </div>
 
     <!--Container für die Makro Anzeige-->
     <q-page-container id="makro-display-container" class="fit row wrap justify-evenly items-baseline content-center">
@@ -84,12 +85,14 @@
       </div>
     </q-page-container>
 
+    <!-- Container für die Anzeige der letzen Mahlzeiten-->
+
     <q-page-container id="AnzeigeLetzteMahlzeiten"
       class="q-pa-sm full-width column wrap justify-around items-stretch content-stretch">
-      <!--Container für Anzeige der letzen Mahlzeiten-->
+
 
       <div class="self-center">
-        <p>Letzte Mahlzeiten</p>
+        <p id="letzteMahlzeiten"> Letzte Mahlzeiten </p>
         <ul>
           <li v-for="product in meals" :key="product.id">
             <p>
@@ -143,6 +146,7 @@ export default defineComponent({
 <style>
 .dashboard-container {
 
+
   display: flex;
   align-items: flex-center;
 }
@@ -174,8 +178,8 @@ export default defineComponent({
 }
 
 #makro-display-container {
-
-  margin-top: -5em;
+  display: flex;
+  margin-top: -4em;
 }
 
 
@@ -199,11 +203,21 @@ export default defineComponent({
 
 
 
-#AnzeigeLetzeMahlzeiten {
+#AnzeigeLetzteMahlzeiten {
+
+
+  min-width: 21em;
+  margin-top: -4em;
 
 
 
-  min-width: 350px;
-  max-width: 95%;
+}
+
+#letzteMahlzeiten {
+
+  text-align: center;
+  font-size: 1.5em;
+
+
 }
 </style>

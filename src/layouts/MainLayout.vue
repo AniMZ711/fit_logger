@@ -4,24 +4,13 @@
       <router-view />
     </q-page-container>
 
-    <q-footer reveal elevated class="bg-grey-8 text-white">
+    <q-footer id="tabsBar" elevated class="bg-grey-8 text-white">
       <q-tabs align="justify" :breakpoint="xs">
         <!-- Tabs wachsen und schrumpfen automatisch mit-->
         <q-route-tab icon="home" to="/dashboard" label="Home" />
         <q-route-tab icon="menu_book" to="/logbuch" label="Logbuch" />
-        <q-page-sticky
-          position="bottom"
-          :offset="[18, 18]"
-          id="middleAddButton"
-        >
-          <q-btn
-            round
-            color="green"
-            icon="add_circle"
-            size="28px"
-            padding="5px"
-            to="/addproduct"
-          />
+        <q-page-sticky position="bottom" :offset="[18, 18]" id="middleAddButton">
+          <q-btn round color="green" icon="add_circle" size="28px" padding="5px" to="/addproduct" />
         </q-page-sticky>
         <q-route-tab icon="storage" to="/produkteinpflegen" label="Produkte" />
         <q-route-tab icon="account_circle" to="/profil" label="Profil" />
@@ -49,6 +38,7 @@
   line-height: 44px;
 
   letter-spacing: -0.05em;
+  scroll-behavior: unset;
 }
 
 #middleAddButton {
