@@ -29,10 +29,10 @@
 
       <q-page-container class="right-page-container">
 
-        <q-page-container class="fit column wrap justify-evenly items-center content-center">
+        <q-page-container class="fit column wrap ">
 
           <!--Container für den Progress Circle mit Anzeige-->
-          <div id="AnzeigeKalorienCircleBar" class="self-center q-px-md ">
+          <div id="AnzeigeKalorienCircleBar" class=" q-px-md ">
             <!-- die Klassenangeben können bei Quasar/layout nachgelesen werden-->
             <q-circular-progress size="15vh" rounded :value="goal.calories / goal.calories" show-value color="green"
               track-color="grey" float-right>
@@ -42,7 +42,7 @@
             </q-circular-progress>
           </div>
 
-          <p class="self-center">
+          <p>
             {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
 
             <!-- Verhältnisanzeige aus konsumierten und noch offenen täglichen Kalorien-->
@@ -175,6 +175,8 @@ export default defineComponent({
 
   /* background-color: yellow; */
   flex: 2;
+  /* align-items: center; */
+  justify-content: flex-start;
 }
 
 #makro-display-container {
