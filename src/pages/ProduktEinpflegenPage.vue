@@ -9,11 +9,25 @@
     <q-page-container>
       <q-page>
         <div class="actionButtons">
-          <q-btn class="searchButton" rounded color="green" icon="search" to="/produktsuchen">
-            Produkt suchen</q-btn>
+          <q-btn
+            class="searchButton"
+            rounded
+            color="green"
+            icon="search"
+            to="/produktsuchen"
+          >
+            Produkt suchen</q-btn
+          >
 
-          <q-btn class="addButton" rounded color="green" icon="edit" to="/produkterstellen">
-            Produkt/Essen hinzufügen</q-btn>
+          <q-btn
+            class="addButton"
+            rounded
+            color="green"
+            icon="edit"
+            to="/produkterstellen"
+          >
+            Produkt/Essen hinzufügen</q-btn
+          >
         </div>
       </q-page>
     </q-page-container>

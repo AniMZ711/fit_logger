@@ -8,8 +8,13 @@
   </q-header>
 
   <div class="searchbar" style="max-width: 300px">
-
-    <q-input color="green" filled v-model="searchQuery" label="Produkt suchen" type="text">
+    <q-input
+      color="green"
+      filled
+      v-model="searchQuery"
+      label="Produkt suchen"
+      type="text"
+    >
     </q-input>
     <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
 

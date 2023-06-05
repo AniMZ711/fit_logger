@@ -2,7 +2,9 @@
   <q-layout>
     <q-header>
       <q-toolbar>
-        <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
+        <q-toolbar-title class="absolute-center">
+          {{ pageName }}</q-toolbar-title
+        >
         <!--Anzeige des Titels; Variable aus dem Script-->
 
         <q-btn icon="arrow_back" position="right" color="green" to="/dashboard">

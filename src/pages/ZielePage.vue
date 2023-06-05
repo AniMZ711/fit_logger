@@ -1,5 +1,6 @@
 <template>
-  <q-header class="stickyHeader"> <!-- Header ist nicht scrollbar-->
+  <q-header class="stickyHeader">
+    <!-- Header ist nicht scrollbar-->
     <q-toolbar>
       <q-btn flat to="/profil" icon="arrow_back" />
       <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
@@ -8,21 +9,72 @@
   </q-header>
   <div class="Eingabebereich">
     <form v-if="!editMode" @submit.prevent="saveGoal">
-      <q-input filled label="Name" color="green" type="text" id="name" v-model="newGoal.name" required />
+      <q-input
+        filled
+        label="Name"
+        color="green"
+        type="text"
+        id="name"
+        v-model="newGoal.name"
+        required
+      />
 
-      <q-input filled label="Kalorien" color="green" type="number" id="calories" v-model.number="newGoal.calories" min="0"
-        max="15000" required />
+      <q-input
+        filled
+        label="Kalorien"
+        color="green"
+        type="number"
+        id="calories"
+        v-model.number="newGoal.calories"
+        min="0"
+        max="15000"
+        required
+      />
 
-      <q-input filled label="Kohlenhydrate" color="green" type="number" id="carbs" v-model.number="newGoal.carbs" min="0"
-        max="5000" required />
+      <q-input
+        filled
+        label="Kohlenhydrate"
+        color="green"
+        type="number"
+        id="carbs"
+        v-model.number="newGoal.carbs"
+        min="0"
+        max="5000"
+        required
+      />
 
-      <q-input filled label="Protein" color="green" type="number" id="protein" v-model.number="newGoal.protein" min="0"
-        max="5000" required />
+      <q-input
+        filled
+        label="Protein"
+        color="green"
+        type="number"
+        id="protein"
+        v-model.number="newGoal.protein"
+        min="0"
+        max="5000"
+        required
+      />
 
-      <q-input filled label="Fett" color="green" type="number" id="fat" v-model.number="newGoal.fat" min="0" max="5000"
-        required />
+      <q-input
+        filled
+        label="Fett"
+        color="green"
+        type="number"
+        id="fat"
+        v-model.number="newGoal.fat"
+        min="0"
+        max="5000"
+        required
+      />
       <div class="AddButton">
-        <q-btn rounded color="green" icon="add" round type="submit" padding="10px">
+        <q-btn
+          rounded
+          color="green"
+          icon="add"
+          round
+          type="submit"
+          padding="10px"
+        >
         </q-btn>
       </div>
     </form>
@@ -31,13 +83,41 @@
       <label for="name">Name:</label>
       <input type="text" id="name" v-model="newGoal.name" required />
       <label for="calories">Kalorien:</label>
-      <input type="number" id="calories" v-model.number="newGoal.calories" min="0" max="5000" required />
+      <input
+        type="number"
+        id="calories"
+        v-model.number="newGoal.calories"
+        min="0"
+        max="5000"
+        required
+      />
       <label for="carbs">Kohlenhydrate:</label>
-      <input type="number" id="carbs" v-model.number="newGoal.carbs" min="0" max="5000" required />
+      <input
+        type="number"
+        id="carbs"
+        v-model.number="newGoal.carbs"
+        min="0"
+        max="5000"
+        required
+      />
       <label for="protein">Protein:</label>
-      <input type="number" id="protein" v-model.number="newGoal.protein" min="0" max="5000" required />
+      <input
+        type="number"
+        id="protein"
+        v-model.number="newGoal.protein"
+        min="0"
+        max="5000"
+        required
+      />
       <label for="fat">Fett:</label>
-      <input type="number" id="fat" v-model.number="newGoal.fat" min="0" max="5000" required />
+      <input
+        type="number"
+        id="fat"
+        v-model.number="newGoal.fat"
+        min="0"
+        max="5000"
+        required
+      />
       <q-btn rounded color="green" icon="update" type="submit"></q-btn>
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
@@ -46,7 +126,12 @@
       <li>
         {{ goal.name }} - {{ goal.calories }} Kalorien
         <q-btn rounded color="green" icon="edit" @click="editGoal()"></q-btn>
-        <q-btn rounded color="green" icon="delete" @click="deleteGoal(goal)"></q-btn>
+        <q-btn
+          rounded
+          color="green"
+          icon="delete"
+          @click="deleteGoal(goal)"
+        ></q-btn>
       </li>
     </ul>
   </div>

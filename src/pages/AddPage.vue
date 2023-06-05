@@ -3,7 +3,8 @@
     <q-header class="stickyHeader">
       <q-toolbar>
         <q-btn flat to="/dashboard" icon="arrow_back" />
-        <q-toolbar-title> {{ pageName }}</q-toolbar-title> <!--Anzeige des Titels; Variable aus dem Script-->
+        <q-toolbar-title> {{ pageName }}</q-toolbar-title>
+        <!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
     <q-page-container>
@@ -11,11 +12,22 @@
         <h1>Produkt hinzufügen</h1>
 
         <div class="addIcon">
-          <q-btn round color="green" icon="add_circle" size="24px" padding="5px" />
+          <q-btn
+            round
+            color="green"
+            icon="add_circle"
+            size="24px"
+            padding="5px"
+          />
         </div>
 
         <div class="searchBar" style="max-width: 300px">
-          <q-input color="teal" filled v-model="text" label="Nahrungsmittel suchen">
+          <q-input
+            color="teal"
+            filled
+            v-model="text"
+            label="Nahrungsmittel suchen"
+          >
             <template v-slot:prepend>
               <q-icon name="search" />
             </template>
@@ -30,7 +42,12 @@
           <br />
 
           <div>
-            <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+            <q-btn
+              rounded
+              color="green"
+              icon="qr_code_scanner"
+              @click="toggleScanner"
+            >
               Produkt scannen
             </q-btn>
           </div>
@@ -38,9 +55,17 @@
           <teleport to="body">
             <div class="modal" v-if="showScanner">
               <div>
-                <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
+                <StreamBarcodeReader
+                  @decode="onDecode"
+                  @loaded="onLoaded"
+                ></StreamBarcodeReader>
                 <div style="padding-top: 10px">
-                  <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+                  <q-btn
+                    rounded
+                    color="green"
+                    icon="qr_code_scanner"
+                    @click="toggleScanner"
+                  >
                     Scan beenden
                   </q-btn>
                 </div>
@@ -146,7 +171,7 @@ h1 {
   align-items: center;
 }
 
-.modal>div {
+.modal > div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;

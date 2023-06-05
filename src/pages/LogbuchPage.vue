@@ -1,6 +1,7 @@
 <template>
   <q-layout>
-    <q-header class="stickyHeader"> <!-- der Header scrollt nicht mit-->
+    <q-header class="stickyHeader">
+      <!-- der Header scrollt nicht mit-->
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
@@ -9,48 +10,32 @@
     </q-header>
 
     <q-page>
-
-
-
       <div class="rectangle">
         <div id="DatePickerLogbuch" class="DatePicker">
           <DatePicker> </DatePicker>
           <!-- lädt den Component Date Picker aus /src/components/DatePicker.vue und zeigt den Date Picker an-->
         </div>
-
       </div>
 
-
-
-
-
-
-
-      <q-page-container class="q-pa-sm  full-width column wrap justify-around items-stretch content-stretch">
-
-
+      <q-page-container class="q-pa-sm full-width column wrap justify-around items-stretch content-stretch">
         <div id="Liste" class="self-center q-pt-lg q-px-md">
-
-
           <ul style="padding-top: 50px">
             <li v-for="product in meals" :key="product.id">
               <p>
-                {{ product.name }} Kalorien: {{ product.calories }} Kohlenhydrate:
+                {{ product.name }} Kalorien:
+                {{ product.calories }} Kohlenhydrate:
                 {{ product.carbs }} Proteine: {{ product.protein }} Fett:
                 {{ product.fat }}
               </p>
             </li>
           </ul>
         </div>
-
       </q-page-container>
 
       <q-separator></q-separator>
 
       <q-page-container>
-
         <q-page-sticky id="tageszusammenfassung" class="fixed-bottom">
-
           <div class="kreis">
             <q-btn round flat>
               <q-circular-progress fab rounded :value="value" show-value size="60px" color="green" track-color="grey"
@@ -68,16 +53,8 @@
               </div>
             </div>
           </div>
-
-
         </q-page-sticky>
-
       </q-page-container>
-
-
-
-
-
     </q-page>
   </q-layout>
 </template>
@@ -115,7 +92,6 @@ export default defineComponent({
 
 <style>
 #Liste {
-
   overflow: auto;
   z-index: 1;
 }
@@ -126,23 +102,21 @@ export default defineComponent({
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 .rectangle {
   position: fixed;
   width: 100%;
-  height: 25px;
+  height: 100px;
   background-color: white;
-  top: 10%;
+  top: 120px;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
 }
 
-
-
 #tageszusammenfassung {
-
   bottom: 100px;
 }
 </style>
