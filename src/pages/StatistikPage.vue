@@ -25,30 +25,74 @@
     </div>
   </div>
 
-  <!-- Code damit die Linien als Graph angezeigt werden können -->
-  <div class="control-section">
-    <div align='center'>
-        <ejs-chart style='display:block' :theme='theme' align='center' id='chartcontainer' :title='title' :primaryXAxis='primaryXAxis' :primaryYAxis='primaryYAxis'
-            :tooltip='tooltip' :chartArea='chartArea' :width='width' :legendSettings='legend'>
-            <e-series-collection>
-                <e-series :dataSource='seriesData' type='Line' xName='Period' yName='//definiert, welches Datenfeld für den Y-Wert verwendet werden soll' name='Eiweiß' opacity=1 width=2 :marker='circleMarker'> </e-series>
-                <e-series :dataSource='seriesData' type='Line' xName='Period' yName='//' name='Fett' opacity=1 width=2 :marker='triangleMarker'> </e-series>
-                <e-series :dataSource='seriesData' type='Line' xName='Period' yName='//' name='Kohlenhydrate' opacity=1 width=2 :marker='diamondMarker'> </e-series>
-                <e-series :dataSource='seriesData' type='Line' xName='Period' yName='//' name='Kcal' opacity=1 width=2 :marker='rectangleMarker'> </e-series>
-            </e-series-collection>
-        </ejs-chart>
+  <div>
+      <h2>Statistik für den Zeitraum:</h2>
+      <p>Startdatum: {{ dateRange.startDate }}</p>
+      <p>Enddatum: {{ dateRange.endDate }}</p>
     </div>
-
+  
+  <div>
+    <canvas id="chart"></canvas>
   </div>
 </template>
-<style scoped>
 
-</style>
+
+
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import Chart from "chart.js/auto";
 export default {
   setup() {
+    //Referenzen für Datenbereich und ausgewählte Optionen
+    const dateRange = ref({
+      startDate: subtractDays(new Date(), 6), // Startdatum = Aktuelles Datum - 6 Tage
+      endDate: new Date() // Enddatum = Aktuelles Datum
+    });
+
+    function subtractDays(date, days) {
+      const result = new Date(date);
+      result.setDate(result.getDate() - days);
+      return result.toISOString().split("T")[0];
+    }
+
+    onMounted(() => {
+      const ctx = document.getElementById("chart").getContext("2d");
+      new Chart(ctx, {
+        type: "line", //Typ linien Diagramm
+        data: {
+          labels: getLabels(), //X-Achsenbeschriftung
+          datasets: [
+            {
+              label: "Gramm",
+              data: [50, 100, 150, 200, 250, 300, 350],
+              borderColor: "blue",
+              fill: false //keine Füllung
+            }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              title: {
+                display: true,
+                text: "Gramm" //Titel der X-Achse
+              },
+              ticks: {
+                stepSize: 50 //Schritte der X-Achse
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: "Tag" //Titel der X-Achse
+              }
+            }
+          }
+        }
+      });
+    });
+    
     return {
       pageName: "Statistik",
       single: ref(null),
@@ -62,71 +106,31 @@ export default {
         ],
         werte: ["Kalorien", "Proteine", "Fett", "Zucker"],
       },
+      dateRange
     };
+
+    //Funktion zum generieren der X-Achsenbeschriftungen
+    function getLabels() {
+      const labels = [];
+      const startDate = new Date(dateRange.value.startDate);
+      const endDate = new Date(dateRange.value.endDate);
+
+      //Schleife zum durchlaufen der Daten
+      for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+        labels.push(date.toISOString().split("T")[0]);
+      }
+
+      return labels;
+    }
   },
 };
 </script>
 
-<!-- alles überprüfen ob es normal angezeigt werden kann -->
-<script>
-//Importe um über vue das Diagramm zu erstellen
-import Vue from "vue";
-import { Browser } from '@syncfusion/ej2-base';
-import { ChartPlugin, LineSeries, Legend, Tooltip,DateTime, Category, Highlight } from "@syncfusion/ej2-vue-charts";
 
-Vue.use(ChartPlugin);
 
-let selectedTheme = location.hash.split("/")[1];
-selectedTheme = selectedTheme ? selectedTheme : "Material";
-let theme = (selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
 
-export default Vue.extend({
-  data: function() {
-    return {
-      theme: theme,
-      seriesData: [
-      { Period : new Date(2012, 1, 1), Can_Growth : 13.5, Viet_Growth : 5.3, Mal_Growth : 5.6, Egy_Growth : 6.6, Ind_Growth : 2.3 },
-    ],
-      //Initialisierung X Achse
-      primaryXAxis: {
-        valueType: "DateTime",
-        edgeLabelPlacement: "Shift",
-        majorGridLines: { width: 0 },
-        labelFormat: 'dd',
-        intervalType: 'Days'
-      },
-      //Initialisierung Y Achse
-      primaryYAxis: {
-        title: 'Gramm',
-        minimum: 0,
-        maximum: 500,
-        interval: 50,
-        lineStyle: { width: 0 },
-        majorTickLines: { width: 0 },
-      },
-      chartArea: {
-        border: {
-          width: 0
-        }
-      },
-      width : Browser.isDevice ? '100%' : '75%',
-      circleMarker: { visible: true, height: 7, width: 7 , shape: 'Circle' , isFilled: true },
-      triangleMarker: { visible: true, height: 6, width: 6 , shape: 'Triangle' , isFilled: true },
-      diamondMarker: {  visible: true, height: 7, width: 7 , shape: 'Diamond' , isFilled: true  },
-      rectangleMarker: { visible: true, height: 5, width: 5 , shape: 'Rectangle' , isFilled: true },
-      pentagonMarker: { visible: true, height: 7, width: 7 , shape: 'Pentagon' , isFilled: true },
-      tooltip: {
-        enable: true,
-      },
-      legend: {enableHighlight : true},
-      title: "Verlauf der gewählten Nährwerte"
-    };
-  },
-  provide: {
-    chart: [LineSeries, Legend, Tooltip, Category,DateTime, Highlight]
-  },
-  methods: {
-  }
-   
-});
-</script>
+<style scoped>
+#chart {
+  height: 400px;
+}
+</style>
