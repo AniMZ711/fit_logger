@@ -11,35 +11,52 @@
         </q-btn>
       </q-toolbar>
     </q-header>
-    <!--Container für den Progress Circle mit Anzeige-->
-
-    <!-- <h1>Hallo, Name! </h1> -->
-    <!--hier soll später der Name des Nutzers {{userName}}stehen -->
-
-    <q-page-container class="fit column wrap justify-start items-center content-center">
 
 
-      <div id="AnzeigeKalorienCircleBar" class="self-center q-pt-lg q-px-md">
-        <!-- die Klassenangeben können bei Quasar/layout nachgelesen werden-->
-        <q-circular-progress size="15vh" rounded :value="goal.calories / goal.calories" show-value color="green"
-          track-color="grey" float-right>
-          <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
-          <!-- das muss noch gerundet werden -->
-          {{ (dailyConsumption.calories / goal.calories).toFixed(2) }}%
-        </q-circular-progress>
-      </div>
 
-      <p class="self-center">
-        {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
 
-        <!-- Verhältnisanzeige aus konsumierten und noch offenen täglichen Kalorien-->
-      </p>
-    </q-page-container>
+    <div class="dashboard-container">
 
-    <q-page-container class="fit row wrap justify-around items-start content-center">
-      <!--Container für die Makro Anzeige-->
+      <!--Container auf der linken oberen Seite-->
+      <q-page-container class="left-page-container q-ml-xs ">
 
-      <div id="AnzeigeKohlenhydrate" class="col-xs-5 self-center q-px-md">
+        <p id="displayUsername"> Hallo, Name!</p>
+
+      </q-page-container>
+
+      <!-- Container auf der rechten oberen Seite-->
+
+      <q-page-container class="right-page-container">
+
+        <q-page-container class="fit column wrap justify-evenly items-center content-center">
+
+          <!--Container für den Progress Circle mit Anzeige-->
+          <div id="AnzeigeKalorienCircleBar" class="self-center q-px-md ">
+            <!-- die Klassenangeben können bei Quasar/layout nachgelesen werden-->
+            <q-circular-progress size="15vh" rounded :value="goal.calories / goal.calories" show-value color="green"
+              track-color="grey" float-right>
+              <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
+              <!-- das muss noch gerundet werden -->
+              {{ (dailyConsumption.calories / goal.calories).toFixed(2) }}%
+            </q-circular-progress>
+          </div>
+
+          <p class="self-center">
+            {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
+
+            <!-- Verhältnisanzeige aus konsumierten und noch offenen täglichen Kalorien-->
+          </p>
+        </q-page-container>
+
+      </q-page-container>
+    </div>
+
+
+    <!--Container für die Makro Anzeige-->
+    <q-page-container id="makro-display-container" class="fit row wrap justify-evenly items-baseline content-center">
+
+
+      <div id="AnzeigeKohlenhydrate" class="col-xs self-center q-px-md">
         <!-- Anzeige Kohlenhydrate-->
         Kohlenhydrate
         <q-linear-progress :value="dailyConsumption.carbs / goal.carbs" :label="Kohlenhydrate" color="green"
@@ -48,7 +65,7 @@
         {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
       </div>
 
-      <div id="AnzeigeEiweiss" class="col-xs-5 self-center q-px-md">
+      <div id="AnzeigeEiweiss" class="col-xs  self-center q-px-md">
         <!--Anzeige Eiweiss-->
         Eiweiss
         <q-linear-progress :value="dailyConsumption.protein / goal.protein" :label="Eiweiss" color="green"
@@ -57,7 +74,7 @@
         {{ dailyConsumption.protein }}/{{ goal.protein }} g
       </div>
 
-      <div id="AnzeigeFett" class="col-xs-5 self-center q-px-md">
+      <div id="AnzeigeFett" class="col-xs self-center q-px-md">
         <!-- Anzeige Fett-->
         Fett
         <q-linear-progress :value="dailyConsumption.fat / goal.fat" :label="Fett" color="green" track-color="grey"
@@ -124,12 +141,54 @@ export default defineComponent({
 </script>
 
 <style>
+.dashboard-container {
+
+  display: flex;
+  align-items: flex-center;
+}
+
+.left-page-container {
+
+  flex: 2;
+  /* background-color: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#displayUsername {
+
+  font-size: 2em;
+
+
+  /* color: blue; */
+
+
+}
+
+.right-page-container {
+
+  /* background-color: yellow; */
+  flex: 2;
+}
+
+#makro-display-container {
+
+  margin-top: -5em;
+}
+
+
 #AnzeigeKohlenhydrate,
 #AnzeigeEiweiss,
 #AnzeigeFett {
+  /* background-color: aqua; */
   overflow: auto;
   min-width: 350px;
-  max-width: 400px;
+  max-width: 500px;
+
+
+
 }
 
 #AnzeigeKalorienCircleBar {
@@ -138,16 +197,11 @@ export default defineComponent({
   top: 200px;
 }
 
-h1 {
-  font-size: 24px;
-  position: absolute;
-  width: 135px;
-  height: 33px;
-  left: 30px;
-  top: 0px;
-}
+
 
 #AnzeigeLetzeMahlzeiten {
+
+
 
   min-width: 350px;
   max-width: 95%;
