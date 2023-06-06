@@ -19,7 +19,14 @@
             </div>
             <div class="col col-1">
               <div class="decorator-add-button">
-                <q-btn class="deco" round color="green" icon="add_circle" size="24px" padding="10px" />
+                <q-btn
+                  class="deco"
+                  round
+                  color="green"
+                  icon="add_circle"
+                  size="24px"
+                  padding="10px"
+                />
               </div>
             </div>
           </div>
@@ -44,7 +51,13 @@
             <div class="col col-2"></div>
             <div class="col col-8">
               <div class="scan-button">
-                <q-btn size="md" rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+                <q-btn
+                  size="md"
+                  rounded
+                  color="green"
+                  icon="qr_code_scanner"
+                  @click="toggleScanner"
+                >
                   Produkt scannen
                 </q-btn>
               </div>
@@ -71,9 +84,17 @@
       <teleport to="body">
         <div class="modal" v-if="showScanner">
           <div>
-            <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
+            <StreamBarcodeReader
+              @decode="onDecode"
+              @loaded="onLoaded"
+            ></StreamBarcodeReader>
             <div style="padding-top: 10px">
-              <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+              <q-btn
+                rounded
+                color="green"
+                icon="qr_code_scanner"
+                @click="toggleScanner"
+              >
                 Scan beenden
               </q-btn>
             </div>
@@ -185,7 +206,7 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal>div {
+.modal > div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;

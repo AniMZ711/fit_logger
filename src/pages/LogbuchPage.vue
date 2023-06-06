@@ -5,28 +5,25 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title
+        ><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
 
     <q-page>
-      <q-page-container class="date-picker fit self-center row wrap justify-center items-start content-start">
-
-        <div id="rectangle" class="fixed q-pa-md q-mb-lg ">
-
+      <q-page-container
+        class="date-picker fit self-center row wrap justify-center items-start content-start"
+      >
+        <div id="rectangle" class="fixed q-pa-md q-mb-lg">
           <DatePicker> </DatePicker>
-
         </div>
 
         <!-- lädt den Component Date Picker aus /src/components/DatePicker.vue und zeigt den Date Picker an-->
-
       </q-page-container>
 
-
-
-
-
-      <q-page-container class=" meals-list q-pa-sm full-width column wrap justify-around items-stretch content-stretch">
+      <q-page-container
+        class="meals-list q-pa-sm full-width column wrap justify-around items-stretch content-stretch"
+      >
         <div id="Liste" class="self-center q-pt-lg q-px-md">
           <ul style="padding-top: 50px">
             <li v-for="product in meals" :key="product.id">
@@ -47,8 +44,17 @@
         <q-page-sticky id="tageszusammenfassung" class="fixed-bottom">
           <div class="kreis">
             <q-btn round flat>
-              <q-circular-progress fab rounded :value="value" show-value size="60px" color="green" track-color="grey"
-                class="q-ma-md" @click="toggle = !toggle">
+              <q-circular-progress
+                fab
+                rounded
+                :value="value"
+                show-value
+                size="60px"
+                color="green"
+                track-color="grey"
+                class="q-ma-md"
+                @click="toggle = !toggle"
+              >
                 {{ value }} %
               </q-circular-progress>
 
@@ -101,7 +107,6 @@ export default defineComponent({
 
 <style>
 .meals-list {
-
   position: absolute;
 
   margin-top: 5em;
@@ -110,18 +115,11 @@ export default defineComponent({
 .date-picker {
   position: absolute;
   z-index: 999;
-
-
-
 }
 
 #rectangle {
-
   background-color: aqua;
 }
-
-
-
 
 #tageszusammenfassung {
   bottom: 100px;
