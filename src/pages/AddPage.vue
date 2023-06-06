@@ -8,79 +8,98 @@
       </q-toolbar>
     </q-header>
 
-
-    <q-page-container class="upper-container ">
-
-      <q-page-container class="display-add-product">
-
-        <p>Produkt hinzufügen</p>
+    <q-page>
 
 
-      </q-page-container>
+      <div class="upper-container">
+        <div class="q-pa-sm example-row-equal-width">
+          <div class="row" style="height: 6em">
+            <div class="col col-1">.col</div>
 
-      <q-page-container class="add-icon">
+            <div class="col col-6">
+              <div class="display-add-product">
+                <p>Produkt hinzufügen</p>
+              </div>
 
-        <div class="add-icon">
-          <q-btn round color="green" icon="add_circle" size="24px" padding="5px" />
-        </div>
-
-      </q-page-container>
-
-    </q-page-container>
-
-
-    <q-page-container class="display-search-bar ">
-
-      <div class="search-bar q-px-lg q-mx-lg ">
-        <q-input color="primary" filled v-model="text" label="Nahrungsmittel suchen">
-          <template v-slot:prepend>
-            <q-icon name="search" />
-          </template>
-        </q-input>
-      </div>
-    </q-page-container>
-
-
-
-
-
-
-    <q-page-container>
-      <q-page>
-
-
-
-
-        <div class="auswahl-buttons">
-          <!-- <div>
-            <q-btn rounded color="green" icon="edit"> Manuell eingeben </q-btn>
-          </div> -->
-
-          <!-- diese Funktion bleibt vorab außenvor-->
-
-
-
-          <div>
-            <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
-              Produkt scannen
-            </q-btn>
-          </div>
-
-          <teleport to="body">
-            <div class="modal" v-if="showScanner">
-              <div>
-                <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
-                <div style="padding-top: 10px">
-                  <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
-                    Scan beenden
-                  </q-btn>
-                </div>
+            </div>
+            <div class="col">
+              <div class="add-icon">
+                <q-btn round color="green" icon="add_circle" size="5em" padding="5px" />
               </div>
             </div>
-          </teleport>
+
+            <div class="col col-1">.col</div>
+            <div class="col col-1">.col</div>
+
+
+          </div>
+
+          <div class="row">
+            <div class="col col-12">
+              <div class="search-bar  ">
+                <q-input color="primary" filled v-model="text" label="Nahrungsmittel suchen">
+                  <template v-slot:prepend>
+                    <q-icon name="search" />
+                  </template>
+                </q-input>
+              </div>
+            </div>
+
+          </div>
         </div>
-      </q-page>
-    </q-page-container>
+      </div>
+
+      <div class="buttons-container">
+
+        <div class="lower-container">
+          <div class="row" style="height:4em">
+            <div class="col col-2"></div>
+            <div class="col col-8">
+              <div class="scan-button">
+                <q-btn size="md" rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+                  Produkt scannen
+                </q-btn>
+              </div>
+            </div>
+            <div class="col col-2"></div>
+          </div>
+        </div>
+
+        <div class="lower-container-2">
+          <div class="row" style="height:4em">
+            <div class="col col-2"> </div>
+            <div class="col col-8">
+              <div class="manuell-add">
+                <q-btn rounded color="green" icon="edit">
+                  Manuell eingeben
+                </q-btn>
+              </div>
+            </div>
+            <div class="col col-2"> </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="auswahl-buttons">
+
+        <teleport to="body">
+          <div class="modal" v-if="showScanner">
+            <div>
+              <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
+              <div style="padding-top: 10px">
+                <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+                  Scan beenden
+                </q-btn>
+              </div>
+            </div>
+          </div>
+        </teleport>
+      </div>
+    </q-page>
   </q-layout>
 </template>
 
@@ -116,57 +135,77 @@ export default defineComponent({
 @import url("https://fonts.cdnfonts.com/css/inter");
 
 
-.display-search-bar {
 
-  display: flex;
+.scan-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
-  background-color: yellow;
-  box-sizing: border-box;
-  height: 10px;
-  width: 100%;
-  align-items: center;
+}
+
+.lower-container {
+  position: relative;
+  top: 5em;
+}
+
+.lower-container-2 {
+  position: relative;
+  top: 5.1em;
+}
+
+.manuell-add {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+.buttons-container {
+
+  position: sticky;
+  top: 60vh;
 
 
 }
 
-.search-bar {
-  vertical-align: top;
-  flex: 1;
+.upper-container {
+  margin-top: 4em;
+
+
 }
 
-/* h1 {
+.row {
+  /* padding: 10px 15px; */
+  background: rgba(#999, 0.15);
+  /* border: 1px solid red; */
+}
+
+.col {
+  padding: 10px 15px;
+  background: rgba(#999, 0.15);
+  /* border: 1px solid red; */
+}
+
+.display-add-product {
 
 
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 36px;
-  line-height: 44px;
+  font-size: 6vw;
+
+  line-height: 3em;
   text-align: right;
   letter-spacing: -0.05em;
+  align-items: center;
 
   color: #323232;
-} */
-
-/* .add-icon {
-  position: absolute;
-  width: 185px;
-  height: 88px;
-  left: 270px;
-  top: 120px;
-  pointer-events: none;
-} */
 
 
-
-.auswahl-buttons {
-  position: absolute;
-  width: 100%;
-  max-width: 40rem;
-  left: 100px;
-
-  top: 580px;
 }
+
 
 .root {
   position: relative;
@@ -191,27 +230,5 @@ export default defineComponent({
   border-radius: 10px;
   align-items: center;
   text-align: center;
-}
-
-
-.upper-container {
-
-  width: 100%;
-  /* Set the initial width to 100% */
-  max-width: 80em;
-  /* Set a maximum width for the container */
-  margin: 0 auto;
-  /* Center the container horizontally */
-  padding: 20px;
-  /* Add padding as needed */
-  box-sizing: border-box;
-  /* Include padding and borders in the container's total width */
-  background-color: aqua;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-
 }
 </style>
