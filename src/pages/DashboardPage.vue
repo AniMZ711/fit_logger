@@ -12,21 +12,22 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
-      <div class="row items-end">
-        <div class="column col-2">col</div>
+    <q-page-container class="q-pa-sm">
+      <div class="row items-center">
+        <div class="column col-1"></div>
 
-        <div class="column col-8 self-end">
-          <p>Hallo Name!</p>
+        <div class="column col-8 self-center q-pb-md">
+          <div class="display-user-name">Hallo Name!</div>
+
         </div>
       </div>
 
       <div class="test-container">
-        <div class="row">
-          <div class="column col-4 self-center">
-            <div class="column self-center">
-              <div id="AnzeigeKalorienCircleBar" class="q-px-md">
-                <!-- die Klassenangeben können bei Quasar/layout nachgelesen werden-->
+        <div class="row self-end">
+          <div class="column col-4 ">
+            <div class="column self-end progress-circle-container q-pl-md">
+              <div id="AnzeigeKalorienCircleBar" class="circle-progress">
+
                 <q-circular-progress size="15vh" rounded :value="goal.calories / goal.calories" show-value color="green"
                   track-color="grey" float-right>
                   <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
@@ -36,14 +37,16 @@
               </div>
 
               <div class="column self-center">
-                <p>
-                  {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
 
-                  <!-- Verhältnisanzeige aus konsumierten und noch offenen täglichen Kalorien-->
-                </p>
+                {{ dailyConsumption.calories }} / {{ goal.calories }} kcal
+
+                <!-- Verhältnisanzeige aus konsumierten und noch offenen täglichen Kalorien-->
+
               </div>
             </div>
           </div>
+
+
           <div class="column  col-8 makros"> <!-- Bereich für die Makro Anzeige-->
 
             <div class="row"> <!--Reihe 1 Makros-->
@@ -106,8 +109,7 @@
 
     <!-- Container für die Anzeige der letzen Mahlzeiten-->
 
-    <q-page-container id="AnzeigeLetzteMahlzeiten"
-      class="q-pa-sm full-width column wrap justify-around items-stretch content-stretch">
+    <q-page-container class="display-last-meals full-width column wrap justify-around items-stretch content-stretch">
       <div class="self-center">
         <p id="letzteMahlzeiten">Letzte Mahlzeiten</p>
         <ul>
@@ -161,34 +163,40 @@ export default defineComponent({
 </script>
 
 <style>
-#displayUsername {
-  text-align: center;
-  font-size: clamp(1.5rem, 0.8182rem + 2.9091vw, 3rem);
-
-  /* color: blue; */
-}
-
-
-
-
-.row {
+/*die Klassenangeben im Template können bei Quasar/layout nachgelesen werden
+/* Borders help with layout*/
+/* .row {
   border: 1px solid red;
 }
 
 .column {
   border: 1px solid red;
-}
+} */
 
 #AnzeigeKohlenhydrate,
 #AnzeigeEiweiss,
 #AnzeigeFett {
 
-  /* padding-bottom: -2em; */
   margin-bottom: -3em;
+}
+
+.progress-circle-container {
+
+  margin-top: 1em;
 }
 
 .progress-bar {
   margin-top: -0.5em;
+}
+
+.display-user-name {
+
+  margin-top: 0.2em;
+
+  padding: 0.1em;
+
+  font-size: clamp(1.75rem, 1.0682rem + 2.9091vw, 3.25rem);
+
 }
 
 
@@ -199,14 +207,13 @@ export default defineComponent({
   top: 200px;
 }
 
-#AnzeigeLetzteMahlzeiten {
-  min-width: 21em;
-  margin-top: 4em;
-}
 
-#letzteMahlzeiten {
+
+.display-last-meals {
   text-align: center;
-  font-size: 1.5em;
+  font-size: clamp(1.5rem, 0.8182rem + 2.9091vw, 3rem);
+
+  margin-top: -1em;
 }
 
 
