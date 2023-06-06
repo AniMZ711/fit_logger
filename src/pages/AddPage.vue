@@ -9,54 +9,55 @@
     </q-header>
 
     <q-page>
-
-
       <div class="upper-container">
         <div class="q-pa-sm example-row-equal-width">
-          <div class="row" style="height: 6em">
-            <div class="col col-1">.col</div>
-
-            <div class="col col-6">
+          <div class="row self-center items-center" style="height: auto">
+            <div class="col col-8">
               <div class="display-add-product">
                 <p>Produkt hinzufügen</p>
               </div>
-
             </div>
-            <div class="col">
-              <div class="add-icon">
-                <q-btn round color="green" icon="add_circle" size="5em" padding="5px" />
+            <div class="col col-1">
+              <div class="decorator-add-button">
+                <q-btn
+                  class="deco"
+                  round
+                  color="green"
+                  icon="add_circle"
+                  size="24px"
+                  padding="10px"
+                />
               </div>
             </div>
-
-            <div class="col col-1">.col</div>
-            <div class="col col-1">.col</div>
-
-
           </div>
 
           <div class="row">
             <div class="col col-12">
-              <div class="search-bar  ">
-                <q-input color="primary" filled v-model="text" label="Nahrungsmittel suchen">
+              <div class="search-bar">
+                <q-input outline v-model="text" label="Nahrungsmittel suchen">
                   <template v-slot:prepend>
                     <q-icon name="search" />
                   </template>
                 </q-input>
               </div>
             </div>
-
           </div>
         </div>
       </div>
 
       <div class="buttons-container">
-
         <div class="lower-container">
-          <div class="row" style="height:4em">
+          <div class="row" style="height: 4em">
             <div class="col col-2"></div>
             <div class="col col-8">
               <div class="scan-button">
-                <q-btn size="md" rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+                <q-btn
+                  size="md"
+                  rounded
+                  color="green"
+                  icon="qr_code_scanner"
+                  @click="toggleScanner"
+                >
                   Produkt scannen
                 </q-btn>
               </div>
@@ -66,8 +67,8 @@
         </div>
 
         <div class="lower-container-2">
-          <div class="row" style="height:4em">
-            <div class="col col-2"> </div>
+          <div class="row" style="height: 4em">
+            <div class="col col-2"></div>
             <div class="col col-8">
               <div class="manuell-add">
                 <q-btn rounded color="green" icon="edit">
@@ -75,30 +76,31 @@
                 </q-btn>
               </div>
             </div>
-            <div class="col col-2"> </div>
+            <div class="col col-2"></div>
           </div>
         </div>
-
       </div>
 
-
-
-
-      <div class="auswahl-buttons">
-
-        <teleport to="body">
-          <div class="modal" v-if="showScanner">
-            <div>
-              <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
-              <div style="padding-top: 10px">
-                <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
-                  Scan beenden
-                </q-btn>
-              </div>
+      <teleport to="body">
+        <div class="modal" v-if="showScanner">
+          <div>
+            <StreamBarcodeReader
+              @decode="onDecode"
+              @loaded="onLoaded"
+            ></StreamBarcodeReader>
+            <div style="padding-top: 10px">
+              <q-btn
+                rounded
+                color="green"
+                icon="qr_code_scanner"
+                @click="toggleScanner"
+              >
+                Scan beenden
+              </q-btn>
             </div>
           </div>
-        </teleport>
-      </div>
+        </div>
+      </teleport>
     </q-page>
   </q-layout>
 </template>
@@ -134,14 +136,11 @@ export default defineComponent({
 <style scoped>
 @import url("https://fonts.cdnfonts.com/css/inter");
 
-
-
 .scan-button {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }
 
 .lower-container {
@@ -161,51 +160,34 @@ export default defineComponent({
   transform: translate(-50%, -50%);
 }
 
-
 .buttons-container {
-
   position: sticky;
   top: 60vh;
-
-
 }
 
 .upper-container {
+  position: relative;
+
   margin-top: 4em;
-
-
-}
-
-.row {
-  /* padding: 10px 15px; */
-  background: rgba(#999, 0.15);
-  /* border: 1px solid red; */
 }
 
 .col {
   padding: 10px 15px;
-  background: rgba(#999, 0.15);
+
   /* border: 1px solid red; */
 }
 
 .display-add-product {
-
-
+  font-size: clamp(2.25rem, 1.9091rem + 1.4545vw, 3rem);
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 6vw;
-
-  line-height: 3em;
   text-align: right;
-  letter-spacing: -0.05em;
-  align-items: center;
+  vertical-align: center;
+  letter-spacing: -0.1em;
 
   color: #323232;
-
-
 }
-
 
 .root {
   position: relative;
@@ -224,7 +206,7 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal>div {
+.modal > div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
