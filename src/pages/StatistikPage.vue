@@ -37,11 +37,10 @@
 </template>
 
 
-
-
 <script>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import Chart from "chart.js/auto";
+
 export default {
   setup() {
     //Referenzen für Datenbereich und ausgewählte Optionen
@@ -56,44 +55,100 @@ export default {
       return result.toISOString().split("T")[0];
     }
 
+    //Funktion zum Generieren der X-Achsenbeschriftungen
+    function getLabels() {
+      const labels = [];
+      const startDate = new Date(dateRange.value.startDate);
+      const endDate = new Date(dateRange.value.endDate);
+
+      //Schleife zum durchlaufen der Daten
+      for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
+        labels.push(date.toISOString().split("T")[0]);
+      }
+
+      return labels;
+    }
+
     onMounted(() => {
       const ctx = document.getElementById("chart").getContext("2d");
-      new Chart(ctx, {
-        type: "line", //Typ linien Diagramm
-        data: {
-          labels: getLabels(), //X-Achsenbeschriftung
+      createChart(ctx);
+
+      //Überwache Änderungenn an dateRange und erstelle das Diagramm neu
+      watch(dateRange, () => {
+        createChart(ctx);
+      });
+    });
+
+      function createChart(ctx) {
+        const chartData = {
+          labels: getLabels(), //Y-Achsenbeschriftung
           datasets: [
             {
               label: "Gramm",
-              data: [50, 100, 150, 200, 250, 300, 350],
+              data: [50, 100, 150, 200, 300, 350],
               borderColor: "blue",
-              fill: false //keine Füllung
+              fill: false //keine Füllung des Diagramms
             }
           ]
-        },
-        options: {
-          scales: {
-            y: {
-              title: {
-                display: true,
-                text: "Gramm" //Titel der X-Achse
-              },
-              ticks: {
-                stepSize: 50 //Schritte der X-Achse
-              }
+        }
+      };
+
+      const chartOptions = {
+        scales: {
+          y: {
+            title: {
+              display: true,
+              text:"Gramm" //Titel y-achse
             },
-            x: {
-              title: {
-                display: true,
-                text: "Tag" //Titel der X-Achse
-              }
+            ticks: {
+              stepSize: 50 //schritte der y-achse
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: "Tag" //title x-achse
             }
           }
         }
+      };
+
+      // erstellen des Diagramms
+      new Chart(ctx, {
+        type: "line",
+        data: chartData,
+        options: chartOptions
       });
-    });
+    },
+
+    // Überwachen der Änderungen von ausgewählten Optionen des Zeitraums
+    watch([single, multiple], [singleVal, multipleVal]) {
+      if (singleVal === "letzte Woche") {
+        dateRange.value = {
+          startDate: subtractDays(new Date(), 6),
+          endDate: new Date()
+        };
+      }
+      else if (singleVal === "letzte 2 Wochen") {
+          dateRange.value = {
+            startDate: subtractDays(new Date(), 13),
+            endDate: new Date()
+          };
+        }
+        else if (singleVal === "letzter Monat") {
+          const currentDate = new Date();
+          const startMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() -1, 1);
+          const endMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+          dateRange.value = {
+            startDate: startMonth.toISOString().split("T")[0],
+            endDate: endMonth.toISOString().split("T")[0]
+          };
+        }
+    },
+
+
     
-    return {
+    return: {
       pageName: "Statistik",
       single: ref(null),
       multiple: ref(null),
@@ -107,30 +162,12 @@ export default {
         werte: ["Kalorien", "Proteine", "Fett", "Zucker"],
       },
       dateRange
-    };
-
-    //Funktion zum generieren der X-Achsenbeschriftungen
-    function getLabels() {
-      const labels = [];
-      const startDate = new Date(dateRange.value.startDate);
-      const endDate = new Date(dateRange.value.endDate);
-
-      //Schleife zum durchlaufen der Daten
-      for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
-        labels.push(date.toISOString().split("T")[0]);
-      }
-
-      return labels;
-    }
-  },
-};
+    },
+  }
 </script>
-
-
-
 
 <style scoped>
 #chart {
-  height: 400px;
+  height: 200px;
 }
 </style>
