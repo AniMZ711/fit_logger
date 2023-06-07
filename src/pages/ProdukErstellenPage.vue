@@ -174,7 +174,6 @@ export default defineComponent({
 
       newProduct: {
         id: null,
-        date: "",
         name: "",
         calories: 0,
         carbs: 0,
@@ -216,12 +215,6 @@ export default defineComponent({
       this.setDailyConsumption(true);
       this.items.push({
         id: Date.now(),
-        date:
-          today.getFullYear() +
-          "-" +
-          (today.getMonth() + 1) +
-          "-" +
-          today.getDate(),
         name: this.newProduct.name,
         calories: this.newProduct.calories,
         carbs: this.newProduct.carbs,

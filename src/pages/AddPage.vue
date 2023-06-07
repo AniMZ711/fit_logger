@@ -34,11 +34,37 @@
           <div class="row">
             <div class="col col-12">
               <div class="search-bar">
-                <q-input outline v-model="text" label="Nahrungsmittel suchen">
+                <q-input
+                  outline
+                  v-model="searchQuery"
+                  label="Nahrungsmittel suchen"
+                >
                   <template v-slot:prepend>
                     <q-icon name="search" />
                   </template>
                 </q-input>
+                <q-btn
+                  rounded
+                  color="green"
+                  icon="search"
+                  @click="searchProduct"
+                ></q-btn>
+
+                <ul>
+                  <li v-for="product in filteredProducts" :key="product.id">
+                    {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
+                    {{ product.carbs }} Gramm Kohlenhydrate,
+                    {{ product.protein }} Gramm Protein, {{ product.fat }} Gramm
+                    Fett
+                    <q-btn
+                      rounded
+                      color="green"
+                      icon="add"
+                      @click="addMeal(product)"
+                    >
+                    </q-btn>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -113,8 +139,20 @@ export default defineComponent({
   components: { StreamBarcodeReader },
   data() {
     return {
+      searchQuery: "",
       showScanner: false,
       pageName: "Produkt hinzufügen", // bei Veränderung ändert sich der Seitentitel automatisch
+      dailyConsumption: JSON.parse(
+        localStorage.getItem("dailyConsumption")
+      ) || {
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fat: 0,
+      },
+      meals: JSON.parse(localStorage.getItem("meals")) || [],
+      products: JSON.parse(localStorage.getItem("products")) || {},
+      filteredProducts: {},
     };
   },
   methods: {
@@ -125,9 +163,45 @@ export default defineComponent({
     onLoaded() {
       console.log(`Scanning now`);
     },
-
     onDecode(text) {
       console.log(`Decode text from QR code is ${text}`);
+    },
+    searchProduct() {
+      const filteredProducts = this.products.filter((product) => {
+        return product.name
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
+      this.filteredProducts = filteredProducts;
+    },
+    addMeal(product) {
+      //meal
+      const today = new Date();
+      const meal = { ...product };
+      //const product = ""; nicht relevant
+      meal.date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+      //aktuelles Zieltracking
+      this.setDailyConsumption(meal);
+      this.meals.push({ meal });
+      window.localStorage.setItem("meals", JSON.stringify(this.meals));
+    },
+    setDailyConsumption(meal) {
+      const newMeal = { ...meal };
+      this.dailyConsumption = {
+        calories: this.dailyConsumption.calories + newMeal.calories,
+        carbs: this.dailyConsumption.carbs + newMeal.carbs,
+        protein: this.dailyConsumption.protein + newMeal.protein,
+        fat: this.dailyConsumption.fat + newMeal.fat,
+      };
+      window.localStorage.setItem(
+        "dailyConsumption",
+        JSON.stringify(this.dailyConsumption)
+      );
     },
   },
 });
