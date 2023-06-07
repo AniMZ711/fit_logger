@@ -49,6 +49,9 @@ export default {
       endDate: new Date() // Enddatum = Aktuelles Datum
     });
 
+    const single =  ref(null);
+    const multiple = ref(null);
+
     function subtractDays(date, days) {
       const result = new Date(date);
       result.setDate(result.getDate() - days);
@@ -65,7 +68,6 @@ export default {
       for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
         labels.push(date.toISOString().split("T")[0]);
       }
-
       return labels;
     }
 
@@ -73,7 +75,7 @@ export default {
       const ctx = document.getElementById("chart").getContext("2d");
       createChart(ctx);
 
-      //Überwache Änderungenn an dateRange und erstelle das Diagramm neu
+      //Überwache Änderungen an dateRange und erstelle das Diagramm neu
       watch(dateRange, () => {
         createChart(ctx);
       });
@@ -90,8 +92,7 @@ export default {
               fill: false //keine Füllung des Diagramms
             }
           ]
-        }
-      };
+        };
 
       const chartOptions = {
         scales: {
@@ -119,39 +120,39 @@ export default {
         data: chartData,
         options: chartOptions
       });
-    },
+    }
+
+
 
     // Überwachen der Änderungen von ausgewählten Optionen des Zeitraums
-    watch([single, multiple], [singleVal, multipleVal]) {
+    watch([single, multiple], ([singleVal, multipleVal]) => {
       if (singleVal === "letzte Woche") {
         dateRange.value = {
           startDate: subtractDays(new Date(), 6),
-          endDate: new Date()
+          endDate: new Date(),
         };
       }
       else if (singleVal === "letzte 2 Wochen") {
           dateRange.value = {
             startDate: subtractDays(new Date(), 13),
-            endDate: new Date()
+            endDate: new Date(),
           };
         }
-        else if (singleVal === "letzter Monat") {
+      else if (singleVal === "letzter Monat") {
           const currentDate = new Date();
           const startMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() -1, 1);
           const endMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
           dateRange.value = {
             startDate: startMonth.toISOString().split("T")[0],
-            endDate: endMonth.toISOString().split("T")[0]
+            endDate: endMonth.toISOString().split("T")[0],
           };
         }
-    },
+    });
 
-
-    
-    return: {
+    return {
       pageName: "Statistik",
-      single: ref(null),
-      multiple: ref(null),
+      single,
+      multiple,
       options: {
         daten: [
           "letzte Woche",
@@ -162,8 +163,9 @@ export default {
         werte: ["Kalorien", "Proteine", "Fett", "Zucker"],
       },
       dateRange
-    },
+    };
   }
+};
 </script>
 
 <style scoped>
