@@ -30,11 +30,7 @@
                 <q-circular-progress
                   size="15vh"
                   rounded
-                  :value="
-                    ((dailyConsumption.calories / goal.calories) * 100).toFixed(
-                      2
-                    )
-                  "
+                  :value="dailyConsumption.caloriesPercentage"
                   show-value
                   color="green"
                   track-color="grey"
@@ -42,11 +38,7 @@
                 >
                   <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
                   <!-- das muss noch gerundet werden -->
-                  {{
-                    ((dailyConsumption.calories / goal.calories) * 100).toFixed(
-                      2
-                    )
-                  }}%
+                  {{ dailyConsumption.caloriesPercentage }}%
                 </q-circular-progress>
               </div>
 
@@ -70,8 +62,7 @@
                   Kohlenhydrate {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
                   <q-linear-progress
                     class="progress-bar"
-                    :value="dailyConsumption.carbs / goal.carbs"
-                    :label="Kohlenhydrate"
+                    :value="dailyConsumption.carbsPercentage"
                     color="green"
                     track-color="grey"
                     size="medium"
@@ -90,8 +81,7 @@
                   Eiweiss {{ dailyConsumption.protein }}/{{ goal.protein }} g
                   <q-linear-progress
                     class="progress-bar"
-                    :value="dailyConsumption.protein / goal.protein"
-                    :label="Eiweiss"
+                    :value="dailyConsumption.proteinPercentage"
                     color="green"
                     track-color="grey"
                     size="medium"
@@ -111,8 +101,7 @@
                   Fett {{ dailyConsumption.fat }}/{{ goal.fat }} g
                   <q-linear-progress
                     class="progress-bar"
-                    :value="dailyConsumption.fat / goal.fat"
-                    :label="Fett"
+                    :value="dailyConsumption.fatPercentage"
                     color="green"
                     track-color="grey"
                     size="medium"
@@ -160,7 +149,7 @@ export default defineComponent({
 
       //rows,
 
-      meals: JSON.parse(window.localStorage.getItem("products")),
+      meals: JSON.parse(window.localStorage.getItem("meals")),
 
       goal: JSON.parse(window.localStorage.getItem("Goal")) || {
         calories: 1800,
@@ -176,6 +165,10 @@ export default defineComponent({
         carbs: 0,
         protein: 0,
         fat: 0,
+        caloriesPercentage: 0,
+        carbsPercentage: 0,
+        proteinPercentage: 0,
+        fatPercentage: 0,
       },
     };
   },

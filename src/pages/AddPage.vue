@@ -149,6 +149,16 @@ export default defineComponent({
         carbs: 0,
         protein: 0,
         fat: 0,
+        caloriesPercentage: 0,
+        carbsPercentage: 0,
+        proteinPercentage: 0,
+        fatPercentage: 0,
+      },
+      goal: JSON.parse(localStorage.getItem("Goal")) || {
+        calories: 1800,
+        carbs: 250,
+        protein: 80,
+        fat: 50,
       },
       meals: JSON.parse(localStorage.getItem("meals")) || [],
       products: JSON.parse(localStorage.getItem("products")) || {},
@@ -178,7 +188,7 @@ export default defineComponent({
       //meal
       const today = new Date();
       const meal = { ...product };
-      //const product = ""; nicht relevant
+      meal.id = Date.now();
       meal.date =
         today.getFullYear() +
         "-" +
@@ -187,21 +197,45 @@ export default defineComponent({
         today.getDate();
       //aktuelles Zieltracking
       this.setDailyConsumption(meal);
-      this.meals.push({ meal });
+      this.meals.push(meal);
       window.localStorage.setItem("meals", JSON.stringify(this.meals));
-    },
-    setDailyConsumption(meal) {
-      const newMeal = { ...meal };
+
       this.dailyConsumption = {
-        calories: this.dailyConsumption.calories + newMeal.calories,
-        carbs: this.dailyConsumption.carbs + newMeal.carbs,
-        protein: this.dailyConsumption.protein + newMeal.protein,
-        fat: this.dailyConsumption.fat + newMeal.fat,
+        calories: this.dailyConsumption.calories + meal.calories,
+        carbs: this.dailyConsumption.carbs + meal.carbs,
+        protein: this.dailyConsumption.protein + meal.protein,
+        fat: this.dailyConsumption.fat + meal.fat,
       };
+      this.setDailyConsumption();
+
       window.localStorage.setItem(
         "dailyConsumption",
         JSON.stringify(this.dailyConsumption)
       );
+    },
+    setDailyConsumption() {
+      this.dailyConsumption.caloriesPercentage = this.calculateCaloriesValue(
+        this.dailyConsumption.calories,
+        this.goal.calories
+      );
+      this.dailyConsumption.carbsPercentage = this.calculateOtherValues(
+        this.dailyConsumption.carbs,
+        this.goal.carbs
+      );
+      this.dailyConsumption.proteinPercentage = this.calculateOtherValues(
+        this.dailyConsumption.protein,
+        this.goal.protein
+      );
+      this.dailyConsumption.fatPercentage = this.calculateOtherValues(
+        this.dailyConsumption.fat,
+        this.goal.fat
+      );
+    },
+    calculateCaloriesValue(dailyConsumptionValue, goalValue) {
+      return parseFloat(((dailyConsumptionValue / goalValue) * 100).toFixed(2));
+    },
+    calculateOtherValues(dailyConsumptionValue, goalValue) {
+      return parseFloat(dailyConsumptionValue / goalValue);
     },
   },
 });
