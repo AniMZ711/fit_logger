@@ -1,4 +1,6 @@
 <template>
+ 
+  <q-layout>
   <q-header class="stickyHeader">
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
@@ -6,8 +8,11 @@
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
-
-  <div class="Eingabebereich" style="padding-bottom: 50px, margin: 300px;">
+  
+<q-page-container>
+  <q-page>
+<div class="row">
+  <div class="Eingabebereich" style="padding-bottom: 50px">
     <form v-if="!editMode" @submit.prevent="addProduct">
       <q-input
         filled
@@ -67,7 +72,11 @@
         required
       />
 
-      <q-btn rounded color="green" icon="add" type="submit"></q-btn>
+      <div class = SpeicherButton>
+
+      <q-btn rounded color="green" icon="save" type="submit"></q-btn>
+
+      </div>
     </form>
 
     <form v-if="editMode" @submit.prevent="updateProduct">
@@ -129,10 +138,14 @@
         required
       />
 
+
       <q-btn rounded color="green" icon="update" type="submit"></q-btn>
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
+  </div>
+</div>
 
+    <div class ="Ausgabebereich"> 
     <ul>
       <li v-for="item in items" :key="item.id">
         {{ item.name }} - {{ item.calories }} Kalorien
@@ -147,6 +160,10 @@
       </li>
     </ul>
   </div>
+</q-page>
+</q-page-container>
+</q-layout>
+
 </template>
 
 <script>
@@ -167,7 +184,7 @@ export default defineComponent({
       },
       editMode: false,
       editProductIndex: null,
-      pageName: "Produkt / Essen hinzufügen", //bei Veränderung wird der Seitentitel automatisch angepasst
+      pageName: "Produkt einspeichern", //bei Veränderung wird der Seitentitel automatisch angepasst
     };
   },
   created() {
@@ -241,9 +258,17 @@ export default defineComponent({
 .Eingabebereich {
   position: fixed;
   width: 90%;
-  top: 450px;
+  top: 18em;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
+}
+.SpeicherButton {
+  margin-top: 2em;
+  text-align: center;
+}
+.Ausgabebereich {
+  position: fixed;
+  margin-top: 25em;
 }
 </style>

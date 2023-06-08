@@ -97,8 +97,8 @@
             <div class="col col-2"></div>
             <div class="col col-8">
               <div class="manuell-add">
-                <q-btn rounded color="green" icon="edit">
-                  Manuell eingeben
+                <q-btn rounded color="green" icon="save" to="/produkterstellen">
+                  Produkt einspeichern
                 </q-btn>
               </div>
             </div>

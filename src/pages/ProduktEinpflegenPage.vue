@@ -1,5 +1,5 @@
 <template>
-  <q-header class="stickyHeader">
+ <q-header class="stickyHeader">
     <q-toolbar>
       <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
       <!--Anzeige des Titels; Variable aus dem Script-->
@@ -8,30 +8,33 @@
   <q-layout>
     <q-page-container>
       <q-page>
-        <div class="actionButtons">
+        <div class="ButtonProduktSuchen">
           <q-btn
             class="searchButton"
             rounded
             color="green"
             icon="search"
             to="/produktsuchen"
+            size="lg"
           >
             Produkt suchen</q-btn
           >
-
-          <q-btn
+        </div>
+       
+        <div class="ButtonProduktHinzufügen">
+        <q-btn
             class="addButton"
             rounded
             color="green"
-            icon="edit"
+            icon="save"
             to="/produkterstellen"
+            size="lg"
           >
-            Produkt/Essen hinzufügen</q-btn
+          Produkt einspeichern</q-btn
           >
         </div>
       </q-page>
     </q-page-container>
-    ...
   </q-layout>
 </template>
 
@@ -48,21 +51,15 @@ export default defineComponent({
 </script>
 
 <style>
-.actionButtons {
-  position: absolute;
-  top: 100px;
-  left: 50%;
 
-  transform: translate(-50%, -50%);
+.ButtonProduktSuchen {
+  margin-top: 4em;
+  text-align: center;
 }
 
-.searchButton {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.ButtonProduktHinzufügen {
+  margin-top: 2em;
+  text-align: center;
 }
 
-.addButton {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
 </style>

@@ -7,7 +7,7 @@
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
-  <div class="Eingabebereich">
+  <div class="Eingabebereich1">
     <form v-if="true" @submit.prevent="addGoal">
       <q-input
         filled
@@ -71,7 +71,7 @@
           v-if="!editMode"
           rounded
           color="green"
-          icon="add"
+          icon="save"
           round
           type="submit"
           padding="10px"
@@ -203,21 +203,17 @@ export default defineComponent({
 </script>
 
 <style>
-.Eingabebereich {
-  position: absolute;
+.Eingabebereich1 {
+  position: fixed;
   width: 90%;
-  top: 300px;
+  top: 20em;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
 
 .AddButton {
-  position: absolute;
-  width: 90%;
-  top: 300px;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
+  margin-top: 2em;
+  text-align: center;
 }
 </style>

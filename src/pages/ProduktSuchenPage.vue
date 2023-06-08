@@ -2,12 +2,12 @@
   <q-header clas="stickyHeader">
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
-      <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
+      <q-toolbar-title class="absolute-center"> {{ "Datenbank" }}</q-toolbar-title>
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
 
-  <div class="searchbar" style="max-width: 300px">
+  <div class="searchbar" > <!--style="max-width: 300px" in class tag-->  
     <q-input
       color="green"
       filled
@@ -16,8 +16,11 @@
       type="text"
     >
     </q-input>
-    <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
+  </div>
 
+
+  <div class="searchbutton" >
+    <q-btn rounded  size="lg" color="green" icon="search" @click="searchProduct"></q-btn>
     <ul>
       <li v-for="product in filteredProducts" :key="product.id">
         {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
@@ -26,6 +29,7 @@
       </li>
     </ul>
   </div>
+
 </template>
 
 <script>
@@ -64,11 +68,15 @@ export default defineComponent({
 
 <style>
 .searchbar {
-  position: absolute;
-  width: 100%;
-  max-width: 40rem;
-  left: 40px;
-
-  top: 200px;
+  position: fixed;
+  width: 90%;
+  top: 8em;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+.searchbutton {
+  margin-top: 8em;
+  text-align: center; 
 }
 </style>

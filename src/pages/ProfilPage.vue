@@ -11,18 +11,21 @@
 
     <q-page-container>
       <q-page>
-        <div class="actionButtons">
+        <div class="zielButton">
           <q-btn
+            size="lg"
             class="zielButton"
             rounded
             color="green"
             icon="grade"
             to="/ziele"
           >
-            Meine Ziel
+             Mein Ziel
           </q-btn>
-
+        </div>
+        <div class="statistikButton">
           <q-btn
+            size="lg"
             class="statistikButton"
             rounded
             color="green"
@@ -53,22 +56,15 @@ export default defineComponent({
 </script>
 
 <style>
-.actionButtons {
-  position: absolute;
-  top: 100px;
-  left: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  transform: translate(-50%, -50%);
-}
 
 .zielButton {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 2em;
+  text-align: center;
 }
 
 .statistikButton {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 1em;
+  text-align: center;
 }
+
 </style>

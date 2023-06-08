@@ -14,9 +14,7 @@
 
     <q-page-container>
       <div class="home">
-        <h1>Willkommen!</h1>
-        <br />
-        <br />
+        <h5>Willkommen!</h5>
         <br />
         <p>Danke, dass du dich für den FIT-Logger entschieden hast!</p>
         <p>
@@ -28,6 +26,8 @@
         <p>in der du nachvollziehen kannst, wann du was gegessen hast,</p>
         <p>als auch eine Statistik erstellt, in der du sehen kannst,</p>
         <p>ob und wie sehr du von deinen gesetzten Zielen abweichst.</p>
+
+        
       </div>
     </q-page-container>
   </q-layout>

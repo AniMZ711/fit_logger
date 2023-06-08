@@ -8,14 +8,13 @@
     </q-toolbar>
   </q-header>
 
-  <div class="q-pa-md">
-    <div class="q-gutter-md row items-start">
+  <div class="row">
+    <div class="DropdownZeitraum">
       <q-select
         filled
         v-model="single"
         :options="options.daten"
         label="Zeitraum"
-        style="width: 250px"
         color="black"
         bg-color="green"
       >
@@ -23,14 +22,17 @@
           <q-icon name="event" />
         </template>
       </q-select>
+    </div>
+  </div>
 
+  <div class="row">
+    <div class="DropdownDaten">
       <q-select
         filled
         v-model="multiple"
         multiple
         :options="options.werte"
         label="Daten"
-        style="width: 250px"
         color="black"
         bg-color="green"
       >
@@ -40,6 +42,8 @@
       </q-select>
     </div>
   </div>
+
+  
 </template>
 
 <script>
@@ -63,3 +67,19 @@ export default {
   },
 };
 </script>
+
+<style>
+.DropdownZeitraum {
+  margin-top: 2em;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.DropdownDaten {
+  margin-top: 2em;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+</style>
