@@ -7,6 +7,7 @@
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
+  
   <div class="Eingabebereich1">
     <form v-if="true" @submit.prevent="addGoal">
       <q-input

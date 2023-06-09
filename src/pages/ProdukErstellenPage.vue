@@ -1,6 +1,4 @@
 <template>
- 
-  <q-layout>
   <q-header class="stickyHeader">
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
@@ -9,8 +7,6 @@
     </q-toolbar>
   </q-header>
   
-<q-page-container>
-  <q-page>
 <div class="row">
   <div class="Eingabebereich" style="padding-bottom: 50px">
     <form v-if="!editMode" @submit.prevent="addProduct">
@@ -137,17 +133,17 @@
         max="5000"
         required
       />
-
-
       <q-btn rounded color="green" icon="update" type="submit"></q-btn>
       <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
     </form>
   </div>
 </div>
 
-    <div class ="Ausgabebereich"> 
+<div class="Ausgabebereich">
+    <q-scroll-area style="height: 240px; max-width: 90%;">
+      <div class="ScrollContainer">
     <ul>
-      <li v-for="item in items" :key="item.id">
+      <li v-for="item in items" :key="item.id"> 
         {{ item.name }} - {{ item.calories }} Kalorien
         <q-btn rounded color="green" icon="edit" @click="editProduct(item)">
         </q-btn>
@@ -159,10 +155,10 @@
         ></q-btn>
       </li>
     </ul>
+  
   </div>
-</q-page>
-</q-page-container>
-</q-layout>
+    </q-scroll-area>
+  </div>
 
 </template>
 
@@ -171,7 +167,9 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   data() {
+  
     return {
+     
       // is localStorage needed here?
       items: JSON.parse(localStorage.getItem("products")) || [],
       newProduct: {
@@ -185,6 +183,7 @@ export default defineComponent({
       editMode: false,
       editProductIndex: null,
       pageName: "Produkt einspeichern", //bei Veränderung wird der Seitentitel automatisch angepasst
+
     };
   },
   created() {
@@ -268,7 +267,7 @@ export default defineComponent({
   text-align: center;
 }
 .Ausgabebereich {
-  position: fixed;
-  margin-top: 25em;
+  margin-top: 26em;
+  text-align: center;
 }
 </style>
