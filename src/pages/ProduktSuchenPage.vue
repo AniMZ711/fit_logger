@@ -19,15 +19,22 @@
   </div>
 
 
-  <div class="searchbutton" >
+  <div class="button" >
     <q-btn rounded  size="lg" color="green" icon="search" @click="searchProduct"></q-btn>
-    <ul>
+  </div>
+  
+  <div class="Ausgabebereich1">
+    <q-scroll-area style="height: 400px; max-width: 90%;">
+      <div class="ScrollContainer">
+  <ul>
       <li v-for="product in filteredProducts" :key="product.id">
         {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
         {{ product.carbs }} Gramm Kohlenhydrate, {{ product.protein }} Gramm
         Protein, {{ product.fat }} Gramm Fett
       </li>
     </ul>
+  </div>
+    </q-scroll-area>
   </div>
 
 </template>
@@ -75,8 +82,12 @@ export default defineComponent({
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
-.searchbutton {
+.button {
   margin-top: 8em;
+  text-align: center; 
+}
+.Ausgabebereich1 {
+  margin-top: 3em;
   text-align: center; 
 }
 </style>
