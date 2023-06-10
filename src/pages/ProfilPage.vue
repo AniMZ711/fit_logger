@@ -20,7 +20,7 @@
             icon="grade"
             to="/ziele"
           >
-             Mein Ziel
+            Mein Ziel
           </q-btn>
         </div>
         <div class="statistikButton">
@@ -56,7 +56,6 @@ export default defineComponent({
 </script>
 
 <style>
-
 .zielButton {
   margin-top: 2em;
   text-align: center;
@@ -66,5 +65,4 @@ export default defineComponent({
   margin-top: 1em;
   text-align: center;
 }
-
 </style>

@@ -26,8 +26,6 @@
         <p>in der du nachvollziehen kannst, wann du was gegessen hast,</p>
         <p>als auch eine Statistik erstellt, in der du sehen kannst,</p>
         <p>ob und wie sehr du von deinen gesetzten Zielen abweichst.</p>
-
-        
       </div>
     </q-page-container>
   </q-layout>

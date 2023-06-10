@@ -6,160 +6,156 @@
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
-  
-<div class="row">
-  <div class="Eingabebereich" style="padding-bottom: 50px">
-    <form v-if="!editMode" @submit.prevent="addProduct">
-      <q-input
-        filled
-        label="Name"
-        color="green"
-        type="text"
-        id="name"
-        v-model="newProduct.name"
-        required
-      />
 
-      <q-input
-        filled
-        color="green"
-        label="Kalorien"
-        type="number"
-        id="calories"
-        v-model.number="newProduct.calories"
-        min="0"
-        max="5000"
-        required
-      />
-
-      <q-input
-        filled
-        color="green"
-        label="Kohlenhydrate"
-        type="number"
-        id="carbs"
-        v-model.number="newProduct.carbs"
-        min="0"
-        max="5000"
-        required
-      />
-
-      <q-input
-        filled
-        color="green"
-        label="Proteine"
-        type="number"
-        id="protein"
-        v-model.number="newProduct.protein"
-        min="0"
-        max="5000"
-        required
-      />
-
-      <q-input
-        filled
-        color="green"
-        label="Fett"
-        type="number"
-        id="fat"
-        v-model.number="newProduct.fat"
-        min="0"
-        max="5000"
-        required
-      />
-
-      <div class = SpeicherButton>
-
-      <q-btn rounded color="green" icon="save" type="submit"></q-btn>
-
-      </div>
-    </form>
-
-    <form v-if="editMode" @submit.prevent="updateProduct">
-      <q-input
-        filled
-        label="Name"
-        color="green"
-        type="text"
-        id="name"
-        v-model="newProduct.name"
-        required
-      />
-
-      <q-input
-        filled
-        label="Kalorien"
-        color="green"
-        type="number"
-        id="calories"
-        v-model.number="newProduct.calories"
-        min="0"
-        max="5000"
-        required
-      />
-
-      <q-input
-        filled
-        label="Kohlenhydrate"
-        color="green"
-        type="number"
-        id="carbs"
-        v-model.number="newProduct.carbs"
-        min="0"
-        max="5000"
-        required
-      />
-
-      <q-input
-        filled
-        label="Proteine"
-        color="green"
-        type="number"
-        id="protein"
-        v-model.number="newProduct.protein"
-        min="0"
-        max="5000"
-        required
-      />
-
-      <q-input
-        filled
-        label="Fett"
-        color="green"
-        type="number"
-        id="fat"
-        v-model.number="newProduct.fat"
-        min="0"
-        max="5000"
-        required
-      />
-      <q-btn rounded color="green" icon="update" type="submit"></q-btn>
-      <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
-    </form>
-  </div>
-</div>
-
-<div class="Ausgabebereich">
-    <q-scroll-area style="height: 240px; max-width: 90%;">
-      <div class="ScrollContainer">
-    <ul>
-      <li v-for="item in items" :key="item.id"> 
-        {{ item.name }} - {{ item.calories }} Kalorien
-        <q-btn rounded color="green" icon="edit" @click="editProduct(item)">
-        </q-btn>
-        <q-btn
-          rounded
+  <div class="row">
+    <div class="Eingabebereich" style="padding-bottom: 50px">
+      <form v-if="!editMode" @submit.prevent="addProduct">
+        <q-input
+          filled
+          label="Name"
           color="green"
-          icon="delete"
-          @click="deleteProduct(item)"
-        ></q-btn>
-      </li>
-    </ul>
-  
+          type="text"
+          id="name"
+          v-model="newProduct.name"
+          required
+        />
+
+        <q-input
+          filled
+          color="green"
+          label="Kalorien"
+          type="number"
+          id="calories"
+          v-model.number="newProduct.calories"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          color="green"
+          label="Kohlenhydrate"
+          type="number"
+          id="carbs"
+          v-model.number="newProduct.carbs"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          color="green"
+          label="Proteine"
+          type="number"
+          id="protein"
+          v-model.number="newProduct.protein"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          color="green"
+          label="Fett"
+          type="number"
+          id="fat"
+          v-model.number="newProduct.fat"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <div class="SpeicherButton">
+          <q-btn rounded color="green" icon="save" type="submit"></q-btn>
+        </div>
+      </form>
+
+      <form v-if="editMode" @submit.prevent="updateProduct">
+        <q-input
+          filled
+          label="Name"
+          color="green"
+          type="text"
+          id="name"
+          v-model="newProduct.name"
+          required
+        />
+
+        <q-input
+          filled
+          label="Kalorien"
+          color="green"
+          type="number"
+          id="calories"
+          v-model.number="newProduct.calories"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          label="Kohlenhydrate"
+          color="green"
+          type="number"
+          id="carbs"
+          v-model.number="newProduct.carbs"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          label="Proteine"
+          color="green"
+          type="number"
+          id="protein"
+          v-model.number="newProduct.protein"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          label="Fett"
+          color="green"
+          type="number"
+          id="fat"
+          v-model.number="newProduct.fat"
+          min="0"
+          max="5000"
+          required
+        />
+        <q-btn rounded color="green" icon="update" type="submit"></q-btn>
+        <q-btn rounded color="green" icon="cancel" @click="cancelEdit"></q-btn>
+      </form>
+    </div>
   </div>
+
+  <div class="Ausgabebereich">
+    <q-scroll-area style="height: 240px; max-width: 90%">
+      <div class="ScrollContainer">
+        <ul>
+          <li v-for="item in items" :key="item.id">
+            {{ item.name }} - {{ item.calories }} Kalorien
+            <q-btn rounded color="green" icon="edit" @click="editProduct(item)">
+            </q-btn>
+            <q-btn
+              rounded
+              color="green"
+              icon="delete"
+              @click="deleteProduct(item)"
+            ></q-btn>
+          </li>
+        </ul>
+      </div>
     </q-scroll-area>
   </div>
-
 </template>
 
 <script>
@@ -167,9 +163,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   data() {
-  
     return {
-     
       // is localStorage needed here?
       items: JSON.parse(localStorage.getItem("products")) || [],
       newProduct: {
@@ -183,7 +177,6 @@ export default defineComponent({
       editMode: false,
       editProductIndex: null,
       pageName: "Produkt einspeichern", //bei Veränderung wird der Seitentitel automatisch angepasst
-
     };
   },
   created() {

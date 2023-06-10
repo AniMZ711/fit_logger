@@ -2,12 +2,15 @@
   <q-header clas="stickyHeader">
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
-      <q-toolbar-title class="absolute-center"> {{ "Datenbank" }}</q-toolbar-title>
+      <q-toolbar-title class="absolute-center">
+        {{ "Datenbank" }}</q-toolbar-title
+      >
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
 
-  <div class="searchbar" > <!--style="max-width: 300px" in class tag-->  
+  <div class="searchbar">
+    <!--style="max-width: 300px" in class tag-->
     <q-input
       color="green"
       filled
@@ -18,25 +21,29 @@
     </q-input>
   </div>
 
+  <div class="button">
+    <q-btn
+      rounded
+      size="lg"
+      color="green"
+      icon="search"
+      @click="searchProduct"
+    ></q-btn>
+  </div>
 
-  <div class="button" >
-    <q-btn rounded  size="lg" color="green" icon="search" @click="searchProduct"></q-btn>
-  </div>
-  
   <div class="Ausgabebereich1">
-    <q-scroll-area style="height: 400px; max-width: 90%;">
+    <q-scroll-area style="height: 400px; max-width: 90%">
       <div class="ScrollContainer">
-  <ul>
-      <li v-for="product in filteredProducts" :key="product.id">
-        {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
-        {{ product.carbs }} Gramm Kohlenhydrate, {{ product.protein }} Gramm
-        Protein, {{ product.fat }} Gramm Fett
-      </li>
-    </ul>
-  </div>
+        <ul>
+          <li v-for="product in filteredProducts" :key="product.id">
+            {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
+            {{ product.carbs }} Gramm Kohlenhydrate, {{ product.protein }} Gramm
+            Protein, {{ product.fat }} Gramm Fett
+          </li>
+        </ul>
+      </div>
     </q-scroll-area>
   </div>
-
 </template>
 
 <script>
@@ -84,10 +91,10 @@ export default defineComponent({
 }
 .button {
   margin-top: 8em;
-  text-align: center; 
+  text-align: center;
 }
 .Ausgabebereich1 {
   margin-top: 3em;
-  text-align: center; 
+  text-align: center;
 }
 </style>

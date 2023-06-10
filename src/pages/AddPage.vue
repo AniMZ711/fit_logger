@@ -12,59 +12,67 @@
       <div class="upper-container">
         <div class="q-pa-sm example-row-equal-width">
           <div class="row self-center items-center" style="height: auto">
-            <div class="col col-8">
+            <div class="col col-1">
+
+            </div>
+            <div class="col col-10">
               <div class="display-add-product">
                 <p>Produkt hinzufügen</p>
               </div>
             </div>
             <div class="col col-1">
-              <div class="decorator-add-button">
-                <q-btn
-                  class="deco"
-                  round
-                  color="green"
-                  icon="add_circle"
-                  size="24px"
-                  padding="10px"
-                />
-              </div>
+              <!-- <div class="decorator-add-button">
+                <q-btn class="deco" round color="green" icon="add_circle" size="24px" padding="10px" />
+              </div> -->
             </div>
           </div>
 
           <div class="row">
             <div class="col col-12">
               <div class="search-bar">
-                <q-input
-                  outline
-                  v-model="searchQuery"
-                  label="Nahrungsmittel suchen"
-                >
+                <q-input outline v-model="searchQuery" label="Nahrungsmittel suchen" clearable>
                   <template v-slot:prepend>
-                    <q-icon name="search" />
+                    <!--Platzhalter-->
+                  </template>
+
+                  <template v-slot:after>
+                    <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
+
                   </template>
                 </q-input>
-                <q-btn
-                  rounded
-                  color="green"
-                  icon="search"
-                  @click="searchProduct"
-                ></q-btn>
 
-                <ul>
-                  <li v-for="product in filteredProducts" :key="product.id">
-                    {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
-                    {{ product.carbs }} Gramm Kohlenhydrate,
-                    {{ product.protein }} Gramm Protein, {{ product.fat }} Gramm
-                    Fett
-                    <q-btn
-                      rounded
-                      color="green"
-                      icon="add"
-                      @click="addMeal(product)"
-                    >
-                    </q-btn>
-                  </li>
-                </ul>
+
+                <div class="row justify-center">
+
+                  <div class="col col-12 display-found-meals">
+
+                    <q-scroll-area style="height: 400px; width: 100%;">
+                      <div class="ScrollContainer">
+                        <ul>
+                          <li v-for="product in filteredProducts" :key="product.id">
+                            {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
+                            {{ product.carbs }} Gramm Kohlenhydrate,
+                            {{ product.protein }} Gramm Protein, {{ product.fat }} Gramm
+                            Fett
+                            <q-btn rounded color="green" icon="add" @click="addMeal(product)">
+                            </q-btn>
+                          </li>
+                        </ul>
+
+                      </div>
+                    </q-scroll-area>
+
+
+
+
+                  </div>
+
+
+
+
+
+                </div>
+
               </div>
             </div>
           </div>
@@ -77,13 +85,7 @@
             <div class="col col-2"></div>
             <div class="col col-8">
               <div class="scan-button">
-                <q-btn
-                  size="md"
-                  rounded
-                  color="green"
-                  icon="qr_code_scanner"
-                  @click="toggleScanner"
-                >
+                <q-btn size="md" rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
                   Produkt scannen
                 </q-btn>
               </div>
@@ -110,17 +112,9 @@
       <teleport to="body">
         <div class="modal" v-if="showScanner">
           <div>
-            <StreamBarcodeReader
-              @decode="onDecode"
-              @loaded="onLoaded"
-            ></StreamBarcodeReader>
+            <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
             <div style="padding-top: 10px">
-              <q-btn
-                rounded
-                color="green"
-                icon="qr_code_scanner"
-                @click="toggleScanner"
-              >
+              <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
                 Scan beenden
               </q-btn>
             </div>
@@ -253,20 +247,17 @@ export default defineComponent({
 
 .lower-container {
   position: relative;
-  top: 5em;
+  top: 2 em;
 }
 
 .lower-container-2 {
   position: relative;
-  top: 5.1em;
+  top: 2.1em;
 }
 
-.manuell-add {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
+
+.display-found-meals {}
 
 .buttons-container {
   position: sticky;
@@ -282,7 +273,15 @@ export default defineComponent({
 .col {
   padding: 10px 15px;
 
-  /* border: 1px solid red; */
+  border: 1px solid red;
+}
+
+.row {
+
+  border: 1px solid red;
+
+
+
 }
 
 .display-add-product {
@@ -290,7 +289,7 @@ export default defineComponent({
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  text-align: right;
+  text-align: center;
   vertical-align: center;
   letter-spacing: -0.1em;
 
@@ -314,7 +313,7 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal > div {
+.modal>div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;

@@ -42,8 +42,6 @@
       </q-select>
     </div>
   </div>
-
-  
 </template>
 
 <script>

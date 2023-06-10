@@ -1,5 +1,5 @@
 <template>
- <q-header class="stickyHeader">
+  <q-header class="stickyHeader">
     <q-toolbar>
       <q-toolbar-title class="absolute-center"> {{ pageName }}</q-toolbar-title>
       <!--Anzeige des Titels; Variable aus dem Script-->
@@ -20,9 +20,9 @@
             Produkt suchen</q-btn
           >
         </div>
-       
+
         <div class="ButtonProduktHinzufügen">
-        <q-btn
+          <q-btn
             class="addButton"
             rounded
             color="green"
@@ -30,7 +30,7 @@
             to="/produkterstellen"
             size="lg"
           >
-          Produkt einspeichern</q-btn
+            Produkt einspeichern</q-btn
           >
         </div>
       </q-page>
@@ -51,7 +51,6 @@ export default defineComponent({
 </script>
 
 <style>
-
 .ButtonProduktSuchen {
   margin-top: 4em;
   text-align: center;
@@ -61,5 +60,4 @@ export default defineComponent({
   margin-top: 2em;
   text-align: center;
 }
-
 </style>

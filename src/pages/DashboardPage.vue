@@ -116,13 +116,10 @@
       </div>
     </q-page-container>
 
-    <!-- Container für die Anzeige der letzen Mahlzeiten-->
+    <q-page-container>
+      <p>Letze Mahlzeiten</p>
 
-    <q-page-container
-      class="display-last-meals full-width column wrap justify-around items-stretch content-stretch"
-    >
-      <div class="self-center">
-        <p id="letzteMahlzeiten">Letzte Mahlzeiten</p>
+      <div>
         <ul>
           <li v-for="product in meals" :key="product.id">
             <p>
@@ -144,10 +141,6 @@ export default defineComponent({
   setup() {
     return {
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
-
-      //columns,
-
-      //rows,
 
       meals: JSON.parse(window.localStorage.getItem("meals")),
 
@@ -178,15 +171,13 @@ export default defineComponent({
 </script>
 
 <style>
-/*die Klassenangeben im Template können bei Quasar/layout nachgelesen werden
-/* Borders help with layout*/
-/* .row {
-  border: 1px solid red;
+.expandable-row:hover .expandable-content {
+  display: block;
 }
 
-.column {
-  border: 1px solid red;
-} */
+.expandable-content {
+  display: none;
+}
 
 #AnzeigeKohlenhydrate,
 #AnzeigeEiweiss,
