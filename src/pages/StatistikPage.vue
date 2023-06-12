@@ -50,7 +50,7 @@ export default {
     });
 
     const single =  ref(null);
-    const multiple = ref(null);
+    //const multiple = ref(null);
 
     function subtractDays(date, days) {
       const result = new Date(date);
@@ -71,6 +71,7 @@ export default {
       return labels;
     }
 
+    //Funktion wird verwendet sobald die Komponente montiert wurde (Zeitpunkt an dem das DOM (document object Model)-Element der Komponente bereit ist auf dem Bildschirm angezeigt zu werden), 
     onMounted(() => {
       const ctx = document.getElementById("chart").getContext("2d");
       createChart(ctx);
@@ -81,7 +82,13 @@ export default {
       });
     });
 
+      let chartInstance = null; //zum zurücksetzen des Charts damit ein neues angezeigt werden kann
+
       function createChart(ctx) {
+        if (chartInstance){
+          chartInstance.destroy(); //destroyen des Charts damit canvas neu genutzt werden kann
+        }
+
         const chartData = {
           labels: getLabels(), //Y-Achsenbeschriftung
           datasets: [
@@ -115,7 +122,7 @@ export default {
       };
 
       // erstellen des Diagramms
-      new Chart(ctx, {
+      chartInstance = new Chart(ctx, {
         type: "line",
         data: chartData,
         options: chartOptions
@@ -125,7 +132,9 @@ export default {
 
 
     // Überwachen der Änderungen von ausgewählten Optionen des Zeitraums
-    watch([single, multiple], ([singleVal, multipleVal]) => {
+    watch(single, (singleVal) => {
+      console.log("Dropdown-Option ausgewählt:", singleVal); //prüfen ob es auf benutzerinteraktion reagiert
+
       if (singleVal === "letzte Woche") {
         dateRange.value = {
           startDate: subtractDays(new Date(), 6),
@@ -152,14 +161,8 @@ export default {
     return {
       pageName: "Statistik",
       single,
-      multiple,
       options: {
-        daten: [
-          "letzte Woche",
-          "letzte 2 Wochen",
-          "letzter Monat",
-          "letztes Jahr",
-        ],
+        daten: ["letzte Woche", "letzte 2 Wochen", "letzter Monat",],
         werte: ["Kalorien", "Proteine", "Fett", "Zucker"],
       },
       dateRange
@@ -170,6 +173,6 @@ export default {
 
 <style scoped>
 #chart {
-  height: 200px;
+  height: 100px;
 }
 </style>
