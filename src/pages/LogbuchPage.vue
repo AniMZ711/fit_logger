@@ -5,107 +5,51 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title
-        ><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
 
-    <!-- Page, weil click events nicht durchgelassen werden -->
-    <q-page v-if="false">
-      <q-page-container
-        class="date-picker fit self-center row wrap justify-center items-start content-start"
-      >
-        <div id="rectangle" class="fixed q-pa-md q-mb-lg">
-          <DatePicker v-model="date"> </DatePicker>
+    <!--Container für den Date Picker-->
+    <q-page-container class="q-my-sm">
+
+      <div class="row ">
+        <div class="col-2"></div>
+        <div class="col-8 text-center self-center">
+          <DatePicker> </DatePicker>
         </div>
+        <div class="col-2"></div>
 
-        <!-- lädt den Component Date Picker aus /src/components/DatePicker.vue und zeigt den Date Picker an-->
-      </q-page-container>
+      </div>
 
-      <q-page-container
-        class="meals-list q-pa-sm full-width column wrap justify-around items-stretch content-stretch"
-      >
-        <div id="Liste" class="self-center q-pt-lg q-px-md">
+
+    </q-page-container>
+
+
+    <!--Container für Anzeige der Mahlzeiten des Tages-->
+    <q-page-container>
+      <div class="row ">
+        <div class="col col-1">
+
+        </div>
+        <div class="col col-10  text-center self-center">
           <ul style="padding-top: 50px">
             <li v-for="meal in meals" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
-              <q-btn rounded color="green" icon="delete"></q-btn>
+              <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
         </div>
-      </q-page-container>
-
-      <q-separator></q-separator>
-
-      <q-page-container>
-        <q-page-sticky id="tageszusammenfassung" class="fixed-bottom">
-          <div class="kreis">
-            <q-btn round flat>
-              <q-circular-progress
-                fab
-                rounded
-                :value="dailyConsumption.caloriesPercentage"
-                show-value
-                size="60px"
-                color="green"
-                track-color="grey"
-                class="q-ma-md"
-                @click="toggle = !toggle"
-              >
-                {{ dailyConsumption.caloriesPercentage }} %
-              </q-circular-progress>
-
-              {{ dailyConsumption.calories }} kcal
-            </q-btn>
-
-            <div id="AnzeigeWerte">
-              <div v-show="!toggle">
-                gesamte Kcal x g gesamte Proteine x g gesamte Fett x g gesamte
-                Kohlenhydrate x g
-              </div>
-            </div>
-          </div>
-        </q-page-sticky>
-      </q-page-container>
-    </q-page>
-    <ul style="padding-top: 50px">
-      <li v-for="meal in meals" :key="meal.id" @click="deleteMeal(meal)">
-        {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
-        {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-        {{ meal.fat }}
-        <q-btn rounded color="green" icon="delete"></q-btn>
-      </li>
-    </ul>
-    <div class="fixed-bottom">
-      <div class="kreis">
-        <q-btn round flat>
-          <q-circular-progress
-            fab
-            rounded
-            :value="dailyConsumption.caloriesPercentage"
-            show-value
-            size="60px"
-            color="green"
-            track-color="grey"
-            class="q-ma-md"
-            @click="toggle = !toggle"
-          >
-            {{ dailyConsumption.caloriesPercentage }} %
-          </q-circular-progress>
-
-          {{ dailyConsumption.calories }} kcal
-        </q-btn>
-
-        <div id="AnzeigeWerte">
-          <div v-show="!toggle">
-            gesamte Kcal x g gesamte Proteine x g gesamte Fett x g gesamte
-            Kohlenhydrate x g
-          </div>
-        </div>
+        <div class="col col-1"></div>
       </div>
+    </q-page-container>
+
+    <div>
+
     </div>
+
+
   </q-layout>
 </template>
 

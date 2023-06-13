@@ -115,13 +115,20 @@
         <div class="col col-1"></div>
       </div>
     </q-page-container>
+
+
   </q-layout>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 
+
+
 export default defineComponent({
+  components: {
+
+  },
   setup() {
     return {
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
