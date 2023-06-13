@@ -26,6 +26,12 @@
   </div>
 
   <div>
+    <q-checkbox v-model = "showProtein" label = "Eiweiß" />
+    <q-checkbox v-model = "showFat" label = "Fett" />
+    <q-checkbox v-model = "showCarbs" label = "Kohlenhydrate" />
+  </div>
+
+  <div>
       <h2>Statistik für den Zeitraum:</h2>
       <p>Startdatum: {{ dateRange.startDate }}</p>
       <p>Enddatum: {{ dateRange.endDate }}</p>
@@ -51,6 +57,9 @@ export default {
 
     const single =  ref(null);
     //const multiple = ref(null);
+    const showProtein = ref(true);
+    const showFat = ref(true);
+    const showCarbs = ref(true);
 
     function subtractDays(date, days) {
       const result = new Date(date);
@@ -80,48 +89,86 @@ export default {
       watch(dateRange, () => {
         createChart(ctx);
       });
+
+      watch(showProtein, () => {
+        createChart(ctx);
+      });
+
+      watch(showFat, () => {
+        createChart(ctx);
+      });
+
+      watch(showCarbs, () => {
+        createChart(ctx);
+      });      
     });
 
       let chartInstance = null; //zum zurücksetzen des Charts damit ein neues angezeigt werden kann
+      let maxDataValue = 0; // Maximalwert der Daten
 
       function createChart(ctx) {
-        if (chartInstance){
-          chartInstance.destroy(); //destroyen des Charts damit canvas neu genutzt werden kann
+        if (chartInstance) {
+        chartInstance.destroy();
         }
 
-        const chartData = {
-          labels: getLabels(), //Y-Achsenbeschriftung
-          datasets: [
-            {
-              label: "Gramm",
-              data: [50, 100, 150, 200, 300, 350],
-              borderColor: "blue",
-              fill: false //keine Füllung des Diagramms
-            }
-          ]
+      const chartData = {
+        labels: getLabels(), //Beschriftung der x-achse, basierend auf dem gewählten datum
+        datasets: [] //leeres Array für die Datensätze des Diagramms
         };
+          //ProteinData, fatData und carbdata noch ändern (max fragen welche Variablen es in der DB sind pro Tag)
+      if (showProtein) {
+        const proteinData = [50, 100, 150, 200, 300, 350]; //noch beispieldaten
+        chartData.datasets.push({
+          label: "Eiweiß",
+          data: proteinData,
+          borderColor: "red",
+          fill: false
+        });
+        maxDataValue = Math.max(maxDataValue, Math.max(...proteinData)); //aktualisiert den maximalen Datenwert
+      }
+
+      if (showFat) {
+        const fatData = [30, 70, 90, 120, 180, 200]; //noch beispieldaten
+        chartData.datasets.push({
+          label: "Fett",
+          data: fatData,
+          borderColor: "green",
+          fill: false
+        });
+        maxDataValue = Math.max(maxDataValue, Math.max(...fatData));  //aktualisiert den maximalen Datenwert
+      }
+
+      if (showCarbs) {
+        const carbsData = [80, 150, 200, 250, 350, 400]; //noch beispieldaten
+        chartData.datasets.push({
+          label: "Kohlenhydrate",
+          data: carbsData,
+          borderColor: "blue",
+          fill: false
+        });
+        maxDataValue = Math.max(maxDataValue, Math.max(...carbsData));  //aktualisiert den maximalen Datenwert
+      }
 
       const chartOptions = {
         scales: {
-          y: {
+          y: { //Einstellung für y-achse
             title: {
               display: true,
-              text:"Gramm" //Titel y-achse
+              text: "Gramm"
             },
-            ticks: {
-              stepSize: 50 //schritte der y-achse
-            }
-          },
-          x: {
+          ticks: {
+            stepSize: calculateStepSize(maxDataValue) //Schrittgrößenberechnung der y-Achse basierend auf dem maximalen Datenwerten
+          }
+        },
+          x: { // Einstellung für x-achse
             title: {
               display: true,
-              text: "Tag" //title x-achse
+              text: "Tag"
             }
           }
         }
       };
 
-      // erstellen des Diagramms
       chartInstance = new Chart(ctx, {
         type: "line",
         data: chartData,
@@ -129,7 +176,22 @@ export default {
       });
     }
 
+    function calculateStepSize(maxValue) {
+      const steps = Math.ceil(maxValue / 5); //Schritte berechnen indem der maximale Wert durch 5 geteilt wird (5 damit eine gute Verteilung auf der y-achse ist)
+      const magnitude = Math.pow(10, Math.floor(Math.log10(steps))); //Größenordnung der Schritte bestimmen mit 10er Potenz damit es gut lesbar ist
+      const magnitudeValue = steps / magnitude; //Berechnet den Wert der Zehnerpotenz
+      let stepSize = 1; //Ist auf 1 gesetzt damit immmer ein minimale Schrittgröße vorhanden ist
 
+      if (magnitudeValue > 5) { //Schrittgröße basierend auf der Größenordnung anpassen
+        stepSize = 10 * magnitude;
+      } else if (magnitudeValue > 2) {
+        stepSize = 5 * magnitude;
+      } else if (magnitudeValue > 1) {
+        stepSize = 2 * magnitude;
+      }
+
+      return stepSize;
+    }
 
     // Überwachen der Änderungen von ausgewählten Optionen des Zeitraums
     watch(single, (singleVal) => {
@@ -163,9 +225,12 @@ export default {
       single,
       options: {
         daten: ["letzte Woche", "letzte 2 Wochen", "letzter Monat",],
-        werte: ["Kalorien", "Proteine", "Fett", "Zucker"],
+        werte: ["Kalorien", "Eiweiß", "Fett", "Kohlenhydrate"],
       },
-      dateRange
+      dateRange,
+      showProtein,
+      showFat,
+      showCarbs
     };
   }
 };
