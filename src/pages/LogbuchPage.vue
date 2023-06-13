@@ -203,10 +203,6 @@ export default defineComponent({
   z-index: 999;
 }
 
-#rectangle {
-  background-color: aqua;
-}
-
 #tageszusammenfassung {
   bottom: 100px;
 }
