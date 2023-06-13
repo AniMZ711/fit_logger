@@ -3,7 +3,8 @@
     <q-header class="stickyHeader">
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title>
+          {{ pageName }}</q-toolbar-title
+        >
 
         <q-space> </q-space>
         <q-btn position="right" color="primary" to="/greetingspage">
@@ -26,8 +27,15 @@
           <div class="column col-4">
             <div class="column self-end progress-circle-container q-pl-md">
               <div id="AnzeigeKalorienCircleBar" class="circle-progress">
-                <q-circular-progress size="15vh" rounded :value="dailyConsumption.caloriesPercentage" show-value
-                  color="green" track-color="grey" float-right>
+                <q-circular-progress
+                  size="15vh"
+                  rounded
+                  :value="dailyConsumption.caloriesPercentage"
+                  show-value
+                  color="green"
+                  track-color="grey"
+                  float-right
+                >
                   <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
                   <!-- das muss noch gerundet werden -->
                   {{ dailyConsumption.caloriesPercentage }}%
@@ -52,8 +60,14 @@
                 <div id="AnzeigeKohlenhydrate" class="q-px-sm">
                   <!-- Anzeige Kohlenhydrate-->
                   Kohlenhydrate {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.carbsPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.carbsPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -65,8 +79,14 @@
               <div class="column col-9">
                 <div id="AnzeigeEiweiss" class="q-px-sm">
                   Eiweiss {{ dailyConsumption.protein }}/{{ goal.protein }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.proteinPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.proteinPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -79,8 +99,14 @@
                 <div id="AnzeigeFett" class="q-px-sm">
                   <!-- Anzeige Fett-->
                   Fett {{ dailyConsumption.fat }}/{{ goal.fat }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.fatPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.fatPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -115,20 +141,14 @@
         <div class="col col-1"></div>
       </div>
     </q-page-container>
-
-
   </q-layout>
 </template>
 
 <script>
 import { defineComponent } from "vue";
 
-
-
 export default defineComponent({
-  components: {
-
-  },
+  components: {},
   setup() {
     return {
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch

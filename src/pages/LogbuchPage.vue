@@ -5,36 +5,27 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title
+        ><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
 
     <!--Container für den Date Picker-->
     <q-page-container class="q-my-sm">
-
-      <div class="row ">
+      <div class="row">
         <div class="col-2"></div>
         <div class="col-8 text-center self-center">
           <DatePicker> </DatePicker>
         </div>
-        <div class="col-2">
-
-
-        </div>
-
+        <div class="col-2"></div>
       </div>
-
-
     </q-page-container>
-
 
     <!--Container für Anzeige der Mahlzeiten des Tages-->
     <q-page-container>
-      <div class="row ">
-        <div class="col col-1">
-
-        </div>
-        <div class="col col-10  text-center self-center">
+      <div class="row">
+        <div class="col col-1"></div>
+        <div class="col col-10 text-center self-center">
           <ul style="padding-top: 50px">
             <li v-for="meal in meals" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
@@ -48,11 +39,7 @@
       </div>
     </q-page-container>
 
-    <div>
-
-    </div>
-
-
+    <div></div>
   </q-layout>
 </template>
 

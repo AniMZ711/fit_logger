@@ -4,23 +4,26 @@
 
     {{ selectedDate.toLocaleDateString() }}
 
-    <q-btn flat icon="arrow_forward" color="green" @click="increaseDate"> </q-btn>
-
+    <q-btn flat icon="arrow_forward" color="green" @click="increaseDate">
+    </q-btn>
 
     <q-btn color="green" round name="event" icon="event" class="cursor-pointer">
-      <q-popup-proxy cover transition-show="scale" transition-hide="scale">
-
+      <q-popup-proxy
+        @before-show="updateProxy"
+        cover
+        transition-show="scale"
+        transition-hide="scale"
+      >
         <q-date v-model="date" today-btn>
-
-
           <q-btn v-close-popup label="Close" color="primary" flat></q-btn>
-          <q-btn v-close-popup label="Speichern" color="primary" flat @click="saveDate"></q-btn>
-
-
+          <q-btn
+            v-close-popup
+            label="Speichern"
+            color="primary"
+            flat
+            @click="saveDate"
+          ></q-btn>
         </q-date>
-
-
-
       </q-popup-proxy>
     </q-btn>
   </div>
@@ -29,34 +32,21 @@
 <script>
 import { defineComponent, ref } from "vue";
 
-
-
-
 export default defineComponent({
-
   setup() {
-
-    const today = new Date();
-
-    return {
-
-      date: ref(today),
-
-      proxyDate: ref(today)
-
-    }
-
-  },
-
-
-
-  data() {
+    const date = ref(new Date()); // heutiges Datum
 
     return {
-      selectedDate: new Date(), // gibt das Tagesdatum an
-
+      date, //
     };
   },
+
+  data() {
+    return {
+      selectedDate: new Date(), // gibt das Tagesdatum an
+    };
+  },
+
   methods: {
     decreaseDate() {
       const currentDate = new Date(this.selectedDate); // neue Daums-Instanz
@@ -66,7 +56,6 @@ export default defineComponent({
     },
 
     increaseDate() {
-
       const currentDate = new Date(this.selectedDate);
 
       currentDate.setDate(currentDate.getDate() + 1); // erhöht das heutige Datum um einen Tag
@@ -74,32 +63,16 @@ export default defineComponent({
     },
 
     saveDate() {
-
-      // const currentDate = new Date(this.selectedDate);
-
-      console.log(this.date);
-
-      const [year, month, day] = this.date.split('/');
+      const [year, month, day] = this.date.split("/");
 
       const format = new Date(year, month - 1, day);
 
       console.log(format);
 
-
       this.selectedDate = format;
-
-
     },
 
-    updateProxy() {
-
-
-
-    },
-
-  }
-}
-
-
-);
+    updateProxy() {},
+  },
+});
 </script>
