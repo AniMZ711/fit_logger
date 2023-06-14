@@ -27,7 +27,11 @@
         <div class="col col-1"></div>
         <div class="col col-10 text-center self-center">
           <ul style="padding-top: 50px">
-            <li v-for="meal in meals" :key="meal.id" @click="deleteMeal(meal)">
+            <li
+              v-for="meal in mealsOfTheDay"
+              :key="meal.id"
+              @click="deleteMeal(meal)"
+            >
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
@@ -56,6 +60,7 @@ export default defineComponent({
       toggle: true,
       pageName: "Logbuch", // bei Veränderung ändert sich der Seitentitel automatisch
       meals: JSON.parse(localStorage.getItem("meals")) || [],
+      mealsOfTheDay: [],
       goal: JSON.parse(localStorage.getItem("Goal")),
       dailyConsumption: JSON.parse(
         window.localStorage.getItem("dailyConsumption")
@@ -72,9 +77,13 @@ export default defineComponent({
       date: "",
     };
   },
-  /* created() {
-    this.meals = JSON.parse(localStorage.getItem("meals"));
-  }, */
+  created() {
+    const day = new Date();
+    console.log(day);
+    this.date =
+      day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
+    this.filterMeals();
+  },
   methods: {
     deleteMeal(meal) {
       const index = this.meals.indexOf(meal);
@@ -96,7 +105,6 @@ export default defineComponent({
         JSON.stringify(this.dailyConsumption)
       );
     },
-
     setDailyConsumption() {
       this.dailyConsumption.caloriesPercentage = this.calculateCaloriesValue(
         this.dailyConsumption.calories,
@@ -120,6 +128,12 @@ export default defineComponent({
     },
     calculateOtherValues(dailyConsumptionValue, goalValue) {
       return dailyConsumptionValue / goalValue;
+    },
+    filterMeals() {
+      const filteredMeals = this.meals.filter((meal) => {
+        return meal.date == this.date;
+      });
+      this.mealsOfTheDay = filteredMeals;
     },
   },
 });
