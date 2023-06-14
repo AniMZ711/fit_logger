@@ -33,6 +33,19 @@
             Produkt einspeichern</q-btn
           >
         </div>
+        
+        <div class="ButtonEssenKomponieren">
+          <q-btn
+            class="addButton"
+            rounded
+            color="green"
+            icon="save"
+            to="/essenkomponieren"
+            size="lg"
+          >
+            Essen Komponieren</q-btn
+          >
+        </div>
       </q-page>
     </q-page-container>
   </q-layout>
@@ -58,6 +71,11 @@ export default defineComponent({
 
 .ButtonProduktHinzufügen {
   margin-top: 2em;
+  text-align: center;
+}
+
+.ButtonEssenKomponieren {
+  margin-top: 6em;
   text-align: center;
 }
 </style>
