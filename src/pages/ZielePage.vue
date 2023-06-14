@@ -9,15 +9,17 @@
   </q-header>
 
   <div class="Eingabebereich1">
-    <form v-if="true" @submit.prevent="addGoal">
+    <form v-if="true" @submit.prevent="saveGoal">
       <q-input
         filled
+        v-if="false"
         label="Name"
         color="green"
         type="text"
         id="name"
         v-model="newGoal.name"
         required
+        :disable="!editMode"
       />
 
       <q-input
@@ -30,6 +32,7 @@
         min="0"
         max="15000"
         required
+        :disable="!editMode"
       />
 
       <q-input
@@ -42,6 +45,7 @@
         min="0"
         max="5000"
         required
+        :disable="!editMode"
       />
 
       <q-input
@@ -54,6 +58,7 @@
         min="0"
         max="5000"
         required
+        :disable="!editMode"
       />
 
       <q-input
@@ -66,10 +71,28 @@
         min="0"
         max="5000"
         required
+        :disable="!editMode"
       />
       <div class="AddButton">
         <q-btn
+          v-if="editMode"
+          rounded
+          style="margin-right: 16px; padding: 10px"
+          color="green"
+          icon="cancel"
+          @click="cancelEdit()"
+        ></q-btn>
+
+        <q-btn
           v-if="!editMode"
+          rounded
+          color="green"
+          icon="edit"
+          @click="editMode = true"
+        ></q-btn>
+
+        <q-btn
+          v-if="editMode"
           rounded
           color="green"
           icon="save"
@@ -78,36 +101,8 @@
           padding="10px"
         >
         </q-btn>
-        <q-btn
-          v-if="editMode"
-          rounded
-          color="green"
-          icon="update"
-          @click="addGoal()"
-        ></q-btn>
-        <q-btn
-          v-if="editMode"
-          rounded
-          color="green"
-          icon="cancel"
-          @click="cancelEdit()"
-        ></q-btn>
       </div>
     </form>
-
-    <ul style="margin-top: 40px">
-      <li>
-        {{ this.goal.name }} - {{ this.goal.calories }} Kalorien
-        <q-btn rounded color="green" icon="edit" @click="editGoal()"></q-btn>
-        <q-btn
-          v-if="false"
-          rounded
-          color="green"
-          icon="update"
-          @click="resetGoal(goal)"
-        ></q-btn>
-      </li>
-    </ul>
   </div>
 </template>
 
@@ -118,7 +113,6 @@ export default defineComponent({
   data() {
     return {
       goal: {},
-
       newGoal: {
         id: null,
         name: "",
@@ -137,67 +131,28 @@ export default defineComponent({
   methods: {
     loadGoal() {
       if (window.localStorage.getItem("Goal")) {
-        this.goal = JSON.parse(window.localStorage.getItem("Goal"));
+        this.newGoal = JSON.parse(window.localStorage.getItem("Goal"));
+        this.goal = { ...this.newGoal };
       } else {
-        window.localStorage.setItem(
-          "Goal",
-          JSON.stringify({
-            id: Date.now(),
-            name: "Goal",
-            calories: 1800,
-            carbs: 250,
-            protein: 80,
-            fat: 50,
-          })
-        );
-        this.goal = {
-          id: Date.now(),
+        this.newGoal = {
           name: "Goal",
           calories: 1800,
           carbs: 250,
           protein: 80,
           fat: 50,
         };
+        this.goal = { ...this.newGoal };
+        window.localStorage.setItem("Goal", JSON.stringify(this.newGoal));
       }
     },
     saveGoal() {
-      this.goal = { ...this.newGoal };
       window.localStorage.setItem("Goal", JSON.stringify(this.newGoal));
-      this.resetForm();
-    },
-    addGoal() {
       this.goal = { ...this.newGoal };
-      this.saveGoal();
       this.editMode = false;
-      this.resetForm();
-    },
-    resetGoal() {
-      this.goal = {
-        id: Date.now(),
-        name: "Goal",
-        calories: 1800,
-        carbs: 250,
-        protein: 80,
-        fat: 50,
-      };
-    },
-    editGoal() {
-      this.newGoal = { ...this.goal };
-      this.editMode = true;
     },
     cancelEdit() {
+      this.newGoal = { ...this.goal };
       this.editMode = false;
-      this.resetForm();
-    },
-    resetForm() {
-      this.newGoal = {
-        id: null,
-        name: "",
-        calories: 0,
-        carbs: 0,
-        protein: 0,
-        fat: 0,
-      };
     },
   },
 });

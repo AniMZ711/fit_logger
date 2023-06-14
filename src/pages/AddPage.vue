@@ -57,15 +57,15 @@
                             v-for="product in filteredProducts"
                             :key="product.id"
                           >
-                            {{ product.name }}: - {{ product.calories }} Gramm
-                            Kalorien, {{ product.carbs }} Gramm Kohlenhydrate,
-                            {{ product.protein }} Gramm Protein,
-                            {{ product.fat }} Gramm Fett
+                            {{ product.name }} ( {{ product.quantity }}g ):
+                            {{ product.calories }} kcal, {{ product.carbs }}g
+                            Kohlenhydrate, {{ product.protein }}g Proteine,
+                            {{ product.fat }}g Fett
                             <q-btn
                               rounded
                               color="green"
                               icon="add"
-                              @click="addMeal(product)"
+                              @click="toggleMealAddPopup(product)"
                             >
                             </q-btn>
                           </li>
@@ -136,12 +136,72 @@
           </div>
         </div>
       </teleport>
+
+      <teleport to="body">
+        <div class="modal" v-if="addToMeals">
+          <div>
+            <div>
+              {{ selectedProduct.name }} - {{ selectedProduct.quantity }}g
+              <br />
+
+              {{ selectedProduct.calories }} kcal, {{ selectedProduct.carbs }}g
+              Kohlenhydrate, {{ selectedProduct.protein }}g Protein,
+              {{ selectedProduct.fat }}g Fett
+            </div>
+
+            <div>
+              <q-input
+                filled
+                color="green"
+                label="Menge eintragen (g)"
+                id="Menge"
+                v-model.number="quantity"
+                type="number"
+                min="0"
+                required
+              >
+              </q-input>
+
+              <div>
+                <select v-model="selectedMealTime">
+                  <option
+                    v-for="option in options"
+                    :value="option.value"
+                    :key="option.text"
+                  >
+                    {{ option.text }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div style="padding-top: 10px">
+              <q-btn
+                rounded
+                color="green"
+                icon="add"
+                @click="calculateIngredientValues(quantity)"
+              >
+                Essen hinzufügen
+              </q-btn>
+              <q-btn
+                rounded
+                color="green"
+                icon="cancel"
+                @click="toggleMealAddPopup()"
+              >
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </teleport>
     </q-page>
   </q-layout>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import { ref } from "vue";
 import { StreamBarcodeReader } from "vue-barcode-reader";
 
 export default defineComponent({
@@ -150,6 +210,7 @@ export default defineComponent({
     return {
       searchQuery: "",
       showScanner: false,
+      addToMeals: false,
       pageName: "Produkt hinzufügen", // bei Veränderung ändert sich der Seitentitel automatisch
       dailyConsumption: JSON.parse(
         localStorage.getItem("dailyConsumption")
@@ -172,6 +233,16 @@ export default defineComponent({
       meals: JSON.parse(localStorage.getItem("meals")) || [],
       products: JSON.parse(localStorage.getItem("products")) || {},
       filteredProducts: {},
+      quantity: 100,
+      selectedProduct: {},
+      options: ref([
+        { text: "Frühstück", value: "Frühstück" },
+        { text: "Mittagessen", value: "Mittagessen" },
+        { text: "Abendessen", value: "Abendessen" },
+        { text: "Snack", value: "Snack" },
+      ]),
+      single: ref(null),
+      selectedMealTime: ref("Frühstück"),
     };
   },
   methods: {
@@ -193,11 +264,16 @@ export default defineComponent({
       });
       this.filteredProducts = filteredProducts;
     },
-    addMeal(product) {
+    toggleMealAddPopup(product) {
+      this.selectedProduct = { ...product };
+      this.addToMeals = !this.addToMeals;
+    },
+    addMeal(food) {
       //meal
       const today = new Date();
-      const meal = { ...product };
+      const meal = { ...food };
       meal.id = Date.now();
+      meal.time = this.selectedMealTime;
       meal.date =
         today.getFullYear() +
         "-" +
@@ -221,7 +297,9 @@ export default defineComponent({
         "dailyConsumption",
         JSON.stringify(this.dailyConsumption)
       );
+      this.toggleMealAddPopup();
     },
+
     setDailyConsumption() {
       this.dailyConsumption.caloriesPercentage = this.calculateCaloriesValue(
         this.dailyConsumption.calories,
@@ -239,6 +317,18 @@ export default defineComponent({
         this.dailyConsumption.fat,
         this.goal.fat
       );
+    },
+    calculateIngredientValues(quantity) {
+      const factor = quantity / this.selectedProduct.quantity;
+      const meal = {
+        name: this.selectedProduct.name,
+        quantity: quantity,
+        calories: this.selectedProduct.calories * factor,
+        carbs: this.selectedProduct.carbs * factor,
+        protein: this.selectedProduct.protein * factor,
+        fat: this.selectedProduct.fat * factor,
+      };
+      this.addMeal(meal);
     },
     calculateCaloriesValue(dailyConsumptionValue, goalValue) {
       return parseFloat(((dailyConsumptionValue / goalValue) * 100).toFixed(2));
@@ -287,11 +377,11 @@ export default defineComponent({
 .col {
   padding: 10px 15px;
 
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .row {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 .display-add-product {

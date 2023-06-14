@@ -23,7 +23,19 @@
         <q-input
           filled
           color="green"
-          label="Kalorien"
+          label="Menge (g)"
+          type="number"
+          id="quantity"
+          v-model.number="newProduct.quantity"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          color="green"
+          label="Kalorien (kcal)"
           type="number"
           id="calories"
           v-model.number="newProduct.calories"
@@ -35,7 +47,7 @@
         <q-input
           filled
           color="green"
-          label="Kohlenhydrate"
+          label="Kohlenhydrate (g)"
           type="number"
           id="carbs"
           v-model.number="newProduct.carbs"
@@ -47,7 +59,7 @@
         <q-input
           filled
           color="green"
-          label="Proteine"
+          label="Proteine (g)"
           type="number"
           id="protein"
           v-model.number="newProduct.protein"
@@ -59,7 +71,7 @@
         <q-input
           filled
           color="green"
-          label="Fett"
+          label="Fett (g)"
           type="number"
           id="fat"
           v-model.number="newProduct.fat"
@@ -86,7 +98,19 @@
 
         <q-input
           filled
-          label="Kalorien"
+          color="green"
+          label="Menge (g)"
+          type="number"
+          id="quantity"
+          v-model.number="newProduct.quantity"
+          min="0"
+          max="5000"
+          required
+        />
+
+        <q-input
+          filled
+          label="Kalorien (kcal)"
           color="green"
           type="number"
           id="calories"
@@ -98,7 +122,7 @@
 
         <q-input
           filled
-          label="Kohlenhydrate"
+          label="Kohlenhydrate (g)"
           color="green"
           type="number"
           id="carbs"
@@ -110,7 +134,7 @@
 
         <q-input
           filled
-          label="Proteine"
+          label="Proteine (g)"
           color="green"
           type="number"
           id="protein"
@@ -122,7 +146,7 @@
 
         <q-input
           filled
-          label="Fett"
+          label="Fett (g)"
           color="green"
           type="number"
           id="fat"
@@ -169,6 +193,7 @@ export default defineComponent({
       newProduct: {
         id: null,
         name: "",
+        quantity: 0,
         calories: 0,
         carbs: 0,
         protein: 0,
@@ -197,6 +222,7 @@ export default defineComponent({
       this.items.push({
         id: Date.now(),
         name: this.newProduct.name,
+        quantity: this.newProduct.quantity,
         calories: this.newProduct.calories,
         carbs: this.newProduct.carbs,
         protein: this.newProduct.protein,
@@ -232,6 +258,7 @@ export default defineComponent({
       this.newProduct = {
         id: null,
         name: "",
+        quantity: 0,
         calories: 0,
         carbs: 0,
         protein: 0,

@@ -36,9 +36,10 @@
       <div class="ScrollContainer">
         <ul>
           <li v-for="product in filteredProducts" :key="product.id">
-            {{ product.name }}: - {{ product.calories }} Gramm Kalorien,
-            {{ product.carbs }} Gramm Kohlenhydrate, {{ product.protein }} Gramm
-            Protein, {{ product.fat }} Gramm Fett
+            {{ product.name }}: - {{ product.quantity }} Gramm,
+            {{ product.calories }} Kalorien, {{ product.carbs }} Gramm
+            Kohlenhydrate, {{ product.protein }} Gramm Protein,
+            {{ product.fat }} Gramm Fett
           </li>
         </ul>
       </div>
