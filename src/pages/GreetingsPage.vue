@@ -2,7 +2,10 @@
   <q-layout>
     <q-header>
       <q-toolbar>
-        <q-toolbar-title class="absolute-center"> {{ name }}</q-toolbar-title>
+        <q-toolbar-title class="absolute-center">
+          {{ pageName }}</q-toolbar-title
+        >
+        <!--Anzeige des Titels; Variable aus dem Script-->
 
         <q-btn icon="arrow_back" position="right" color="green" to="/dashboard">
         </q-btn>
@@ -11,9 +14,7 @@
 
     <q-page-container>
       <div class="home">
-        <h1>Willkommen!</h1>
-        <br />
-        <br />
+        <h5>Willkommen!</h5>
         <br />
         <p>Danke, dass du dich für den FIT-Logger entschieden hast!</p>
         <p>
@@ -36,7 +37,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   setup() {
     return {
-      pageName: "About",
+      pageName: "About", // bei Veränderung ändert sich der Seitentitel automatisch
     };
   },
 });
