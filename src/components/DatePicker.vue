@@ -35,10 +35,12 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   setup() {
     const date = ref(new Date()); // heutiges Datum
-
     return {
       date, //
     };
+  },
+  created() {
+    this.emitSelectedDate();
   },
 
   data() {
@@ -53,6 +55,7 @@ export default defineComponent({
 
       currentDate.setDate(currentDate.getDate() - 1); // verringert das heutige Datum um einen Tag
       this.selectedDate = currentDate; // Update; currentDate wird zum selectedDate
+      this.emitSelectedDate();
     },
 
     increaseDate() {
@@ -60,6 +63,7 @@ export default defineComponent({
 
       currentDate.setDate(currentDate.getDate() + 1); // erhöht das heutige Datum um einen Tag
       this.selectedDate = currentDate; // Update; currentDate wird zum selectedDate
+      this.emitSelectedDate();
     },
 
     saveDate() {
@@ -70,6 +74,12 @@ export default defineComponent({
       console.log(format);
 
       this.selectedDate = format;
+      this.emitSelectedDate();
+    },
+
+    emitSelectedDate() {
+      this.$emit("newSelectedDate", this.selectedDate);
+      console.log("done");
     },
 
     updateProxy() {},

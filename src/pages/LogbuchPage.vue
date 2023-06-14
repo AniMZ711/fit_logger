@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8 text-center self-center">
-          <DatePicker> </DatePicker>
+          <DatePicker @newSelectedDate="setDate"> </DatePicker>
         </div>
         <div class="col-2"></div>
       </div>
@@ -78,13 +78,16 @@ export default defineComponent({
     };
   },
   created() {
-    const day = new Date();
-    console.log(day);
-    this.date =
-      day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
     this.filterMeals();
   },
   methods: {
+    setDate(currentDate) {
+      const day = currentDate;
+      this.date =
+        day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
+      console.log(this.date);
+      this.filterMeals();
+    },
     deleteMeal(meal) {
       const index = this.meals.indexOf(meal);
       if (index !== -1) {
@@ -131,7 +134,7 @@ export default defineComponent({
     },
     filterMeals() {
       const filteredMeals = this.meals.filter((meal) => {
-        return meal.date == this.date;
+        return meal.date.includes(this.date);
       });
       this.mealsOfTheDay = filteredMeals;
     },
