@@ -18,17 +18,16 @@
       label="Produkt suchen"
       type="text"
     >
+      <template v-slot:after>
+        <q-btn
+          rounded
+          size="lg"
+          color="green"
+          icon="search"
+          @click="searchProduct"
+        ></q-btn>
+      </template>
     </q-input>
-  </div>
-
-  <div class="button">
-    <q-btn
-      rounded
-      size="lg"
-      color="green"
-      icon="search"
-      @click="searchProduct"
-    ></q-btn>
   </div>
 
   <div class="Ausgabebereich1">
@@ -95,7 +94,7 @@ export default defineComponent({
   text-align: center;
 }
 .Ausgabebereich1 {
-  margin-top: 3em;
+  margin-top: 8em;
   text-align: center;
 }
 </style>
