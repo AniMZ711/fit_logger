@@ -70,11 +70,6 @@ export default defineComponent({
       console.log(format);
 
       this.selectedDate = format;
-      this.$emit("newDate", this.selectedDate);
-    },
-
-    getDate() {
-      return this.selectedDate;
     },
 
     updateProxy() {},
