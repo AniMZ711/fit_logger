@@ -27,11 +27,39 @@
         <div class="col col-1"></div>
         <div class="col col-10 text-center self-center">
           <ul style="padding-top: 50px">
+            <p>Frühstück</p>
             <li
-              v-for="meal in mealsOfTheDay"
+              v-for="meal in breakfast"
               :key="meal.id"
               @click="deleteMeal(meal)"
             >
+              {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
+              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+              {{ meal.fat }}
+              <q-btn round color="green" icon="delete"></q-btn>
+            </li>
+          </ul>
+          <p>Mittagessen</p>
+          <ul style="padding-top: 50px">
+            <li v-for="meal in lunch" :key="meal.id" @click="deleteMeal(meal)">
+              {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
+              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+              {{ meal.fat }}
+              <q-btn round color="green" icon="delete"></q-btn>
+            </li>
+          </ul>
+          <p>Abendessen</p>
+          <ul style="padding-top: 50px">
+            <li v-for="meal in diner" :key="meal.id" @click="deleteMeal(meal)">
+              {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
+              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+              {{ meal.fat }}
+              <q-btn round color="green" icon="delete"></q-btn>
+            </li>
+          </ul>
+          <p>Snacks</p>
+          <ul style="padding-top: 50px">
+            <li v-for="meal in snacks" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
@@ -60,7 +88,12 @@ export default defineComponent({
       toggle: true,
       pageName: "Logbuch", // bei Veränderung ändert sich der Seitentitel automatisch
       meals: JSON.parse(localStorage.getItem("meals")) || [],
-      mealsOfTheDay: [],
+      /*       mealsOfTheDay: [],
+       */
+      breakfast: [],
+      lunch: [],
+      diner: [],
+      snacks: [],
       goal: JSON.parse(localStorage.getItem("Goal")),
       dailyConsumption: JSON.parse(
         window.localStorage.getItem("dailyConsumption")
@@ -136,7 +169,18 @@ export default defineComponent({
       const filteredMeals = this.meals.filter((meal) => {
         return meal.date.includes(this.date);
       });
-      this.mealsOfTheDay = filteredMeals;
+      this.breakfast = filteredMeals.filter((meal) => {
+        return meal.time.includes("Frühstück");
+      });
+      this.lunch = filteredMeals.filter((meal) => {
+        return meal.time.includes("Mittagessen");
+      });
+      this.diner = filteredMeals.filter((meal) => {
+        return meal.time.includes("Abendessen");
+      });
+      this.snacks = filteredMeals.filter((meal) => {
+        return meal.time.includes("Snacks");
+      });
     },
   },
 });

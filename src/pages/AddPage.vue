@@ -239,7 +239,7 @@ export default defineComponent({
         { text: "Frühstück", value: "Frühstück" },
         { text: "Mittagessen", value: "Mittagessen" },
         { text: "Abendessen", value: "Abendessen" },
-        { text: "Snack", value: "Snack" },
+        { text: "Snacks", value: "Snacks" },
       ]),
       single: ref(null),
       selectedMealTime: ref("Frühstück"),
