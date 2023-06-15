@@ -5,7 +5,8 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title
+        ><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
 
@@ -22,40 +23,26 @@
 
     <!--Container für Anzeige der Mahlzeiten des Tages-->
     <q-page-container class="meals-today">
-
       <!--Reihe Frühstück-->
       <div class="row">
-
         <div class="col col-1"></div>
 
         <div class="col col-10 text-center self-center">
-
           <p>Frühstück</p>
           <ul style="padding-top: 50px">
-            <li v-for="meal in breakfast" :key="meal.id" @click="deleteMeal(meal)">
+            <li
+              v-for="meal in breakfast"
+              :key="meal.id"
+              @click="deleteMeal(meal)"
+            >
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-
-        </div>
-
-        <div class="col col-1"></div>
-
-      </div>
-
-      <!-- Reihe Mittagessen-->
-
-      <div class="row">
-
-        <div class="col col-1"></div>
-
-        <div class="col col-10 text-center self-center">
-
-          <p>Mittagessen</p>
           <ul style="padding-top: 50px">
+            <p>Mittagessen</p>
             <li v-for="meal in lunch" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
@@ -63,24 +50,8 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-
-
-        </div>
-
-        <div class="col col-1"></div>
-
-      </div>
-
-      <!-- Reihe Abendessen-->
-
-      <div class="row">
-
-        <div class="col col-1"></div>
-
-        <div class="col col-10 text-center self-center">
-
-          <p>Abendessen</p>
           <ul style="padding-top: 50px">
+            <p>Abendessen</p>
             <li v-for="meal in diner" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
@@ -88,18 +59,9 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-        </div>
-
-        <div class="col col-1"></div>
-
-      </div>
-
-      <!-- Reihe Snacks-->
-      <div class="row">
-        <div class="col col-1"></div>
-        <div class="col col-10 text-center self-center">
           <p>Snacks</p>
           <ul style="padding-top: 50px">
+            <p>Snacks</p>
             <li v-for="meal in snacks" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
@@ -110,7 +72,6 @@
         </div>
       </div>
     </q-page-container>
-
   </q-layout>
 </template>
 
@@ -179,6 +140,7 @@ export default defineComponent({
         "dailyConsumption",
         JSON.stringify(this.dailyConsumption)
       );
+      this.filterMeals();
     },
     setDailyConsumption() {
       this.dailyConsumption.caloriesPercentage = this.calculateCaloriesValue(
@@ -242,11 +204,7 @@ export default defineComponent({
 }
 
 .meals-today {
-
-
-
   margin-top: -2em;
-
 }
 
 /* .row {
