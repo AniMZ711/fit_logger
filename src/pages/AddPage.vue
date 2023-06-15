@@ -26,47 +26,29 @@
           </div>
 
           <div class="row">
-            <div class="col col-12">
+            <div class="col col-12 q-px-lg q-mx-sm text-center">
               <div class="search-bar">
-                <q-input
-                  outline
-                  v-model="searchQuery"
-                  label="Nahrungsmittel suchen"
-                  clearable
-                >
+                <q-input outline v-model="searchQuery" label="Nahrungsmittel suchen" clearable>
                   <template v-slot:prepend>
                     <!--Platzhalter-->
                   </template>
 
                   <template v-slot:after>
-                    <q-btn
-                      rounded
-                      color="green"
-                      icon="search"
-                      @click="searchProduct"
-                    ></q-btn>
+                    <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
                   </template>
                 </q-input>
 
                 <div class="row justify-center">
                   <div class="col col-12 display-found-meals">
-                    <q-scroll-area style="height: 400px; width: 100%">
+                    <q-scroll-area style="height: 40vh; width: 100%">
                       <div class="ScrollContainer">
                         <ul>
-                          <li
-                            v-for="product in filteredProducts"
-                            :key="product.id"
-                          >
+                          <li v-for="product in filteredProducts" :key="product.id">
                             {{ product.name }} ( {{ product.quantity }}g ):
                             {{ product.calories }} kcal, {{ product.carbs }}g
                             Kohlenhydrate, {{ product.protein }}g Proteine,
                             {{ product.fat }}g Fett
-                            <q-btn
-                              rounded
-                              color="green"
-                              icon="add"
-                              @click="toggleMealAddPopup(product)"
-                            >
+                            <q-btn round color="green" icon="add" @click="toggleMealAddPopup(product)">
                             </q-btn>
                           </li>
                         </ul>
@@ -81,55 +63,41 @@
       </div>
 
       <div class="buttons-container">
-        <div class="lower-container">
-          <div class="row" style="height: 4em">
-            <div class="col col-2"></div>
-            <div class="col col-8">
-              <div class="scan-button">
-                <q-btn
-                  size="md"
-                  rounded
-                  color="green"
-                  icon="qr_code_scanner"
-                  @click="toggleScanner"
-                >
-                  Produkt scannen
-                </q-btn>
-              </div>
+
+        <div class="row">
+          <div class="col col-2"></div>
+          <div class="col col-8 text-center q-pa-sm">
+            <div class="scan-button">
+              <q-btn size="md" rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+                Produkt scannen
+              </q-btn>
             </div>
-            <div class="col col-2"></div>
           </div>
+          <div class="col col-2"></div>
+
         </div>
 
-        <div class="lower-container-2">
-          <div class="row" style="height: 4em">
-            <div class="col col-2"></div>
-            <div class="col col-8">
-              <div class="manuell-add">
-                <q-btn rounded color="green" icon="save" to="/produkterstellen">
-                  Produkt einspeichern
-                </q-btn>
-              </div>
+
+        <div class="row ">
+          <div class="col col-2"></div>
+          <div class="col col-8 text-center q-pa-sm">
+            <div class="save-product">
+              <q-btn rounded color="green" icon="save" to="/produkterstellen">
+                Produkt einspeichern
+              </q-btn>
             </div>
-            <div class="col col-2"></div>
           </div>
+          <div class="col col-2"></div>
         </div>
+
       </div>
 
       <teleport to="body">
         <div class="modal" v-if="showScanner">
           <div>
-            <StreamBarcodeReader
-              @decode="onDecode"
-              @loaded="onLoaded"
-            ></StreamBarcodeReader>
+            <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
             <div style="padding-top: 10px">
-              <q-btn
-                rounded
-                color="green"
-                icon="qr_code_scanner"
-                @click="toggleScanner"
-              >
+              <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
                 Scan beenden
               </q-btn>
             </div>
@@ -150,25 +118,13 @@
             </div>
 
             <div>
-              <q-input
-                filled
-                color="green"
-                label="Menge eintragen (g)"
-                id="Menge"
-                v-model.number="quantity"
-                type="number"
-                min="0"
-                required
-              >
+              <q-input filled color="green" label="Menge eintragen (g)" id="Menge" v-model.number="quantity" type="number"
+                min="0" required>
               </q-input>
 
               <div>
                 <select v-model="selectedMealTime">
-                  <option
-                    v-for="option in options"
-                    :value="option.value"
-                    :key="option.text"
-                  >
+                  <option v-for="option in options" :value="option.value" :key="option.text">
                     {{ option.text }}
                   </option>
                 </select>
@@ -176,20 +132,10 @@
             </div>
 
             <div style="padding-top: 10px">
-              <q-btn
-                rounded
-                color="green"
-                icon="add"
-                @click="calculateIngredientValues(quantity)"
-              >
+              <q-btn rounded color="green" icon="add" @click="calculateIngredientValues(quantity)">
                 Essen hinzufügen
               </q-btn>
-              <q-btn
-                rounded
-                color="green"
-                icon="cancel"
-                @click="toggleMealAddPopup()"
-              >
+              <q-btn rounded color="green" icon="cancel" @click="toggleMealAddPopup()">
               </q-btn>
             </div>
           </div>
@@ -359,25 +305,9 @@ export default defineComponent({
 <style scoped>
 @import url("https://fonts.cdnfonts.com/css/inter");
 
-.scan-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
-.lower-container {
-  position: relative;
-  top: 2 em;
-}
 
-.lower-container-2 {
-  position: relative;
-  top: 2.1em;
-}
 
-.display-found-meals {
-}
 
 .buttons-container {
   position: sticky;
@@ -390,15 +320,15 @@ export default defineComponent({
   margin-top: 4em;
 }
 
-.col {
+/* .col {
   padding: 10px 15px;
 
-  /* border: 1px solid red; */
+  border: 1px solid red;
 }
 
 .row {
-  /* border: 1px solid red; */
-}
+  border: 1px solid red;
+} */
 
 .display-add-product {
   font-size: clamp(2.25rem, 1.9091rem + 1.4545vw, 3rem);
@@ -429,7 +359,7 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal > div {
+.modal>div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
