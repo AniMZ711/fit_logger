@@ -55,11 +55,12 @@ export default {
       endDate: new Date() // Enddatum = Aktuelles Datum
     });
 
-    const single =  ref(null);
-    //const multiple = ref(null);
-    const showProtein = ref(true);
-    const showFat = ref(true);
-    const showCarbs = ref(true);
+      const fatData = ref([]);
+      const proteinData = ref([]);
+      const carbsData = ref([]);
+      const kcalData = ref([]);
+      let chartInstance = null; //zum zurücksetzen des Charts damit ein neues angezeigt werden kann
+      let maxDataValue = 0; // Maximalwert der Daten
 
     function subtractDays(date, days) {
       const result = new Date(date);
@@ -103,50 +104,85 @@ export default {
       });      
     });
 
-      let chartInstance = null; //zum zurücksetzen des Charts damit ein neues angezeigt werden kann
-      let maxDataValue = 0; // Maximalwert der Daten
+    function calculateStepSize(maxValue) {
+      const stepSizes = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100];
+      const maxSteps = 10;
+      const maxStepValue = Math.ceil(maxValue / maxSteps);
+      let stepSize = 1;
+
+      for (const size of stepSizes) {
+        if (maxStepValue <= size) {
+          stepSize = size;
+          break;
+        }
+      }
+
+      return stepSize;
+    }
 
       function createChart(ctx) {
         if (chartInstance) {
         chartInstance.destroy();
         }
 
+        // Abfrage der Daten aus dem Webstorage
+        const storedData = JSON.parse(localStorage.getItem("meals"));
+          proteinData.value = [];
+          fatData.value = [];
+          carbsData.value = [];
+          kcalData.value = [];
+        // Iteration über die gespeicherten Daten im Webstorage
+        for (const data of storedData) {
+          fatData.value.push(data.fat);
+          proteinData.value.push(data.protein);
+          carbsData.value.push(data.carbs);
+          kcalData.value.push(data.kcal);
+        }
+
+
       const chartData = {
         labels: getLabels(), //Beschriftung der x-achse, basierend auf dem gewählten datum
         datasets: [] //leeres Array für die Datensätze des Diagramms
         };
           //ProteinData, fatData und carbdata noch ändern (max fragen welche Variablen es in der DB sind pro Tag)
-      if (showProtein) {
-        const proteinData = [50, 100, 150, 200, 300, 350]; //noch beispieldaten
+      if (showProtein.value) {
         chartData.datasets.push({
           label: "Eiweiß",
-          data: proteinData,
+          data: proteinData.value,
           borderColor: "red",
           fill: false
         });
-        maxDataValue = Math.max(maxDataValue, Math.max(...proteinData)); //aktualisiert den maximalen Datenwert
+        maxDataValue = Math.max(maxDataValue, Math.max(...proteinData.value)); //aktualisiert den maximalen Datenwert
       }
 
-      if (showFat) {
-        const fatData = [30, 70, 90, 120, 180, 200]; //noch beispieldaten
+      if (showFat.value) {
         chartData.datasets.push({
           label: "Fett",
-          data: fatData,
+          data: fatData.value,
           borderColor: "green",
           fill: false
         });
-        maxDataValue = Math.max(maxDataValue, Math.max(...fatData));  //aktualisiert den maximalen Datenwert
+        maxDataValue = Math.max(maxDataValue, Math.max(...fatData.value));
       }
 
-      if (showCarbs) {
-        const carbsData = [80, 150, 200, 250, 350, 400]; //noch beispieldaten
+      if (showCarbs.value) {
         chartData.datasets.push({
           label: "Kohlenhydrate",
-          data: carbsData,
+          data: carbsData.value,
           borderColor: "blue",
           fill: false
         });
-        maxDataValue = Math.max(maxDataValue, Math.max(...carbsData));  //aktualisiert den maximalen Datenwert
+        maxDataValue = Math.max(maxDataValue, Math.max(...carbsData.value));
+      }
+
+      if (showKcal.value) {
+        chartData.datasets.push({
+          label: "kcal",
+          data: kcalData.value,
+          borderColor: "orange",
+          fill: false
+        });
+        maxDataValue = Math.max(maxDataValue, Math.max(...kcalData.value));
       }
 
       const chartOptions = {
@@ -174,23 +210,6 @@ export default {
         data: chartData,
         options: chartOptions
       });
-    }
-
-    function calculateStepSize(maxValue) {
-      const steps = Math.ceil(maxValue / 5); //Schritte berechnen indem der maximale Wert durch 5 geteilt wird (5 damit eine gute Verteilung auf der y-achse ist)
-      const magnitude = Math.pow(10, Math.floor(Math.log10(steps))); //Größenordnung der Schritte bestimmen mit 10er Potenz damit es gut lesbar ist
-      const magnitudeValue = steps / magnitude; //Berechnet den Wert der Zehnerpotenz
-      let stepSize = 1; //Ist auf 1 gesetzt damit immmer ein minimale Schrittgröße vorhanden ist
-
-      if (magnitudeValue > 5) { //Schrittgröße basierend auf der Größenordnung anpassen
-        stepSize = 10 * magnitude;
-      } else if (magnitudeValue > 2) {
-        stepSize = 5 * magnitude;
-      } else if (magnitudeValue > 1) {
-        stepSize = 2 * magnitude;
-      }
-
-      return stepSize;
     }
 
     // Überwachen der Änderungen von ausgewählten Optionen des Zeitraums
