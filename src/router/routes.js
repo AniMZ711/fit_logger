@@ -18,7 +18,7 @@ const routes = [
         path: "/produkteinpflegen",
         component: () => import("pages/ProduktEinpflegenPage.vue"),
       },
-      
+
       {
         path: "/essenkomponieren",
         component: () => import("pages/EssenKomponierenPage.vue"),

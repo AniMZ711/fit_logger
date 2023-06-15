@@ -46,7 +46,8 @@
             <li v-for="product in searchResults" :key="product.id">
               <label>
                 <input type="checkbox" v-model="selectedProducts[product.id]" />
-                {{ product.name }} - {{ product.quantity }} Menge, {{ product.calories }} Kalorien,
+                {{ product.name }} - {{ product.quantity }} Menge,
+                {{ product.calories }} Kalorien,
                 {{ product.carbs }} Kohlenhydrate,
                 {{ product.protein }} Protein, {{ product.fat }} Fett
               </label>
@@ -73,8 +74,7 @@
       <h5>Summe:</h5>
       <ul>
         <li v-for="product in selectedProductsList" :key="product.id">
-          {{ formatFactor(productFactor[product.id]) }} -
-          {{ product.name }} -
+          {{ formatFactor(productFactor[product.id]) }} - {{ product.name }} -
           {{ calculateTotal(product, "quantity") }} Gesamt Menge,
           {{ calculateTotal(product, "calories") }} Gesamt Kalorien,
           {{ calculateTotal(product, "carbs") }} Gesamt Kohlenhydrate,
@@ -126,7 +126,9 @@ export default defineComponent({
       );
     },
     isMealValid() {
-      return this.mealName.trim() !== "" && this.selectedProductsList.length > 0;
+      return (
+        this.mealName.trim() !== "" && this.selectedProductsList.length > 0
+      );
     },
   },
   created() {
@@ -170,7 +172,7 @@ export default defineComponent({
       let total = 0;
       this.selectedProductsList.forEach((product) => {
         const factor = this.productFactor[product.id];
-          total += product[type] * parseFloat(factor);
+        total += product[type] * parseFloat(factor);
       });
       return total;
     },
@@ -178,24 +180,28 @@ export default defineComponent({
       const meal = {
         name: this.mealName,
         products: this.selectedProductsList,
-        totalQuantity: this.calculateMealTotal('quantity'),
-        totalCalories: this.calculateMealTotal('calories'),
-        totalCarbs: this.calculateMealTotal('carbs'),
-        totalProtein: this.calculateMealTotal('protein'),
-        totalFat: this.calculateMealTotal('fat'),
+        totalQuantity: this.calculateMealTotal("quantity"),
+        totalCalories: this.calculateMealTotal("calories"),
+        totalCarbs: this.calculateMealTotal("carbs"),
+        totalProtein: this.calculateMealTotal("protein"),
+        totalFat: this.calculateMealTotal("fat"),
       };
-      
+
       const existingProducts = window.localStorage.getItem("products");
-      const products = existingProducts ? JSON.parse(existingProducts) : {
-  totalQuantity,
-  totalCalories,
-  totalFat,
-  totalProtein,
-  totalCarbs
-};
+      const products = existingProducts
+        ? JSON.parse(existingProducts)
+        : {
+            totalQuantity,
+            totalCalories,
+            totalFat,
+            totalProtein,
+            totalCarbs,
+          };
 
       // Überprüfen, ob die Mahlzeit bereits im products-Array gespeichert wurde
-      const existingProductIndex = products.findIndex((p) => p.name === meal.name);
+      const existingProductIndex = products.findIndex(
+        (p) => p.name === meal.name
+      );
       if (existingProductIndex !== -1) {
         // Mahlzeit aktualisieren
         products.splice(existingProductIndex, 1, meal);
@@ -205,7 +211,6 @@ export default defineComponent({
       }
 
       window.localStorage.setItem("products", JSON.stringify(products));
-
     },
   },
 });

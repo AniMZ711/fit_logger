@@ -7,24 +7,20 @@
     <q-btn flat icon="arrow_forward" color="green" @click="increaseDate">
     </q-btn>
 
-
-    <q-btn color="green" round icon="event" @click="popupDate = true">
-
-    </q-btn>
-
-
+    <q-btn color="green" round icon="event" @click="popupDate = true"> </q-btn>
 
     <q-dialog large persistent v-model="popupDate">
-
       <q-date v-model="date" today-btn>
         <q-btn v-close-popup label="Close" color="primary" flat></q-btn>
-        <q-btn v-close-popup label="Speichern" color="primary" flat @click="saveDate"></q-btn>
+        <q-btn
+          v-close-popup
+          label="Speichern"
+          color="primary"
+          flat
+          @click="saveDate"
+        ></q-btn>
       </q-date>
-
-
     </q-dialog>
-
-
 
     <!-- <q-btn color="green" round name="event" icon="event" class="cursor-pointer">
       <q-popup-proxy
@@ -56,7 +52,7 @@ export default defineComponent({
     const date = ref(new Date()); // heutiges Datum
     return {
       date, //
-      popupDate: ref(false)
+      popupDate: ref(false),
     };
   },
   created() {
@@ -102,10 +98,7 @@ export default defineComponent({
       console.log("done");
     },
 
-    updateProxy() {
-
-
-    },
+    updateProxy() {},
   },
 });
 </script>
