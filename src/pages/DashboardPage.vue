@@ -3,7 +3,8 @@
     <q-header class="stickyHeader">
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title>
+          {{ pageName }}</q-toolbar-title
+        >
 
         <q-space> </q-space>
         <q-btn position="right" color="primary" @click="about = true">
@@ -13,47 +14,38 @@
     </q-header>
 
     <q-dialog v-model="about">
-
       <q-card>
-        <q-btn class="absolute" style="top: 10px; right:10px" flat icon="close" color="primary" v-close-popup />
+        <q-btn
+          class="absolute"
+          style="top: 10px; right: 10px"
+          flat
+          icon="close"
+          color="primary"
+          v-close-popup
+        />
 
         <div class="row text-center q-pt-sm">
-
           <div class="col col-2"></div>
           <div class="col col-8">
-            <p> Willkommen!</p>
+            <p>Willkommen!</p>
           </div>
           <div class="col col-2"></div>
-
         </div>
 
-        <div class=" row text-center q-px-lg q-ma-sm">
-
+        <div class="row text-center q-px-lg q-ma-sm">
           <div clas="col col-2"></div>
           <div clas="col col-8 about-text">
-
-            Danke, dass du dich für den FIT-Logger entschieden hast!
-
-            Der FIT-Logger hilft dir, deine Ernährung zu überwachen & zu planen.
-
-            Du kannst zu Beginn Kalorien- & Makroziele eingeben
-            & anschließend deine Mahlzeiten eintragen
-            Anhand deiner Eingaben wird sowohl eine Historie,
-            in der du nachvollziehen kannst, wann du was gegessen hast,
-            als auch eine Statistik erstellt, in der du sehen kannst,
-            ob und wie sehr du von deinen gesetzten Zielen abweichst. </div>
+            Danke, dass du dich für den FIT-Logger entschieden hast! Der
+            FIT-Logger hilft dir, deine Ernährung zu überwachen & zu planen. Du
+            kannst zu Beginn Kalorien- & Makroziele eingeben & anschließend
+            deine Mahlzeiten eintragen Anhand deiner Eingaben wird sowohl eine
+            Historie, in der du nachvollziehen kannst, wann du was gegessen
+            hast, als auch eine Statistik erstellt, in der du sehen kannst, ob
+            und wie sehr du von deinen gesetzten Zielen abweichst.
+          </div>
           <div clas="col col-2"></div>
-
         </div>
-
-
-
-
       </q-card>
-
-
-
-
     </q-dialog>
 
     <q-page-container class="q-pa-sm">
@@ -70,8 +62,15 @@
           <div class="column col-4">
             <div class="column self-end progress-circle-container q-pl-md">
               <div id="AnzeigeKalorienCircleBar" class="circle-progress">
-                <q-circular-progress size="15vh" rounded :value="dailyConsumption.caloriesPercentage" show-value
-                  color="green" track-color="grey" float-right>
+                <q-circular-progress
+                  size="15vh"
+                  rounded
+                  :value="dailyConsumption.caloriesPercentage"
+                  show-value
+                  color="green"
+                  track-color="grey"
+                  float-right
+                >
                   <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
                   <!-- das muss noch gerundet werden -->
                   {{ dailyConsumption.caloriesPercentage }}%
@@ -96,8 +95,14 @@
                 <div id="AnzeigeKohlenhydrate" class="q-px-sm">
                   <!-- Anzeige Kohlenhydrate-->
                   Kohlenhydrate {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.carbsPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.carbsPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -109,8 +114,14 @@
               <div class="column col-9">
                 <div id="AnzeigeEiweiss" class="q-px-sm">
                   Eiweiss {{ dailyConsumption.protein }}/{{ goal.protein }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.proteinPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.proteinPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -123,8 +134,14 @@
                 <div id="AnzeigeFett" class="q-px-sm">
                   <!-- Anzeige Fett-->
                   Fett {{ dailyConsumption.fat }}/{{ goal.fat }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.fatPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.fatPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -169,11 +186,10 @@ export default defineComponent({
   components: {},
   setup() {
     return {
-
       about: ref(false),
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
 
-      meals: JSON.parse(window.localStorage.getItem("meals")),
+      meals: JSON.parse(window.localStorage.getItem("meals")) || [],
 
       goal: JSON.parse(window.localStorage.getItem("Goal")) || {
         calories: 1800,
@@ -185,6 +201,7 @@ export default defineComponent({
       dailyConsumption: JSON.parse(
         window.localStorage.getItem("dailyConsumption")
       ) || {
+        date: "",
         calories: 0,
         carbs: 0,
         protein: 0,
@@ -195,6 +212,78 @@ export default defineComponent({
         fatPercentage: 0,
       },
     };
+  },
+  created() {
+    //dailyConsumption
+    const today = new Date();
+    const date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    if (window.localStorage.getItem("dailyConsumption")) {
+      const tempDaily = JSON.parse(
+        window.localStorage.getItem("dailyConsumption")
+      );
+      if (tempDaily.date != date) {
+        window.localStorage.setItem(
+          "dailyConsumption",
+          JSON.stringify({
+            date: date,
+            calories: 0,
+            carbs: 0,
+            protein: 0,
+            fat: 0,
+            caloriesPercentage: 0,
+            carbsPercentage: 0,
+            proteinPercentage: 0,
+            fatPercentage: 0,
+          })
+        );
+        this.dailyConsumption = JSON.parse(
+          window.localStorage.getItem("dailyConsumption")
+        );
+      }
+    } else {
+      window.localStorage.setItem(
+        "dailyConsumption",
+        JSON.stringify({
+          date: date,
+          calories: 0,
+          carbs: 0,
+          protein: 0,
+          fat: 0,
+          caloriesPercentage: 0,
+          carbsPercentage: 0,
+          proteinPercentage: 0,
+          fatPercentage: 0,
+        })
+      );
+      this.dailyConsumption = JSON.parse(
+        window.localStorage.getItem("dailyConsumption")
+      );
+    }
+    //goal
+    if (!window.localStorage.getItem("Goal")) {
+      window.localStorage.setItem(
+        "Goal",
+        JSON.stringify({
+          name: "Goal",
+          calories: 1800,
+          carbs: 250,
+          protein: 80,
+          fat: 50,
+        })
+      );
+    }
+    //meals
+    /* if (!window.localStorage.getItem("meals")) {
+      window.localStorage.setItem(
+        "meals",
+        JSON.stringify([])
+      );
+    } */
   },
 
   //die Mahlzeiten müssen importiert werden, damit man sie anzeigen lassen kann
@@ -263,7 +352,6 @@ export default defineComponent({
   font-size: 14px;
   text-align: center;
 }
-
 
 /* .col {
   border-style: dotted;

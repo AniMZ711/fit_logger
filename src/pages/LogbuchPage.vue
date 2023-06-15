@@ -28,8 +28,8 @@
         <div class="col col-1"></div>
 
         <div class="col col-10 text-center self-center">
-          <p>Frühstück</p>
           <ul style="padding-top: 50px">
+            <p>Frühstück</p>
             <li
               v-for="meal in breakfast"
               :key="meal.id"
@@ -59,7 +59,6 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-          <p>Snacks</p>
           <ul style="padding-top: 50px">
             <p>Snacks</p>
             <li v-for="meal in snacks" :key="meal.id" @click="deleteMeal(meal)">
@@ -97,16 +96,7 @@ export default defineComponent({
       goal: JSON.parse(localStorage.getItem("Goal")),
       dailyConsumption: JSON.parse(
         window.localStorage.getItem("dailyConsumption")
-      ) || {
-        calories: 0,
-        carbs: 0,
-        protein: 0,
-        fat: 0,
-        caloriesPercentage: 0,
-        carbsPercentage: 0,
-        proteinPercentage: 0,
-        fatPercentage: 0,
-      },
+      ),
       date: "",
     };
   },
@@ -118,7 +108,6 @@ export default defineComponent({
       const day = currentDate;
       this.date =
         day.getFullYear() + "-" + (day.getMonth() + 1) + "-" + day.getDate();
-      console.log(this.date);
       this.filterMeals();
     },
     deleteMeal(meal) {

@@ -87,7 +87,7 @@ export default defineComponent({
 
       const format = new Date(year, month - 1, day);
 
-      console.log(format);
+      //console.log(format);
 
       this.selectedDate = format;
       this.emitSelectedDate();
@@ -95,7 +95,6 @@ export default defineComponent({
 
     emitSelectedDate() {
       this.$emit("newSelectedDate", this.selectedDate);
-      console.log("done");
     },
 
     updateProxy() {},
