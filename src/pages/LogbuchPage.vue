@@ -96,7 +96,17 @@ export default defineComponent({
       goal: JSON.parse(localStorage.getItem("Goal")),
       dailyConsumption: JSON.parse(
         window.localStorage.getItem("dailyConsumption")
-      ),
+      ) || {
+        date: "",
+        calories: 0,
+        carbs: 0,
+        protein: 0,
+        fat: 0,
+        caloriesPercentage: 0,
+        carbsPercentage: 0,
+        proteinPercentage: 0,
+        fatPercentage: 0,
+      },
       date: "",
     };
   },
@@ -118,12 +128,12 @@ export default defineComponent({
       }
 
       this.dailyConsumption = {
+        date: this.dailyConsumption.date,
         calories: this.dailyConsumption.calories - meal.calories,
         carbs: this.dailyConsumption.carbs - meal.carbs,
         protein: this.dailyConsumption.protein - meal.protein,
         fat: this.dailyConsumption.fat - meal.fat,
       };
-      console.log(this.goal);
       this.setDailyConsumption();
       window.localStorage.setItem(
         "dailyConsumption",
