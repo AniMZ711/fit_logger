@@ -93,6 +93,7 @@
       <div class="save-button">
         <q-btn
           @click="saveMeal"
+          :disabled="!isMealValid"
           icon="save"
           rounded
           color="green"
@@ -123,6 +124,9 @@ export default defineComponent({
       return this.products.filter(
         (product) => this.selectedProducts[product.id]
       );
+    },
+    isMealValid() {
+      return this.mealName.trim() !== "" && this.selectedProductsList.length > 0;
     },
   },
   created() {
@@ -171,32 +175,37 @@ export default defineComponent({
       return total;
     },
     saveMeal() {
-      const existingProducts = window.localStorage.getItem("products");
-      const products = existingProducts ? JSON.parse(existingProducts) : [];
-
       const meal = {
         name: this.mealName,
         products: this.selectedProductsList,
-        quantities: this.productFactor,
-        isMeal: true, // Spezielles Flag für Mahlzeiten
+        totalQuantity: this.calculateMealTotal('quantity'),
+        totalCalories: this.calculateMealTotal('calories'),
+        totalCarbs: this.calculateMealTotal('carbs'),
+        totalProtein: this.calculateMealTotal('protein'),
+        totalFat: this.calculateMealTotal('fat'),
       };
+      
+      const existingProducts = window.localStorage.getItem("products");
+      const products = existingProducts ? JSON.parse(existingProducts) : {
+  totalQuantity,
+  totalCalories,
+  totalFat,
+  totalProtein,
+  totalCarbs
+};
 
-      products.push(meal);
+      // Überprüfen, ob die Mahlzeit bereits im products-Array gespeichert wurde
+      const existingProductIndex = products.findIndex((p) => p.name === meal.name);
+      if (existingProductIndex !== -1) {
+        // Mahlzeit aktualisieren
+        products.splice(existingProductIndex, 1, meal);
+      } else {
+        // Neue Mahlzeit hinzufügen
+        products.push(meal);
+      }
 
       window.localStorage.setItem("products", JSON.stringify(products));
 
-      this.resetForm();
-    },
-    resetForm() {
-      this.newProduct = {
-        id: null,
-        name: "",
-        quantity: 0,
-        calories: 0,
-        carbs: 0,
-        protein: 0,
-        fat: 0,
-      };
     },
   },
 });
