@@ -7,8 +7,9 @@
         >
 
         <q-space> </q-space>
-        <q-btn position="right" color="primary" @click="about = true">
-          About
+        <q-btn class="no-ripple" label="about" flat position="right" color="white" icon-right="info_outline"
+          @click="about = true" style="z-index:999">
+          <!-- About -->
         </q-btn>
       </q-toolbar>
     </q-header>
@@ -164,10 +165,19 @@
             <div>
               <ul>
                 <li v-for="product in meals" :key="product.id">
-                  {{ product.name }} Kalorien:
-                  {{ product.calories }} Kohlenhydrate:
-                  {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-                  {{ product.fat }}
+
+                  <details>
+                    <summary> {{ product.name }} {{ product.calories }} kcal</summary>
+                    Kalorien: {{ product.calories }}
+                    Kohlenhydrate:
+                    {{ product.carbs }} Proteine: {{ product.protein }} Fett:
+                    {{ product.fat }}
+                  </details>
+                  <ol>
+
+
+                  </ol>
+
                 </li>
               </ul>
             </div>
@@ -291,6 +301,31 @@ export default defineComponent({
 </script>
 
 <style>
+ul {
+  list-style: none;
+}
+
+details {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 0.5em 0.5em 0;
+}
+
+summary {
+  font-weight: bold;
+  margin: -0.5em -0.5em 0;
+  padding: 0.5em;
+}
+
+details[open] {
+  padding: 0.5em;
+}
+
+details[open] summary {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: 0.5em;
+}
+
 .expandable-row:hover .expandable-content {
   display: block;
 }
