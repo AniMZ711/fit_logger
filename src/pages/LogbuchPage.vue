@@ -39,8 +39,9 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-          <p>Mittagessen</p>
+
           <ul style="padding-top: 50px">
+            <p>Mittagessen</p>
             <li v-for="meal in lunch" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
@@ -48,8 +49,9 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-          <p>Abendessen</p>
+
           <ul style="padding-top: 50px">
+            <p>Abendessen</p>
             <li v-for="meal in diner" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
@@ -57,8 +59,9 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-          <p>Snacks</p>
+
           <ul style="padding-top: 50px">
+            <p>Snacks</p>
             <li v-for="meal in snacks" :key="meal.id" @click="deleteMeal(meal)">
               {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
@@ -140,6 +143,7 @@ export default defineComponent({
         "dailyConsumption",
         JSON.stringify(this.dailyConsumption)
       );
+      this.filterMeals();
     },
     setDailyConsumption() {
       this.dailyConsumption.caloriesPercentage = this.calculateCaloriesValue(
