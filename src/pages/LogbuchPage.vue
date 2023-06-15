@@ -5,8 +5,7 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title
-        ><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
 
@@ -23,52 +22,93 @@
 
     <!--Container für Anzeige der Mahlzeiten des Tages-->
     <q-page-container class="meals-today">
+
       <!--Reihe Frühstück-->
       <div class="row">
-        <div class="col col-1"></div>
+        <div class="col col-2"></div>
 
-        <div class="col col-10 text-center self-center">
-          <ul style="padding-top: 50px">
-            <p>Frühstück</p>
-            <li
-              v-for="meal in breakfast"
-              :key="meal.id"
-              @click="deleteMeal(meal)"
-            >
-              {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
-              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-              {{ meal.fat }}
-              <q-btn round color="green" icon="delete"></q-btn>
-            </li>
-          </ul>
-          <ul style="padding-top: 50px">
-            <p>Mittagessen</p>
-            <li v-for="meal in lunch" :key="meal.id" @click="deleteMeal(meal)">
-              {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
-              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-              {{ meal.fat }}
-              <q-btn round color="green" icon="delete"></q-btn>
-            </li>
-          </ul>
-          <ul style="padding-top: 50px">
-            <p>Abendessen</p>
-            <li v-for="meal in diner" :key="meal.id" @click="deleteMeal(meal)">
-              {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
-              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-              {{ meal.fat }}
-              <q-btn round color="green" icon="delete"></q-btn>
-            </li>
-          </ul>
-          <ul style="padding-top: 50px">
-            <p>Snacks</p>
-            <li v-for="meal in snacks" :key="meal.id" @click="deleteMeal(meal)">
-              {{ meal.name }} Kalorien: {{ meal.calories }} Kohlenhydrate:
-              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-              {{ meal.fat }}
-              <q-btn round color="green" icon="delete"></q-btn>
-            </li>
-          </ul>
+        <div class="col col-8 text-center">
+
+          <q-page-container class="meals-today-logbuch">
+
+
+
+            <ul class="breakfast-items" style="padding-top: 5px">
+              <p1>Frühstück</p1>
+
+              <li v-for="meal in breakfast" :key="meal.id">
+
+                <details>
+                  <summary>
+                    {{ meal.name }}
+                    <span class="badge"> {{ meal.calories }}kcal</span>
+
+                  </summary>
+                  Kalorien: {{ meal.calories }} Kohlenhydrate:
+                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+                  {{ meal.fat }}
+                  <q-btn round color="green" icon="delete" @click="deleteMeal(meal)"> </q-btn>
+
+
+                </details>
+
+              </li>
+            </ul>
+
+            <ul style="padding-top: 50px">
+              <p1>Mittagessen</p1>
+              <li v-for="meal in lunch" :key="meal.id">
+                <details>
+                  <summary>
+                    {{ meal.name }}
+                    <span class="badge"> {{ meal.calories }}kcal</span>
+
+                  </summary>
+                  Kalorien: {{ meal.calories }} Kohlenhydrate:
+                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+                  {{ meal.fat }}
+                  <q-btn round color="green" icon="delete" @click="deleteMeal(meal)"> </q-btn>
+
+                </details>
+              </li>
+            </ul>
+            <ul style="padding-top: 50px">
+              <p>Abendessen</p>
+              <li v-for="meal in diner" :key="meal.id">
+                <details>
+                  <summary>
+                    {{ meal.name }}
+                    <span class="badge"> {{ meal.calories }}kcal</span>
+
+                  </summary>
+                  Kalorien: {{ meal.calories }} Kohlenhydrate:
+                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+                  {{ meal.fat }}
+                  <q-btn round color="green" icon="delete" @click="deleteMeal(meal)"> </q-btn>
+
+                </details>
+              </li>
+            </ul>
+            <ul style="padding-top: 50px">
+              <p>Snacks</p>
+              <li v-for="meal in snacks" :key="meal.id">
+                <details>
+                  <summary>
+                    {{ meal.name }}
+                    <span class="badge"> {{ meal.calories }}kcal</span>
+
+                  </summary>
+                  Kalorien: {{ meal.calories }} Kohlenhydrate:
+                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+                  {{ meal.fat }}
+                  <q-btn round color="green" icon="delete" @click="deleteMeal(meal)"> </q-btn>
+
+                </details>
+              </li>
+            </ul>
+          </q-page-container>
         </div>
+        <div class="col col-2"> </div>
       </div>
     </q-page-container>
   </q-layout>
@@ -187,10 +227,9 @@ export default defineComponent({
 </script>
 
 <style>
-.meals-list {
-  position: absolute;
+.meals-today-logbuch {
 
-  margin-top: 5em;
+  margin-top: -2em;
 }
 
 .date-picker {
@@ -204,15 +243,6 @@ export default defineComponent({
 
 .meals-today {
   margin-top: -2em;
+
 }
-
-/* .row {
-
-  border-style: dashed;
-}
-
-.col {
-
-  border-style: dashed;
-} */
 </style>
