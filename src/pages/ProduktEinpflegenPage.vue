@@ -33,7 +33,7 @@
             Produkt einspeichern</q-btn
           >
         </div>
-        
+
         <div class="ButtonEssenKomponieren">
           <q-btn
             class="addButton"

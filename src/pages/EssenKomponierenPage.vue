@@ -46,11 +46,12 @@
             <li v-for="product in searchResults" :key="product.id">
               <label>
                 <input type="checkbox" v-model="selectedProducts[product.id]" />
-                {{ product.name }} - {{ product.calories }} Kalorien,
+                {{ product.name }} - {{ product.quantity }} Menge,
+                {{ product.calories }} Kalorien,
                 {{ product.carbs }} Kohlenhydrate,
                 {{ product.protein }} Protein, {{ product.fat }} Fett
               </label>
-              <select v-model="productQuantities[product.id]">
+              <select v-model="productFactor[product.id]">
                 <option value="1/4">1/4</option>
                 <option value="1/2">1/2</option>
                 <option value="1">1</option>
@@ -73,16 +74,18 @@
       <h5>Summe:</h5>
       <ul>
         <li v-for="product in selectedProductsList" :key="product.id">
-          {{ product.name }} -
-          {{ formatQuantity(productQuantities[product.id]) }} -
-          {{ calculateTotal(product) }} Gesamt Kalorien,
+          {{ formatFactor(productFactor[product.id]) }} - {{ product.name }} -
+          {{ calculateTotal(product, "quantity") }} Gesamt Menge,
+          {{ calculateTotal(product, "calories") }} Gesamt Kalorien,
           {{ calculateTotal(product, "carbs") }} Gesamt Kohlenhydrate,
           {{ calculateTotal(product, "protein") }} Gesamt Protein,
           {{ calculateTotal(product, "fat") }} Gesamt Fett
         </li>
       </ul>
       <p>
-        Gesamtsumme: {{ calculateMealTotal() }} Gesamt Kalorien,
+        Gesamtsumme:
+        {{ calculateMealTotal("quantity") }} Gesamt Menge,
+        {{ calculateMealTotal("calories") }} Gesamt Kalorien,
         {{ calculateMealTotal("carbs") }} Gesamt Kohlenhydrate,
         {{ calculateMealTotal("protein") }} Gesamt Protein,
         {{ calculateMealTotal("fat") }} Gesamt Fett
@@ -90,6 +93,7 @@
       <div class="save-button">
         <q-btn
           @click="saveMeal"
+          :disabled="!isMealValid"
           icon="save"
           rounded
           color="green"
@@ -111,7 +115,7 @@ export default defineComponent({
       products: [],
       searchResults: [],
       selectedProducts: [],
-      productQuantities: {},
+      productFactor: {},
       pageName: "Essen komponieren",
     };
   },
@@ -119,6 +123,11 @@ export default defineComponent({
     selectedProductsList() {
       return this.products.filter(
         (product) => this.selectedProducts[product.id]
+      );
+    },
+    isMealValid() {
+      return (
+        this.mealName.trim() !== "" && this.selectedProductsList.length > 0
       );
     },
   },
@@ -132,7 +141,7 @@ export default defineComponent({
         this.products = JSON.parse(savedProducts);
       }
       this.selectedProducts.forEach((product) => {
-        this.$set(this.productQuantities, product.id, "1");
+        this.$set(this.productFactor, product.id, "1");
       });
     },
     searchProducts() {
@@ -140,63 +149,68 @@ export default defineComponent({
         product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
     },
-    formatQuantity(quantity) {
-      if (quantity === "1/4") {
+    formatFactor(factor) {
+      if (factor === "1/4") {
         return "1/4";
-      } else if (quantity === "1/2") {
+      } else if (factor === "1/2") {
         return "1/2";
       } else {
-        return quantity;
+        return factor;
       }
     },
     calculateTotal(product, type) {
-      const quantity = this.productQuantities[product.id];
-      if (quantity === "1/4") {
+      const factor = this.productFactor[product.id];
+      if (factor === "1/4") {
         return product[type] * 0.25;
-      } else if (quantity === "1/2") {
+      } else if (factor === "1/2") {
         return product[type] * 0.5;
       } else {
-        return product[type] * parseFloat(quantity);
+        return product[type] * parseFloat(factor);
       }
     },
     calculateMealTotal(type) {
       let total = 0;
       this.selectedProductsList.forEach((product) => {
-        const quantity = this.productQuantities[product.id];
-        if (type === undefined) {
-          total += product.calories * parseFloat(quantity);
-        } else {
-          total += product[type] * parseFloat(quantity);
-        }
+        const factor = this.productFactor[product.id];
+        total += product[type] * parseFloat(factor);
       });
       return total;
     },
     saveMeal() {
-      const existingProducts = window.localStorage.getItem("products");
-      const products = existingProducts ? JSON.parse(existingProducts) : [];
-
       const meal = {
         name: this.mealName,
         products: this.selectedProductsList,
-        quantities: this.productQuantities,
-        isMeal: true, // Spezielles Flag für Mahlzeiten
+        totalQuantity: this.calculateMealTotal("quantity"),
+        totalCalories: this.calculateMealTotal("calories"),
+        totalCarbs: this.calculateMealTotal("carbs"),
+        totalProtein: this.calculateMealTotal("protein"),
+        totalFat: this.calculateMealTotal("fat"),
       };
 
-      products.push(meal);
+      const existingProducts = window.localStorage.getItem("products");
+      const products = existingProducts
+        ? JSON.parse(existingProducts)
+        : {
+            totalQuantity,
+            totalCalories,
+            totalFat,
+            totalProtein,
+            totalCarbs,
+          };
+
+      // Überprüfen, ob die Mahlzeit bereits im products-Array gespeichert wurde
+      const existingProductIndex = products.findIndex(
+        (p) => p.name === meal.name
+      );
+      if (existingProductIndex !== -1) {
+        // Mahlzeit aktualisieren
+        products.splice(existingProductIndex, 1, meal);
+      } else {
+        // Neue Mahlzeit hinzufügen
+        products.push(meal);
+      }
 
       window.localStorage.setItem("products", JSON.stringify(products));
-
-      this.resetForm();
-    },
-    resetForm() {
-      this.newProduct = {
-        id: null,
-        name: "",
-        calories: 0,
-        carbs: 0,
-        protein: 0,
-        fat: 0,
-      };
     },
   },
 });

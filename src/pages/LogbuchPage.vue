@@ -22,12 +22,14 @@
     </q-page-container>
 
     <!--Container für Anzeige der Mahlzeiten des Tages-->
-    <q-page-container>
+    <q-page-container class="meals-today">
+      <!--Reihe Frühstück-->
       <div class="row">
         <div class="col col-1"></div>
+
         <div class="col col-10 text-center self-center">
+          <p>Frühstück</p>
           <ul style="padding-top: 50px">
-            <p>Frühstück</p>
             <li
               v-for="meal in breakfast"
               :key="meal.id"
@@ -39,7 +41,6 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-
           <ul style="padding-top: 50px">
             <p>Mittagessen</p>
             <li v-for="meal in lunch" :key="meal.id" @click="deleteMeal(meal)">
@@ -49,7 +50,6 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-
           <ul style="padding-top: 50px">
             <p>Abendessen</p>
             <li v-for="meal in diner" :key="meal.id" @click="deleteMeal(meal)">
@@ -59,7 +59,7 @@
               <q-btn round color="green" icon="delete"></q-btn>
             </li>
           </ul>
-
+          <p>Snacks</p>
           <ul style="padding-top: 50px">
             <p>Snacks</p>
             <li v-for="meal in snacks" :key="meal.id" @click="deleteMeal(meal)">
@@ -70,11 +70,8 @@
             </li>
           </ul>
         </div>
-        <div class="col col-1"></div>
       </div>
     </q-page-container>
-
-    <div></div>
   </q-layout>
 </template>
 
@@ -205,4 +202,18 @@ export default defineComponent({
 #tageszusammenfassung {
   bottom: 100px;
 }
+
+.meals-today {
+  margin-top: -2em;
+}
+
+/* .row {
+
+  border-style: dashed;
+}
+
+.col {
+
+  border-style: dashed;
+} */
 </style>
