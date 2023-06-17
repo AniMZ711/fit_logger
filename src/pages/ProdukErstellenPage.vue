@@ -81,7 +81,9 @@
         />
 
         <div class="SpeicherButton">
-          <q-btn round color="green" icon="save" type="submit"></q-btn>
+          <q-btn color="green" icon="save" type="submit" size="lg" rounded
+            >Speichern</q-btn
+          >
         </div>
       </form>
 
@@ -277,7 +279,7 @@ export default defineComponent({
 .Eingabebereich {
   position: fixed;
   width: 90%;
-  top: 18em;
+  top: 20em;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
@@ -289,7 +291,8 @@ export default defineComponent({
 }
 
 .Ausgabebereich {
-  margin-top: 26em;
+  margin-top: 30em;
   text-align: center;
+  position: sticky;
 }
 </style>

@@ -17,7 +17,7 @@
             to="/produktsuchen"
             size="lg"
           >
-            Produkt suchen</q-btn
+            Produkt Datenbank</q-btn
           >
         </div>
 
@@ -75,7 +75,7 @@ export default defineComponent({
 }
 
 .ButtonEssenKomponieren {
-  margin-top: 6em;
+  margin-top: 2em;
   text-align: center;
 }
 </style>
