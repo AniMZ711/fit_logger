@@ -127,28 +127,31 @@
       <div class="row">
         <div class="col col-1"></div>
 
-        <div class="col col-10 text-center self-center">
-          <q-scroll-area style="height: 40vh; max-width: 90%">
-            <div>
-              <ul>
-                <li v-for="product in meals" :key="product.id">
-
-                  <details>
-                    <summary> {{ product.name }} {{ product.calories }} kcal</summary>
-                    Kalorien: {{ product.calories }}
-                    Kohlenhydrate:
-                    {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-                    {{ product.fat }}
-                  </details>
-                  <ol>
+        <div class="col col-10 text-center items-center">
 
 
-                  </ol>
+          <ul>
+            <li class="dashboard-meals-list" v-for="product in meals" :key="product.id">
 
-                </li>
-              </ul>
-            </div>
-          </q-scroll-area>
+              <details>
+                <summary>
+
+                  <span class="word"> {{ product.name }}</span>
+                  <span class="badge">
+                    {{ product.calories }} kcal </span>
+
+
+                </summary>
+                Kalorien: {{ product.calories }}
+                Kohlenhydrate:
+                {{ product.carbs }} Proteine: {{ product.protein }} Fett:
+                {{ product.fat }}
+              </details>
+
+            </li>
+          </ul>
+
+
         </div>
         <div class="col col-1"></div>
       </div>
@@ -268,17 +271,48 @@ export default defineComponent({
 </script>
 
 <style>
-ul {
-  list-style: none;
+li {
+
+  list-style-type: none;
+  transform: translateX(-1.25em);
 }
+
+ul {
+
+  list-style-type: none;
+
+}
+
+
+details summary::before {
+  content: "+";
+  /* Closed triangle */
+  display: inline-block;
+  margin-right: 5px;
+  transform: rotate(90deg);
+  /* Closed rotation */
+}
+
+details[open] summary::before {
+  content: "-";
+  /* Open triangle */
+  transform: rotate(0deg);
+  /* Open rotation */
+}
+
 
 details {
   border: 1px solid #aaa;
   border-radius: 4px;
   padding: 0.5em 0.5em 0;
+  content: "\25BA ";
+
 }
 
 summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-weight: bold;
   margin: -0.5em -0.5em 0;
   padding: 0.5em;
@@ -286,20 +320,24 @@ summary {
 }
 
 
+.badge {
 
-details[open] {
-  padding: 0.5em;
-
-
+  background-color: lightgray;
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 30%;
 }
 
-details[open] summary::before {
-  border-bottom: 1px solid #aaa;
-  margin-bottom: 0.5em;
 
-  list-style: none;
+.word {
 
+  margin-right: 10px;
+  /* Adjust spacing as needed */
 }
+
+
+
+
 
 .expandable-row:hover .expandable-content {
   display: block;
@@ -309,16 +347,7 @@ details[open] summary::before {
   display: none;
 }
 
-/* .col {
 
-  border-style: dotted;
-
-}
-
-.row {
-
-  border-style: dotted;
-} */
 
 #AnzeigeKohlenhydrate,
 #AnzeigeEiweiss,
@@ -355,15 +384,11 @@ details[open] summary::before {
 .display-last-meals {
   /* font-size: clamp(1.5rem, 0.8182rem + 2.9091vw, 3rem); */
 
-  margin-top: -2.5em;
+  margin-top: -3.5em;
 }
 
 .makros {
   font-size: 14px;
   text-align: center;
 }
-
-/* .col {
-  border-style: dotted;
-} */
 </style>

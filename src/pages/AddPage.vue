@@ -320,15 +320,7 @@ export default defineComponent({
   margin-top: 4em;
 }
 
-/* .col {
-  padding: 10px 15px;
 
-  border: 1px solid red;
-}
-
-.row {
-  border: 1px solid red;
-} */
 
 .display-add-product {
   font-size: clamp(2.25rem, 1.9091rem + 1.4545vw, 3rem);

@@ -1,7 +1,7 @@
 <template>
   <q-header class="stickyHeader">
     <q-toolbar>
-      <q-btn flat to="/essenkomponieren" icon="arrow_back" />
+      <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
       <q-toolbar-title class="absolute-center">{{ pageName }}</q-toolbar-title>
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
@@ -9,31 +9,14 @@
 
   <div>
     <div class="NameEingeben">
-      <q-input
-        color="green"
-        label="Name der neuen Mahlzeit"
-        type="text"
-        id="mealNameInput"
-        v-model="mealName"
-      />
+      <q-input color="green" label="Name der neuen Mahlzeit" type="text" id="mealNameInput" v-model="mealName" />
     </div>
 
     <div class="Suchleiste">
-      <q-input
-        color="green"
-        filled
-        v-model="searchQuery"
-        label="Suche die Produkte, die du kopomnieren möchtest ... "
-        type="text"
-      >
+      <q-input color="green" filled v-model="searchQuery" label="Suche die Produkte, die du kopomnieren möchtest ... "
+        type="text">
         <template v-slot:after>
-          <q-btn
-            rounded
-            size="lg"
-            color="green"
-            icon="search"
-            @click="searchProducts"
-          ></q-btn>
+          <q-btn rounded size="lg" color="green" icon="search" @click="searchProducts"></q-btn>
         </template>
       </q-input>
     </div>
@@ -91,14 +74,7 @@
         {{ calculateMealTotal("fat") }} Gesamt Fett
       </p>
       <div class="save-button">
-        <q-btn
-          @click="saveMeal"
-          :disabled="!isMealValid"
-          icon="save"
-          rounded
-          color="green"
-          size="lg"
-        ></q-btn>
+        <q-btn @click="saveMeal" :disabled="!isMealValid" icon="save" rounded color="green" size="lg"></q-btn>
       </div>
     </div>
   </div>
@@ -191,12 +167,12 @@ export default defineComponent({
       const products = existingProducts
         ? JSON.parse(existingProducts)
         : {
-            totalQuantity,
-            totalCalories,
-            totalFat,
-            totalProtein,
-            totalCarbs,
-          };
+          totalQuantity,
+          totalCalories,
+          totalFat,
+          totalProtein,
+          totalCarbs,
+        };
 
       // Überprüfen, ob die Mahlzeit bereits im products-Array gespeichert wurde
       const existingProductIndex = products.findIndex(
@@ -223,16 +199,19 @@ export default defineComponent({
   margin-left: 5%;
   margin-right: 5%;
 }
+
 .Suchleiste {
   margin-top: 2em;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
 }
+
 .save-button {
   text-align: center;
   margin-bottom: 5em;
 }
+
 .Ausgabebereich2 {
   text-align: center;
 }

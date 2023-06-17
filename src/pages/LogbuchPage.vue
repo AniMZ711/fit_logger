@@ -228,7 +228,6 @@ export default defineComponent({
 
 <style>
 .meals-today-logbuch {
-
   margin-top: -2em;
 }
 
