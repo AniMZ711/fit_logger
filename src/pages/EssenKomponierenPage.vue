@@ -1,6 +1,7 @@
 <template>
   <q-header class="stickyHeader">
     <q-toolbar>
+      <q-btn flat to="/essenkomponieren" icon="arrow_back" />
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
       <q-toolbar-title class="absolute-center">{{ pageName }}</q-toolbar-title>
       <!--Anzeige des Titels; Variable aus dem Script-->
@@ -29,24 +30,8 @@
             <li v-for="product in searchResults" :key="product.id">
               <label>
                 <input type="checkbox" v-model="selectedProducts[product.id]" />
-                {{ product.name }} - {{ product.quantity }} Menge,
-                {{ product.calories }} Kalorien,
-                {{ product.carbs }} Kohlenhydrate,
-                {{ product.protein }} Protein, {{ product.fat }} Fett
+                {{ product.name }} - {{ product.quantity }} Menge
               </label>
-              <select v-model="productFactor[product.id]">
-                <option value="1/4">1/4</option>
-                <option value="1/2">1/2</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-              </select>
             </li>
           </ul>
         </q-scroll-area>
@@ -63,6 +48,19 @@
           {{ calculateTotal(product, "carbs") }} Gesamt Kohlenhydrate,
           {{ calculateTotal(product, "protein") }} Gesamt Protein,
           {{ calculateTotal(product, "fat") }} Gesamt Fett
+          <select v-model="productFactor[product.id]">
+                <option value="1/4">1/4</option>
+                <option value="1/2">1/2</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
         </li>
       </ul>
       <p>
@@ -167,12 +165,12 @@ export default defineComponent({
       const products = existingProducts
         ? JSON.parse(existingProducts)
         : {
-          totalQuantity,
-          totalCalories,
-          totalFat,
-          totalProtein,
-          totalCarbs,
-        };
+            totalQuantity,
+            totalCalories,
+            totalFat,
+            totalProtein,
+            totalCarbs,
+          };
 
       // Überprüfen, ob die Mahlzeit bereits im products-Array gespeichert wurde
       const existingProductIndex = products.findIndex(
