@@ -75,16 +75,12 @@ export default {
       return result.toISOString().split("T")[0];
     }
 
-    function formatDate(date) {
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const year = date.getFullYear();
-      return `${day}.${month}.${year}`;
-    }
+
 
     function formatXAxisLabel(date) {
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const formattedDate = new Date(date);
+      const day = String(formattedDate.getDate()).padStart(2, "0");
+      const month = String(formattedDate.getMonth() + 1).padStart(2, "0");
       return `${day}.${month}`;
     }
 
@@ -95,8 +91,10 @@ export default {
       const endDate = new Date(dateRange.value.endDate);
 
       //Schleife zum durchlaufen der Daten
-      for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
-        labels.push(formatXAxisLabel(date));
+      const currentDate = new Date(startDate);
+      while (currentDate <= endDate) {
+        labels.push(formatXAxisLabel(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
       }
       return labels;
     }
@@ -136,7 +134,6 @@ export default {
           break;
         }
       }
-
       return stepSize;
     }
 
@@ -224,9 +221,6 @@ export default {
               display: true,
               text: "Tag"
             },
-            ticks: {
-              callback: (value) => formatDate(new Date(value))
-            }
           }
         }
       };
