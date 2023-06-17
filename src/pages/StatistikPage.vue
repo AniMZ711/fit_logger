@@ -12,20 +12,20 @@
       <q-select filled v-model="single" :options="options.daten" label="Zeitraum" style="width: 250px" color="black"
         bg-color="green">
         <template v-slot:prepend>
-          <q-icon name="event" />
+          <q-icon name="event" /> <!-- Dropdown für Auswahl des Zeitraums-->
         </template>
       </q-select>
 
       <q-select filled v-model="multiple" multiple :options="options.werte" label="Daten" style="width: 250px"
         color="black" bg-color="green">
         <template v-slot:prepend>
-          <q-icon name="addchart" />
+          <q-icon name="addchart" /> <!-- Dropdown für Auswahl des Datenarten-->
         </template>
       </q-select>
     </div>
   </div>
 
-  <div>
+  <div> <!-- Checkboxen für die Auswahl-->
     <q-checkbox v-model = "showProtein" label = "Eiweiß" />
     <q-checkbox v-model = "showFat" label = "Fett" />
     <q-checkbox v-model = "showCarbs" label = "Kohlenhydrate" />
@@ -49,23 +49,43 @@ import Chart from "chart.js/auto";
 
 export default {
   setup() {
+    const single = ref('');
+
+    const showProtein = ref(false); // Variable hinzugefügt
+    const showFat = ref(false);
+    const showCarbs = ref(false);
+    //const showkcal = ref(false);
+
     //Referenzen für Datenbereich und ausgewählte Optionen
     const dateRange = ref({
       startDate: subtractDays(new Date(), 6), // Startdatum = Aktuelles Datum - 6 Tage
       endDate: new Date() // Enddatum = Aktuelles Datum
     });
 
-      const fatData = ref([]);
+      const fatData = ref([]); //Referenz für alle Werte
       const proteinData = ref([]);
       const carbsData = ref([]);
-      const kcalData = ref([]);
+      //const kcalData = ref([]);
       let chartInstance = null; //zum zurücksetzen des Charts damit ein neues angezeigt werden kann
       let maxDataValue = 0; // Maximalwert der Daten
 
-    function subtractDays(date, days) {
+    function subtractDays(date, days) { //Zum Subtrahieren von x-Tagen von dem aktuellen Datum
       const result = new Date(date);
       result.setDate(result.getDate() - days);
       return result.toISOString().split("T")[0];
+    }
+
+    function formatDate(date) {
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+      return `${day}.${month}.${year}`;
+    }
+
+    function formatXAxisLabel(date) {
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      return `${day}.${month}`;
     }
 
     //Funktion zum Generieren der X-Achsenbeschriftungen
@@ -76,7 +96,7 @@ export default {
 
       //Schleife zum durchlaufen der Daten
       for (let date = startDate; date <= endDate; date.setDate(date.getDate() + 1)) {
-        labels.push(date.toISOString().split("T")[0]);
+        labels.push(formatXAxisLabel(date));
       }
       return labels;
     }
@@ -120,23 +140,26 @@ export default {
       return stepSize;
     }
 
-      function createChart(ctx) {
+      function createChart(ctx) { // Überprüfung, ob bereits eine Chart-Instanz existiert, um sie zurückzusetzen
         if (chartInstance) {
         chartInstance.destroy();
         }
 
         // Abfrage der Daten aus dem Webstorage
-        const storedData = JSON.parse(localStorage.getItem("meals"));
+        const storedData = JSON.parse(localStorage.getItem("meals")) || []; //JSon parse to list, damit es iterable wird
+        const dataValues = Object.values(storedData);
+
           proteinData.value = [];
           fatData.value = [];
           carbsData.value = [];
-          kcalData.value = [];
+          //kcalData.value = [];
+
         // Iteration über die gespeicherten Daten im Webstorage
-        for (const data of storedData) {
+        for (const data of dataValues) {
           fatData.value.push(data.fat);
           proteinData.value.push(data.protein);
           carbsData.value.push(data.carbs);
-          kcalData.value.push(data.kcal);
+          //kcalData.value.push(data.kcal);
         }
 
 
@@ -144,8 +167,8 @@ export default {
         labels: getLabels(), //Beschriftung der x-achse, basierend auf dem gewählten datum
         datasets: [] //leeres Array für die Datensätze des Diagramms
         };
-          //ProteinData, fatData und carbdata noch ändern (max fragen welche Variablen es in der DB sind pro Tag)
-      if (showProtein.value) {
+
+      if (showProtein.value) { //Überprüfung, ob die Checkbox für Eiweiß ausgewählt ist
         chartData.datasets.push({
           label: "Eiweiß",
           data: proteinData.value,
@@ -174,7 +197,7 @@ export default {
         });
         maxDataValue = Math.max(maxDataValue, Math.max(...carbsData.value));
       }
-
+/*
       if (showKcal.value) {
         chartData.datasets.push({
           label: "kcal",
@@ -183,7 +206,7 @@ export default {
           fill: false
         });
         maxDataValue = Math.max(maxDataValue, Math.max(...kcalData.value));
-      }
+      }*/
 
       const chartOptions = {
         scales: {
@@ -200,12 +223,15 @@ export default {
             title: {
               display: true,
               text: "Tag"
+            },
+            ticks: {
+              callback: (value) => formatDate(new Date(value))
             }
           }
         }
       };
 
-      chartInstance = new Chart(ctx, {
+      chartInstance = new Chart(ctx, { //Erstellung des Chart mit den Daten und Optionen
         type: "line",
         data: chartData,
         options: chartOptions
@@ -249,9 +275,10 @@ export default {
       dateRange,
       showProtein,
       showFat,
-      showCarbs
+      showCarbs,
+      //showKcal
     };
-  }
+  },
 };
 </script>
 
