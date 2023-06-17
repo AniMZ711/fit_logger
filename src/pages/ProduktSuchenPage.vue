@@ -94,7 +94,7 @@ export default defineComponent({
   text-align: center;
 }
 .Ausgabebereich1 {
-  margin-top: 8em;
+  margin-top: 12em;
   text-align: center;
 }
 </style>
