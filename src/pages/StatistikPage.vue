@@ -33,8 +33,6 @@
 
   <div>
       <h2>Statistik für den Zeitraum:</h2>
-      <p>Startdatum: {{ dateRange.startDate }}</p>
-      <p>Enddatum: {{ dateRange.endDate }}</p>
     </div>
   
   <div>
@@ -51,10 +49,10 @@ export default {
   setup() {
     const single = ref('');
 
-    const showProtein = ref(false); // Variable hinzugefügt
-    const showFat = ref(false);
-    const showCarbs = ref(false);
-    //const showkcal = ref(false);
+    const showProtein = ref(true); //Damit die Checkboxen ausgewählt sind als default
+    const showFat = ref(true);
+    const showCarbs = ref(true);
+    const showKcal = ref(false);
 
     //Referenzen für Datenbereich und ausgewählte Optionen
     const dateRange = ref({
@@ -65,7 +63,7 @@ export default {
       const fatData = ref([]); //Referenz für alle Werte
       const proteinData = ref([]);
       const carbsData = ref([]);
-      //const kcalData = ref([]);
+      const kcalData = ref([]);
       let chartInstance = null; //zum zurücksetzen des Charts damit ein neues angezeigt werden kann
       let maxDataValue = 0; // Maximalwert der Daten
 
@@ -76,13 +74,13 @@ export default {
     }
 
 
-
     function formatXAxisLabel(date) {
       const formattedDate = new Date(date);
       const day = String(formattedDate.getDate()).padStart(2, "0");
       const month = String(formattedDate.getMonth() + 1).padStart(2, "0");
       return `${day}.${month}`;
     }
+
 
     //Funktion zum Generieren der X-Achsenbeschriftungen
     function getLabels() {
@@ -98,6 +96,8 @@ export default {
       }
       return labels;
     }
+
+
 
     //Funktion wird verwendet sobald die Komponente montiert wurde (Zeitpunkt an dem das DOM (document object Model)-Element der Komponente bereit ist auf dem Bildschirm angezeigt zu werden), 
     onMounted(() => {
@@ -119,17 +119,18 @@ export default {
 
       watch(showCarbs, () => {
         createChart(ctx);
-      });      
+      });  
     });
 
-    function calculateStepSize(maxValue) {
-      const stepSizes = [0.1, 0.2, 0.5, 1, 2, 5, 10, 20, 50, 100];
-      const maxSteps = 10;
-      const maxStepValue = Math.ceil(maxValue / maxSteps);
-      let stepSize = 1;
 
-      for (const size of stepSizes) {
-        if (maxStepValue <= size) {
+    function calculateStepSize(maxValue) {
+      const stepSizes = [25, 50]; //hierdruch wird ermöglicht, eine vordefinierte Auswahl an Schrittgrößen zu haben, aus der die Funktion wählen kann
+      const maxSteps = 7;
+      const maxStepValue = Math.ceil(maxValue / maxSteps);
+      let stepSize = 1; //wird verwendet wenn kein anderer Wert gefunden wird
+
+      for (const size of stepSizes) { //Dient dazu eine geeignete Schrittgröße zu finden indem sie geprüft wird ob maxStepValue kleiner oder gleich der aktuellen size ist
+        if (maxStepValue <= size) { // wird hiermit erreicht
           stepSize = size;
           break;
         }
@@ -137,27 +138,29 @@ export default {
       return stepSize;
     }
 
+
       function createChart(ctx) { // Überprüfung, ob bereits eine Chart-Instanz existiert, um sie zurückzusetzen
         if (chartInstance) {
         chartInstance.destroy();
         }
+            // Abfrage der Daten aus dem Webstorage
+    const storedData = JSON.parse(localStorage.getItem("meals")) || []; //JSon parse to list, damit es iterable wird
+    const dataValues = Object.values(storedData);
 
-        // Abfrage der Daten aus dem Webstorage
-        const storedData = JSON.parse(localStorage.getItem("meals")) || []; //JSon parse to list, damit es iterable wird
-        const dataValues = Object.values(storedData);
+    proteinData.value = [];
+    fatData.value = [];
+    carbsData.value = [];
+    kcalData.value = [];
 
-          proteinData.value = [];
-          fatData.value = [];
-          carbsData.value = [];
-          //kcalData.value = [];
+    // Iteration über die gespeicherten Daten im Webstorage
+    for (const data of dataValues) {
+      fatData.value.push(data.fat);
+      proteinData.value.push(data.protein);
+      carbsData.value.push(data.carbs);
+      kcalData.value.push(data.kcal);
+    }
 
-        // Iteration über die gespeicherten Daten im Webstorage
-        for (const data of dataValues) {
-          fatData.value.push(data.fat);
-          proteinData.value.push(data.protein);
-          carbsData.value.push(data.carbs);
-          //kcalData.value.push(data.kcal);
-        }
+
 
 
       const chartData = {
@@ -194,7 +197,7 @@ export default {
         });
         maxDataValue = Math.max(maxDataValue, Math.max(...carbsData.value));
       }
-/*
+
       if (showKcal.value) {
         chartData.datasets.push({
           label: "kcal",
@@ -203,7 +206,7 @@ export default {
           fill: false
         });
         maxDataValue = Math.max(maxDataValue, Math.max(...kcalData.value));
-      }*/
+      }
 
       const chartOptions = {
         scales: {
@@ -224,6 +227,10 @@ export default {
           }
         }
       };
+
+      if(showKcal.value){
+        chartOptions.scales.y.ticks.stepSize = calculateStepSize(maxDataValue * 2)
+      }
 
       chartInstance = new Chart(ctx, { //Erstellung des Chart mit den Daten und Optionen
         type: "line",
@@ -257,6 +264,18 @@ export default {
             endDate: endMonth.toISOString().split("T")[0],
           };
         }
+
+      if (singleVal === "Kalorien") {
+        showProtein.value = false;
+        showFat.value = false;
+        showCarbs.value = false;
+        showKcal.value = true;
+      } else {
+        showProtein.value = true;
+        showFat.value = true;
+        showCarbs.value = true;
+        showKcal.value = false;
+      }
     });
 
     return {
@@ -270,7 +289,7 @@ export default {
       showProtein,
       showFat,
       showCarbs,
-      //showKcal
+      showKcal
     };
   },
 };
