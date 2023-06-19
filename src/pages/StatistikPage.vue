@@ -44,6 +44,15 @@
 <script>
 import { ref, onMounted, watch } from "vue";
 import Chart from "chart.js/auto";
+import {
+  QBtn,
+  QToolbarTitle,
+  QToolbar,
+  QHeader,
+  QIcon,
+  QSelect,
+  QCheckbox
+} from 'quasar';
 
 export default {
   setup() {
