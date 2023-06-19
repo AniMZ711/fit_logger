@@ -17,7 +17,7 @@
       <q-input color="green" filled v-model="searchQuery" label="Suche die Produkte, die du kopomnieren möchtest ... "
         type="text">
         <template v-slot:after>
-          <q-btn rounded size="lg" color="green" icon="search" @click="searchProducts"></q-btn>
+          <q-btn rounded size="lg" color="green" icon="search" @click="searchProducts">Test</q-btn>
         </template>
       </q-input>
     </div>
