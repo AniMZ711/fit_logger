@@ -121,6 +121,7 @@ export default defineComponent({
         protein: 0,
         fat: 0,
       },
+      dailyConsumption: JSON.parse(localStorage.getItem("dailyConsumption")),
       editMode: false,
       pageName: "Mein Ziel", //bei Veränderung wird der Seitentitel automatisch angepasst
     };
@@ -149,10 +150,51 @@ export default defineComponent({
       window.localStorage.setItem("Goal", JSON.stringify(this.newGoal));
       this.goal = { ...this.newGoal };
       this.editMode = false;
+      this.setDailyConsumption();
     },
     cancelEdit() {
       this.newGoal = { ...this.goal };
       this.editMode = false;
+    },
+    setDailyConsumption() {
+      this.dailyConsumption.caloriesPercentage = this.calculateCaloriesValue(
+        this.dailyConsumption.calories,
+        this.goal.calories
+      );
+      this.dailyConsumption.carbsPercentage = this.calculateOtherValues(
+        this.dailyConsumption.carbs,
+        this.goal.carbs
+      );
+      this.dailyConsumption.proteinPercentage = this.calculateOtherValues(
+        this.dailyConsumption.protein,
+        this.goal.protein
+      );
+      this.dailyConsumption.fatPercentage = this.calculateOtherValues(
+        this.dailyConsumption.fat,
+        this.goal.fat
+      );
+      window.localStorage.setItem(
+        "dailyConsumption",
+        JSON.stringify(this.dailyConsumption)
+      );
+    },
+    calculateIngredientValues(quantity) {
+      const factor = quantity / this.selectedProduct.quantity;
+      const meal = {
+        name: this.selectedProduct.name,
+        quantity: quantity,
+        calories: this.selectedProduct.calories * factor,
+        carbs: this.selectedProduct.carbs * factor,
+        protein: this.selectedProduct.protein * factor,
+        fat: this.selectedProduct.fat * factor,
+      };
+      this.addMeal(meal);
+    },
+    calculateCaloriesValue(dailyConsumptionValue, goalValue) {
+      return parseFloat(((dailyConsumptionValue / goalValue) * 100).toFixed(2));
+    },
+    calculateOtherValues(dailyConsumptionValue, goalValue) {
+      return parseFloat(dailyConsumptionValue / goalValue);
     },
   },
 });
