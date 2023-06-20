@@ -16,6 +16,14 @@
         <div class="col-2"></div>
         <div class="col-8 text-center self-center">
           <DatePicker @newSelectedDate="setDate"> </DatePicker>
+          <q-btn
+            v-if="mealEdited"
+            round
+            color="green"
+            icon="edit"
+            @click="undoEdit"
+          >
+          </q-btn>
         </div>
         <div class="col-2"></div>
       </div>
@@ -242,6 +250,8 @@ export default defineComponent({
       },
       date: "",
       mealToEdit: {},
+      editedMeal: {},
+      mealEdited: false,
       options: ref([
         { text: "Frühstück", value: "Frühstück" },
         { text: "Mittagessen", value: "Mittagessen" },
@@ -297,6 +307,7 @@ export default defineComponent({
         fat: this.dailyConsumption.fat - meal.fat,
       };
       this.mealToEdit = { ...meal };
+      this.editedMeal = { ...meal };
       this.quantity = this.mealToEdit.quantity;
       this.editMode = true;
     },
@@ -328,8 +339,40 @@ export default defineComponent({
         JSON.stringify(this.dailyConsumption)
       );
       this.filterMeals();
-      this.mealToEdit = {};
       this.editMode = false;
+      this.mealEdited = true;
+    },
+
+    undoEdit() {
+      if (this.editIndex !== -1) {
+        this.meals[this.editIndex] = this.editedMeal;
+        window.localStorage.setItem("meals", JSON.stringify(this.meals));
+      }
+
+      this.dailyConsumption = {
+        date: this.dailyConsumption.date,
+        calories:
+          this.dailyConsumption.calories -
+          this.mealToEdit.calories +
+          this.editedMeal.calories,
+        carbs:
+          this.dailyConsumption.carbs -
+          this.mealToEdit.carbs +
+          this.editedMeal.carbs,
+        protein:
+          this.dailyConsumption.protein -
+          this.mealToEdit.protein +
+          this.editedMeal.protein,
+        fat:
+          this.dailyConsumption.fat - this.mealToEdit.fat + this.editedMeal.fat,
+      };
+      this.setDailyConsumption();
+      window.localStorage.setItem(
+        "dailyConsumption",
+        JSON.stringify(this.dailyConsumption)
+      );
+      this.filterMeals();
+      this.mealEdited = false;
     },
 
     calculateIngredientValues(quantity) {
@@ -344,9 +387,9 @@ export default defineComponent({
         protein: this.mealToEdit.protein * factor,
         fat: this.mealToEdit.fat * factor,
       };
-      console.log(this.mealToEdit);
       this.editMeal();
     },
+
     setDailyConsumption() {
       this.dailyConsumption.caloriesPercentage = this.calculateCaloriesValue(
         this.dailyConsumption.calories,
