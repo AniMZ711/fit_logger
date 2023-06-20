@@ -382,10 +382,10 @@ export default defineComponent({
         date: this.mealToEdit.date,
         time: this.mealToEdit.time,
         quantity: quantity,
-        calories: this.mealToEdit.calories * factor,
-        carbs: this.mealToEdit.carbs * factor,
-        protein: this.mealToEdit.protein * factor,
-        fat: this.mealToEdit.fat * factor,
+        calories: parseFloat((this.mealToEdit.calories * factor).toFixed(2)),
+        carbs: parseFloat((this.mealToEdit.carbs * factor).toFixed(2)),
+        protein: parseFloat((this.mealToEdit.protein * factor).toFixed(2)),
+        fat: parseFloat((this.mealToEdit.fat * factor).toFixed(2)),
       };
       this.editMeal();
     },
