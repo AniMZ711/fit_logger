@@ -260,7 +260,7 @@ export default defineComponent({
       ]),
       single: ref(null),
       selectedMealTime: ref("Frühstück"),
-      quantity: 100,
+      quantity: 0,
       editIndex: 0,
     };
   },
@@ -299,14 +299,18 @@ export default defineComponent({
 
     setUpEditMeal(meal) {
       this.editIndex = this.meals.indexOf(meal);
-      this.dailyConsumption = {
-        date: this.dailyConsumption.date,
-        calories: this.dailyConsumption.calories - meal.calories,
-        carbs: this.dailyConsumption.carbs - meal.carbs,
-        protein: this.dailyConsumption.protein - meal.protein,
-        fat: this.dailyConsumption.fat - meal.fat,
-      };
       this.mealToEdit = { ...meal };
+
+      if (this.mealToEdit.date == this.dailyConsumption.date) {
+        this.dailyConsumption = {
+          date: this.dailyConsumption.date,
+          calories: this.dailyConsumption.calories - meal.calories,
+          carbs: this.dailyConsumption.carbs - meal.carbs,
+          protein: this.dailyConsumption.protein - meal.protein,
+          fat: this.dailyConsumption.fat - meal.fat,
+        };
+      }
+
       this.editedMeal = { ...meal };
       this.quantity = this.mealToEdit.quantity;
       this.editMode = true;
@@ -326,18 +330,21 @@ export default defineComponent({
         window.localStorage.setItem("meals", JSON.stringify(this.meals));
       }
 
-      this.dailyConsumption = {
-        date: this.dailyConsumption.date,
-        calories: this.dailyConsumption.calories + this.mealToEdit.calories,
-        carbs: this.dailyConsumption.carbs + this.mealToEdit.carbs,
-        protein: this.dailyConsumption.protein + this.mealToEdit.protein,
-        fat: this.dailyConsumption.fat + this.mealToEdit.fat,
-      };
-      this.setDailyConsumption();
-      window.localStorage.setItem(
-        "dailyConsumption",
-        JSON.stringify(this.dailyConsumption)
-      );
+      if (this.mealToEdit.date == this.dailyConsumption.date) {
+        this.dailyConsumption = {
+          date: this.dailyConsumption.date,
+          calories: this.dailyConsumption.calories + this.mealToEdit.calories,
+          carbs: this.dailyConsumption.carbs + this.mealToEdit.carbs,
+          protein: this.dailyConsumption.protein + this.mealToEdit.protein,
+          fat: this.dailyConsumption.fat + this.mealToEdit.fat,
+        };
+        this.setDailyConsumption();
+        window.localStorage.setItem(
+          "dailyConsumption",
+          JSON.stringify(this.dailyConsumption)
+        );
+      }
+
       this.filterMeals();
       this.editMode = false;
       this.mealEdited = true;
@@ -348,29 +355,32 @@ export default defineComponent({
         this.meals[this.editIndex] = this.editedMeal;
         window.localStorage.setItem("meals", JSON.stringify(this.meals));
       }
-
-      this.dailyConsumption = {
-        date: this.dailyConsumption.date,
-        calories:
-          this.dailyConsumption.calories -
-          this.mealToEdit.calories +
-          this.editedMeal.calories,
-        carbs:
-          this.dailyConsumption.carbs -
-          this.mealToEdit.carbs +
-          this.editedMeal.carbs,
-        protein:
-          this.dailyConsumption.protein -
-          this.mealToEdit.protein +
-          this.editedMeal.protein,
-        fat:
-          this.dailyConsumption.fat - this.mealToEdit.fat + this.editedMeal.fat,
-      };
-      this.setDailyConsumption();
-      window.localStorage.setItem(
-        "dailyConsumption",
-        JSON.stringify(this.dailyConsumption)
-      );
+      if (this.editedMeal.date == this.dailyConsumption.date) {
+        this.dailyConsumption = {
+          date: this.dailyConsumption.date,
+          calories:
+            this.dailyConsumption.calories -
+            this.mealToEdit.calories +
+            this.editedMeal.calories,
+          carbs:
+            this.dailyConsumption.carbs -
+            this.mealToEdit.carbs +
+            this.editedMeal.carbs,
+          protein:
+            this.dailyConsumption.protein -
+            this.mealToEdit.protein +
+            this.editedMeal.protein,
+          fat:
+            this.dailyConsumption.fat -
+            this.mealToEdit.fat +
+            this.editedMeal.fat,
+        };
+        this.setDailyConsumption();
+        window.localStorage.setItem(
+          "dailyConsumption",
+          JSON.stringify(this.dailyConsumption)
+        );
+      }
       this.filterMeals();
       this.mealEdited = false;
     },
@@ -382,10 +392,10 @@ export default defineComponent({
         date: this.mealToEdit.date,
         time: this.mealToEdit.time,
         quantity: quantity,
-        calories: parseFloat((this.mealToEdit.calories * factor).toFixed(2)),
-        carbs: parseFloat((this.mealToEdit.carbs * factor).toFixed(2)),
-        protein: parseFloat((this.mealToEdit.protein * factor).toFixed(2)),
-        fat: parseFloat((this.mealToEdit.fat * factor).toFixed(2)),
+        calories: Math.round(this.mealToEdit.calories * factor),
+        carbs: Math.round(this.mealToEdit.carbs * factor),
+        protein: Math.round(this.mealToEdit.protein * factor),
+        fat: Math.round(this.mealToEdit.fat * factor),
       };
       this.editMeal();
     },
@@ -410,11 +420,11 @@ export default defineComponent({
     },
 
     calculateCaloriesValue(dailyConsumptionValue, goalValue) {
-      return parseFloat(((dailyConsumptionValue / goalValue) * 100).toFixed(2));
+      return Math.round((dailyConsumptionValue / goalValue) * 100);
     },
 
     calculateOtherValues(dailyConsumptionValue, goalValue) {
-      return dailyConsumptionValue / goalValue;
+      return parseFloat(dailyConsumptionValue / goalValue);
     },
 
     filterMeals() {
