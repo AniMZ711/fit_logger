@@ -184,7 +184,7 @@
                 rounded
                 color="green"
                 icon="cancel"
-                @click="toggleMealAddPopup()"
+                @click="addToMeals = false"
               >
               </q-btn>
             </div>
@@ -229,19 +229,120 @@ export default defineComponent({
       single: ref(null),
       selectedMealTime: ref("Frühstück"),
       date: "",
+      //codes: [4000521770808, 4305720019124, 4000540010701, 3449851328005],
+      code: 0,
+      scannedProducts: [
+        {
+          id: 4000521770808,
+          name: "Dr.Oetker Milchreis",
+          quantity: 312,
+          calories: 357,
+          carbs: 68,
+          protein: 11,
+          fat: 4,
+        },
+        {
+          id: 4305720019124,
+          name: "Teegut Studentenfutter",
+          quantity: 25,
+          calories: 124,
+          carbs: 10,
+          protein: 3,
+          fat: 2,
+        },
+        {
+          id: 4000540010701,
+          name: "Kölln Hafer-Porridge",
+          quantity: 100,
+          calories: 362,
+          carbs: 62,
+          protein: 12,
+          fat: 2,
+        },
+        {
+          id: 3449851328005,
+          name: "Aoste Stickado Classique",
+          quantity: 100,
+          calories: 510,
+          carbs: 4,
+          protein: 29,
+          fat: 42,
+        },
+      ],
     };
   },
   methods: {
     toggleScanner() {
       this.showScanner = !this.showScanner;
-      //this.open = !this.open;
     },
+
     onLoaded() {
       console.log(`Scanning now`);
     },
-    onDecode(text) {
-      console.log(`Decode text from QR code is ${text}`);
+    onDecode(codeString) {
+      this.toggleScanner();
+      this.code = parseInt(codeString);
+      if (this.code) {
+        console.log(this.code);
+      }
+
+      if (this.code == 4305720019124) {
+        this.selectedProduct = {
+          id: 4305720019124,
+          name: "Teegut Studentenfutter",
+          quantity: 25,
+          calories: 124,
+          carbs: 10,
+          protein: 3,
+          fat: 2,
+        };
+      }
+      if (this.code == 4000521770808) {
+        this.selectedProduct = {
+          id: 4000521770808,
+          name: "Dr.Oetker Milchreis",
+          quantity: 312,
+          calories: 357,
+          carbs: 68,
+          protein: 11,
+          fat: 4,
+        };
+      }
+      if (this.code == 4000540010701) {
+        this.selectedProduct = {
+          id: 4000540010701,
+          name: "Kölln Hafer-Porridge",
+          quantity: 100,
+          calories: 362,
+          carbs: 62,
+          protein: 12,
+          fat: 2,
+        };
+      }
+      if (this.code == 3449851328005) {
+        this.selectedProduct = {
+          id: 3449851328005,
+          name: "Aoste Stickado Classique",
+          quantity: 100,
+          calories: 510,
+          carbs: 4,
+          protein: 29,
+          fat: 42,
+        };
+      }
+
+      /* this.selectedProduct = {
+        id: 3449851328005,
+        name: "Aoste Stickado Classique",
+        quantity: 100,
+        calories: 510,
+        carbs: 4,
+        protein: 29,
+        fat: 42,
+      }; */
+      this.addToMeals = true;
     },
+
     searchProduct() {
       const filteredProducts = this.products.filter((product) => {
         return product.name
@@ -250,9 +351,16 @@ export default defineComponent({
       });
       this.filteredProducts = filteredProducts;
     },
+
     toggleMealAddPopup(product) {
-      this.selectedProduct = { ...product };
-      this.addToMeals = !this.addToMeals;
+      if (this.code > 0) {
+        this.selectedProduct = this.scannedProducts.filter((product) => {
+          return product.id.includes(this.code);
+        });
+      } else {
+        this.selectedProduct = { ...product };
+      }
+      this.addToMeals = true;
     },
     addMeal(food) {
       const today = new Date();
@@ -287,7 +395,7 @@ export default defineComponent({
         "dailyConsumption",
         JSON.stringify(this.dailyConsumption)
       );
-      this.toggleMealAddPopup();
+      this.addToMeals = false;
     },
 
     setDailyConsumption() {

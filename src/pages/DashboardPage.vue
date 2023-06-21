@@ -172,7 +172,7 @@
           <ul>
             <li
               class="dashboard-meals-list"
-              v-for="product in meals"
+              v-for="product in meals.slice(0, 5)"
               :key="product.id"
             >
               <details>
@@ -204,7 +204,7 @@ export default defineComponent({
       about: ref(false),
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
 
-      meals: JSON.parse(window.localStorage.getItem("meals")).slice(0, 5) || [],
+      meals: JSON.parse(window.localStorage.getItem("meals")) || [],
 
       goal: JSON.parse(window.localStorage.getItem("Goal")) || {
         calories: 2400,
