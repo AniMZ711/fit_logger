@@ -150,41 +150,40 @@ export default defineComponent({
       });
       return total;
     },
+  
     saveMeal() {
       const meal = {
         name: this.mealName,
-        products: this.selectedProductsList,
-        totalQuantity: this.calculateMealTotal("quantity"),
-        totalCalories: this.calculateMealTotal("calories"),
-        totalCarbs: this.calculateMealTotal("carbs"),
-        totalProtein: this.calculateMealTotal("protein"),
-        totalFat: this.calculateMealTotal("fat"),
+        id: Date.now(),
+        quantity: this.calculateMealTotal("quantity"),
+        calories: this.calculateMealTotal("calories"),
+        carbs: this.calculateMealTotal("carbs"),
+        protein: this.calculateMealTotal("protein"),
+        fat: this.calculateMealTotal("fat"),
       };
-
-      const existingProducts = window.localStorage.getItem("products");
-      const products = existingProducts
-        ? JSON.parse(existingProducts)
-        : {
-            totalQuantity,
-            totalCalories,
-            totalFat,
-            totalProtein,
-            totalCarbs,
-          };
-
+      console.log(meal);
+      const existingProducts = JSON.parse(window.localStorage.getItem("products"));
+      
       // Überprüfen, ob die Mahlzeit bereits im products-Array gespeichert wurde
-      const existingProductIndex = products.findIndex(
-        (p) => p.name === meal.name
-      );
-      if (existingProductIndex !== -1) {
+      const existingProductIndex = existingProducts.indexOf(meal);
+      if (existingProductIndex === null) {
         // Mahlzeit aktualisieren
         products.splice(existingProductIndex, 1, meal);
       } else {
         // Neue Mahlzeit hinzufügen
-        products.push(meal);
+        existingProducts.push(meal);
       }
 
-      window.localStorage.setItem("products", JSON.stringify(products));
+      window.localStorage.setItem("products", JSON.stringify(existingProducts));
+      
+      this.mealName= "";
+      this.searchTerm= "";
+      this.searchResults= [];
+      this.selectedProducts= [];
+      this.productFactor= {};
+      meal = {};
+      existingProducts = [];
+      existingProductIndex = 0;
     },
   },
 });
