@@ -7,8 +7,11 @@
     </q-toolbar>
   </q-header>
 
-  <div class="row">
-    <div class="Eingabebereich" style="padding-bottom: 50px">
+  <div class="row text-center item-center">
+    <div class="col col-1"></div>
+    <div class="col col-10">
+      <!-- <div class="Eingabebereich" style="padding-bottom: 50px"> -->
+      <br />
       <form v-if="!editMode" @submit.prevent="addProduct">
         <q-input
           filled
@@ -157,13 +160,28 @@
           max="5000"
           required
         />
-        <q-btn round color="green" icon="update" type="submit"></q-btn>
-        <q-btn round color="green" icon="cancel" @click="cancelEdit"></q-btn>
+        <div class="AktualisierenButton">
+          <q-btn rounded color="green" icon="update" type="submit" size="lg"
+            >Aktualisieren</q-btn
+          >
+        </div>
+        <div class="AbbrechenButton">
+          <q-btn
+            rounded
+            color="green"
+            icon="cancel"
+            @click="cancelEdit"
+            size="lg"
+            >Abbrechen</q-btn
+          >
+        </div>
       </form>
+      <!-- </div> -->
     </div>
+    <div class="col col-1"></div>
   </div>
 
-  <div class="Ausgabebereich">
+  <!--  <div class="Ausgabebereich">
     <q-scroll-area style="height: 240px; max-width: 90%">
       <div class="ScrollContainer">
         <ul>
@@ -181,7 +199,38 @@
         </ul>
       </div>
     </q-scroll-area>
-  </div>
+  </div> -->
+
+  <q-page-container class="editmeals">
+    <div class="row">
+      <div class="col col-1"></div>
+      <div class="col col-10 text-center items-center">
+        <ul>
+          <li v-for="item in items" :key="item.id">
+            <details>
+              <summary>
+                <span class="word"> {{ item.name }}</span>
+                <span class="badge"> {{ item.calories }} kcal </span>
+              </summary>
+              Kalorien: {{ item.calories }}
+              Kohlenhydrate:
+              {{ item.carbs }} Proteine: {{ item.protein }} Fett:
+              {{ item.fat }}
+              <q-btn round color="green" icon="edit" @click="editProduct(item)">
+              </q-btn>
+              <q-btn
+                round
+                color="green"
+                icon="delete"
+                @click="deleteProduct(item)"
+              ></q-btn>
+            </details>
+          </li>
+        </ul>
+      </div>
+      <div class="col col-1"></div>
+    </div>
+  </q-page-container>
 </template>
 
 <script>
@@ -203,7 +252,7 @@ export default defineComponent({
       },
       editMode: false,
       editProductIndex: null,
-      pageName: "Produkt einspeichern", //bei Veränderung wird der Seitentitel automatisch angepasst
+      pageName: "Produkte", //bei Veränderung wird der Seitentitel automatisch angepasst
     };
   },
   created() {
@@ -289,10 +338,18 @@ export default defineComponent({
   margin-top: 2em;
   text-align: center;
 }
-
 .Ausgabebereich {
   margin-top: 30em;
+  position: fixed;
+  left: 5%;
+  margin-right: 5%;
+}
+.AktualisierenButton {
+  margin-top: 1em;
   text-align: center;
-  position: sticky;
+}
+.AbbrechenButton {
+  margin-top: 1em;
+  text-align: center;
 }
 </style>

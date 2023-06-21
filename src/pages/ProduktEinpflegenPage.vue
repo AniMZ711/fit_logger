@@ -26,11 +26,11 @@
             class="addButton"
             rounded
             color="green"
-            icon="save"
+            icon="edit"
             to="/produkterstellen"
             size="lg"
           >
-            Produkt einspeichern</q-btn
+            Produkte</q-btn
           >
         </div>
 
@@ -39,7 +39,7 @@
             class="addButton"
             rounded
             color="green"
-            icon="save"
+            icon="add"
             to="/essenkomponieren"
             size="lg"
           >

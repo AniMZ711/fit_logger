@@ -9,28 +9,32 @@
     </q-toolbar>
   </q-header>
 
-  <div class="searchbar">
-    <!--style="max-width: 300px" in class tag-->
-    <q-input
-      color="green"
-      filled
-      v-model="searchQuery"
-      label="Produkt suchen"
-      type="text"
-    >
-      <template v-slot:after>
-        <q-btn
-          rounded
-          size="lg"
+  <q-page-container class="editmeals">
+    <div class="row item-center">
+      <div class="col col-1"></div>
+      <div class="col col-10 text-center items-center">
+        <!--style="max-width: 300px" in class tag-->
+        <q-input
           color="green"
-          icon="search"
-          @click="searchProduct"
-        ></q-btn>
-      </template>
-    </q-input>
-  </div>
+          filled
+          v-model="searchQuery"
+          label="Produkt suchen"
+          type="text"
+        >
+          <template v-slot:after>
+            <q-btn
+              rounded
+              size="lg"
+              color="green"
+              icon="search"
+              @click="searchProduct"
+            ></q-btn>
+          </template>
+        </q-input>
+      </div>
+    </div>
 
-  <div class="Ausgabebereich1">
+    <!--  <div class="Ausgabebereich1">
     <q-scroll-area style="height: 400px; max-width: 90%">
       <div class="ScrollContainer">
         <ul>
@@ -44,8 +48,30 @@
       </div>
     </q-scroll-area>
   </div>
-</template>
+</template> -->
 
+    <div class="row">
+      <div class="col col-1"></div>
+      <div class="col col-10 text-center items-center">
+        <ul>
+          <li v-for="product in filteredProducts" :key="product.id">
+            <details>
+              <summary>
+                <span class="word"> {{ product.name }}</span>
+                <span class="badge"> {{ product.calories }} kcal </span>
+              </summary>
+              Kalorien: {{ product.calories }}
+              Kohlenhydrate:
+              {{ product.carbs }} Proteine: {{ product.protein }} Fett:
+              {{ product.fat }}
+            </details>
+          </li>
+        </ul>
+      </div>
+      <div class="col col-1"></div>
+    </div>
+  </q-page-container>
+</template>
 <script>
 import { defineComponent } from "vue";
 
