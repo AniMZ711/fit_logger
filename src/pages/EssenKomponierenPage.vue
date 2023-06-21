@@ -103,45 +103,6 @@
           >Speichern</q-btn
         >
       </div>
-      <div class="show-all-products">
-        <q-btn
-          @click="showProducts = true"
-          label="Alle anzeigen"
-          icon="storage"
-          rounded
-          color="green"
-          size="lg"
-        >
-        </q-btn>
-
-        <q-dialog v-model="showProducts">
-          <q-card class="q-pa-md">
-            <q-btn
-              class="absolute"
-              style="top: 10px; right: 10px"
-              flat
-              icon="close"
-              color="primary"
-              v-close-popup
-            />
-
-            <div>
-              <h2>Alle Produkte</h2>
-              <div>
-                <ul>
-                  <li
-                    class="dashboard-meals-list"
-                    v-for="product in products"
-                    :key="product.id"
-                  >
-                    {{ product.name }}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </q-card>
-        </q-dialog>
-      </div>
     </div>
   </div>
 </template>
