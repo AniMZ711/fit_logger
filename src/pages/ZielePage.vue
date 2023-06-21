@@ -185,20 +185,8 @@ export default defineComponent({
         JSON.stringify(this.dailyConsumption)
       );
     },
-    calculateIngredientValues(quantity) {
-      const factor = quantity / this.selectedProduct.quantity;
-      const meal = {
-        name: this.selectedProduct.name,
-        quantity: quantity,
-        calories: this.selectedProduct.calories * factor,
-        carbs: this.selectedProduct.carbs * factor,
-        protein: this.selectedProduct.protein * factor,
-        fat: this.selectedProduct.fat * factor,
-      };
-      this.addMeal(meal);
-    },
     calculateCaloriesValue(dailyConsumptionValue, goalValue) {
-      return parseFloat(((dailyConsumptionValue / goalValue) * 100).toFixed(2));
+      return Math.round((dailyConsumptionValue / goalValue) * 100);
     },
     calculateOtherValues(dailyConsumptionValue, goalValue) {
       return parseFloat(dailyConsumptionValue / goalValue);

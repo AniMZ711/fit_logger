@@ -204,13 +204,13 @@ export default defineComponent({
       about: ref(false),
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
 
-      meals: JSON.parse(window.localStorage.getItem("meals")) || [],
+      meals: JSON.parse(window.localStorage.getItem("meals")).slice(0, 5) || [],
 
       goal: JSON.parse(window.localStorage.getItem("Goal")) || {
-        calories: 1800,
-        carbs: 250,
+        calories: 2400,
+        carbs: 340,
         protein: 80,
-        fat: 50,
+        fat: 80,
       },
 
       dailyConsumption: JSON.parse(
@@ -292,13 +292,6 @@ export default defineComponent({
         })
       );
     }
-    //meals
-    /* if (!window.localStorage.getItem("meals")) {
-      window.localStorage.setItem(
-        "meals",
-        JSON.stringify([])
-      );
-    } */
   },
 
   //die Mahlzeiten müssen importiert werden, damit man sie anzeigen lassen kann

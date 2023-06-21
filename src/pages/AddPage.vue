@@ -255,7 +255,6 @@ export default defineComponent({
       this.addToMeals = !this.addToMeals;
     },
     addMeal(food) {
-      //meal
       const today = new Date();
       const todayString =
         today.getFullYear() +
@@ -314,17 +313,15 @@ export default defineComponent({
       const meal = {
         name: this.selectedProduct.name,
         quantity: quantity,
-        calories: parseFloat(
-          (this.selectedProduct.calories * factor).toFixed(2)
-        ),
-        carbs: parseFloat((this.selectedProduct.carbs * factor).toFixed(2)),
-        protein: parseFloat((this.selectedProduct.protein * factor).toFixed(2)),
-        fat: parseFloat((this.selectedProduct.fat * factor).toFixed(2)),
+        calories: Math.round(this.selectedProduct.calories * factor),
+        carbs: Math.round(this.selectedProduct.carbs * factor),
+        protein: Math.round(this.selectedProduct.protein * factor),
+        fat: Math.round(this.selectedProduct.fat * factor),
       };
       this.addMeal(meal);
     },
     calculateCaloriesValue(dailyConsumptionValue, goalValue) {
-      return parseFloat(((dailyConsumptionValue / goalValue) * 100).toFixed(2));
+      return Math.round((dailyConsumptionValue / goalValue) * 100);
     },
     calculateOtherValues(dailyConsumptionValue, goalValue) {
       return parseFloat(dailyConsumptionValue / goalValue);
