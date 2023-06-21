@@ -32,13 +32,54 @@
             size="lg"
             color="green"
             icon="search"
-            @click="searchProducts"
+            @click="
+              showSearch1 = true;
+              searchProducts();
+            "
           ></q-btn>
         </template>
       </q-input>
     </div>
 
-    <div v-if="searchResults.length > 0">
+    <q-dialog v-model="showSearch1">
+      <q-card class="q-pa-md">
+        <q-btn
+          class="absolute"
+          style="top: 10px; right: 10px"
+          flat
+          icon="close"
+          color="primary"
+          v-close-popup
+        />
+
+        <div>
+          <div>
+            <ul>
+              <li v-for="product in searchResults" :key="product.id">
+                <details>
+                  <summary>
+                    <label>
+                      <input
+                        type="checkbox"
+                        v-model="selectedProducts[product.id]"
+                      />
+                    </label>
+                    <span class="word"> {{ product.name }}</span>
+                    <span class="badge"> {{ product.calories }} kcal </span>
+                  </summary>
+                  Kalorien: {{ product.calories }}
+                  Kohlenhydrate:
+                  {{ product.carbs }} Proteine: {{ product.protein }} Fett:
+                  {{ product.fat }}
+                </details>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </q-card>
+    </q-dialog>
+
+    <!-- <div v-if="searchResults.length > 0">
       <div class="AusgabebereichSuchergebnis">
         <h6>Wähle die Produkte aus, die du komponieren möchtest:</h6>
         <q-scroll-area style="height: 250px; max-width: 90%">
@@ -52,7 +93,7 @@
           </ul>
         </q-scroll-area>
       </div>
-    </div>
+    </div> -->
 
     <div>
       <div class="Mengenauswahl">
@@ -113,7 +154,7 @@ import { defineComponent, ref } from "vue";
 export default defineComponent({
   data() {
     return {
-      showProducts: ref(false),
+      showSearch1: ref(false),
       mealName: "",
       searchTerm: "",
       products: [],
