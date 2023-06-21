@@ -68,10 +68,9 @@
                     <span class="word"> {{ product.name }}</span>
                     <span class="badge"> {{ product.calories }} kcal </span>
                   </summary>
-                  Kalorien: {{ product.calories }}
-                  Kohlenhydrate:
-                  {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-                  {{ product.fat }}
+                  Kalorien: {{ product.calories }} | Kohlenhydrate:
+                  {{ product.carbs }}g | Proteine: {{ product.protein }}g |
+                  Fett: {{ product.fat }}g
                 </details>
               </li>
             </ul>
@@ -137,14 +136,12 @@
                 {{ calculateMealTotal("calories") }} kcal
               </span>
             </summary>
-            Gewicht: {{ calculateMealTotal("quantity") }} Gramm | Kalorien:
+            Gewicht: {{ calculateMealTotal("quantity") }}g | Kalorien:
             {{ calculateMealTotal("calories") }}
             | Kohlenhydrate:
-            {{ calculateMealTotal("carbs") }}
-            | Proteine:
-            {{ calculateMealTotal("protein") }}
-            | Fett:
-            {{ calculateMealTotal("fat") }}
+            {{ calculateMealTotal("carbs") }}g | Proteine:
+            {{ calculateMealTotal("protein") }}g | Fett:
+            {{ calculateMealTotal("fat") }}g
           </details>
 
           <!--  {{ calculateMealTotal("quantity") }} Gramm <br />

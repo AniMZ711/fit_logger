@@ -60,10 +60,9 @@
                 <span class="word"> {{ product.name }}</span>
                 <span class="badge"> {{ product.calories }} kcal </span>
               </summary>
-              Kalorien: {{ product.calories }}
-              Kohlenhydrate:
-              {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-              {{ product.fat }}
+              Kalorien: {{ product.calories }} | Kohlenhydrate:
+              {{ product.carbs }}g | Proteine: {{ product.protein }}g | Fett:
+              {{ product.fat }}g
             </details>
           </li>
         </ul>

@@ -37,7 +37,7 @@
 
       <q-input
         filled
-        label="Kohlenhydrate"
+        label="Kohlenhydrate in Gramm"
         color="green"
         type="number"
         id="carbs"
@@ -50,7 +50,7 @@
 
       <q-input
         filled
-        label="Protein"
+        label="Protein in Gramm"
         color="green"
         type="number"
         id="protein"
@@ -63,7 +63,7 @@
 
       <q-input
         filled
-        label="Fett"
+        label="Fett in Gramm"
         color="green"
         type="number"
         id="fat"
@@ -130,7 +130,7 @@ export default defineComponent({
       },
       dailyConsumption: JSON.parse(localStorage.getItem("dailyConsumption")),
       editMode: false,
-      pageName: "Mein Ziel", //bei Veränderung wird der Seitentitel automatisch angepasst
+      pageName: "Mein Tagesziel", //bei Veränderung wird der Seitentitel automatisch angepasst
     };
   },
   created() {
@@ -199,7 +199,7 @@ export default defineComponent({
 .Eingabebereich1 {
   position: fixed;
   width: 90%;
-  top: 20em;
+  top: 15em;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
