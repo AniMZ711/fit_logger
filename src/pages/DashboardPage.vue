@@ -292,13 +292,6 @@ export default defineComponent({
         })
       );
     }
-    //meals
-    /* if (!window.localStorage.getItem("meals")) {
-      window.localStorage.setItem(
-        "meals",
-        JSON.stringify([])
-      );
-    } */
   },
 
   //die Mahlzeiten müssen importiert werden, damit man sie anzeigen lassen kann
