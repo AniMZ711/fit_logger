@@ -1,7 +1,6 @@
 <template>
   <q-header class="stickyHeader">
     <q-toolbar>
-      <q-btn flat to="/essenkomponieren" icon="arrow_back" />
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
       <q-toolbar-title class="absolute-center">{{ pageName }}</q-toolbar-title>
       <!--Anzeige des Titels; Variable aus dem Script-->
@@ -10,27 +9,44 @@
 
   <div>
     <div class="NameEingeben">
-      <q-input color="green" label="Name der neuen Mahlzeit" type="text" id="mealNameInput" v-model="mealName" />
+      <q-input
+        color="green"
+        label="Name der neuen Mahlzeit"
+        type="text"
+        id="mealNameInput"
+        v-model="mealName"
+      />
     </div>
 
     <div class="Suchleiste">
-      <q-input color="green" filled v-model="searchQuery" label="Suche die Produkte, die du kopomnieren möchtest ... "
-        type="text">
+      <q-input
+        color="green"
+        filled
+        v-model="searchQuery"
+        label="Suche die Produkte, die du kopomnieren möchtest ... "
+        type="text"
+      >
         <template v-slot:after>
-          <q-btn rounded size="lg" color="green" icon="search" @click="searchProducts">Test</q-btn>
+          <q-btn
+            rounded
+            size="lg"
+            color="green"
+            icon="search"
+            @click="searchProducts"
+          ></q-btn>
         </template>
       </q-input>
     </div>
 
     <div v-if="searchResults.length > 0">
-      <div class="Ausgabebereich2">
-        <h6>Ergebnisse:</h6>
+      <div class="AusgabebereichSuchergebnis">
+        <h6>Wähle die Produkte aus, die du komponieren möchtest:</h6>
         <q-scroll-area style="height: 250px; max-width: 90%">
           <ul>
             <li v-for="product in searchResults" :key="product.id">
               <label>
                 <input type="checkbox" v-model="selectedProducts[product.id]" />
-                {{ product.name }} - {{ product.quantity }} Menge
+                {{ product.name }}
               </label>
             </li>
           </ul>
@@ -39,51 +55,65 @@
     </div>
 
     <div>
-      <h5>Summe:</h5>
-      <ul>
-        <li v-for="product in selectedProductsList" :key="product.id">
-          {{ formatFactor(productFactor[product.id]) }} - {{ product.name }} -
-          {{ calculateTotal(product, "quantity") }} Gesamt Menge,
-          {{ calculateTotal(product, "calories") }} Gesamt Kalorien,
+      <div class="Mengenauswahl">
+        <h6>Wähle die Menge:</h6>
+        <ul>
+          <li v-for="product in selectedProductsList" :key="product.id">
+            {{ product.name }}: {{ calculateTotal(product, "quantity") }} Gramm
+            &nbsp;
+
+            <!-- {{ calculateTotal(product, "calories") }} Gesamt Kalorien,
           {{ calculateTotal(product, "carbs") }} Gesamt Kohlenhydrate,
           {{ calculateTotal(product, "protein") }} Gesamt Protein,
-          {{ calculateTotal(product, "fat") }} Gesamt Fett
-          <select v-model="productFactor[product.id]">
-                <option value="1/4">1/4</option>
-                <option value="1/2">1/2</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-              </select>
-        </li>
-      </ul>
-      <p>
-        Gesamtsumme:
-        {{ calculateMealTotal("quantity") }} Gesamt Menge,
-        {{ calculateMealTotal("calories") }} Gesamt Kalorien,
-        {{ calculateMealTotal("carbs") }} Gesamt Kohlenhydrate,
-        {{ calculateMealTotal("protein") }} Gesamt Protein,
-        {{ calculateMealTotal("fat") }} Gesamt Fett
-      </p>
+          {{ calculateTotal(product, "fat") }} Gesamt Fett -->
+            <select v-model="productFactor[product.id]">
+              <option value="1/4">1/4</option>
+              <option value="1/2">1/2</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+
+      <div class="Summenübersicht">
+        <h6>Gesamtsumme:</h6>
+        {{ calculateMealTotal("quantity") }} Gramm <br />
+        {{ calculateMealTotal("calories") }} Kalorien <br />
+        {{ calculateMealTotal("carbs") }} Kohlenhydrate <br />
+        {{ calculateMealTotal("protein") }} Protein <br />
+        {{ calculateMealTotal("fat") }} Fett
+      </div>
+
       <div class="save-button">
-        <q-btn @click="saveMeal" :disabled="!isMealValid" icon="save" rounded color="green" size="lg"></q-btn>
+        <q-btn
+          @click="saveMeal"
+          :disabled="!isMealValid"
+          icon="save"
+          rounded
+          color="green"
+          size="lg"
+          >Speichern</q-btn
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   data() {
     return {
+      showProducts: ref(false),
       mealName: "",
       searchTerm: "",
       products: [],
@@ -150,7 +180,7 @@ export default defineComponent({
       });
       return total;
     },
-  
+
     saveMeal() {
       const meal = {
         name: this.mealName,
@@ -162,8 +192,10 @@ export default defineComponent({
         fat: this.calculateMealTotal("fat"),
       };
       console.log(meal);
-      const existingProducts = JSON.parse(window.localStorage.getItem("products"));
-      
+      const existingProducts = JSON.parse(
+        window.localStorage.getItem("products")
+      );
+
       // Überprüfen, ob die Mahlzeit bereits im products-Array gespeichert wurde
       const existingProductIndex = existingProducts.indexOf(meal);
       if (existingProductIndex === null) {
@@ -175,12 +207,12 @@ export default defineComponent({
       }
 
       window.localStorage.setItem("products", JSON.stringify(existingProducts));
-      
-      this.mealName= "";
-      this.searchTerm= "";
-      this.searchResults= [];
-      this.selectedProducts= [];
-      this.productFactor= {};
+
+      this.mealName = "";
+      this.searchTerm = "";
+      this.searchResults = [];
+      this.selectedProducts = [];
+      this.productFactor = {};
       meal = {};
       existingProducts = [];
       existingProductIndex = 0;
@@ -209,7 +241,19 @@ export default defineComponent({
   margin-bottom: 5em;
 }
 
-.Ausgabebereich2 {
+.show-all-products {
+  text-align: center;
+}
+
+.AusgabebereichSuchergebnis {
+  text-align: center;
+}
+
+.Mengenauswahl {
+  text-align: center;
+}
+
+.Summenübersicht {
   text-align: center;
 }
 </style>

@@ -81,7 +81,10 @@
           color="green"
           icon="cancel"
           @click="cancelEdit()"
-        ></q-btn>
+          size="lg"
+        >
+          Abbrechen
+        </q-btn>
 
         <q-btn
           v-if="!editMode"
@@ -89,17 +92,21 @@
           color="green"
           icon="edit"
           @click="editMode = true"
-        ></q-btn>
+          size="lg"
+        >
+          Ziel bearbeiten
+        </q-btn>
 
         <q-btn
           v-if="editMode"
           rounded
           color="green"
           icon="save"
-          round
           type="submit"
           padding="10px"
+          size="lg"
         >
+          Speichern
         </q-btn>
       </div>
     </form>

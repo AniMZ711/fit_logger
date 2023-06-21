@@ -7,8 +7,11 @@
     </q-toolbar>
   </q-header>
 
-  <div class="row">
-    <div class="Eingabebereich" style="padding-bottom: 50px">
+  <div class="row text-center item-center">
+    <div class="col col-1"></div>
+    <div class="col col-10">
+      <!-- <div class="Eingabebereich" style="padding-bottom: 50px"> -->
+      <br />
       <form v-if="!editMode" @submit.prevent="addProduct">
         <q-input
           filled
@@ -82,7 +85,7 @@
 
         <div class="SpeicherButton">
           <q-btn color="green" icon="save" type="submit" size="lg" rounded
-            >Speichern</q-btn
+            >Einspeichern</q-btn
           >
         </div>
       </form>
@@ -157,13 +160,28 @@
           max="5000"
           required
         />
-        <q-btn round color="green" icon="update" type="submit"></q-btn>
-        <q-btn round color="green" icon="cancel" @click="cancelEdit"></q-btn>
+        <div class="AktualisierenButton">
+          <q-btn rounded color="green" icon="update" type="submit" size="lg"
+            >Aktualisieren</q-btn
+          >
+        </div>
+        <div class="AbbrechenButton">
+          <q-btn
+            rounded
+            color="green"
+            icon="cancel"
+            @click="cancelEdit"
+            size="lg"
+            >Abbrechen</q-btn
+          >
+        </div>
       </form>
+      <!-- </div> -->
     </div>
+    <div class="col col-1"></div>
   </div>
 
-  <div class="Ausgabebereich">
+  <!--  <div class="Ausgabebereich">
     <q-scroll-area style="height: 240px; max-width: 90%">
       <div class="ScrollContainer">
         <ul>
@@ -181,16 +199,79 @@
         </ul>
       </div>
     </q-scroll-area>
+  </div> -->
+
+  <div class="row text-center item-center">
+    <div class="col col-1"></div>
+    <div class="col col-10">
+      <br />
+      <q-btn
+        @click="showProducts = true"
+        label="Produkt bearbeiten "
+        rounded
+        color="green"
+        size="lg"
+        icon="edit"
+      >
+      </q-btn>
+    </div>
+    <div class="col col-1"></div>
   </div>
+
+  <q-dialog v-model="showProducts">
+    <q-card class="q-pa-md">
+      <q-btn
+        class="absolute"
+        style="top: 10px; right: 10px"
+        flat
+        icon="close"
+        color="primary"
+        v-close-popup
+      />
+
+      <div>
+        <div>
+          <ul>
+            <li v-for="item in items" :key="item.id">
+              <details>
+                <summary>
+                  <span class="word"> {{ item.name }}</span>
+                  <span class="badge"> {{ item.calories }} kcal </span>
+                </summary>
+                Kalorien: {{ item.calories }}
+                Kohlenhydrate:
+                {{ item.carbs }} Proteine: {{ item.protein }} Fett:
+                {{ item.fat }}
+                <q-btn
+                  round
+                  color="green"
+                  icon="edit"
+                  @click="editProduct(item)"
+                >
+                </q-btn>
+                <q-btn
+                  round
+                  color="green"
+                  icon="delete"
+                  @click="deleteProduct(item)"
+                ></q-btn>
+              </details>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   data() {
     return {
       // is localStorage needed here?
+      showProducts: ref(false),
       items: JSON.parse(localStorage.getItem("products")) || [],
       newProduct: {
         id: null,
@@ -203,7 +284,9 @@ export default defineComponent({
       },
       editMode: false,
       editProductIndex: null,
-      pageName: "Produkt einspeichern", //bei Veränderung wird der Seitentitel automatisch angepasst
+      pageName: "Produkte", //bei Veränderung wird der Seitentitel automatisch angepasst
+      shhowProducts: ref(false),
+      products: [],
     };
   },
   created() {
@@ -292,7 +375,23 @@ export default defineComponent({
 
 .Ausgabebereich {
   margin-top: 30em;
+  position: fixed;
+  left: 5%;
+  margin-right: 5%;
+}
+
+.AktualisierenButton {
+  margin-top: 1em;
   text-align: center;
-  position: sticky;
+}
+
+.AbbrechenButton {
+  margin-top: 1em;
+  text-align: center;
+}
+
+.show-all-products {
+  text-align: center;
+  margin-top: 1em;
 }
 </style>

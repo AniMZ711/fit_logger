@@ -162,7 +162,7 @@
 
     <q-page-container class="display-last-meals">
       <div id="rectangle" class="q-mb-lg">
-        <p class="text-center self-center last-meals">Letze Mahlzeiten</p>
+        <p class="text-center self-center last-meals">Letzte Mahlzeiten</p>
       </div>
 
       <div class="row">
