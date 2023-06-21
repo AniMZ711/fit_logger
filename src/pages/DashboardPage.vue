@@ -204,7 +204,7 @@ export default defineComponent({
       about: ref(false),
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
 
-      meals: JSON.parse(window.localStorage.getItem("meals")) || [],
+      meals: JSON.parse(window.localStorage.getItem("meals")).slice(0, 5) || [],
 
       goal: JSON.parse(window.localStorage.getItem("Goal")) || {
         calories: 2400,
