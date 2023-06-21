@@ -6,6 +6,28 @@
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
+  <div class="show-all-products">
+    <q-btn @click="showProducts = true" label="Alle anzeigen" icon="storage" rounded color="green" size="lg">
+    </q-btn>
+  </div>
+
+  <q-dialog v-model="showProducts">
+    <q-card class="q-pa-md">
+      <q-btn class="absolute" style="top: 10px; right: 10px" flat icon="close" color="primary" v-close-popup />
+
+      <div>
+        <h2>Alle Produkte</h2>
+        <div>
+          <ul>
+            <li class="dashboard-meals-list" v-for="product in products" :key="product.id">
+              {{ product.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </q-card>
+  </q-dialog>
+
 
   <div class="row text-center item-center">
     <div class="col col-1"></div>
@@ -13,167 +35,50 @@
       <!-- <div class="Eingabebereich" style="padding-bottom: 50px"> -->
       <br />
       <form v-if="!editMode" @submit.prevent="addProduct">
-        <q-input
-          filled
-          label="Name"
-          color="green"
-          type="text"
-          id="name"
-          v-model="newProduct.name"
-          required
-        />
+        <q-input filled label="Name" color="green" type="text" id="name" v-model="newProduct.name" required />
 
-        <q-input
-          filled
-          color="green"
-          label="Menge (g)"
-          type="number"
-          id="quantity"
-          v-model.number="newProduct.quantity"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled color="green" label="Menge (g)" type="number" id="quantity" v-model.number="newProduct.quantity"
+          min="0" max="5000" required />
 
-        <q-input
-          filled
-          color="green"
-          label="Kalorien (kcal)"
-          type="number"
-          id="calories"
-          v-model.number="newProduct.calories"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled color="green" label="Kalorien (kcal)" type="number" id="calories"
+          v-model.number="newProduct.calories" min="0" max="5000" required />
 
-        <q-input
-          filled
-          color="green"
-          label="Kohlenhydrate (g)"
-          type="number"
-          id="carbs"
-          v-model.number="newProduct.carbs"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled color="green" label="Kohlenhydrate (g)" type="number" id="carbs" v-model.number="newProduct.carbs"
+          min="0" max="5000" required />
 
-        <q-input
-          filled
-          color="green"
-          label="Proteine (g)"
-          type="number"
-          id="protein"
-          v-model.number="newProduct.protein"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled color="green" label="Proteine (g)" type="number" id="protein" v-model.number="newProduct.protein"
+          min="0" max="5000" required />
 
-        <q-input
-          filled
-          color="green"
-          label="Fett (g)"
-          type="number"
-          id="fat"
-          v-model.number="newProduct.fat"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled color="green" label="Fett (g)" type="number" id="fat" v-model.number="newProduct.fat" min="0"
+          max="5000" required />
 
         <div class="SpeicherButton">
-          <q-btn color="green" icon="save" type="submit" size="lg" rounded
-            >Speichern</q-btn
-          >
+          <q-btn color="green" icon="save" type="submit" size="lg" rounded>Speichern</q-btn>
         </div>
       </form>
 
       <form v-if="editMode" @submit.prevent="updateProduct">
-        <q-input
-          filled
-          label="Name"
-          color="green"
-          type="text"
-          id="name"
-          v-model="newProduct.name"
-          required
-        />
+        <q-input filled label="Name" color="green" type="text" id="name" v-model="newProduct.name" required />
 
-        <q-input
-          filled
-          color="green"
-          label="Menge (g)"
-          type="number"
-          id="quantity"
-          v-model.number="newProduct.quantity"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled color="green" label="Menge (g)" type="number" id="quantity" v-model.number="newProduct.quantity"
+          min="0" max="5000" required />
 
-        <q-input
-          filled
-          label="Kalorien (kcal)"
-          color="green"
-          type="number"
-          id="calories"
-          v-model.number="newProduct.calories"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled label="Kalorien (kcal)" color="green" type="number" id="calories"
+          v-model.number="newProduct.calories" min="0" max="5000" required />
 
-        <q-input
-          filled
-          label="Kohlenhydrate (g)"
-          color="green"
-          type="number"
-          id="carbs"
-          v-model.number="newProduct.carbs"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled label="Kohlenhydrate (g)" color="green" type="number" id="carbs" v-model.number="newProduct.carbs"
+          min="0" max="5000" required />
 
-        <q-input
-          filled
-          label="Proteine (g)"
-          color="green"
-          type="number"
-          id="protein"
-          v-model.number="newProduct.protein"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled label="Proteine (g)" color="green" type="number" id="protein" v-model.number="newProduct.protein"
+          min="0" max="5000" required />
 
-        <q-input
-          filled
-          label="Fett (g)"
-          color="green"
-          type="number"
-          id="fat"
-          v-model.number="newProduct.fat"
-          min="0"
-          max="5000"
-          required
-        />
+        <q-input filled label="Fett (g)" color="green" type="number" id="fat" v-model.number="newProduct.fat" min="0"
+          max="5000" required />
         <div class="AktualisierenButton">
-          <q-btn rounded color="green" icon="update" type="submit" size="lg"
-            >Aktualisieren</q-btn
-          >
+          <q-btn rounded color="green" icon="update" type="submit" size="lg">Aktualisieren</q-btn>
         </div>
         <div class="AbbrechenButton">
-          <q-btn
-            rounded
-            color="green"
-            icon="cancel"
-            @click="cancelEdit"
-            size="lg"
-            >Abbrechen</q-btn
-          >
+          <q-btn rounded color="green" icon="cancel" @click="cancelEdit" size="lg">Abbrechen</q-btn>
         </div>
       </form>
       <!-- </div> -->
@@ -218,12 +123,7 @@
               {{ item.fat }}
               <q-btn round color="green" icon="edit" @click="editProduct(item)">
               </q-btn>
-              <q-btn
-                round
-                color="green"
-                icon="delete"
-                @click="deleteProduct(item)"
-              ></q-btn>
+              <q-btn round color="green" icon="delete" @click="deleteProduct(item)"></q-btn>
             </details>
           </li>
         </ul>
@@ -234,11 +134,12 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   data() {
     return {
+
       // is localStorage needed here?
       items: JSON.parse(localStorage.getItem("products")) || [],
       newProduct: {
@@ -253,6 +154,8 @@ export default defineComponent({
       editMode: false,
       editProductIndex: null,
       pageName: "Produkte", //bei Veränderung wird der Seitentitel automatisch angepasst
+      shhowProducts: ref(false),
+      products: []
     };
   },
   created() {
@@ -338,18 +241,25 @@ export default defineComponent({
   margin-top: 2em;
   text-align: center;
 }
+
 .Ausgabebereich {
   margin-top: 30em;
   position: fixed;
   left: 5%;
   margin-right: 5%;
 }
+
 .AktualisierenButton {
   margin-top: 1em;
   text-align: center;
 }
+
 .AbbrechenButton {
   margin-top: 1em;
+  text-align: center;
+}
+
+.show-all-products {
   text-align: center;
 }
 </style>
