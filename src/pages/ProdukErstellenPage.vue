@@ -238,10 +238,8 @@
                   <span class="word"> {{ item.name }}</span>
                   <span class="badge"> {{ item.calories }} kcal </span>
                 </summary>
-                Kalorien: {{ item.calories }}
-                Kohlenhydrate:
-                {{ item.carbs }} Proteine: {{ item.protein }} Fett:
-                {{ item.fat }}
+                Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
+                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp;
                 <q-btn
                   round
                   color="green"

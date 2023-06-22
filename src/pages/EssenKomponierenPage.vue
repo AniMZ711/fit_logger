@@ -23,7 +23,7 @@
         color="green"
         filled
         v-model="searchQuery"
-        label="Suche die Produkte, die du kopomnieren möchtest ... "
+        label="Suche die Produkte, die du komponieren möchtest ... "
         type="text"
       >
         <template v-slot:after>
@@ -59,18 +59,18 @@
                 <details>
                   <summary>
                     <label>
-                      <input
-                        type="checkbox"
+                      <q-checkbox
+                        color="green"
+                        size="lg"
                         v-model="selectedProducts[product.id]"
                       />
                     </label>
                     <span class="word"> {{ product.name }}</span>
                     <span class="badge"> {{ product.calories }} kcal </span>
                   </summary>
-                  Kalorien: {{ product.calories }}
-                  Kohlenhydrate:
-                  {{ product.carbs }} Proteine: {{ product.protein }} Fett:
-                  {{ product.fat }}
+                  Kalorien: {{ product.calories }} | Kohlenhydrate:
+                  {{ product.carbs }}g | Proteine: {{ product.protein }}g |
+                  Fett: {{ product.fat }}g
                 </details>
               </li>
             </ul>
@@ -124,13 +124,34 @@
         </ul>
       </div>
 
-      <div class="Summenübersicht">
-        <h6>Gesamtsumme:</h6>
-        {{ calculateMealTotal("quantity") }} Gramm <br />
+      <div class="row">
+        <div class="col col-1"></div>
+        <div class="col col-10 text-center items-center">
+          <h6>neue Mahlzeit:</h6>
+
+          <details>
+            <summary>
+              <span class="word"> {{ mealName }}</span>
+              <span class="badge">
+                {{ calculateMealTotal("calories") }} kcal
+              </span>
+            </summary>
+            Gewicht: {{ calculateMealTotal("quantity") }}g | Kalorien:
+            {{ calculateMealTotal("calories") }}
+            | Kohlenhydrate:
+            {{ calculateMealTotal("carbs") }}g | Proteine:
+            {{ calculateMealTotal("protein") }}g | Fett:
+            {{ calculateMealTotal("fat") }}g
+          </details>
+
+          <!--  {{ calculateMealTotal("quantity") }} Gramm <br />
         {{ calculateMealTotal("calories") }} Kalorien <br />
         {{ calculateMealTotal("carbs") }} Kohlenhydrate <br />
         {{ calculateMealTotal("protein") }} Protein <br />
-        {{ calculateMealTotal("fat") }} Fett
+        {{ calculateMealTotal("fat") }} Fett -->
+
+          <div class="col col-1"></div>
+        </div>
       </div>
 
       <div class="save-button">
@@ -279,6 +300,7 @@ export default defineComponent({
 
 .save-button {
   text-align: center;
+  margin-top: 2em;
   margin-bottom: 5em;
 }
 

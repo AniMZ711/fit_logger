@@ -46,9 +46,9 @@
                     {{ meal.name }}
                     <span class="badge"> {{ meal.calories }}kcal</span>
                   </summary>
-                  Kalorien: {{ meal.calories }} Kohlenhydrate:
-                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-                  {{ meal.fat }}
+                  Kalorien: {{ meal.calories }} | Kohlenhydrate:
+                  {{ meal.carbs }}g | Proteine: {{ meal.protein }}g | Fett:
+                  {{ meal.fat }}g &nbsp;
                   <q-btn
                     round
                     color="green"
