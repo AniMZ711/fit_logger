@@ -282,13 +282,16 @@ export default defineComponent({
         window.localStorage.setItem("meals", JSON.stringify(this.meals));
       }
 
-      this.dailyConsumption = {
-        date: this.dailyConsumption.date,
-        calories: this.dailyConsumption.calories - meal.calories,
-        carbs: this.dailyConsumption.carbs - meal.carbs,
-        protein: this.dailyConsumption.protein - meal.protein,
-        fat: this.dailyConsumption.fat - meal.fat,
-      };
+      if (meal.date == this.dailyConsumption.date) {
+        this.dailyConsumption = {
+          date: this.dailyConsumption.date,
+          calories: this.dailyConsumption.calories - meal.calories,
+          carbs: this.dailyConsumption.carbs - meal.carbs,
+          protein: this.dailyConsumption.protein - meal.protein,
+          fat: this.dailyConsumption.fat - meal.fat,
+        };
+      }
+
       this.setDailyConsumption();
       window.localStorage.setItem(
         "dailyConsumption",

@@ -231,44 +231,6 @@ export default defineComponent({
       date: "",
       //codes: [4000521770808, 4305720019124, 4000540010701, 3449851328005],
       code: 0,
-      scannedProducts: [
-        {
-          id: 4000521770808,
-          name: "Dr.Oetker Milchreis",
-          quantity: 312,
-          calories: 357,
-          carbs: 68,
-          protein: 11,
-          fat: 4,
-        },
-        {
-          id: 4305720019124,
-          name: "Teegut Studentenfutter",
-          quantity: 25,
-          calories: 124,
-          carbs: 10,
-          protein: 3,
-          fat: 2,
-        },
-        {
-          id: 4000540010701,
-          name: "Kölln Hafer-Porridge",
-          quantity: 100,
-          calories: 362,
-          carbs: 62,
-          protein: 12,
-          fat: 2,
-        },
-        {
-          id: 3449851328005,
-          name: "Aoste Stickado Classique",
-          quantity: 100,
-          calories: 510,
-          carbs: 4,
-          protein: 29,
-          fat: 42,
-        },
-      ],
     };
   },
   methods: {
@@ -381,13 +343,16 @@ export default defineComponent({
       this.meals.push(meal);
       window.localStorage.setItem("meals", JSON.stringify(this.meals));
 
-      this.dailyConsumption = {
-        date: todayString,
-        calories: this.dailyConsumption.calories + meal.calories,
-        carbs: this.dailyConsumption.carbs + meal.carbs,
-        protein: this.dailyConsumption.protein + meal.protein,
-        fat: this.dailyConsumption.fat + meal.fat,
-      };
+      if (meal.date == todayString) {
+        this.dailyConsumption = {
+          date: todayString,
+          calories: this.dailyConsumption.calories + meal.calories,
+          carbs: this.dailyConsumption.carbs + meal.carbs,
+          protein: this.dailyConsumption.protein + meal.protein,
+          fat: this.dailyConsumption.fat + meal.fat,
+        };
+      }
+
       //aktuelles Zieltracking
       this.setDailyConsumption();
 
