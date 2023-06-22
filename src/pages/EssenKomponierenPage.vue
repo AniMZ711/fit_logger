@@ -55,7 +55,7 @@
         <div>
           <div>
             <ul>
-              <li v-for="product in searchResults" :key="product.id">
+              <li v-for="product in filteredProducts" :key="product.id">
                 <details>
                   <summary>
                     <label>
@@ -177,9 +177,9 @@ export default defineComponent({
     return {
       showSearch1: ref(false),
       mealName: "",
-      searchTerm: "",
+      searchQuery: "",
       products: [],
-      searchResults: [],
+      filteredProducts: [],
       selectedProducts: [],
       productFactor: {},
       pageName: "Essen komponieren",
@@ -211,10 +211,14 @@ export default defineComponent({
       });
     },
     searchProducts() {
-      this.searchResults = this.products.filter((product) =>
-        product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
+      const filteredProducts = this.products.filter((product) => {
+        return product.name
+          .toLowerCase()
+          .includes(this.searchQuery.toLowerCase());
+      });
+      this.filteredProducts = filteredProducts;
     },
+
     formatFactor(factor) {
       if (factor === "1/4") {
         return "1/4";
@@ -271,8 +275,9 @@ export default defineComponent({
       window.localStorage.setItem("products", JSON.stringify(existingProducts));
 
       this.mealName = "";
-      this.searchTerm = "";
-      this.searchResults = [];
+      this.searchQuery = "",
+      this.products = [],
+      this.filteredProducts = [],
       this.selectedProducts = [];
       this.productFactor = {};
       meal = {};
