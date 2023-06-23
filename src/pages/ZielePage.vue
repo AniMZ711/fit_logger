@@ -77,6 +77,18 @@
         <q-btn
           v-if="editMode"
           rounded
+          color="green"
+          icon="save"
+          type="submit"
+          padding="10px"
+          size="lg"
+        >
+          Speichern
+        </q-btn>
+
+        <q-btn
+          v-if="editMode"
+          rounded
           style="margin-right: 16px; padding: 10px"
           color="green"
           icon="cancel"
@@ -90,23 +102,11 @@
           v-if="!editMode"
           rounded
           color="green"
-          icon="edit"
+          icon="build"
           @click="editMode = true"
           size="lg"
         >
           Ziel bearbeiten
-        </q-btn>
-
-        <q-btn
-          v-if="editMode"
-          rounded
-          color="green"
-          icon="save"
-          type="submit"
-          padding="10px"
-          size="lg"
-        >
-          Speichern
         </q-btn>
       </div>
     </form>
@@ -129,7 +129,7 @@ export default defineComponent({
         fat: 0,
       },
       dailyConsumption: JSON.parse(localStorage.getItem("dailyConsumption")),
-      editMode: false,
+      editMode: true,
       pageName: "Mein Tagesziel", //bei Veränderung wird der Seitentitel automatisch angepasst
     };
   },

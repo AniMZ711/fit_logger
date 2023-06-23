@@ -55,6 +55,21 @@ const routes = [
         path: "/greetingspage",
         component: () => import("pages/GreetingsPage.vue"),
       },
+
+      {
+        path: "/greetingspage",
+        component: () => import("pages/GreetingsPage.vue"),
+      },
+
+      {
+        path: "/ProduktBearbeiten",
+        component: () => import("pages/ProduktBearbeiten.vue"),
+      },
+
+      {
+        path: "/ProduktLöschen",
+        component: () => import("pages/ProduktLöschen.vue"),
+      },
     ],
   },
 

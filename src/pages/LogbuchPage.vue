@@ -59,7 +59,7 @@
                   <q-btn
                     round
                     color="green"
-                    icon="edit"
+                    icon="build"
                     @click="setUpEditMeal(meal)"
                   >
                   </q-btn>
@@ -204,6 +204,7 @@
                 Speichern
               </q-btn>
               <q-btn rounded color="green" icon="cancel" @click="cancelEdit()">
+                Abbrechen
               </q-btn>
             </div>
           </div>

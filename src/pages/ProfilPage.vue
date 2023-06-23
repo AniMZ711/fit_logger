@@ -17,10 +17,10 @@
             class="zielButton"
             rounded
             color="green"
-            icon="grade"
+            icon="build"
             to="/ziele"
           >
-            Mein Ziel
+            Tagesziel bearbeiten
           </q-btn>
         </div>
         <div class="statistikButton">
@@ -32,7 +32,7 @@
             icon="auto_graph"
             to="/statistik"
           >
-            Statistik
+            Ziele nachverfolgen
           </q-btn>
         </div>
 
@@ -49,7 +49,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   setup() {
     return {
-      pageName: "Profil",
+      pageName: "Ziel",
     };
   },
 });

@@ -15,7 +15,7 @@
             <div class="col col-1"></div>
             <div class="col col-10">
               <div class="display-add-product">
-                <p>Produkt hinzufügen</p>
+                <p>Eintrag hinzufügen</p>
               </div>
             </div>
             <div class="col col-1">
@@ -86,7 +86,7 @@
           <div class="col col-8 text-center q-pa-sm">
             <div class="scan-button">
               <q-btn
-                size="md"
+                size="lg"
                 rounded
                 color="green"
                 icon="qr_code_scanner"
@@ -103,8 +103,14 @@
           <div class="col col-2"></div>
           <div class="col col-8 text-center q-pa-sm">
             <div class="save-product">
-              <q-btn rounded color="green" icon="save" to="/produkterstellen">
-                Produkt einspeichern
+              <q-btn
+                rounded
+                color="green"
+                icon="edit"
+                to="/produkterstellen"
+                size="lg"
+              >
+                Produkt erstellen
               </q-btn>
             </div>
           </div>
@@ -207,7 +213,7 @@ export default defineComponent({
       searchQuery: "",
       showScanner: false,
       addToMeals: false,
-      pageName: "Produkt hinzufügen", // bei Veränderung ändert sich der Seitentitel automatisch
+      pageName: "Eintrag hinzufügen", // bei Veränderung ändert sich der Seitentitel automatisch
       dailyConsumption: JSON.parse(localStorage.getItem("dailyConsumption")),
       goal: JSON.parse(localStorage.getItem("Goal")) || {
         calories: 1800,

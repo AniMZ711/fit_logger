@@ -15,7 +15,7 @@
       <form v-if="!editMode" @submit.prevent="addProduct">
         <q-input
           filled
-          label="Produktname"
+          label="Name"
           color="green"
           type="text"
           id="name"
@@ -82,12 +82,6 @@
           max="5000"
           required
         />
-
-        <div class="SpeicherButton">
-          <q-btn color="green" icon="edit" type="submit" size="lg" rounded
-            >Produkt erstellen</q-btn
-          >
-        </div>
       </form>
 
       <form v-if="editMode" @submit.prevent="updateProduct">
@@ -160,12 +154,31 @@
           max="5000"
           required
         />
+
         <div class="AktualisierenButton">
-          <q-btn rounded color="green" icon="update" type="submit" size="lg"
-            >Aktualisieren</q-btn
+          <q-btn
+            rounded
+            color="green"
+            icon="save"
+            type="submit"
+            size="lg"
+            padding="10px"
+            to="/produkteinpflegen"
+            >Speichern</q-btn
+          >
+          <q-btn
+            rounded
+            padding="10px"
+            color="green"
+            icon="cancel"
+            @click="cancelEdit"
+            size="lg"
+            to="/produkteinpflegen"
+            >Abbrechen</q-btn
           >
         </div>
-        <div class="AbbrechenButton">
+
+        <!-- <div class="AbbrechenButton">
           <q-btn
             rounded
             color="green"
@@ -174,34 +187,13 @@
             size="lg"
             >Abbrechen</q-btn
           >
-        </div>
+        </div> -->
       </form>
-      <!-- </div> -->
     </div>
     <div class="col col-1"></div>
   </div>
 
-  <!--  <div class="Ausgabebereich">
-    <q-scroll-area style="height: 240px; max-width: 90%">
-      <div class="ScrollContainer">
-        <ul>
-          <li v-for="item in items" :key="item.id">
-            {{ item.name }} - {{ item.calories }} Kalorien
-            <q-btn round color="green" icon="edit" @click="editProduct(item)">
-            </q-btn>
-            <q-btn
-              round
-              color="green"
-              icon="delete"
-              @click="deleteProduct(item)"
-            ></q-btn>
-          </li>
-        </ul>
-      </div>
-    </q-scroll-area>
-  </div> -->
-
-  <!-- <div class="row text-center item-center">
+  <!--   <div class="row text-center item-center">
     <div class="col col-1"></div>
     <div class="col col-10">
       <br />
@@ -236,23 +228,17 @@
               <details>
                 <summary>
                   <span class="word"> {{ item.name }}</span>
-                  <span class="badge"> {{ item.calories }} kcal </span>
+                  <q-btn
+                    round
+                    color="green"
+                    icon="edit"
+                    @click="editProduct(item)"
+                    v-close-popup
+                  >
+                  </q-btn>
                 </summary>
-                Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
-                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp;
-                <q-btn
-                  round
-                  color="green"
-                  icon="edit"
-                  @click="editProduct(item)"
-                >
-                </q-btn>
-                <q-btn
-                  round
-                  color="green"
-                  icon="delete"
-                  @click="deleteProduct(item)"
-                ></q-btn>
+                <!--  Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
+                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp; -->
               </details>
             </li>
           </ul>
@@ -269,7 +255,7 @@ export default defineComponent({
   data() {
     return {
       // is localStorage needed here?
-      showProducts: ref(false),
+      showProducts: ref(true),
       items: JSON.parse(localStorage.getItem("products")) || [],
       newProduct: {
         id: null,
@@ -282,7 +268,7 @@ export default defineComponent({
       },
       editMode: false,
       editProductIndex: null,
-      pageName: "Produkt erstellen", //bei Veränderung wird der Seitentitel automatisch angepasst
+      pageName: "Produkt bearbeiten", //bei Veränderung wird der Seitentitel automatisch angepasst
       shhowProducts: ref(false),
       products: [],
     };

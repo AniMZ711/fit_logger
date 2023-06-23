@@ -24,7 +24,7 @@
           />
         </q-page-sticky>
         <q-route-tab icon="storage" to="/produkteinpflegen" label="Produkte" />
-        <q-route-tab icon="account_circle" to="/profil" label="Profil" />
+        <q-route-tab icon="stars" to="/profil" label="Ziel" />
       </q-tabs>
     </q-footer>
   </q-layout>

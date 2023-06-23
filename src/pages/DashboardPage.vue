@@ -47,7 +47,7 @@
             Danke, dass du dich für den FIT-Logger entschieden hast! Der
             FIT-Logger hilft dir, deine Ernährung zu überwachen & zu planen. Du
             kannst zu Beginn Kalorien- & Makroziele eingeben & anschließend
-            deine Mahlzeiten eintragen Anhand deiner Eingaben wird sowohl eine
+            deine Mahlzeiten eintragen. Anhand deiner Eingaben wird sowohl eine
             Historie, in der du nachvollziehen kannst, wann du was gegessen
             hast, als auch eine Statistik erstellt, in der du sehen kannst, ob
             und wie sehr du von deinen gesetzten Zielen abweichst.

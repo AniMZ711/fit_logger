@@ -3,7 +3,7 @@
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
       <q-toolbar-title class="absolute-center">
-        {{ "Datenbank" }}</q-toolbar-title
+        {{ "Produktsuche" }}</q-toolbar-title
       >
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
@@ -18,7 +18,7 @@
           color="green"
           filled
           v-model="searchQuery"
-          label="Produkt suchen"
+          label="Produktnamen eingeben..."
           type="text"
         >
           <template v-slot:after>

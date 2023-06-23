@@ -17,7 +17,7 @@
             to="/produktsuchen"
             size="lg"
           >
-            Produkt Datenbank</q-btn
+            Produktsuche</q-btn
           >
         </div>
 
@@ -30,7 +30,33 @@
             to="/produkterstellen"
             size="lg"
           >
-            Produkte</q-btn
+            Produkt erstellen</q-btn
+          >
+        </div>
+
+        <div class="ButtonProduktBearbeiten">
+          <q-btn
+            class="addButton"
+            rounded
+            color="green"
+            icon="build"
+            to="/ProduktBearbeiten"
+            size="lg"
+          >
+            Produkt bearbeiten</q-btn
+          >
+        </div>
+
+        <div class="ButtonProduktLöschen">
+          <q-btn
+            class="addButton"
+            rounded
+            color="green"
+            icon="delete"
+            to="/ProduktLöschen"
+            size="lg"
+          >
+            Produkt löschen</q-btn
           >
         </div>
 
@@ -70,6 +96,14 @@ export default defineComponent({
 }
 
 .ButtonProduktHinzufügen {
+  margin-top: 2em;
+  text-align: center;
+}
+.ButtonProduktBearbeiten {
+  margin-top: 2em;
+  text-align: center;
+}
+.ButtonProduktLöschen {
   margin-top: 2em;
   text-align: center;
 }
