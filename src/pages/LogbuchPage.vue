@@ -5,10 +5,11 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title
-        ><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
+
+    <div class="hilfsline"></div>
 
     <!--Container für den Date Picker-->
     <q-page-container class="q-my-sm">
@@ -16,13 +17,7 @@
         <div class="col-2"></div>
         <div class="col-8 text-center self-center">
           <DatePicker @newSelectedDate="setDate"> </DatePicker>
-          <q-btn
-            v-if="mealEdited"
-            round
-            color="green"
-            icon="edit"
-            @click="undoEdit"
-          >
+          <q-btn v-if="mealEdited" round color="green" icon="edit" @click="undoEdit">
           </q-btn>
         </div>
         <div class="col-2"></div>
@@ -30,131 +25,93 @@
     </q-page-container>
 
     <!--Container für Anzeige der Mahlzeiten des Tages-->
-    <q-page-container class="meals-today">
-      <!--Reihe Frühstück-->
-      <div class="row">
-        <div class="col col-2"></div>
+    <q-page-container class="meals-today text-center">
 
-        <div class="col col-8 text-center">
-          <q-page-container class="meals-today-logbuch">
-            <ul class="breakfast-items" style="padding-top: 5px">
-              <p>Frühstück</p>
 
-              <li v-for="meal in breakfast" :key="meal.id">
-                <details>
-                  <summary>
-                    {{ meal.name }}
-                    <span class="badge"> {{ meal.calories }}kcal</span>
-                  </summary>
-                  Kalorien: {{ meal.calories }} | Kohlenhydrate:
-                  {{ meal.carbs }}g | Proteine: {{ meal.protein }}g | Fett:
-                  {{ meal.fat }}g &nbsp;
-                  <q-btn
-                    round
-                    color="green"
-                    icon="delete"
-                    @click="deleteMeal(meal)"
-                  >
-                  </q-btn>
-                  <q-btn
-                    round
-                    color="green"
-                    icon="build"
-                    @click="setUpEditMeal(meal)"
-                  >
-                  </q-btn>
-                </details>
-              </li>
-            </ul>
+      <q-page-container class="meals-today-logbuch">
+        <ul class="breakfast-items" style="padding-top: 5px">
+          <p class="heading-logbuch">Frühstück</p>
+          <div v-if="breakfast.length === 0" class="platzhalter"> Noch keine Einträge</div>
 
-            <ul style="padding-top: 50px">
-              <p>Mittagessen</p>
-              <li v-for="meal in lunch" :key="meal.id">
-                <details>
-                  <summary>
-                    {{ meal.name }}
-                    <span class="badge"> {{ meal.calories }}kcal</span>
-                  </summary>
-                  Kalorien: {{ meal.calories }} Kohlenhydrate:
-                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-                  {{ meal.fat }}
-                  <q-btn
-                    round
-                    color="green"
-                    icon="delete"
-                    @click="deleteMeal(meal)"
-                  >
-                  </q-btn>
-                  <q-btn
-                    round
-                    color="green"
-                    icon="edit"
-                    @click="setUpEditMeal(meal)"
-                  >
-                  </q-btn>
-                </details>
-              </li>
-            </ul>
-            <ul style="padding-top: 50px">
-              <p>Abendessen</p>
-              <li v-for="meal in diner" :key="meal.id">
-                <details>
-                  <summary>
-                    {{ meal.name }}
-                    <span class="badge"> {{ meal.calories }}kcal</span>
-                  </summary>
-                  Kalorien: {{ meal.calories }} Kohlenhydrate:
-                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-                  {{ meal.fat }}
-                  <q-btn
-                    round
-                    color="green"
-                    icon="delete"
-                    @click="deleteMeal(meal)"
-                  >
-                  </q-btn>
-                  <q-btn
-                    round
-                    color="green"
-                    icon="edit"
-                    @click="setUpEditMeal(meal)"
-                  >
-                  </q-btn>
-                </details>
-              </li>
-            </ul>
-            <ul style="padding-top: 50px">
-              <p>Snacks</p>
-              <li v-for="meal in snacks" :key="meal.id">
-                <details>
-                  <summary>
-                    {{ meal.name }}
-                    <span class="badge"> {{ meal.calories }}kcal</span>
-                  </summary>
-                  Kalorien: {{ meal.calories }} Kohlenhydrate:
-                  {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-                  {{ meal.fat }}
-                  <q-btn
-                    round
-                    color="green"
-                    icon="delete"
-                    @click="deleteMeal(meal)"
-                  >
-                  </q-btn>
-                  <q-btn
-                    round
-                    color="green"
-                    icon="edit"
-                    @click="setUpEditMeal(meal)"
-                  >
-                  </q-btn>
-                </details>
-              </li>
-            </ul>
-          </q-page-container>
-        </div>
-        <div class="col col-2"></div>
-      </div>
+          <li v-for="meal in breakfast" :key="meal.id">
+            <details>
+              <summary>
+                {{ meal.name }}
+                <span class="badge"> {{ meal.calories }}kcal</span>
+              </summary>
+              Kalorien: {{ meal.calories }} | Kohlenhydrate:
+              {{ meal.carbs }}g | Proteine: {{ meal.protein }}g | Fett:
+              {{ meal.fat }}g &nbsp;
+              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              </q-btn>
+              <q-btn round color="green" icon="build" @click="setUpEditMeal(meal)">
+              </q-btn>
+            </details>
+          </li>
+        </ul>
+
+        <ul style="padding-top: 50px">
+          <p class="heading-logbuch">Mittagessen</p>
+          <div v-if="lunch.length === 0" class="platzhalter"> Noch keine Einträge</div>
+
+          <li v-for="meal in lunch" :key="meal.id">
+            <details>
+              <summary>
+                {{ meal.name }}
+                <span class="badge"> {{ meal.calories }}kcal</span>
+              </summary>
+              Kalorien: {{ meal.calories }} Kohlenhydrate:
+              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+              {{ meal.fat }}
+              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              </q-btn>
+              <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
+              </q-btn>
+            </details>
+          </li>
+        </ul>
+        <ul style="padding-top: 50px">
+          <p class="heading-logbuch">Abendessen</p>
+          <div v-if="diner.length === 0" class="platzhalter"> Noch keine Einträge</div>
+
+          <li v-for="meal in diner" :key="meal.id">
+            <details>
+              <summary>
+                {{ meal.name }}
+                <span class="badge"> {{ meal.calories }}kcal</span>
+              </summary>
+              Kalorien: {{ meal.calories }} Kohlenhydrate:
+              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+              {{ meal.fat }}
+              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              </q-btn>
+              <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
+              </q-btn>
+            </details>
+          </li>
+        </ul>
+        <ul style="padding-top: 50px">
+          <p class="heading-logbuch"> Snacks</p>
+          <div v-if="snacks.length === 0" class="platzhalter"> Noch keine Einträge</div>
+
+          <li v-for="meal in snacks" :key="meal.id">
+            <details>
+              <summary>
+                {{ meal.name }}
+                <span class="badge"> {{ meal.calories }}kcal</span>
+              </summary>
+              Kalorien: {{ meal.calories }} Kohlenhydrate:
+              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
+              {{ meal.fat }}
+              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              </q-btn>
+              <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
+              </q-btn>
+            </details>
+          </li>
+        </ul>
+      </q-page-container>
+
 
       <teleport to="body">
         <div class="modal" v-if="editMode">
@@ -169,25 +126,13 @@
             </div>
 
             <div>
-              <q-input
-                filled
-                color="green"
-                label="Menge eintragen (g)"
-                id="Menge"
-                v-model.number="quantity"
-                type="number"
-                min="0"
-                required
-              >
+              <q-input filled color="green" label="Menge eintragen (g)" id="Menge" v-model.number="quantity" type="number"
+                min="0" required>
               </q-input>
 
               <div>
                 <select v-model="mealToEdit.time">
-                  <option
-                    v-for="option in options"
-                    :value="option.value"
-                    :key="option.text"
-                  >
+                  <option v-for="option in options" :value="option.value" :key="option.text">
                     {{ option.text }}
                   </option>
                 </select>
@@ -195,12 +140,7 @@
             </div>
 
             <div>
-              <q-btn
-                rounded
-                color="green"
-                icon="save"
-                @click="calculateIngredientValues(quantity)"
-              >
+              <q-btn rounded color="green" icon="save" @click="calculateIngredientValues(quantity)">
                 Speichern
               </q-btn>
               <q-btn rounded color="green" icon="cancel" @click="cancelEdit()">
@@ -269,6 +209,9 @@ export default defineComponent({
     this.filterMeals();
   },
   methods: {
+
+
+
     setDate(currentDate) {
       const day = currentDate;
       this.date =
@@ -453,8 +396,30 @@ export default defineComponent({
 </script>
 
 <style>
-.meals-today-logbuch {
-  margin-top: -2em;
+.breakfast-items {
+
+  list-style-type: none;
+
+}
+
+
+
+.platzhalter {
+
+  background-color: lightgrey;
+  list-style-type: none;
+  font-display: inherit;
+
+
+
+}
+
+.heading-logbuch {
+
+  background-color: #4caf50;
+  color: white;
+  font-weight: 500;
+
 }
 
 .date-picker {
@@ -483,11 +448,31 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal > div {
+.modal>div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
   align-items: center;
   text-align: center;
+}
+
+.meals-today-logbuch {
+
+  margin-right: 2em;
+  margin-top: -2em;
+}
+
+.hilfsline {
+
+  position: fixed;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: red;
+  /* Farbe der Hilfslinie anpassen */
+  z-index: 9999;
+  /* Falls erforderlich, um s*/
+
 }
 </style>
