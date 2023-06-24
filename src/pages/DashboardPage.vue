@@ -128,8 +128,8 @@
         <div class="col col-1"></div>
 
         <div class="col col-10 text-center items-center">
-          <ul>
-            <li class="dashboard-meals-list" v-for="product in meals.slice(0, 5)" :key="product.id">
+          <ul class="dashboard-ul">
+            <li class="dashboard-li dashboard-meals-list" v-for="product in meals.slice(0, 5)" :key="product.id">
               <details>
                 <summary>
                   <span class="word"> {{ product.name }}</span>
@@ -253,32 +253,36 @@ export default defineComponent({
 </script>
 
 <style>
-li {
+.dashboard-li {
   list-style-type: none;
   padding-left: 0;
   transform: translateX(-1.25em);
 }
 
-ul {
+
+.dashboard-ul {
   list-style-type: none;
   padding-left: 0;
 
+
 }
 
+
+/*
 details summary::before {
   content: "+";
-  /* Closed triangle */
+
   display: inline-block;
   margin-right: 5px;
   transform: rotate(90deg);
-  /* Closed rotation */
+
 }
 
 details[open] summary::before {
   content: "-";
-  /* Open triangle */
+
   transform: rotate(0deg);
-  /* Open rotation */
+
 }
 
 details {
@@ -308,7 +312,7 @@ summary {
 .word {
   margin-right: 10px;
 
-}
+} */
 
 .expandable-row:hover .expandable-content {
   display: block;

@@ -29,7 +29,8 @@
 
 
       <q-page-container class="meals-today-logbuch">
-        <ul class="breakfast-items" style="padding-top: 5px">
+
+        <ul class="todays-items" style="padding-top: 5px">
           <p class="heading-logbuch">Frühstück</p>
           <div v-if="breakfast.length === 0" class="platzhalter"> Noch keine Einträge</div>
 
@@ -42,7 +43,7 @@
               Kalorien: {{ meal.calories }} | Kohlenhydrate:
               {{ meal.carbs }}g | Proteine: {{ meal.protein }}g | Fett:
               {{ meal.fat }}g &nbsp;
-              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
               </q-btn>
               <q-btn round color="green" icon="build" @click="setUpEditMeal(meal)">
               </q-btn>
@@ -50,7 +51,7 @@
           </li>
         </ul>
 
-        <ul style="padding-top: 50px">
+        <ul class="todays-items" style="padding-top: 50px">
           <p class="heading-logbuch">Mittagessen</p>
           <div v-if="lunch.length === 0" class="platzhalter"> Noch keine Einträge</div>
 
@@ -63,14 +64,14 @@
               Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
-              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
               </q-btn>
               <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
               </q-btn>
             </details>
           </li>
         </ul>
-        <ul style="padding-top: 50px">
+        <ul class="todays-items" style="padding-top: 50px">
           <p class="heading-logbuch">Abendessen</p>
           <div v-if="diner.length === 0" class="platzhalter"> Noch keine Einträge</div>
 
@@ -83,14 +84,14 @@
               Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
-              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
               </q-btn>
               <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
               </q-btn>
             </details>
           </li>
         </ul>
-        <ul style="padding-top: 50px">
+        <ul class="todays-items" style="padding-top: 50px">
           <p class="heading-logbuch"> Snacks</p>
           <div v-if="snacks.length === 0" class="platzhalter"> Noch keine Einträge</div>
 
@@ -103,7 +104,7 @@
               Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
-              <q-btn round color="green" icon="delete" @click="deleteMeal(meal)">
+              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
               </q-btn>
               <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
               </q-btn>
@@ -396,21 +397,18 @@ export default defineComponent({
 </script>
 
 <style>
-.breakfast-items {
+.todays-items {
 
   list-style-type: none;
 
+
 }
-
-
 
 .platzhalter {
 
   background-color: lightgrey;
   list-style-type: none;
   font-display: inherit;
-
-
 
 }
 
@@ -419,6 +417,9 @@ export default defineComponent({
   background-color: #4caf50;
   color: white;
   font-weight: 500;
+  font-size: larger;
+
+  margin-top: -2em;
 
 }
 
@@ -462,7 +463,7 @@ export default defineComponent({
   margin-top: -2em;
 }
 
-.hilfsline {
+/* .hilfsline {
 
   position: fixed;
   left: 50%;
@@ -470,9 +471,9 @@ export default defineComponent({
   bottom: 0;
   width: 1px;
   background-color: red;
-  /* Farbe der Hilfslinie anpassen */
-  z-index: 9999;
-  /* Falls erforderlich, um s*/
 
-}
+  z-index: 9999;
+
+
+} */
 </style>

@@ -3,8 +3,7 @@
     <q-toolbar>
       <q-btn flat to="/produkteinpflegen" icon="arrow_back" />
       <q-toolbar-title class="absolute-center">
-        {{ "Produktsuche" }}</q-toolbar-title
-      >
+        {{ "Produktsuche" }}</q-toolbar-title>
       <!--Anzeige des Titels; Variable aus dem Script-->
     </q-toolbar>
   </q-header>
@@ -14,21 +13,9 @@
       <div class="col col-1"></div>
       <div class="col col-10 text-center items-center">
         <!--style="max-width: 300px" in class tag-->
-        <q-input
-          color="green"
-          filled
-          v-model="searchQuery"
-          label="Produktnamen eingeben..."
-          type="text"
-        >
+        <q-input color="green" filled v-model="searchQuery" label="Produktnamen eingeben..." type="text">
           <template v-slot:after>
-            <q-btn
-              rounded
-              size="lg"
-              color="green"
-              icon="search"
-              @click="searchProduct"
-            ></q-btn>
+            <q-btn rounded size="lg" color="green" icon="search" @click="searchProduct"></q-btn>
           </template>
         </q-input>
       </div>
@@ -53,8 +40,8 @@
     <div class="row">
       <div class="col col-1"></div>
       <div class="col col-10 text-center items-center">
-        <ul>
-          <li v-for="product in filteredProducts" :key="product.id">
+        <ul class="dashboard-ul">
+          <li class="dashboard-li" v-for="product in filteredProducts" :key="product.id">
             <details>
               <summary>
                 <span class="word"> {{ product.name }}</span>
@@ -114,10 +101,12 @@ export default defineComponent({
   margin-right: -50%;
   transform: translate(-50%, -50%);
 }
+
 .button {
   margin-top: 8em;
   text-align: center;
 }
+
 .Ausgabebereich1 {
   margin-top: 12em;
   text-align: center;

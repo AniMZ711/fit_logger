@@ -8,6 +8,47 @@
   z-index: 9999
 
 
+details
+  summary::before
+    content: "+"
+
+    /* Closed triangle
+    display: inline-block
+    margin-right: 5px
+    transform: rotate(90deg)
+
+    /* Closed rotation
+
+  &[open] summary::before
+    content: "-"
+
+    /* Open triangle
+    transform: rotate(0deg)
+
+    /* Open rotation
+
+  border: 1px solid #aaa
+  border-radius: 4px
+  padding: 0.5em 0.5em 0
+  content: "\25BA "
+
+summary
+  display: flex
+  justify-content: space-between
+  align-items: center
+  font-weight: bold
+  margin: -0.5em -0.5em 0
+  padding: 0.5em
+  list-style: none
+
+.badge
+  background-color: lightgray
+  color: #ffffff
+  padding: 4px 8px
+  border-radius: 30%
+
+.word
+  margin-right: 10px
 
 
 
