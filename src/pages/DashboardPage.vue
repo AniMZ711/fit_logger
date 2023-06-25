@@ -129,7 +129,8 @@
 
         <div class="col col-10 text-center items-center">
           <ul class="dashboard-ul">
-            <li class="dashboard-li dashboard-meals-list" v-for="product in meals.slice(0, 5)" :key="product.id">
+            <li class="dashboard-li dashboard-meals-list" v-for="product, index in meals.slice(0, 5)" :key="product.id"
+              :class="index % 2 === 0 ? 'even' : 'odd'">
               <details>
                 <summary>
                   <span class="word"> {{ product.name }}</span>
@@ -267,52 +268,13 @@ export default defineComponent({
 
 }
 
-
-/*
-details summary::before {
-  content: "+";
-
-  display: inline-block;
-  margin-right: 5px;
-  transform: rotate(90deg);
-
+.even {
+  background-color: #bbbbbb7c;
 }
 
-details[open] summary::before {
-  content: "-";
-
-  transform: rotate(0deg);
-
+.odd {
+  background-color: white;
 }
-
-details {
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  padding: 0.5em 0.5em 0;
-  content: "\25BA ";
-}
-
-summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: bold;
-  margin: -0.5em -0.5em 0;
-  padding: 0.5em;
-  list-style: none;
-}
-
-.badge {
-  background-color: lightgray;
-  color: #ffffff;
-  padding: 4px 8px;
-  border-radius: 30%;
-}
-
-.word {
-  margin-right: 10px;
-
-} */
 
 .expandable-row:hover .expandable-content {
   display: block;

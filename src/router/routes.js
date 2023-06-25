@@ -34,7 +34,7 @@ const routes = [
         component: () => import("src/pages/ProduktSuchenPage.vue"),
       },
 
-      { path: "/profil", component: () => import("pages/ProfilPage.vue") },
+      // { path: "/profil", component: () => import("pages/ProfilPage.vue") },
 
       {
         path: "/ziele",
@@ -70,6 +70,15 @@ const routes = [
         path: "/ProduktLöschen",
         component: () => import("pages/ProduktLöschen.vue"),
       },
+    ],
+  },
+
+  //Layout ohne den Plus-Button
+  {
+    path: "/",
+    component: () => import("layouts/LayoutWithoutPlussButton.vue"),
+    children: [
+      { path: "/profil", component: () => import("pages/ProfilPage.vue") },
     ],
   },
 

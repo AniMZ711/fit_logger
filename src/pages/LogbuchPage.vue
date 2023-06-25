@@ -27,7 +27,6 @@
     <!--Container für Anzeige der Mahlzeiten des Tages-->
     <q-page-container class="meals-today text-center">
 
-
       <q-page-container class="meals-today-logbuch">
 
         <ul class="todays-items" style="padding-top: 5px">
