@@ -9,20 +9,7 @@
         <!-- Tabs wachsen und schrumpfen automatisch mit-->
         <q-route-tab icon="home" to="/dashboard" label="Home" />
         <q-route-tab icon="menu_book" to="/logbuch" label="Logbuch" />
-        <!-- <q-page-sticky
-          position="bottom"
-          :offset="[18, 18]"
-          id="middleAddButton"
-        >
-          <q-btn
-            round
-            color="green"
-            icon="add_circle"
-            size="28px"
-            padding="5px"
-            to="/addproduct"
-          />
-        </q-page-sticky> -->
+
         <q-route-tab icon="storage" to="/produkteinpflegen" label="Produkte" />
         <q-route-tab icon="stars" to="/profil" label="Ziel" />
       </q-tabs>

@@ -13,7 +13,15 @@ const routes = [
       { path: "/addproduct", component: () => import("pages/AddPage.vue") },
 
       { path: "/logbuch", component: () => import("pages/LogbuchPage.vue") },
+    ],
+  },
 
+  //Layout ohne den Plus-Button
+  {
+    path: "/",
+    component: () => import("layouts/LayoutWithoutPlussButton.vue"),
+    children: [
+      { path: "/profil", component: () => import("pages/ProfilPage.vue") },
       {
         path: "/produkteinpflegen",
         component: () => import("pages/ProduktEinpflegenPage.vue"),
@@ -34,8 +42,6 @@ const routes = [
         component: () => import("src/pages/ProduktSuchenPage.vue"),
       },
 
-      // { path: "/profil", component: () => import("pages/ProfilPage.vue") },
-
       {
         path: "/ziele",
         component: () => import("pages/ZielePage.vue"),
@@ -52,16 +58,6 @@ const routes = [
       },
 
       {
-        path: "/greetingspage",
-        component: () => import("pages/GreetingsPage.vue"),
-      },
-
-      {
-        path: "/greetingspage",
-        component: () => import("pages/GreetingsPage.vue"),
-      },
-
-      {
         path: "/ProduktBearbeiten",
         component: () => import("pages/ProduktBearbeiten.vue"),
       },
@@ -70,15 +66,6 @@ const routes = [
         path: "/ProduktLöschen",
         component: () => import("pages/ProduktLöschen.vue"),
       },
-    ],
-  },
-
-  //Layout ohne den Plus-Button
-  {
-    path: "/",
-    component: () => import("layouts/LayoutWithoutPlussButton.vue"),
-    children: [
-      { path: "/profil", component: () => import("pages/ProfilPage.vue") },
     ],
   },
 
