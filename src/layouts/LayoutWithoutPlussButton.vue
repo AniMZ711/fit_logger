@@ -18,10 +18,7 @@
 </template>
 
 <script>
-// export default defineComponent({
 
-// }
-// )
 </script>
 
 <style>

@@ -1,6 +1,14 @@
-# Fit_Logger_PWA (fit-logger)
+# Fit_Logger_PWA
 
-SEP23
+## Progressive Web App die dir dabei hilft, deine Ernährung zu überwachen und zu planen.
+
+THWS Würzburg - SEP Sommersemester23
+
+Betreut von Prof. Dr. Kulesz
+
+Mitglieder der Gruppe: Maximilian Groll, Moses Kümmeth, Luca Lorenz, Anika Menz, Fracisco Navarro, Jonathan Stöcker
+
+## Setup
 
 ## Install the dependencies
 
@@ -13,7 +21,7 @@ npm install
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 
 ```bash
-quasar dev
+npm run dev
 ```
 
 ### Lint the files
@@ -35,7 +43,7 @@ npm run format
 ### Build the app for production
 
 ```bash
-quasar build
+npm run build
 ```
 
 ### Customize the configuration

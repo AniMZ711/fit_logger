@@ -40,8 +40,8 @@
     <div class="row">
       <div class="col col-1"></div>
       <div class="col col-10 text-center items-center">
-        <ul class="dashboard-ul">
-          <li class="dashboard-li" v-for="product in filteredProducts" :key="product.id">
+        <ul>
+          <li v-for="product in filteredProducts" :key="product.id">
             <details>
               <summary>
                 <span class="word"> {{ product.name }}</span>
