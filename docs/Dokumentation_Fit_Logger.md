@@ -49,7 +49,7 @@
 
 #### Was ist der FIT-Logger?
 
-FIT-Logger ist eine Progressive Web App, die es dem Nutzer ermöglicht, seine Ernährung nachzuverfolgen.
+FIT-Logger ist eine Progressive Web App, die es dem Nutzer ermöglicht, seine Ernährung nachzuverfolgen, überwachen und zu planen.
 
 Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder aufgrund gesundheitlicher Probleme gezwungen ist, seine täglich konsumierten Lebensmittel im Überblick zu behalten: der FIT-Logger ist immer der richtige Begleiter!
 
@@ -82,6 +82,20 @@ Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder au
 ## 10. Konzepte
 
 ## 11. Entwurfsentscheidungen und Technologieeinsatz
+
+### 11.1 Progressive Web App
+
+Um ein möglichst breites Publikum anzusprechen, soll FIT-Logger **plattform- und geräteunabhängig** nutzbar sein.
+
+Viele bekannte Apps sind an spezielle App-Marketplaces, wie den "Google Play Store" (Android) oder den "App-Store" von Apple (iOS) gebunden. User, die andere Betriebssysteme nutzen, können auf diese Apps nicht zugreifen.
+
+Eine Progressive Web App kann auf einen App Store komplett verzichten. Die Anwendung kann direkt über einen Webbrowser aufgerufen werden, ohne dass ein Herunterladen (aus einem App Store) erforderlich ist. Eine PWA ist also **plattformunabhängig**. Deshalb haben wir uns für die Verwendung einer Progressive Web App entschieden.
+
+Alternativen wie z.B. Flutter wurden ebenfalls in Betracht gezogen.
+
+Es ergeben sich weitere Auswirkungen durch die Verwendung einer Progressive Web App.
+
+So ist eine Funktionalität die Offline-Verfügbarkeit. Man kann die App unabhängig von einer stabilen Internetverbindung nutzen. Außerdem sind PWAs skalierbar, da sie auf Webtechnologien basieren. Sie können sich an verschiedene Bildschirmgrößen und Geräte anpassen und sind sowohl für mobile als auch für Desktop-Benutzer geeignet. So ist FIT-Logger nicht nur plattformunabhängig, sondern auch **geräteunabhängig**.
 
 ## 12. Risiken und technische Schulden
 
