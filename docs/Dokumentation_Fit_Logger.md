@@ -83,7 +83,7 @@ Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder au
 
 ## 11. Entwurfsentscheidungen und Technologieeinsatz
 
-### 11.1 Progressive Web App
+### 11.1 Entwickeln einer Progressive Web App
 
 Um ein möglichst breites Publikum anzusprechen, soll FIT-Logger **plattform- und geräteunabhängig** nutzbar sein.
 
@@ -99,27 +99,47 @@ Es ergeben sich weitere Auswirkungen durch die Verwendung einer Progressive Web 
 
 So ist eine Funktionalität die Offline-Verfügbarkeit. Man kann die App unabhängig von einer stabilen Internetverbindung nutzen. Außerdem sind PWAs skalierbar, da sie auf Webtechnologien basieren. Sie können sich an verschiedene Bildschirmgrößen und Geräte anpassen und sind sowohl für mobile als auch für Desktop-Benutzer geeignet. Das bedeutet, FIT-Logger ist nicht nur **plattformunabhängig**, sondern auch **geräteunabhängig**. Die Wartbarkeit des Systems ist durch Verwendung einer PWA im Vergleich zu nativen Apps einfacher, da es nur eine Codebasis für alle Plattformen gibt. Änderungen und Updates können zentralisiert erfolgen.
 
-Die Entscheidung für die Verwendung einer Progressive Web App erfüllt die Hauptkritierien "Plattformunabhängigkeit" und "Geräteunabhängigkeit".
+Diee Verwendung einer Progressive Web App erfüllt die FIT-Logger Kitierien "Plattformunabhängigkeit" und "Geräteunabhängigkeit".
 
 Referenzen:
 
 Google Developers: Progressive Web Apps: https://web.dev/progressive-web-apps/
 
-### 11.2 Verwenden des JavaScript-Frameworks "Vue.js" zur Entwicklung der PWA
+### 11.2 Verwendung des JavaScript-Frameworks "Vue3" zur Entwicklung der PWA
 
 Für die Entwicklung einer Progressive Web App ist es hilfreich, ein geeigntes JavaScript Framework zu verwenden. FIT-Logger soll eine effiziente Datenverwaltung, eine ansprechende Nutzeroberfläche durch weitere Frameworks sowie dynamische Funktionen zurückgreifen können, um optimal auf die Interaktion mit dem Nutzer abgestimmt zu sein. Vue.js bietet all diese Möglichkeiten.
 
 Alternativ könnte man andere Frameworks wie z.B. React oder Angular in Betrach ziehen, denn diese Frameworks bieten ebenfalls Möglichkeiten zur Datenverwaltung, Erstellung von Benutzeroberflächen sowie dynamische Funktionen. Sie unterscheiden sich in der Herangehensweise sowie der Syntax.
 
-Es wird das Vue.js Framework eingesetzt, da neben der guten **Datenverwaltung** und Bereitstellung **dynamischer Funktionen**, die einfache und **intuitive Syntax** für sich spricht.
+Es wird das Vue.js (Vue3) Framework eingesetzt, da neben der guten **Datenverwaltung** und Bereitstellung **dynamischer Funktionen**, die einfache und **intuitive Syntax** für sich spricht.
 
-Durch die Verwendung von Vue.js ergeben szur Datenverwaltung können wir den Zustand der Progressive Web App effektiv verwalten. Vue.js bietet eine reaktive Datenbindung, sodass Änderungen an den Daten automatisch in der Benutzeroberfläche reflektiert werden, wodurch ein konsistenter und aktualisierter Zustand beibehalten wird. Dies ermöglicht eine schnelle und effiziente Aktualisierung der Benutzeroberfläche basierend auf den Datenänderungen, wie es z.B. bei der Anzeige des täglichen Ziels auf dem Dashboard notwendig ist.
+Durch die Verwendung von Vue3 zur Datenverwaltung können wir den Zustand der Progressive Web App effektiv verwalten. Vue bietet eine reaktive Datenbindung, sodass eine Datenänderung automatisch in der Benutzeroberfläche sichtbar ist. Die Notwendigkeit hierfür besteht z.B. bei der Anzeige des täglichen Ziels auf dem Dashboard.
+
+Wir verwenden Vue, da das Framework sich als eine leistungsstarke und flexible Lösung erwiesen hat, um die Anforderungen einer PWA zu erfüllen.
 
 Referenzen:
 
 Vue.js Dokumentation: https://vuejs.org/
 
-### 11.3 UI-Framework: Quasar
+### 11.3 Verwendung des Vue.js-Frameworks Quasar
+
+Um Effizienz und Produktivität der Entwicklung zu steigern, soll ein weiteres Framework genutzt werden.
+
+Quasar bietet eine umfangreiche Sammlung von wiederverwendbaren (UI) Komponenten, die speziell für die Entwicklung von Vue-basierten Webanwendungen optimiert sind.
+
+Als Alternative wurde das Framework Ionic betrachtet. Dieses bereitete jedoch Probleme bei der Installation.
+
+Quasar stellt durch verschiedene Tools auch Unterstützung bei der Einrichtung und Deployment einer PWA bereit. Der "Layout Builder" erweist sich gerade zu Beginn der Entwicklung als besonders hilfreich. Die umfangreiche Dokumentation der Komponenten bietet schnelle Durchsicht und erleichtert das Arbeiten. Durch die Wiederverwendbarkeit der Komponenten lässt sich ein Design konsequent durchsetzen.
+
+Zu beachten ist, dass die Anwendung möglicherweise unnötig aufgebläht wird, wenn man zu viele Komponenten nutzt. Daher sollten die Entwickler die Auswahl der verwendeten Komponenten mit Bedacht zu treffen.
+
+Die Kombination von Vue und Quasar erweist sich als optimal. Performance, Design und Benutzerfreundlichkeit sind klare Pluspunkte.
+
+Referenzen:
+
+Quasar Dokumentation: https://quasar.dev/docs
+
+Quasar Layout Builder: https://quasar.dev/layout-builder
 
 ## 12. Risiken und technische Schulden
 
