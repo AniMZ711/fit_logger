@@ -95,7 +95,7 @@ Alternativen wie z.B. Flutter wurden ebenfalls in Betracht gezogen.
 
 Es ergeben sich weitere Auswirkungen durch die Verwendung einer Progressive Web App.
 
-So ist eine Funktionalität die Offline-Verfügbarkeit. Man kann die App unabhängig von einer stabilen Internetverbindung nutzen. Außerdem sind PWAs skalierbar, da sie auf Webtechnologien basieren. Sie können sich an verschiedene Bildschirmgrößen und Geräte anpassen und sind sowohl für mobile als auch für Desktop-Benutzer geeignet. So ist FIT-Logger nicht nur plattformunabhängig, sondern auch **geräteunabhängig**.
+So ist eine Funktionalität die Offline-Verfügbarkeit. Man kann die App unabhängig von einer stabilen Internetverbindung nutzen. Außerdem sind PWAs skalierbar, da sie auf Webtechnologien basieren. Sie können sich an verschiedene Bildschirmgrößen und Geräte anpassen und sind sowohl für mobile als auch für Desktop-Benutzer geeignet. So ist FIT-Logger nicht nur plattformunabhängig, sondern auch **geräteunabhängig**. Die Wartbarkeit des Systems ist durch Verwendung einer PWA im Vergleich zu nativen Apps einfacher, da es nur eine Codebasis für alle Plattformen gibt. Änderungen und Updates können zentralisiert erfolgen.
 
 ## 12. Risiken und technische Schulden
 
