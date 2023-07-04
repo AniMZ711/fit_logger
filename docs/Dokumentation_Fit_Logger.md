@@ -63,7 +63,25 @@ Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder au
 - Führen eines Ernährungstagebuchs (Logbuch)
 - Nachverfolgung festgelegter Ziele: Anzeige als Linien-Diagramm
 
-## 2. Zielsetzung und Randbedinungen
+### 1.2 Motivation und Zielsetzung
+
+## 2. Randbedinungen
+
+### 2.1 Technische Randbedinungen
+
+### 2.2 Organisatorische Randbedinungen
+
+| Randbedinung                           | Erläuterungen, Hintergrund                                                                                                                                                                                             |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Team                                   | Bestehend aus: Maximilian Groll, Moses Kümmeth, Luca Lorenz, Anika Menz, Fracisco Navarro, Jonathan Stöcker                                                                                                            |
+| Betreuung                              | Prof. Dr. Kulesz                                                                                                                                                                                                       |
+| Zeitplan                               | 15.03.2023 Kick-Off Veranstaltung<br />Abgabe des Codes und der Dokumentation am 20.07.2023<br />Präsentation des Ergebnisses am 27.07.2023 im Rahmen einer "Messe" an der THWS, Sanderheinrichsleitenweg 20, Würzburg |
+| Vorgehensmodell                        | "Agil" - Wöchentliches Meeting, Sprints von einer Woche, Feature-Freeze meist 1-2 Tage vor Weekly                                                                                                                      |
+| Entwicklungswerkzeuge                  | Design-Entwurf mit Figma, Implementierung mit VS Code, Dokumentation in Bitbucket, Ticketsytem mit JIRA                                                                                                                |
+| Konfigurations- und Versionsverwaltung | GIT Atlassian Bitbucket v7.21.10                                                                                                                                                                                       |
+| Testwerkzeuge                          |                                                                                                                                                                                                                        |
+| Veröffentlichung                       |                                                                                                                                                                                                                        |
+| Kommunikation                          | Mattermost-Channel, Discord-Server, WhatsApp-Gruppe                                                                                                                                                                    |
 
 ## 3. Systemkontext
 
