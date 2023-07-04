@@ -42,6 +42,7 @@
                       <div class="ScrollContainer">
                         <ul>
                           <li v-for="product in filteredProducts" :key="product.id">
+                            <!-- Zeigt das Ergebnis der Produktsuche an-->
                             {{ product.name }} ( {{ product.quantity }}g ):
                             {{ product.calories }} kcal, {{ product.carbs }}g
                             Kohlenhydrate, {{ product.protein }}g Proteine,

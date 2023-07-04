@@ -10,31 +10,16 @@
 
   <div class="q-pa-md">
     <div class="q-gutter-md row items-start">
-      <q-select
-        filled
-        v-model="single"
-        :options="options.daten"
-        label="Zeitraum"
-        style="width: 250px"
-        color="black"
-        bg-color="green"
-      >
+      <q-select filled v-model="single" :options="options.daten" label="Zeitraum" style="width: 250px" color="black"
+        bg-color="green">
         <template v-slot:prepend>
           <q-icon name="event" />
           <!-- Dropdown für Auswahl des Zeitraums-->
         </template>
       </q-select>
 
-      <q-select
-        filled
-        v-model="multiple"
-        multiple
-        :options="options.werte"
-        label="Daten"
-        style="width: 250px"
-        color="black"
-        bg-color="green"
-      >
+      <q-select filled v-model="multiple" multiple :options="options.werte" label="Daten" style="width: 250px"
+        color="black" bg-color="green">
         <template v-slot:prepend>
           <q-icon name="addchart" />
           <!-- Dropdown für Auswahl des Datenarten-->

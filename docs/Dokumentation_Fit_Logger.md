@@ -121,7 +121,7 @@ Referenzen:
 
 Vue.js Dokumentation: https://vuejs.org/
 
-### 11.3 Verwendung des Vue.js-Frameworks Quasar
+### 11.3 Verwendung des Vue Frameworks Quasar
 
 Um Effizienz und Produktivität der Entwicklung zu steigern, soll ein weiteres Framework genutzt werden.
 
@@ -131,7 +131,7 @@ Als Alternative wurde das Framework Ionic betrachtet. Dieses bereitete jedoch Pr
 
 Quasar stellt durch verschiedene Tools auch Unterstützung bei der Einrichtung und Deployment einer PWA bereit. Der "Layout Builder" erweist sich gerade zu Beginn der Entwicklung als besonders hilfreich. Die umfangreiche Dokumentation der Komponenten bietet schnelle Durchsicht und erleichtert das Arbeiten. Durch die Wiederverwendbarkeit der Komponenten lässt sich ein Design konsequent durchsetzen.
 
-Zu beachten ist, dass die Anwendung möglicherweise unnötig aufgebläht wird, wenn man zu viele Komponenten nutzt. Daher sollten die Entwickler die Auswahl der verwendeten Komponenten mit Bedacht zu treffen.
+Zu beachten ist, dass die Anwendung möglicherweise unnötig aufgebläht wird, wenn man zu viele Komponenten nutzt. Daher sollten die Entwickler die Auswahl der verwendeten Komponenten mit Bedacht treffen.
 
 Die Kombination von Vue und Quasar erweist sich als optimal. Performance, Design und Benutzerfreundlichkeit sind klare Pluspunkte.
 

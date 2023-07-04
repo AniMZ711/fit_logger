@@ -18,6 +18,7 @@
         <div class="col-8 text-center self-center">
           <DatePicker @newSelectedDate="setDate"> </DatePicker>
           <q-btn v-if="mealEdited" round color="green" icon="edit" @click="undoEdit">
+            <!-- klick auf den Button öffnet einen Kalender, wo das neue Datum festgelegt werden kann-->
           </q-btn>
         </div>
         <div class="col-2"></div>
@@ -32,8 +33,9 @@
         <ul class="todays-items" style="padding-top: 5px">
           <p class="heading-logbuch">Frühstück</p>
           <div v-if="breakfast.length === 0" class="platzhalter"> Noch keine Einträge</div>
-
+          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
           <li v-for="meal in breakfast" :key="meal.id">
+            <!-- Anzeige aller Einträge "Breakfast" in Listenform-->
             <details>
               <summary>
                 {{ meal.name }}
@@ -43,8 +45,10 @@
               {{ meal.carbs }}g | Proteine: {{ meal.protein }}g | Fett:
               {{ meal.fat }}g &nbsp;
               <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
+                <!-- löscht den Eintrag-->
               </q-btn>
               <q-btn round color="green" icon="build" @click="setUpEditMeal(meal)">
+                <!--Öffnet die Bearbeitung des Eintrags-->
               </q-btn>
             </details>
           </li>
@@ -53,8 +57,11 @@
         <ul class="todays-items" style="padding-top: 50px">
           <p class="heading-logbuch">Mittagessen</p>
           <div v-if="lunch.length === 0" class="platzhalter"> Noch keine Einträge</div>
+          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
+
 
           <li v-for="meal in lunch" :key="meal.id">
+            <!-- Anzeige aller Einträge "Lunch" in Listenform-->
             <details>
               <summary>
                 {{ meal.name }}
@@ -64,28 +71,37 @@
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
               <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
+                <!-- Löscht den Eintrag-->
               </q-btn>
               <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
+                <!-- Öffnet die Bearbeitung für den Eintrag-->
               </q-btn>
             </details>
           </li>
         </ul>
+
         <ul class="todays-items" style="padding-top: 50px">
           <p class="heading-logbuch">Abendessen</p>
           <div v-if="diner.length === 0" class="platzhalter"> Noch keine Einträge</div>
+          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
+
 
           <li v-for="meal in diner" :key="meal.id">
+            <!-- Anzeige aller Einträge "dinner" in Listenform-->
             <details>
               <summary>
                 {{ meal.name }}
                 <span class="badge"> {{ meal.calories }}kcal</span>
+                <!-- Anzeige der Kalorien des Eintrags mittels Badge-->
               </summary>
               Kalorien: {{ meal.calories }} Kohlenhydrate:
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
               <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
+                <!-- löscht den Eintag-->
               </q-btn>
               <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
+                <!-- öffnet die Bearbeitung für den Eintrag-->
               </q-btn>
             </details>
           </li>
@@ -93,8 +109,10 @@
         <ul class="todays-items" style="padding-top: 50px">
           <p class="heading-logbuch"> Snacks</p>
           <div v-if="snacks.length === 0" class="platzhalter"> Noch keine Einträge</div>
+          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
 
           <li v-for="meal in snacks" :key="meal.id">
+            <!-- Anzeige aller Einträge "snacks" in Listenform-->
             <details>
               <summary>
                 {{ meal.name }}
@@ -104,8 +122,9 @@
               {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
               {{ meal.fat }}
               <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
-              </q-btn>
+              </q-btn> <!-- löscht den Eintrag-->
               <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
+                <!--öffnet die Bearbeitung des Eintrags-->
               </q-btn>
             </details>
           </li>
@@ -115,9 +134,11 @@
 
       <teleport to="body">
         <div class="modal" v-if="editMode">
+          <!-- Edit Mode ist true, wenn auf den Button zur Bearbeitung eines Eintrags gelickt wurde-->
           <div>
             <div>
               {{ mealToEdit.name }} - {{ mealToEdit.quantity }}g
+              <!-- Zeigt das zu nearbeitende Produkt an-->
               <br />
 
               {{ mealToEdit.calories }} kcal, {{ mealToEdit.carbs }}g
@@ -127,7 +148,7 @@
 
             <div>
               <q-input filled color="green" label="Menge eintragen (g)" id="Menge" v-model.number="quantity" type="number"
-                min="0" required>
+                min="0" required> <!-- hier trägt der User die gewünschte Menge des Produkts in Gramm ein-->
               </q-input>
 
               <div>
@@ -142,9 +163,11 @@
             <div>
               <q-btn rounded color="green" icon="save" @click="calculateIngredientValues(quantity)">
                 Speichern
+                <!-- Speichert die Änderungen des Eintrags ab, neuer Wert ist im Logbuch zu sehen-->
               </q-btn>
               <q-btn rounded color="green" icon="cancel" @click="cancelEdit()">
                 Abbrechen
+                <!-- bricht die Bearbeitung des Eintrags ab, Änderungen werden verworfen-->
               </q-btn>
             </div>
           </div>
@@ -474,5 +497,4 @@ export default defineComponent({
   z-index: 9999;
 
 
-} */
-</style>
+} */</style>

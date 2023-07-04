@@ -53,11 +53,6 @@ const routes = [
       },
 
       {
-        path: "/essenerstellen",
-        component: () => import("pages/EssenErstellenPage.vue"),
-      },
-
-      {
         path: "/ProduktBearbeiten",
         component: () => import("pages/ProduktBearbeiten.vue"),
       },

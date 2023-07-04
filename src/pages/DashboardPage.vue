@@ -8,7 +8,7 @@
         <q-space> </q-space>
         <q-btn class="no-ripple" label="about" flat position="right" color="white" icon-right="info_outline"
           @click="about = true" style="z-index: 999">
-          <!-- About -->
+          <!-- About Page, öffnet sich beim klicken des Buttons-->
         </q-btn>
       </q-toolbar>
     </q-header>
@@ -78,8 +78,9 @@
               <!--Reihe 1 Makros-->
               <div class="column col-2"></div>
               <div class="column col-9">
+                <!--Balkendiagramm für die Anzeige des täglichen zu konsumierenden Kohlenhydrate-->
                 <div id="AnzeigeKohlenhydrate" class="q-px-sm">
-                  <!-- Anzeige Kohlenhydrate-->
+
                   Kohlenhydrate {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
                   <q-linear-progress class="progress-bar" :value="dailyConsumption.carbsPercentage" color="green"
                     track-color="grey" size="medium" rounded="true">
@@ -92,6 +93,7 @@
               <!--Reihe 2 Makros-->
               <div class="column col-2"></div>
               <div class="column col-9">
+                <!--Balkendiagramm für die Anzeige des täglichen Eiweißbedarfs-->
                 <div id="AnzeigeEiweiss" class="q-px-sm">
                   Eiweiss {{ dailyConsumption.protein }}/{{ goal.protein }} g
                   <q-linear-progress class="progress-bar" :value="dailyConsumption.proteinPercentage" color="green"
@@ -106,7 +108,7 @@
               <div class="column col-2"></div>
               <div class="column col-9">
                 <div id="AnzeigeFett" class="q-px-sm">
-                  <!-- Anzeige Fett-->
+                  <!--Balkendiagramm für die Anzeige des täglichen Fettbedarfs-->
                   Fett {{ dailyConsumption.fat }}/{{ goal.fat }} g
                   <q-linear-progress class="progress-bar" :value="dailyConsumption.fatPercentage" color="green"
                     track-color="grey" size="medium" rounded="true">
