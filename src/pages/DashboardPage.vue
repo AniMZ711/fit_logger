@@ -3,11 +3,20 @@
     <q-header class="stickyHeader">
       <q-toolbar>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title>
+          {{ pageName }}</q-toolbar-title
+        >
 
         <q-space> </q-space>
-        <q-btn class="no-ripple" label="about" flat position="right" color="white" icon-right="info_outline"
-          @click="about = true" style="z-index: 999">
+        <q-btn
+          class="no-ripple"
+          label="about"
+          flat
+          position="right"
+          color="white"
+          icon-right="info_outline"
+          @click="about = true"
+          style="z-index: 999"
+        >
           <!-- About Page, öffnet sich beim klicken des Buttons-->
         </q-btn>
       </q-toolbar>
@@ -15,7 +24,14 @@
 
     <q-dialog v-model="about">
       <q-card>
-        <q-btn class="absolute" style="top: 10px; right: 10px" flat icon="close" color="primary" v-close-popup />
+        <q-btn
+          class="absolute"
+          style="top: 10px; right: 10px"
+          flat
+          icon="close"
+          color="primary"
+          v-close-popup
+        />
 
         <div class="row text-center q-pt-sm">
           <div class="col col-2"></div>
@@ -55,8 +71,15 @@
           <div class="column col-4">
             <div class="column self-end progress-circle-container q-pl-md">
               <div id="AnzeigeKalorienCircleBar" class="circle-progress">
-                <q-circular-progress size="15vh" rounded :value="dailyConsumption.caloriesPercentage" show-value
-                  color="green" track-color="grey" float-right>
+                <q-circular-progress
+                  size="15vh"
+                  rounded
+                  :value="dailyConsumption.caloriesPercentage"
+                  show-value
+                  color="green"
+                  track-color="grey"
+                  float-right
+                >
                   <!-- Kreisförmige Visualiserung der bereits konsumierten Kalorien-->
                   <!-- das muss noch gerundet werden -->
                   {{ dailyConsumption.caloriesPercentage }}%
@@ -80,10 +103,15 @@
               <div class="column col-9">
                 <!--Balkendiagramm für die Anzeige des täglichen zu konsumierenden Kohlenhydrate-->
                 <div id="AnzeigeKohlenhydrate" class="q-px-sm">
-
                   Kohlenhydrate {{ dailyConsumption.carbs }}/{{ goal.carbs }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.carbsPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.carbsPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -96,8 +124,14 @@
                 <!--Balkendiagramm für die Anzeige des täglichen Eiweißbedarfs-->
                 <div id="AnzeigeEiweiss" class="q-px-sm">
                   Eiweiss {{ dailyConsumption.protein }}/{{ goal.protein }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.proteinPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.proteinPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -110,8 +144,14 @@
                 <div id="AnzeigeFett" class="q-px-sm">
                   <!--Balkendiagramm für die Anzeige des täglichen Fettbedarfs-->
                   Fett {{ dailyConsumption.fat }}/{{ goal.fat }} g
-                  <q-linear-progress class="progress-bar" :value="dailyConsumption.fatPercentage" color="green"
-                    track-color="grey" size="medium" rounded="true">
+                  <q-linear-progress
+                    class="progress-bar"
+                    :value="dailyConsumption.fatPercentage"
+                    color="green"
+                    track-color="grey"
+                    size="medium"
+                    rounded="true"
+                  >
                   </q-linear-progress>
                 </div>
               </div>
@@ -131,8 +171,12 @@
 
         <div class="col col-10 text-center items-center">
           <ul class="dashboard-ul">
-            <li class="dashboard-li dashboard-meals-list" v-for="product, index in meals.slice(0, 5)" :key="product.id"
-              :class="index % 2 === 0 ? 'even' : 'odd'">
+            <li
+              class="dashboard-li dashboard-meals-list"
+              v-for="(product, index) in meals.slice(0, 5)"
+              :key="product.id"
+              :class="index % 2 === 0 ? 'even' : 'odd'"
+            >
               <details>
                 <summary>
                   <span class="word"> {{ product.name }}</span>
@@ -161,7 +205,7 @@ export default defineComponent({
       about: ref(false),
       pageName: "Dashboard", // bei Veränderung ändert sich der Seitentitel automatisch
 
-      meals: JSON.parse(window.localStorage.getItem("meals")).reverse() || [],
+      meals: JSON.parse(window.localStorage.getItem("meals")) || [],
 
       goal: JSON.parse(window.localStorage.getItem("Goal")) || {
         calories: 2400,
@@ -262,12 +306,9 @@ export default defineComponent({
   transform: translateX(-1.25em);
 }
 
-
 .dashboard-ul {
   list-style-type: none;
   padding-left: 0;
-
-
 }
 
 .even {
