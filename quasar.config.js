@@ -12,13 +12,6 @@ const { configure } = require("quasar/wrappers");
 
 module.exports = configure(function (/* ctx */) {
   return {
-    pwa: {
-      // ...
-      devServer: {
-        https: true,
-        pwa: true,
-      },
-    },
     eslint: {
       // fix: true,
       // include: [],
@@ -154,6 +147,7 @@ module.exports = configure(function (/* ctx */) {
       swFilename: "sw.js",
       manifestFilename: "manifest.json",
       useCredentialsForManifestTag: false,
+
       // useFilenameHashes: true,
       // extendGenerateSWOptions (cfg) {}
       // extendInjectManifestOptions (cfg) {},

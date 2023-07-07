@@ -47,10 +47,10 @@ const routes = [
         component: () => import("pages/ZielePage.vue"),
       },
 
-      {
-        path: "/statistik",
-        component: () => import("pages/StatistikPage.vue"),
-      },
+      // {
+      //   path: "/statistik",
+      //   component: () => import("pages/StatistikPage.vue"),
+      // },
 
       {
         path: "/ProduktBearbeiten",
