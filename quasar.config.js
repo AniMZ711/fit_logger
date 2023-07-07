@@ -12,6 +12,13 @@ const { configure } = require("quasar/wrappers");
 
 module.exports = configure(function (/* ctx */) {
   return {
+    pwa: {
+      // ...
+      devServer: {
+        https: true,
+        pwa: true,
+      },
+    },
     eslint: {
       // fix: true,
       // include: [],
