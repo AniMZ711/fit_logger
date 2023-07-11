@@ -5,7 +5,8 @@
       <q-toolbar>
         <q-btn flat icon="menu_book" color="white"> </q-btn>
         <q-toolbar-title class="absolute-center">
-          {{ pageName }}</q-toolbar-title><!--Anzeige des Titels; Variable aus dem Script-->
+          {{ pageName }}</q-toolbar-title
+        ><!--Anzeige des Titels; Variable aus dem Script-->
       </q-toolbar>
     </q-header>
 
@@ -16,8 +17,14 @@
       <div class="row">
         <div class="col-2"></div>
         <div class="col-8 text-center self-center">
-          <DatePicker @newSelectedDate="setDate"> </DatePicker>
-          <q-btn v-if="mealEdited" round color="green" icon="edit" @click="undoEdit">
+          <DatePicker @newSelectedDate="setDate"></DatePicker>
+          <q-btn
+            v-if="mealEdited"
+            round
+            color="green"
+            icon="edit"
+            @click="undoEdit"
+          >
             <!-- klick auf den Button öffnet einen Kalender, wo das neue Datum festgelegt werden kann-->
           </q-btn>
         </div>
@@ -25,113 +32,40 @@
       </div>
     </q-page-container>
 
+    <ListComponent
+      mealTime="Frühstück"
+      :mealList="breakfast"
+      :editable="true"
+      @edit="setUpEditPopup"
+      @delete="setUpDeletePopup"
+    ></ListComponent>
+
+    <ListComponent
+      mealTime="Mittagessen"
+      :mealList="lunch"
+      :editable="true"
+      @edit="setUpEditPopup"
+      @delete="setUpDeletePopup"
+    ></ListComponent>
+
+    <ListComponent
+      mealTime="Abendessen"
+      :mealList="diner"
+      :editable="true"
+      @edit="setUpEditPopup"
+      @delete="setUpDeletePopup"
+    ></ListComponent>
+
+    <ListComponent
+      mealTime="Snacks"
+      :mealList="snacks"
+      :editable="true"
+      @edit="setUpEditPopup"
+      @delete="setUpDeletePopup"
+    ></ListComponent>
+
     <!--Container für Anzeige der Mahlzeiten des Tages-->
     <q-page-container class="meals-today text-center">
-
-      <q-page-container class="meals-today-logbuch">
-
-        <ul class="todays-items" style="padding-top: 5px">
-          <p class="heading-logbuch">Frühstück</p>
-          <div v-if="breakfast.length === 0" class="platzhalter"> Noch keine Einträge</div>
-          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
-          <li v-for="meal in breakfast" :key="meal.id">
-            <!-- Anzeige aller Einträge "Breakfast" in Listenform-->
-            <details>
-              <summary>
-                {{ meal.name }}
-                <span class="badge"> {{ meal.calories }}kcal</span>
-              </summary>
-              Kalorien: {{ meal.calories }} | Kohlenhydrate:
-              {{ meal.carbs }}g | Proteine: {{ meal.protein }}g | Fett:
-              {{ meal.fat }}g &nbsp;
-              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
-                <!-- löscht den Eintrag-->
-              </q-btn>
-              <q-btn round color="green" icon="build" @click="setUpEditMeal(meal)">
-                <!--Öffnet die Bearbeitung des Eintrags-->
-              </q-btn>
-            </details>
-          </li>
-        </ul>
-
-        <ul class="todays-items" style="padding-top: 50px">
-          <p class="heading-logbuch">Mittagessen</p>
-          <div v-if="lunch.length === 0" class="platzhalter"> Noch keine Einträge</div>
-          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
-
-
-          <li v-for="meal in lunch" :key="meal.id">
-            <!-- Anzeige aller Einträge "Lunch" in Listenform-->
-            <details>
-              <summary>
-                {{ meal.name }}
-                <span class="badge"> {{ meal.calories }}kcal</span>
-              </summary>
-              Kalorien: {{ meal.calories }} Kohlenhydrate:
-              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-              {{ meal.fat }}
-              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
-                <!-- Löscht den Eintrag-->
-              </q-btn>
-              <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
-                <!-- Öffnet die Bearbeitung für den Eintrag-->
-              </q-btn>
-            </details>
-          </li>
-        </ul>
-
-        <ul class="todays-items" style="padding-top: 50px">
-          <p class="heading-logbuch">Abendessen</p>
-          <div v-if="diner.length === 0" class="platzhalter"> Noch keine Einträge</div>
-          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
-
-
-          <li v-for="meal in diner" :key="meal.id">
-            <!-- Anzeige aller Einträge "dinner" in Listenform-->
-            <details>
-              <summary>
-                {{ meal.name }}
-                <span class="badge"> {{ meal.calories }}kcal</span>
-                <!-- Anzeige der Kalorien des Eintrags mittels Badge-->
-              </summary>
-              Kalorien: {{ meal.calories }} Kohlenhydrate:
-              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-              {{ meal.fat }}
-              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
-                <!-- löscht den Eintag-->
-              </q-btn>
-              <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
-                <!-- öffnet die Bearbeitung für den Eintrag-->
-              </q-btn>
-            </details>
-          </li>
-        </ul>
-        <ul class="todays-items" style="padding-top: 50px">
-          <p class="heading-logbuch"> Snacks</p>
-          <div v-if="snacks.length === 0" class="platzhalter"> Noch keine Einträge</div>
-          <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
-
-          <li v-for="meal in snacks" :key="meal.id">
-            <!-- Anzeige aller Einträge "snacks" in Listenform-->
-            <details>
-              <summary>
-                {{ meal.name }}
-                <span class="badge"> {{ meal.calories }}kcal</span>
-              </summary>
-              Kalorien: {{ meal.calories }} Kohlenhydrate:
-              {{ meal.carbs }} Proteine: {{ meal.protein }} Fett:
-              {{ meal.fat }}
-              <q-btn class="q-ma-sm" round color="green" icon="delete" @click="deleteMeal(meal)">
-              </q-btn> <!-- löscht den Eintrag-->
-              <q-btn round color="green" icon="edit" @click="setUpEditMeal(meal)">
-                <!--öffnet die Bearbeitung des Eintrags-->
-              </q-btn>
-            </details>
-          </li>
-        </ul>
-      </q-page-container>
-
-
       <teleport to="body">
         <div class="modal" v-if="editMode">
           <!-- Edit Mode ist true, wenn auf den Button zur Bearbeitung eines Eintrags gelickt wurde-->
@@ -147,13 +81,26 @@
             </div>
 
             <div>
-              <q-input filled color="green" label="Menge eintragen (g)" id="Menge" v-model.number="quantity" type="number"
-                min="0" required> <!-- hier trägt der User die gewünschte Menge des Produkts in Gramm ein-->
+              <q-input
+                filled
+                color="green"
+                label="Menge eintragen (g)"
+                id="Menge"
+                v-model.number="quantity"
+                type="number"
+                min="0"
+                required
+              >
+                <!-- hier trägt der User die gewünschte Menge des Produkts in Gramm ein-->
               </q-input>
 
               <div>
                 <select v-model="mealToEdit.time">
-                  <option v-for="option in options" :value="option.value" :key="option.text">
+                  <option
+                    v-for="option in options"
+                    :value="option.value"
+                    :key="option.text"
+                  >
                     {{ option.text }}
                   </option>
                 </select>
@@ -161,12 +108,65 @@
             </div>
 
             <div>
-              <q-btn rounded color="green" icon="save" @click="calculateIngredientValues(quantity)">
+              <q-btn
+                rounded
+                color="green"
+                icon="save"
+                @click="calculateIngredientValues(quantity)"
+              >
                 Speichern
                 <!-- Speichert die Änderungen des Eintrags ab, neuer Wert ist im Logbuch zu sehen-->
               </q-btn>
               <q-btn rounded color="green" icon="cancel" @click="cancelEdit()">
                 Abbrechen
+                <!-- bricht die Bearbeitung des Eintrags ab, Änderungen werden verworfen-->
+              </q-btn>
+            </div>
+          </div>
+        </div>
+      </teleport>
+
+      <teleport to="body">
+        <div v-if="editBool || deleteBool" class="modal">
+          <!-- Edit Mode ist true, wenn auf den Button zur Bearbeitung eines Eintrags gelickt wurde-->
+          <div>
+            <h6 v-if="editBool">Willst du diese Mahlzeit bearbeiten?</h6>
+            <p v-if="deleteBool">Willst du diese Mahlzeit löschen?</p>
+            <div>
+              {{ mealToEdit.time }}
+              <br />
+              {{ mealToEdit.name }} - {{ mealToEdit.quantity }}g
+              <!-- Zeigt das zu nearbeitende Produkt an-->
+              <br />
+
+              {{ mealToEdit.calories }} kcal, {{ mealToEdit.carbs }}g
+              Kohlenhydrate, {{ mealToEdit.protein }}g Protein,
+              {{ mealToEdit.fat }}g Fett
+              <p></p>
+            </div>
+            <div>
+              <q-btn rounded color="green" icon="close" @click="resetPopup">
+                Abbrechen
+                <!-- Speichert die Änderungen des Eintrags ab, neuer Wert ist im Logbuch zu sehen-->
+              </q-btn>
+              <q-btn
+                v-if="deleteBool"
+                rounded
+                color="green"
+                icon="delete"
+                @click="deleteMeal"
+              >
+                Löschen
+                <!-- Speichert die Änderungen des Eintrags ab, neuer Wert ist im Logbuch zu sehen-->
+              </q-btn>
+              <q-btn
+                v-if="editBool"
+                rounded
+                color="green"
+                icon="edit"
+                @click="setUpEditMeal"
+              >
+                Bearbeiten
                 <!-- bricht die Bearbeitung des Eintrags ab, Änderungen werden verworfen-->
               </q-btn>
             </div>
@@ -180,11 +180,13 @@
 <script>
 import { defineComponent } from "vue";
 import DatePicker from "src/components/DatePicker.vue";
+import ListComponent from "src/components/ListComponent.vue";
 import { ref } from "vue";
 
 export default defineComponent({
   components: {
     DatePicker,
+    ListComponent,
   },
   data() {
     return {
@@ -226,15 +228,14 @@ export default defineComponent({
       selectedMealTime: ref("Frühstück"),
       quantity: 0,
       editIndex: 0,
+      deleteBool: false,
+      editBool: false,
     };
   },
   created() {
     this.filterMeals();
   },
   methods: {
-
-
-
     setDate(currentDate) {
       const day = currentDate;
       this.date =
@@ -242,22 +243,14 @@ export default defineComponent({
       this.filterMeals();
     },
 
-    deleteMeal(meal) {
-      const index = this.meals.indexOf(meal);
+    deleteMeal() {
+      const index = this.meals.indexOf(this.mealToEdit);
       if (index !== -1) {
         this.meals.splice(index, 1);
         window.localStorage.setItem("meals", JSON.stringify(this.meals));
       }
 
-      if (meal.date == this.dailyConsumption.date) {
-        this.dailyConsumption = {
-          date: this.dailyConsumption.date,
-          calories: this.dailyConsumption.calories - meal.calories,
-          carbs: this.dailyConsumption.carbs - meal.carbs,
-          protein: this.dailyConsumption.protein - meal.protein,
-          fat: this.dailyConsumption.fat - meal.fat,
-        };
-      }
+      this.setUpDailyConsumption();
 
       this.setDailyConsumption();
       window.localStorage.setItem(
@@ -267,23 +260,52 @@ export default defineComponent({
       this.filterMeals();
     },
 
-    setUpEditMeal(meal) {
-      this.editIndex = this.meals.indexOf(meal);
+    setUpEditPopup(meal) {
       this.mealToEdit = { ...meal };
+      console.log(this.mealToEdit);
+      this.editBool = true;
+    },
+    setUpDeletePopup(meal) {
+      this.mealToEdit = { ...meal };
+      console.log(this.mealToEdit);
+      this.deleteBool = true;
+    },
 
+    resetPopup() {
+      this.mealToEdit = {};
+      this.deleteBool = false;
+      this.editBool = false;
+    },
+
+    setUpEditMeal() {
+      this.editBool = false;
+      const id = this.mealToEdit.id;
+
+      for (let i = 0; i < this.meals.length; i++) {
+        if (this.meals[i].id === id) {
+          console.log(this.meals[i].id);
+          this.editIndex = this.meals.indexOf(this.meals[i]);
+          console.log(this.editIndex);
+        }
+      }
+
+      this.setUpDailyConsumption();
+
+      this.editedMeal = { ...this.mealToEdit };
+      this.quantity = this.mealToEdit.quantity;
+      this.editMode = true;
+    },
+
+    setUpDailyConsumption() {
       if (this.mealToEdit.date == this.dailyConsumption.date) {
         this.dailyConsumption = {
           date: this.dailyConsumption.date,
-          calories: this.dailyConsumption.calories - meal.calories,
-          carbs: this.dailyConsumption.carbs - meal.carbs,
-          protein: this.dailyConsumption.protein - meal.protein,
-          fat: this.dailyConsumption.fat - meal.fat,
+          calories: this.dailyConsumption.calories - this.mealToEdit.calories,
+          carbs: this.dailyConsumption.carbs - this.mealToEdit.carbs,
+          protein: this.dailyConsumption.protein - this.mealToEdit.protein,
+          fat: this.dailyConsumption.fat - this.mealToEdit.fat,
         };
       }
-
-      this.editedMeal = { ...meal };
-      this.quantity = this.mealToEdit.quantity;
-      this.editMode = true;
     },
 
     cancelEdit() {
@@ -359,6 +381,7 @@ export default defineComponent({
       const factor = quantity / this.mealToEdit.quantity;
       this.mealToEdit = {
         name: this.mealToEdit.name,
+        id: this.mealToEdit.id,
         date: this.mealToEdit.date,
         time: this.mealToEdit.time,
         quantity: quantity,
@@ -367,6 +390,7 @@ export default defineComponent({
         protein: Math.round(this.mealToEdit.protein * factor),
         fat: Math.round(this.mealToEdit.fat * factor),
       };
+      console.log(this.mealToEdit);
       this.editMeal();
     },
 
@@ -420,29 +444,22 @@ export default defineComponent({
 
 <style>
 .todays-items {
-
   list-style-type: none;
-
-
 }
 
 .platzhalter {
-
   background-color: lightgrey;
   list-style-type: none;
   font-display: inherit;
-
 }
 
 .heading-logbuch {
-
   background-color: #4caf50;
   color: white;
   font-weight: 500;
   font-size: larger;
 
   margin-top: -2em;
-
 }
 
 .date-picker {
@@ -471,7 +488,7 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal>div {
+.modal > div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
@@ -480,7 +497,6 @@ export default defineComponent({
 }
 
 .meals-today-logbuch {
-
   margin-right: 2em;
   margin-top: -2em;
 }
@@ -497,4 +513,5 @@ export default defineComponent({
   z-index: 9999;
 
 
-} */</style>
+} */
+</style>
