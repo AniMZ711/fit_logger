@@ -7,7 +7,11 @@
           Noch keine Einträge
         </div>
         <!-- checkt auf vorhandene Einträge - wenn kein Eintrag vorhanden ist, wird ein Platzhalter angezeigt-->
-        <li v-for="meal in mealList" :key="meal.id">
+        <li
+          v-for="(meal, index) in mealList"
+          :key="meal.id"
+          :class="index % 2 === 0 ? 'even' : 'odd'"
+        >
           <!-- Anzeige aller Einträge "Breakfast" in Listenform-->
           <details>
             <summary>
@@ -104,6 +108,14 @@ export default defineComponent({
   border-radius: 10px;
   align-items: center;
   text-align: center;
+}
+
+.even {
+  background-color: #bbbbbb7c;
+}
+
+.odd {
+  background-color: white;
 }
 
 .meals-today-logbuch {

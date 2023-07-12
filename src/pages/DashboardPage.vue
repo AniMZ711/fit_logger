@@ -62,7 +62,7 @@
         <div class="column col-1"></div>
 
         <div class="column col-8 self-center q-pb-md">
-          <div class="display-user-name">Hallo Name!</div>
+          <div class="display-user-name">Hallo Lisa :)</div>
         </div>
       </div>
 
@@ -161,45 +161,17 @@
       </div>
     </q-page-container>
 
-    <q-page-container class="display-last-meals">
-      <div id="rectangle" class="q-mb-lg">
-        <p class="text-center self-center last-meals">Letzte Mahlzeiten</p>
-      </div>
-
-      <div class="row">
-        <div class="col col-1"></div>
-
-        <div class="col col-10 text-center items-center">
-          <ul class="dashboard-ul">
-            <li
-              class="dashboard-li dashboard-meals-list"
-              v-for="(product, index) in meals.slice(0, 5)"
-              :key="product.id"
-              :class="index % 2 === 0 ? 'even' : 'odd'"
-            >
-              <details>
-                <summary>
-                  <span class="word"> {{ product.name }}</span>
-                  <span class="badge"> {{ product.calories }} kcal </span>
-                </summary>
-                Kalorien: {{ product.calories }} | Kohlenhydrate:
-                {{ product.carbs }}g | Proteine: {{ product.protein }}g | Fett:
-                {{ product.fat }}g
-              </details>
-            </li>
-          </ul>
-        </div>
-        <div class="col col-1"></div>
-      </div>
-    </q-page-container>
+    <!-- fffffffffff -->
+    <ListComponent :mealList="meals" :editable="false"></ListComponent>
   </q-layout>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
+import ListComponent from "src/components/ListComponent.vue";
 
 export default defineComponent({
-  components: {},
+  components: { ListComponent },
   setup() {
     return {
       about: ref(false),
@@ -230,6 +202,9 @@ export default defineComponent({
     };
   },
   created() {
+    //meals
+    this.setMealList();
+
     //dailyConsumption
     const today = new Date();
     const date =
@@ -294,6 +269,17 @@ export default defineComponent({
       );
     }
   },
+  methods: {
+    setMealList() {
+      const list = JSON.parse(window.localStorage.getItem("meals"));
+      list.reverse();
+      if (list.length < 6) {
+        this.meals = list;
+      } else {
+        this.meals = list.slice(0, 6);
+      }
+    },
+  },
 
   //die Mahlzeiten müssen importiert werden, damit man sie anzeigen lassen kann
 });
@@ -309,14 +295,6 @@ export default defineComponent({
 .dashboard-ul {
   list-style-type: none;
   padding-left: 0;
-}
-
-.even {
-  background-color: #bbbbbb7c;
-}
-
-.odd {
-  background-color: white;
 }
 
 .expandable-row:hover .expandable-content {

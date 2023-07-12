@@ -64,8 +64,9 @@
       @delete="setUpDeletePopup"
     ></ListComponent>
 
-    <!--Container für Anzeige der Mahlzeiten des Tages-->
+    <!--Container für Popups-->
     <q-page-container class="meals-today text-center">
+      <!-- Popup für Änderung -->
       <teleport to="body">
         <div class="modal" v-if="editMode">
           <!-- Edit Mode ist true, wenn auf den Button zur Bearbeitung eines Eintrags gelickt wurde-->
@@ -126,12 +127,15 @@
         </div>
       </teleport>
 
+      <!-- Popup für Sicherheitsfrage -->
       <teleport to="body">
         <div v-if="editBool || deleteBool" class="modal">
-          <!-- Edit Mode ist true, wenn auf den Button zur Bearbeitung eines Eintrags gelickt wurde-->
           <div>
             <h6 v-if="editBool">Willst du diese Mahlzeit bearbeiten?</h6>
-            <p v-if="deleteBool">Willst du diese Mahlzeit löschen?</p>
+            <h6 v-if="deleteBool && !mealDeletedBool">
+              Willst du diese Mahlzeit löschen?
+            </h6>
+            <h6 v-if="mealDeletedBool">Mahlzeit gelöscht</h6>
             <div>
               {{ mealToEdit.time }}
               <br />
@@ -145,20 +149,36 @@
               <p></p>
             </div>
             <div>
-              <q-btn rounded color="green" icon="close" @click="resetPopup">
-                Abbrechen
-                <!-- Speichert die Änderungen des Eintrags ab, neuer Wert ist im Logbuch zu sehen-->
-              </q-btn>
+              <!-- bricht die Bearbeitung des Eintrags ab, Änderungen werden verworfen-->
               <q-btn
-                v-if="deleteBool"
+                v-if="!mealDeletedBool"
+                rounded
+                color="green"
+                icon="close"
+                @click="resetPopup"
+              >
+                Abbrechen
+              </q-btn>
+              <!-- Löscht den Eintrag -->
+              <q-btn
+                v-if="deleteBool && !mealDeletedBool"
                 rounded
                 color="green"
                 icon="delete"
                 @click="deleteMeal"
               >
                 Löschen
-                <!-- Speichert die Änderungen des Eintrags ab, neuer Wert ist im Logbuch zu sehen-->
               </q-btn>
+              <q-btn
+                v-if="mealDeletedBool"
+                rounded
+                color="green"
+                icon="check"
+                @click="resetPopup"
+              >
+              </q-btn>
+
+              <!-- Speichert die Änderungen des Eintrags ab, neuer Wert ist im Logbuch zu sehen-->
               <q-btn
                 v-if="editBool"
                 rounded
@@ -167,7 +187,6 @@
                 @click="setUpEditMeal"
               >
                 Bearbeiten
-                <!-- bricht die Bearbeitung des Eintrags ab, Änderungen werden verworfen-->
               </q-btn>
             </div>
           </div>
@@ -230,6 +249,7 @@ export default defineComponent({
       editIndex: 0,
       deleteBool: false,
       editBool: false,
+      mealDeletedBool: false,
     };
   },
   created() {
@@ -244,9 +264,8 @@ export default defineComponent({
     },
 
     deleteMeal() {
-      const index = this.meals.indexOf(this.mealToEdit);
-      if (index !== -1) {
-        this.meals.splice(index, 1);
+      if (this.editIndex !== -1) {
+        this.meals.splice(this.editIndex, 1);
         window.localStorage.setItem("meals", JSON.stringify(this.meals));
       }
 
@@ -258,16 +277,15 @@ export default defineComponent({
         JSON.stringify(this.dailyConsumption)
       );
       this.filterMeals();
+      this.mealDeletedBool = true;
     },
 
     setUpEditPopup(meal) {
-      this.mealToEdit = { ...meal };
-      console.log(this.mealToEdit);
+      this.setUpPopup(meal);
       this.editBool = true;
     },
     setUpDeletePopup(meal) {
-      this.mealToEdit = { ...meal };
-      console.log(this.mealToEdit);
+      this.setUpPopup(meal);
       this.deleteBool = true;
     },
 
@@ -275,19 +293,24 @@ export default defineComponent({
       this.mealToEdit = {};
       this.deleteBool = false;
       this.editBool = false;
+      this.mealDeletedBool = false;
     },
 
-    setUpEditMeal() {
-      this.editBool = false;
+    setUpPopup(meal) {
+      this.mealToEdit = { ...meal };
       const id = this.mealToEdit.id;
 
       for (let i = 0; i < this.meals.length; i++) {
         if (this.meals[i].id === id) {
-          console.log(this.meals[i].id);
+          //console.log(this.meals[i].id);
           this.editIndex = this.meals.indexOf(this.meals[i]);
-          console.log(this.editIndex);
+          //console.log(this.editIndex);
         }
       }
+    },
+
+    setUpEditMeal() {
+      this.editBool = false;
 
       this.setUpDailyConsumption();
 
@@ -340,6 +363,7 @@ export default defineComponent({
       this.filterMeals();
       this.editMode = false;
       this.mealEdited = true;
+      this.mealToEdit = {};
     },
 
     undoEdit() {
@@ -381,16 +405,15 @@ export default defineComponent({
       const factor = quantity / this.mealToEdit.quantity;
       this.mealToEdit = {
         name: this.mealToEdit.name,
-        id: this.mealToEdit.id,
-        date: this.mealToEdit.date,
-        time: this.mealToEdit.time,
         quantity: quantity,
         calories: Math.round(this.mealToEdit.calories * factor),
         carbs: Math.round(this.mealToEdit.carbs * factor),
         protein: Math.round(this.mealToEdit.protein * factor),
         fat: Math.round(this.mealToEdit.fat * factor),
+        id: this.mealToEdit.id,
+        date: this.mealToEdit.date,
+        time: this.mealToEdit.time,
       };
-      console.log(this.mealToEdit);
       this.editMeal();
     },
 
