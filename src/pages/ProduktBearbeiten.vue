@@ -12,79 +12,8 @@
     <div class="col col-10">
       <!-- <div class="Eingabebereich" style="padding-bottom: 50px"> -->
       <br />
-      <form v-if="!editMode" @submit.prevent="addProduct">
-        <q-input
-          filled
-          label="Name"
-          color="green"
-          type="text"
-          id="name"
-          v-model="newProduct.name"
-          required
-        />
-
-        <q-input
-          filled
-          color="green"
-          label="Menge (g)"
-          type="number"
-          id="quantity"
-          v-model.number="newProduct.quantity"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          color="green"
-          label="Kalorien (kcal)"
-          type="number"
-          id="calories"
-          v-model.number="newProduct.calories"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          color="green"
-          label="Kohlenhydrate (g)"
-          type="number"
-          id="carbs"
-          v-model.number="newProduct.carbs"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          color="green"
-          label="Proteine (g)"
-          type="number"
-          id="protein"
-          v-model.number="newProduct.protein"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          color="green"
-          label="Fett (g)"
-          type="number"
-          id="fat"
-          v-model.number="newProduct.fat"
-          min="0"
-          max="5000"
-          required
-        />
-      </form>
-
-      <form v-if="editMode" @submit.prevent="updateProduct">
+      
+      <form v-if="editMode">
         <q-input
           filled
           label="Name"
@@ -160,7 +89,7 @@
             rounded
             color="green"
             icon="save"
-            type="submit"
+           @click="updateProduct"
             size="lg"
             padding="10px"
             to="/produkteinpflegen"
@@ -287,23 +216,14 @@ export default defineComponent({
       window.localStorage.setItem("products", JSON.stringify(this.items));
       this.resetForm();
     },
-    addProduct() {
-      this.items.push({
-        id: Date.now(),
-        name: this.newProduct.name,
-        quantity: this.newProduct.quantity,
-        calories: this.newProduct.calories,
-        carbs: this.newProduct.carbs,
-        protein: this.newProduct.protein,
-        fat: this.newProduct.fat,
-      });
-      this.saveProducts();
-    },
+
     updateProduct() {
-      this.items.splice(this.editProductIndex, 1, this.newProduct);
+      console.log("updateProduct");
+      console.log(this.newProduct);
+      this.items[this.editProductIndex] =this.newProduct; 
       this.saveProducts();
       this.editMode = false;
-      this.editProductIndex = null;
+      this.editProductIndex = -1;
       this.resetForm();
     },
     deleteProduct(product) {
@@ -316,7 +236,10 @@ export default defineComponent({
     editProduct(product) {
       this.editMode = true;
       this.editProductIndex = this.items.indexOf(product);
+      console.log(this.editProductIndex);
       this.newProduct = { ...product };
+      console.log("editProduct");
+      console.log(this.newProduct);
     },
     cancelEdit() {
       this.editMode = false;
