@@ -271,7 +271,7 @@ export default defineComponent({
   },
   methods: {
     setMealList() {
-      const list = JSON.parse(window.localStorage.getItem("meals"));
+      const list = JSON.parse(window.localStorage.getItem("meals")) || [];
       list.reverse();
       if (list.length < 6) {
         this.meals = list;

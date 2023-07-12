@@ -18,21 +18,29 @@
                 <p>Eintrag hinzufügen</p>
               </div>
             </div>
-            <div class="col col-1">
-
-            </div>
+            <div class="col col-1"></div>
           </div>
 
           <div class="row">
             <div class="col col-12 q-px-lg q-mx-sm text-center">
               <div class="search-bar">
-                <q-input outline v-model="searchQuery" label="Nahrungsmittel suchen" clearable>
+                <q-input
+                  outline
+                  v-model="searchQuery"
+                  label="Nahrungsmittel suchen"
+                  clearable
+                >
                   <template v-slot:prepend>
                     <!--Platzhalter-->
                   </template>
 
                   <template v-slot:after>
-                    <q-btn rounded color="green" icon="search" @click="searchProduct"></q-btn>
+                    <q-btn
+                      rounded
+                      color="green"
+                      icon="search"
+                      @click="searchProduct"
+                    ></q-btn>
                   </template>
                 </q-input>
 
@@ -41,13 +49,21 @@
                     <q-scroll-area style="height: 40vh; width: 100%">
                       <div class="ScrollContainer">
                         <ul>
-                          <li v-for="product in filteredProducts" :key="product.id">
+                          <li
+                            v-for="product in filteredProducts"
+                            :key="product.id"
+                          >
                             <!-- Zeigt das Ergebnis der Produktsuche an-->
                             {{ product.name }} ( {{ product.quantity }}g ):
                             {{ product.calories }} kcal, {{ product.carbs }}g
                             Kohlenhydrate, {{ product.protein }}g Proteine,
                             {{ product.fat }}g Fett
-                            <q-btn round color="green" icon="add" @click="toggleMealAddPopup(product)">
+                            <q-btn
+                              round
+                              color="green"
+                              icon="add"
+                              @click="toggleMealAddPopup(product)"
+                            >
                             </q-btn>
                           </li>
                         </ul>
@@ -66,7 +82,13 @@
           <div class="col col-2"></div>
           <div class="col col-8 text-center q-pa-sm">
             <div class="scan-button">
-              <q-btn size="lg" rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+              <q-btn
+                size="lg"
+                rounded
+                color="green"
+                icon="qr_code_scanner"
+                @click="toggleScanner"
+              >
                 Produkt scannen
               </q-btn>
             </div>
@@ -78,7 +100,13 @@
           <div class="col col-2"></div>
           <div class="col col-8 text-center q-pa-sm">
             <div class="save-product">
-              <q-btn rounded color="green" icon="edit" to="/produkterstellen" size="lg">
+              <q-btn
+                rounded
+                color="green"
+                icon="edit"
+                to="/produkterstellen"
+                size="lg"
+              >
                 Produkt erstellen
               </q-btn>
             </div>
@@ -90,9 +118,17 @@
       <teleport to="body">
         <div class="modal" v-if="showScanner">
           <div>
-            <StreamBarcodeReader @decode="onDecode" @loaded="onLoaded"></StreamBarcodeReader>
+            <StreamBarcodeReader
+              @decode="onDecode"
+              @loaded="onLoaded"
+            ></StreamBarcodeReader>
             <div style="padding-top: 10px">
-              <q-btn rounded color="green" icon="qr_code_scanner" @click="toggleScanner">
+              <q-btn
+                rounded
+                color="green"
+                icon="qr_code_scanner"
+                @click="toggleScanner"
+              >
                 Scan beenden
               </q-btn>
             </div>
@@ -113,13 +149,25 @@
             </div>
 
             <div>
-              <q-input filled color="green" label="Menge eintragen (g)" id="Menge" v-model.number="quantity" type="number"
-                min="0" required>
+              <q-input
+                filled
+                color="green"
+                label="Menge eintragen (g)"
+                id="Menge"
+                v-model.number="quantity"
+                type="number"
+                min="0"
+                required
+              >
               </q-input>
 
               <div>
                 <select v-model="selectedMealTime">
-                  <option v-for="option in options" :value="option.value" :key="option.text">
+                  <option
+                    v-for="option in options"
+                    :value="option.value"
+                    :key="option.text"
+                  >
                     {{ option.text }}
                   </option>
                 </select>
@@ -127,10 +175,21 @@
             </div>
 
             <div style="padding-top: 10px">
-              <q-btn to="/logbuch" rounded color="green" icon="add" @click="calculateIngredientValues(quantity)">
+              <q-btn
+                to="/logbuch"
+                rounded
+                color="green"
+                icon="add"
+                @click="calculateIngredientValues(quantity)"
+              >
                 Essen hinzufügen
               </q-btn>
-              <q-btn rounded color="green" icon="cancel" @click="addToMeals = false">
+              <q-btn
+                rounded
+                color="green"
+                icon="cancel"
+                @click="addToMeals = false"
+              >
               </q-btn>
             </div>
           </div>
@@ -412,7 +471,7 @@ export default defineComponent({
   align-items: center;
 }
 
-.modal>div {
+.modal > div {
   background-color: #fff;
   padding: 20px;
   border-radius: 10px;
