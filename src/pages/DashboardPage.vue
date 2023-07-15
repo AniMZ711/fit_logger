@@ -62,7 +62,7 @@
         <div class="column col-1"></div>
 
         <div class="column col-8 self-center q-pb-md">
-          <div class="display-user-name">Hallo Lisa :)</div>
+          <div class="display-user-name">Hallo!</div>
         </div>
       </div>
 

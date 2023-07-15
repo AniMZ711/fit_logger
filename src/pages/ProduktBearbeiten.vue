@@ -140,18 +140,18 @@
   </div> -->
 
   <q-dialog v-model="showProducts">
-    <q-card class="q-pa-md">
+    <q-card style="width: 350px; height:550px">
       <q-btn
         class="absolute"
-        style="top: 10px; right: 10px"
+        style="right: -1em"
         flat
         icon="close"
         color="primary"
         v-close-popup
+        to ="/produkteinpflegen"
       />
 
-      <div>
-        <div>
+      <div class="q-px-lg q-ma-sm">
           <ul>
             <li v-for="item in items" :key="item.id">
               <details>
@@ -166,13 +166,13 @@
                   >
                   </q-btn>
                 </summary>
-                <!--  Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
-                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp; -->
+                 Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
+                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp;
               </details>
             </li>
           </ul>
         </div>
-      </div>
+      
     </q-card>
   </q-dialog>
 </template>

@@ -84,7 +84,7 @@
         />
 
         <div class="SpeicherButton">
-          <q-btn color="green" icon="edit" type="submit" size="lg" rounded
+          <q-btn color="green" icon="edit" type="submit" size="lg" rounded @click="showBestätigung = true"
             >Produkt erstellen</q-btn
           >
         </div>
@@ -181,6 +181,22 @@
     <div class="col col-1"></div>
   </div>
 
+  <q-dialog v-model="showBestätigung">
+    <q-card class="q-pa-md">
+      <q-btn
+        class="absolute"
+        style="top: 2px; right: 2px"
+        flat
+        icon="close"
+        color="primary"
+        to="/produkteinpflegen"
+      />
+      <div class="row text-center q-px-lg q-ma-sm">
+           Produkt erstellt!
+        </div>   
+    </q-card>
+  </q-dialog>
+
   <!--  <div class="Ausgabebereich">
     <q-scroll-area style="height: 240px; max-width: 90%">
       <div class="ScrollContainer">
@@ -270,6 +286,7 @@ export default defineComponent({
     return {
       // is localStorage needed here?
       showProducts: ref(false),
+      showBestätigung: ref(false),
       items: JSON.parse(localStorage.getItem("products")) || [],
       newProduct: {
         id: null,
@@ -291,6 +308,9 @@ export default defineComponent({
     this.loadProducts();
   },
   methods: {
+    BestätigungAnzeigen() {
+      showBestätigung = "true";
+    },
     loadProducts() {
       const savedProducts = window.localStorage.getItem("products");
       if (savedProducts) {

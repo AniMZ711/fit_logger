@@ -39,7 +39,7 @@
         <br />
       </q-page>
     </q-page-container>
-    ...
+  
   </q-layout>
 </template>
 
