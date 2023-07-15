@@ -1,42 +1,61 @@
 # Inhaltsverzeichnis
 
 1. Einleitung
-2. Zielsetzung und Randbedingungen
-3. Systemkontext
-4. Lösungsstrategie
-5. Bausteinsicht
+   - 1.1. Aufgabenstellung
+   - 1.2. Motivation und Zielsetzung
 
+2. Randbedingungen
+   - 2.1. Technische Randbedingungen
+   - 2.2. Organisatorische Randbedingungen
+
+3. Systemkontext
+
+4. Lösungsstrategie
+
+5. Bausteinsicht
    - 5.1 Übersicht
    - 5.2 Bausteine
    - 5.3 Beziehungen und Abhängigkeiten
    - 5.4 Laufzeitperspektive
+
 6. Laufzeitsicht
+   - 6.1. Benutzerinteraktion
+   - 6.2. AddPage
+   - 6.3. Logbuch
+   - 6.4. Homeseite
+   - 6.5. Produktseite
+   - 6.6. Zielseite
+   - 6.7. Statistikseite
 
-   - 6.1 Übersicht
-   - 6.2 Szenarien
-   - 6.3 Qualitätsattribute
-   - 6.4 Ressourcenverbrauch
 7. Verteilungssicht
-
    - 7.1 Übersicht
    - 7.2 Kommunikationsbeziehungen
    - 7.3 Verteilungsdiagramme
-8. Datenperspektive
 
+8. Datenperspektive
    - 8.1 Übersicht
    - 8.2 Datenstrukturen
    - 8.3 Datenflüsse
-9. Infrastruktursicht
 
+9. Infrastruktursicht
    - 9.1 Übersicht
    - 9.2 Technische Umgebung
    - 9.3 Bereitstellung
    - 9.4 Betrieb
+
 10. Konzepte
+
 11. Entwurfsentscheidungen und Technologieeinsatz
+   - 11.1. Entwickeln einer Progressive Web App
+   - 11.2. Verwendung des JavaScript-Frameworks "Vue3" zur Entwicklung der PWA
+   - 11.3. Verwendung des Vue Frameworks Quasar
+
 12. Risiken und technische Schulden
+
 13. Qualitätsziele
+
 14. Glossar
+
 
 ## 1. Einleitung
 
@@ -58,13 +77,28 @@ Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder au
 - Führen eines Ernährungstagebuchs (Logbuch)
 - Nachverfolgung festgelegter Ziele: Anzeige als Linien-Diagramm
 
+
 ### 1.2 Motivation und Zielsetzung
+Es gibt viele Anbieter von Food-Trackern, die jedoch meistens nur für Smartphones konzipiert sind.
+Durch unsere Lösung als Progressive-Web-App (PWA) möchten wir den Usern auch die Möglichkeit bieten, per PC/ Laptop auf den Tracker zuzugreifen. 
+Wir möchten mit unserem Tracker aus der Masse hervorstechen, indem man zukünftig, zu den bekannten Grundfunktionen von anderen Anbietern, neue Möglichkeiten hinzufügt wie
+-	das Barcode-Scannen von mehreren Lebensmitteln (nicht nur fürs tracken) sondern für Rezeptvorschläge
+-	Intelligente Rezeptauswahl anhand von eigenen Präferenzen wie bspw. “günstigste zusätzliche Einkäufe für eine Mahlzeit“Proteinreiche Mahlzeit”, “salzarme Mahlzeit” oder ähnliches
+-	Das Inventar des Kühlschranks zu pflegen beziehungsweise auch tracken zu können
 
-## 2. Randbedinungen
+Zurzeit ist es NICHT geplant, dass wir die Software Instandhalten. Die oben genannten Möglichkeiten an Funktionen, dienen lediglich weiterer USPs für das Produkt, um Ideen auszuarbeiten.
 
-### 2.1 Technische Randbedinungen
 
-### 2.2 Organisatorische Randbedinungen
+## 2. Randbedingungen
+
+### 2.1 Technische Randbedingungen
+Die PWA ist von unserem Ui/ Ux-Team so konzipiert worden, dass eine automatische Anpassung, an die Bildschirmgröße des Mobilgerätes vom Nutzer geschieht.
+Bei einem Test zur Kompatibilität auf alten Mobilgeräten, hat es bis zu einem Samsung Galaxy 4 funktioniert, sodass eine Bedienung noch "gerade so" möglich war. Hierbei ist die kleine Bildschirmgröße des Samsungs als hinderlich aufgefallen, da zur damaligen Zeit eine andere Bildschirmgröße Standard war.
+
+Bei den neusten Geräten die uns zur Verfügung standen (iPhone 13 Mini) gab es keine Probleme mit der Bedienung.
+
+
+### 2.2 Organisatorische Randbedingungen
 
 | Randbedinung                           | Erläuterungen, Hintergrund                                                                                                                                                                                               |
 | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -88,9 +122,11 @@ Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder au
 
 Die Laufzeitsicht beschreibt die dynamische Sicht der FitLogger-App und zeigt die Interaktionen zwischen den verschiedenen Komponenten während der Laufzeit.
 
+
 6.1 Benutzerinteraktion
 
 Der Benutzer öffnet die FitLogger-App und wird zur Homeseite weitergeleitet. Dort werden Informationen zur eingenommenen Menge an Mikro- und Makronährstoffen sowie eine Liste der letzten Mahlzeiten angezeigt. Mit dem About-Button auf der Homeseite erscheint ein Pop-up-Fenster, das eine kurze App-Beschreibung enthält. Über die Navigationselemente kann der Benutzer zwischen verschiedenen Seiten der App wechseln, darunter die Homeseite, AddPage, Logbuch, Produktseite und Zielseite.
+
 
 6.2 AddPage
 
@@ -102,23 +138,33 @@ Die AddPage ermöglicht es dem Benutzer, Produkte hinzuzufügen. Hierzu stehen v
 
   Die hinzugefügten Produkte werden einer bestimmten Tageszeit des aktuellen Tages zugeordnet und im lokalen Storage gespeichert.
 
+
 6.3 Logbuch
 
 Die Logbuchpage zeigt den heutigen Tag in Tageszeiten (Frühstück, Mittagsessen, Abendessen und Snack) an. Über den Kalender kann der Benutzer auch einen anderen Tag auswählen und die entsprechenden Mahlzeiten anzeigen lassen. Die über die AddPage hinzugefügten Produkte werden automatisch in das Logbuch eingetragen und den entsprechenden Tageszeiten zugeordnet.
+
 
 6.4 Homeseite
 
 Die Homeseite präsentiert eine visuelle Darstellung des Nährstoffverbrauchs, basierend auf den eingenommenen Mengen. Dies erfolgt sowohl über ein Kreis- als auch ein Balkendiagramm, das den aktuellen Verbrauch im Verhältnis zum empfohlenen Tagesbedarf darstellt. Zudem werden die definierten Ziele des Benutzers auf der Homeseite angezeigt, um den Fortschritt zu verfolgen.
 
+
 6.5 Produktseite
 
 Auf der Produktseite können Produkte im lokalen Storage erstellt, bearbeitet und gelöscht werden. Die AddPage greift auf die erstellten Produkte der Produktseite zu und ermöglicht es dem Benutzer, mehrere Produkte zu einer Mahlzeit zu kombinieren und diese im lokalen Storage zu speichern.
+
 
 6.6 Zielseite
 
 Die Zielseite dient der Definition von Zielen, wie beispielsweise Nährstoffmengen, Kalorienziele oder Gewichtsziele. Diese Ziele werden auf der Homeseite angezeigt und ermöglichen dem Benutzer, den Fortschritt zu verfolgen. Die Zielseite bietet auch eine Statistik zur Entwicklung der letzten Wochen oder Monate, um Einblicke in die Fortschritte des Benutzers zu gewähren.
 
 Die Laufzeitsicht der FitLogger-App zeigt die Interaktionen zwischen den verschiedenen Komponenten wie Benutzeroberfläche, Anwendungsbackend und lokalem Storage. Sie ermöglicht es dem Benutzer, Mahlzeiten zu komponieren, Produkte zu erstellen und zu verwalten, Ziele zu setzen und Fortschritte zu verfolgen.
+
+
+6.7 Statistikseite
+Die Statistikseite soll dazu dienen dem Nutzer visuell einen Verlauf der Makronährstoffe (Eiweiß, Fett, Kohlenhydrate) und Kcal, über einen auswählbaren Zeitraum, darzustellen.
+
+In der Laufzeitsicht sieht der Nutzer dann farblich unterschiedliche Linien im Diagramm, die jeweils unterschiedliche Makros bzw. die Kcal des jeweiligen Tages wiederspiegeln. Wenn die Seite abgerufen wird, werden sobald der Nutzer die gewünschten Angaben über die DropDownMenüs ausgewählt hat, die Daten aus dem LocalWebstorage der Logbuchseite vom Nutzer herausgelesen und visuell dargestellt.
 
 ## 7. Verteilungssicht
 
@@ -152,6 +198,7 @@ Referenzen:
 
 Google Developers: Progressive Web Apps: https://web.dev/progressive-web-apps/
 
+
 ### 11.2 Verwendung des JavaScript-Frameworks "Vue3" zur Entwicklung der PWA
 
 Für die Entwicklung einer Progressive Web App ist es hilfreich, ein geeigntes JavaScript Framework zu verwenden. FIT-Logger soll eine effiziente Datenverwaltung, eine ansprechende Nutzeroberfläche durch weitere Frameworks sowie dynamische Funktionen zurückgreifen können, um optimal auf die Interaktion mit dem Nutzer abgestimmt zu sein. Vue.js bietet all diese Möglichkeiten.
@@ -167,6 +214,7 @@ Wir verwenden Vue, da das Framework sich als eine leistungsstarke und flexible L
 Referenzen:
 
 Vue.js Dokumentation: https://vuejs.org/
+
 
 ### 11.3 Verwendung des Vue Frameworks Quasar
 
@@ -187,6 +235,7 @@ Referenzen:
 Quasar Dokumentation: https://quasar.dev/docs
 
 Quasar Layout Builder: https://quasar.dev/layout-builder
+
 
 ## 12. Risiken und technische Schulden
 
