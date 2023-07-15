@@ -10,33 +10,28 @@
    - 5.2 Bausteine
    - 5.3 Beziehungen und Abhängigkeiten
    - 5.4 Laufzeitperspektive
-
 6. Laufzeitsicht
 
    - 6.1 Übersicht
    - 6.2 Szenarien
    - 6.3 Qualitätsattribute
    - 6.4 Ressourcenverbrauch
-
 7. Verteilungssicht
 
    - 7.1 Übersicht
    - 7.2 Kommunikationsbeziehungen
    - 7.3 Verteilungsdiagramme
-
 8. Datenperspektive
 
    - 8.1 Übersicht
    - 8.2 Datenstrukturen
    - 8.3 Datenflüsse
-
 9. Infrastruktursicht
 
    - 9.1 Übersicht
    - 9.2 Technische Umgebung
    - 9.3 Bereitstellung
    - 9.4 Betrieb
-
 10. Konzepte
 11. Entwurfsentscheidungen und Technologieeinsatz
 12. Risiken und technische Schulden
@@ -71,17 +66,17 @@ Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder au
 
 ### 2.2 Organisatorische Randbedinungen
 
-| Randbedinung                           | Erläuterungen, Hintergrund                                                                                                                                                                                             |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Team                                   | Bestehend aus: Maximilian Groll, Moses Kümmeth, Luca Lorenz, Anika Menz, Fracisco Navarro, Jonathan Stöcker                                                                                                            |
-| Betreuung                              | Prof. Dr. Kulesz                                                                                                                                                                                                       |
+| Randbedinung                           | Erläuterungen, Hintergrund                                                                                                                                                                                               |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Team                                   | Bestehend aus: Maximilian Groll, Moses Kümmeth, Luca Lorenz, Anika Menz, Fracisco Navarro, Jonathan Stöcker                                                                                                             |
+| Betreuung                              | Prof. Dr. Kulesz                                                                                                                                                                                                          |
 | Zeitplan                               | 15.03.2023 Kick-Off Veranstaltung<br />Abgabe des Codes und der Dokumentation am 20.07.2023<br />Präsentation des Ergebnisses am 27.07.2023 im Rahmen einer "Messe" an der THWS, Sanderheinrichsleitenweg 20, Würzburg |
-| Vorgehensmodell                        | "Agil" - Wöchentliches Meeting, Sprints von einer Woche, Feature-Freeze meist 1-2 Tage vor Weekly                                                                                                                      |
-| Entwicklungswerkzeuge                  | Design-Entwurf mit Figma, Implementierung mit VS Code, Dokumentation in Bitbucket, Ticketsytem mit JIRA                                                                                                                |
-| Konfigurations- und Versionsverwaltung | GIT Atlassian Bitbucket v7.21.10                                                                                                                                                                                       |
-| Testwerkzeuge                          |                                                                                                                                                                                                                        |
-| Veröffentlichung                       |                                                                                                                                                                                                                        |
-| Kommunikation                          | Mattermost-Channel, Discord-Server, WhatsApp-Gruppe                                                                                                                                                                    |
+| Vorgehensmodell                        | "Agil" - Wöchentliches Meeting, Sprints von einer Woche, Feature-Freeze meist 1-2 Tage vor Weekly                                                                                                                        |
+| Entwicklungswerkzeuge                  | Design-Entwurf mit Figma, Implementierung mit VS Code, Dokumentation in Bitbucket, Ticketsytem mit JIRA                                                                                                                   |
+| Konfigurations- und Versionsverwaltung | GIT Atlassian Bitbucket v7.21.10                                                                                                                                                                                         |
+| Testwerkzeuge                          |                                                                                                                                                                                                                           |
+| Veröffentlichung                      |                                                                                                                                                                                                                           |
+| Kommunikation                          | Mattermost-Channel, Discord-Server, WhatsApp-Gruppe                                                                                                                                                                       |
 
 ## 3. Systemkontext
 
@@ -90,6 +85,40 @@ Egal ob man sich bewusster Ernähren möchte, sportliche Ziele verfolgt, oder au
 ## 5. Bausteinsicht
 
 ## 6. Laufzeitsicht
+
+Die Laufzeitsicht beschreibt die dynamische Sicht der FitLogger-App und zeigt die Interaktionen zwischen den verschiedenen Komponenten während der Laufzeit.
+
+6.1 Benutzerinteraktion
+
+Der Benutzer öffnet die FitLogger-App und wird zur Homeseite weitergeleitet. Dort werden Informationen zur eingenommenen Menge an Mikro- und Makronährstoffen sowie eine Liste der letzten Mahlzeiten angezeigt. Mit dem About-Button auf der Homeseite erscheint ein Pop-up-Fenster, das eine kurze App-Beschreibung enthält. Über die Navigationselemente kann der Benutzer zwischen verschiedenen Seiten der App wechseln, darunter die Homeseite, AddPage, Logbuch, Produktseite und Zielseite.
+
+6.2 AddPage
+
+Die AddPage ermöglicht es dem Benutzer, Produkte hinzuzufügen. Hierzu stehen verschiedene Funktionen zur Verfügung:
+
+* Suchfunktion im lokalen Storage zur Auswahl bereits erstellter Produkte
+* Scanner zur Erfassung von Produktinformationen
+* Verweis auf Produkt-Erstellen-Funktion der Produktseite zur Erstellung neuer Produkt.
+
+  Die hinzugefügten Produkte werden einer bestimmten Tageszeit des aktuellen Tages zugeordnet und im lokalen Storage gespeichert.
+
+6.3 Logbuch
+
+Die Logbuchpage zeigt den heutigen Tag in Tageszeiten (Frühstück, Mittagsessen, Abendessen und Snack) an. Über den Kalender kann der Benutzer auch einen anderen Tag auswählen und die entsprechenden Mahlzeiten anzeigen lassen. Die über die AddPage hinzugefügten Produkte werden automatisch in das Logbuch eingetragen und den entsprechenden Tageszeiten zugeordnet.
+
+6.4 Homeseite
+
+Die Homeseite präsentiert eine visuelle Darstellung des Nährstoffverbrauchs, basierend auf den eingenommenen Mengen. Dies erfolgt sowohl über ein Kreis- als auch ein Balkendiagramm, das den aktuellen Verbrauch im Verhältnis zum empfohlenen Tagesbedarf darstellt. Zudem werden die definierten Ziele des Benutzers auf der Homeseite angezeigt, um den Fortschritt zu verfolgen.
+
+6.5 Produktseite
+
+Auf der Produktseite können Produkte im lokalen Storage erstellt, bearbeitet und gelöscht werden. Die AddPage greift auf die erstellten Produkte der Produktseite zu und ermöglicht es dem Benutzer, mehrere Produkte zu einer Mahlzeit zu kombinieren und diese im lokalen Storage zu speichern.
+
+6.6 Zielseite
+
+Die Zielseite dient der Definition von Zielen, wie beispielsweise Nährstoffmengen, Kalorienziele oder Gewichtsziele. Diese Ziele werden auf der Homeseite angezeigt und ermöglichen dem Benutzer, den Fortschritt zu verfolgen. Die Zielseite bietet auch eine Statistik zur Entwicklung der letzten Wochen oder Monate, um Einblicke in die Fortschritte des Benutzers zu gewähren.
+
+Die Laufzeitsicht der FitLogger-App zeigt die Interaktionen zwischen den verschiedenen Komponenten wie Benutzeroberfläche, Anwendungsbackend und lokalem Storage. Sie ermöglicht es dem Benutzer, Mahlzeiten zu komponieren, Produkte zu erstellen und zu verwalten, Ziele zu setzen und Fortschritte zu verfolgen.
 
 ## 7. Verteilungssicht
 
@@ -167,8 +196,8 @@ Quasar Layout Builder: https://quasar.dev/layout-builder
 
 ### Begriffe
 
-| Begriff | Synonyme        | Erklärung                                                    |
-| ------- | --------------- | ------------------------------------------------------------ |
+| Begriff | Synonyme         | Erklärung                                                    |
+| ------- | ---------------- | ------------------------------------------------------------- |
 | Makros  | Makronährstoffe | Hauptenergielieferanten sind Kohlenhydrate, Fette und Eiweiß |
-|         |                 |                                                              |
-|         |                 |                                                              |
+|         |                  |                                                               |
+|         |                  |                                                               |
