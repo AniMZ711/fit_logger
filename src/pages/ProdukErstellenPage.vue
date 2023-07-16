@@ -308,19 +308,23 @@ export default defineComponent({
     this.loadProducts();
   },
   methods: {
+    // Pop-Up das Produkt erstellt worden ist
     BestätigungAnzeigen() {
       showBestätigung = "true";
     },
+    // Produkt laden
     loadProducts() {
       const savedProducts = window.localStorage.getItem("products");
       if (savedProducts) {
         this.items = JSON.parse(savedProducts);
       }
     },
+    // Produkt speichern
     saveProducts() {
       window.localStorage.setItem("products", JSON.stringify(this.items));
       this.resetForm();
     },
+    // Produkt hinzufügen
     addProduct() {
       this.items.push({
         id: Date.now(),
@@ -333,30 +337,7 @@ export default defineComponent({
       });
       this.saveProducts();
     },
-    updateProduct() {
-      this.items.splice(this.editProductIndex, 1, this.newProduct);
-      this.saveProducts();
-      this.editMode = false;
-      this.editProductIndex = null;
-      this.resetForm();
-    },
-    deleteProduct(product) {
-      const index = this.items.indexOf(product);
-      if (index !== -1) {
-        this.items.splice(index, 1);
-        this.saveProducts();
-      }
-    },
-    editProduct(product) {
-      this.editMode = true;
-      this.editProductIndex = this.items.indexOf(product);
-      this.newProduct = { ...product };
-    },
-    cancelEdit() {
-      this.editMode = false;
-      this.editProductIndex = null;
-      this.resetForm();
-    },
+    // Zurücksetz-Funktion
     resetForm() {
       this.newProduct = {
         id: null,

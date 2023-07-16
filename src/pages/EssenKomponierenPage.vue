@@ -218,7 +218,7 @@ export default defineComponent({
       });
       this.filteredProducts = filteredProducts;
     },
-
+    // Verschiende Portionsgrößen bereitstellen
     formatFactor(factor) {
       if (factor === "1/4") {
         return "1/4";
@@ -228,6 +228,7 @@ export default defineComponent({
         return factor;
       }
     },
+    // Berechnungsfunktion der Gesamtmenge eines Produktes
     calculateTotal(product, type) {
       const factor = this.productFactor[product.id];
       if (factor === "1/4") {
@@ -238,6 +239,7 @@ export default defineComponent({
         return product[type] * parseFloat(factor);
       }
     },
+    // Berechnungsfunktion der Gesamtmenge der gesamten Mahlzeit
     calculateMealTotal(type) {
       let total = 0;
       this.selectedProductsList.forEach((product) => {
