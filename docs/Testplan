@@ -1,0 +1,384 @@
+Testplan
+
+1.Starten der App
+
+Test ID: EL-1
+Beschreibung: Lässt sich die App auf dem Gerät der Person öffnen.
+Schritte: 1. Auf den Link klicken.
+Erwartete Ergebenis: App öffnet sich auf Browser und man landet auf dem Home-Bildschirm.
+
+Test ID: EL-2
+Beschreibung: Mit dem About-Info-Knopf interagieren.
+Schritte: 1. Auf dem Knopf mit der Kennzeichnung „i“ tippen.
+Erwartete Ergebenis: Es öffnet sich ein Fenster mit einem Willkommens Text und Information zur App.
+
+Test ID: EL-3
+Beschreibung: Lässt sich das About-Fenster wieder schließen.
+Schritte: 2. Auf den X Knopf oben rechts im Eck tippen.
+Erwartete Ergebenis: Fenster schließt sich und man landet auf dem Home-Bildschirm.
+
+2. Ziel und Dateneintragung des Users
+
+Test ID: EL-4
+Beschreibung: Kann ich auf die Seite Ziel zugreifen.
+Schritte: 1. Auf den Knopf mit dem Namen Ziel tippen.
+Erwartete Ergebenis: Die Seite Ziel öffnet sich, es wird Tagesziel Bearbeiten und Ziele Nachverfolgen angezeigt.
+
+Test ID: EL-5
+Beschreibung: Mit dem Tagesziel Bearbeiten Knopf interagieren.
+Schritte: 1. Auf den Knopf mit dem Namen Tagesziel Bearbeiten klicken.
+Erwartete Ergebenis:Man wird auf die Seite Tagesziel Bearbeiten weitergeleitet.
+
+Test ID:EL-6
+Beschreibung:Lassen sich in die jeweiligen Zeilen meine Daten eintragen und kann ich diese speichern.
+Schritte:1. Auf den Knopf Zielbearbeitung tippen.
+2.Auf jede Zeile tippen und den entsprechenden Wert eintragen.
+3.Sobald ich alles eingetragen habe auf Speichern tippen.
+Erwartete Ergebenis:Die voreingestellten Standardwerte werden gelöscht und die neu eingetragenen Werte werden sowohl auf der Seite Tagesziel Bearbeiten angezeigt wie auf dem Home-Bildschirm, da sie gespeichert wurden.
+
+Test ID:EL-7
+Beschreibung: Lässt sich die Zielbearbeitung Abbrechen.
+Schritte: 1.Auf den Knopf Zielbearbeitung tippen.
+2.Auf den Knopf Abbrechen tippen.
+Erwartete Ergebenis: Die Zielbearbeitung müsste abgebrochen sein und man kann nun nicht mehr mit den Zeilen zum eintragen interagieren.
+
+Test ID:EL-8
+Beschreibung:Eine Seite zurück auf die Ziel Seite kommen.
+Schritte:1. Auf den Pfeil oben links tippen.
+Erwartete Ergebenis:Wieder zurück auf Ziel Seite.
+
+3. Produkt Erstellung
+
+Test ID: EL-9
+Beschreibung: Kann ich auf die Seite Produkte zugreifen.
+Schritte: 1. Auf den Knopf Produkt tippen.
+Erwartete Ergebenis:Man wird auf die Seite Produkt weitergeleitet.
+
+Test ID: EL-10
+Beschreibung:Komme ich auf die Seite Produkt erstellen.
+Schritte:1.Auf den Knopf Produkt erstellen tippen.
+Erwartete Ergebenis:Man wird weitergeleitet auf die Seite.
+
+Test ID: EL-11
+Beschreibung:Kann ich mit den Zeilen um Name und Werte einzutragen interagieren.
+Schritte:1.Auf die Zeilen tippen und jeweils Namen und Werte eintragen.
+Erwartete Ergebenis:Name und Werte werden in den entsprechenden Zeilen angezeigt.
+
+Test ID: EL-12
+Beschreibung:Kann ich die Namen/Werte in den Zeilen wieder entfernen/korrigieren.
+Schritte:1. Auf die jeweiligen Zeilen tippen und Namen/Werte entfernen/korrigieren.
+Erwartete Ergebenis:Namen/Werte werden entfernt und man kann neue eintippen (korrigieren).
+
+Test ID: EL-13
+Beschreibung:Lässt sich ein Produkt erstellen.
+Schritte:1. Auf den Knopf Produkt erstellen.
+Erwartete Ergebenis:Produkt sollte erstellt sein und unter Produkt Suche fundbar sein.
+
+Test ID: EL-14
+Beschreibung:Komme ich von der Produkte erstellen Seite wieder auf Produkte.
+Schritte:1.Auf den Pfeil oben links tippen.
+2.Alternativ auf den Knopf Produkte.
+Erwartete Ergebenis:Ich lande wieder auf der Seite Produkte.
+
+4. Essen komponieren
+
+Test ID: EL-15
+Beschreibung: Komme ich auf die Seite Essen komponieren.
+Schritte: 1. Auf den Knopf Essen komponieren tippen.
+Erwartete Ergebenis:Man wird auf die Seite Essen Komponieren weitergeleitet.
+
+Test ID: EL-16
+Beschreibung:Kann ich den Namen der Mahlzeit in die Zeile eintragen.
+Schritte:1. Auf die Zeile Namen der neuen Mahlzeit eintragen.
+Erwartete Ergebenis:Buchstaben sollten erscheinen sodass der Name eingetragen ist und unten in der Gesamtansicht sollte es auch zu sehen sein.
+
+Test ID: EL-17
+Beschreibung:Kann ich den Namen in der Zeile wieder entfernen/korrigieren.
+Schritte:Auf die jeweilige Zeile tippen und Name entfernen/korrigieren.
+Erwartete Ergebenis:Name wird entfernt und man kann neuen eintippen (korrigieren).
+
+Test ID: EL-18
+Beschreibung:Kann ich Produkte suchen um meine Mahlzeit zu erstellen.
+Schritte:Produkt in der Suchzeile suchen.
+Erwartete Ergebenis:Ein kleines Fenster öffnet sich wo das/die Produkt/e aufgelistet sind.
+
+Test ID: EL-19
+Beschreibung:Kann ich Produkte hinzufügen um die Mahlzeit zu erstellen.
+Schritte:1.Sobald Produkt gefunden wurde, Produkt mit minus hinzufügen. 2. Auf das X um das Fenster zu schließen.
+3.Menge des Produkt aussuchen indem man auf dem Kasten daneben tippt.
+Erwartete Ergebenis:Produkt sollte auf dem Hauptbildschirm der Seite angezeigt werden, sowie die berechnete Kalorien Anzahl, anhand der Menge die man angetippt hat.
+
+Test ID: EL-20
+Beschreibung:Kann ich die Mahlzeit speichern.
+Schritte:1. Auf den Knopf Speichern tippen.
+Erwartete Ergebenis:Mahlzeit sollte gespeichert sein und alle Werte werden ausgetragen.
+
+Test ID: EL-21
+Beschreibung:Komme ich auf die Produkt Seite wieder zurück.
+Schritte:1.Auf den Pfeil oben links tippen.
+2.Alternativ auf den Knopf Produkt tippen.
+Erwartete Ergebenis:Man landet wieder auf der Seite Produkt.
+
+5.Produkt/Mahlzeit Bearbeitung
+
+Test ID: EL-22
+Beschreibung:Komme ich auf die Seite Produkt bearbeiten.
+Schritte:1. Auf den Knopf Produkt bearbeiten tippen.
+Erwartete Ergebenis:Man wird auf die Seite Produkt bearbeiten weitergeleitet und ein kleines Fenster mit den bereits erstellten Produkten erscheint.
+
+Test ID: EL-23
+Beschreibung:Kann ich ein erstelltes Produkt bearbeiten.
+Schritte:1.Tippe auf das Produkt was du bearbeiten möchtest.
+Erwartete Ergebenis:Produkt bearbeiten Seite öffnet sich und Produkt steht mit Name und allen Werten zum bearbeiten bereit.
+
+Test ID: EL-24
+Beschreibung:Kann ich die Namen/Werte in den Zeilen wieder entfernen/korrigieren.
+Schritte:1. Auf die jeweiligen Zeilen tippen und Namen/Werte entfernen/korrigieren.
+Erwartete Ergebenis:Namen/Werte werden entfernt und man kann neue eintippen (korrigieren).
+
+Test ID: EL-25
+Beschreibung:Speichert es das bearbeitete Produkt ein.
+Schritte:1.Auf den Knopf Speichern Tippen.
+Erwartete Ergebenis:Die Bearbeitung wurde übernommen und gespeichert, Produkt wird anhand der Bearbeitung in Produktsuche angezeigt.
+
+Test ID: EL-26
+Beschreibung:Lässt sich die Produkt Bearbeitung abbrechen.
+Schritte:1. Auf den Knopf Abbrechen tippen.
+Erwartete Ergebenis:Die Bearbeitung wird abgebrochen und man kehrt auf die Seite Produkt zurück.
+
+Test ID: EL-27
+Beschreibung:Komme ich von der Produkt bearbeiten Seite wieder auf Produkt.
+Schritte:Auf den Pfeil oben links tippen.
+Alternativ auf den Knopf Produkt tippen
+Erwartete Ergebenis:Man kehrt auf die Seite Produkt zurück.
+
+Test ID: EL-28
+Beschreibung:Kann ich eine erstellte Mahlzeit bearbeiten.
+Schritte:1.Tippe auf die Mahlzeit die du bearbeiten möchtest.
+Erwartete Ergebenis:Produkt bearbeiten Seite öffnet sich und Mahlzeit steht mit Namen und allen Werten zum bearbeiten bereit.
+
+Test ID: EL-29
+Beschreibung:Kann ich die Namen/Werte in den Zeilen wieder entfernen/korrigieren.
+Schritte:1. Auf die jeweiligen Zeilen tippen und Namen/Werte entfernen/korrigieren.
+Erwartete Ergebenis:Namen/Werte werden entfernt und man kann neue eintippen (korrigieren).
+
+Test ID: EL-30
+Beschreibung:Speichert es die bearbeitete Mahlzeit ein.
+Schritte:1.Auf den Knopf Speichern Tippen.
+Erwartete Ergebenis:Die Bearbeitung wurde übernommen und gespeichert, Mahlzeit wird anhand der Bearbeitung in Produktsuche angezeigt.
+
+Test ID: EL-31
+Beschreibung:Lässt sich die Mahlzeit Bearbeitung abbrechen.
+Schritte:1. Auf den Knopf Abbrechen tippen.
+Erwartete Ergebenis:Die Bearbeitung wird abgebrochen und man kehrt auf die Seite Produkt zurück.
+
+Test ID: EL-32
+Beschreibung:Komme ich von Essen Komponieren wieder auf Produkte.
+Schritte:Auf den Pfeil oben Links tippen.
+Alternativ auf den Knopf Produkte.
+Erwartete Ergebenis:Man kehrt auf die Seite Produkt zurück.
+
+6.Produkt/Mahlzeit suchen
+
+Test ID: EL-33
+Beschreibung:Kann ich auf die Seite Produkte zugreifen.
+Schritte:1. Auf den Knopf Produkt tippen.
+Erwartete Ergebenis:Man wird auf die Seite Produkt weitergeleitet.
+
+Test ID: EL-34
+Beschreibung:Kann ich mit Produktsuche Interagieren.
+Schritte:1. Auf den Knopf Produktsuchen tippen
+Erwartete Ergebenis:Man wird auf die Seite Produktsuche weitergeleitet.
+
+Test ID: EL-35
+Beschreibung:Kann ich in die Suchzeile was eingeben.
+Schritte:1. Auf die Zeile tippen und reinschreiben
+Erwartete Ergebenis:Zeile interagiert und Text wird mir in der Zeile angezeigt.
+
+Test ID: EL-36
+Beschreibung:Kann ich Text in dieser Suchzeile löschen
+Schritte:1.Auf Zeile tippen und mit Text löschen.
+Erwartete Ergebenis:Zeichen/alle Zeichen verschwinden aus der Textzeile.
+
+Test ID: EL-37
+Beschreibung:Kann ich das in der Textzeile geschrieben suchen und wird mir es angezeigt.
+Schritte:Textzeile ausfüllen.
+Auf den Knopf mit der Lupe tippen.
+Erwartete Ergebenis:Produkt wird gefunden und angezeigt in Form eines Balken mit dem Produktnamen drin.
+
+Test ID: EL-38
+Beschreibung:Werden mir die Werte des gesuchten Produktes angezeigt.
+Schritte:1. Auf den Balken mit dem Produkt tippen.
+Erwartete Ergebenis:Zeile vergrößert sich unter dem Produkt werden die Werte angezeigt.
+
+Test ID: EL-39
+Beschreibung:Komme ich von der Seite Produktsuche wieder auf Produkte.
+Schritte:Auf den Pfeil oben Links tippen.
+Alternativ auf den Knopf Produkte
+Erwartete Ergebenis:Ich lande wieder auf der Seite Produkte.
+
+Test ID: EL-40
+Beschreibung:Kann ich meine Mahlzeit Suchen.
+Schritte:Auf Produkt suchen tippen
+Mahlzeit suchen.
+Erwartete Ergebenis:Mahlzeit ist suchbar und wird mit Name und Werte angezeigt.
+
+7.Produkt löschen
+
+Test ID: EL-41
+Beschreibung:Komme ich auf die Seite Produkt löschen.
+Schritte:1. Auf den Knopf Produkt löschen tippen.
+Erwartete Ergebenis:Man wird auf die Seite weitergeleitet und ein kleines Fenster öffnet sich wo meine gespeicherten Produkte angezeigt werden.
+
+Test ID: EL-42
+Beschreibung:Kann ich ein Produkt löschen.
+Schritte:1. Auf das Mülleimer Symbol neben dem Produkt was gelöscht werden soll tippen.
+Erwartete Ergebenis:Produkt verschwindet aus dem Fenster und somit nicht mehr gespeichert sein.
+
+Test ID: EL-43
+Beschreibung:Komme ich von der Produkt Seite wieder auf Produkt.
+Schritte:Auf den Pfeil oben links tippen.
+Alternativ auf das X im kleinen Fenster.
+Erwartete Ergebenis:Man kehrt auf die Seite Produkt zurück.
+
+Test ID: EL-44
+Beschreibung:Kann man das gelöschte Produkt noch suchen oder wir es bei Produkt bearbeiten angezeigt.
+Schritte:Das Produkt nochmal suchen.
+Auf Produkt bearbeiten klicken.
+Erwartete Ergebenis:Sowohl in Produkt suche noch in Produkt bearbeiten sollte das Produkt auffindbar sein.
+
+Test ID: EL-45
+Beschreibung:Mahlzeit löschen
+Schritte:Auf Produkt löschen tippen.
+Mahlzeit aussuchen die man löschen möchte.
+Auf dem Knopf mit dem Mülleimer Symbol tippen.
+Erwartete Ergebenis:Die Mahlzeit sollte somit gelöscht und nicht mehr gespeichert sein, die Anzeige mit der Mahlzeit verschwindet
+
+8. Produkt dem Logbuch hinzufügen.
+
+Test ID: EL-46
+Beschreibung:Kann ich auf das Plus Zeichen zugreifen um Produkte hinzuzufügen.
+Schritte:1. Auf das Plus Zeichen tippen.
+Erwartete Ergebenis:Seite öffnet sich in die man Produkte suchen, scanne oder erstellen kann um sie dann hinzuzufügen.
+
+Test ID: EL-47
+Beschreibung:Produkte suchen auf dieser Seite.
+Schritte:Auf die Suchleiste tippen.
+Produktname eintippen.
+Erwartete Ergebenis:Eine anzeige öffnet sich falls die Produkte gespeichert wurden in der sie angezeigt werden.
+
+Test ID: EL-48
+Beschreibung:Produkt hinzufügen.
+Schritte:Auf das Plus tippen.
+Aussuchen für welche Sektion.
+Auf Essen hinzufügen tippen.
+Erwartete Ergebenis:Somit wird das Produkt in die jeweilige Sektion des Logbuchs hinzugefügt und dort angezeigt.
+
+Test ID: EL-49
+Beschreibung:Produkt hinzufügen abbrechen.
+Schritte:Auf das Plus neben dem Produkt tippen.
+Und dann unten rechts auf X.
+Erwartete Ergebenis:Somit schließt sich wieder das Fenster und man ist wieder auf er Hauptseite.
+
+Test ID: EL-50
+Beschreibung:Produkt scannen.
+Schritte:Auf Produkt scanne tippen.
+Barcode des Produkts an die Kamera halten.
+Erwartete Ergebenis:Somit wird das Produkt abgescannt und es taucht ein Fenster auf wo es angezeigt wird.
+
+Test ID: EL-51
+Beschreibung:Produkt vom Scan hinzufügen.
+Schritte:Auf das Plus tippen.
+Aussuchen für welche Sektion.
+Auf Essen hinzufügen tippen.
+Erwartete Ergebenis:Somit wird nach dem Scan das Produkt in die jeweilige Sektion des Logbuchs hinzugefügt und wird dort angezeigt.
+
+Test ID: EL-52
+Beschreibung:Scan beenden ohne Produkt einzuscannen.
+Schritte:1. Auf Scan beenden tippen.
+Erwartete Ergebenis:Somit wird der Scan beendet und man kehrt auf die Hauptseite zurück.
+
+Test ID: EL-53
+Beschreibung:Produkt hinzufügen schließen.
+Schritte:Auf den Pfeil oben links tippen.
+Alternativ auf einen der Knöpfe in der Leiste.
+Erwartete Ergebenis:Durch den Pfeil kehrt man auf den Home-Bildschirm zurück, oder durch das betätigen der Knöpfe in der Leiste auf jede andere Sektion.
+
+9. Logbuch
+
+Test ID: EL-54
+Beschreibung:Komme ich auf die Seite Logbuch.
+Schritte:1. Auf den Logbuch Knopf tippen.
+Erwartete Ergebenis:Man wird auf die Seite Logbuch weitergeleitet.
+
+Test ID: EL-55
+Beschreibung:Datum ändern um einen Tag.
+Schritte:1. Auf die Pfeile tippen.
+Erwartete Ergebenis:Dadurch ändert sich das Datum oben in der Leiste immer um einen Tag
+
+Test ID: EL-56
+Beschreibung:Gezielt das Datum ändern.
+Schritte:Auf das Kalender tippen.
+Monat/Jahr anhand der Pfeile ändern.
+Tag aussuchen und tippen.
+Speichern um Tag auszusuchen.
+Erwartete Ergebenis:Dadurch öffnet sich ein Kalender indem kann man gezielt mit wenigen Klicks ein Datum aussuchen anhand Monat,Jahr und Tag.
+
+Test ID: EL-57
+Beschreibung:Kalender anzeige schließen falls man es doch nicht so aussuchen möchte.
+Schritte:1. Tippe auf Close.
+Erwartete Ergebenis:Somit schließt sich der Kalender ohne ein Datum abzuspeichern und man kehrt wieder zum Logbuch zurück.
+
+Test ID: EL-58
+Beschreibung:Werden die Produkte im Logbuch angezeigt.
+Schritte:1. Auf den Knopf Logbuch tippen.
+Erwartete Ergebenis:Logbuch öffnet sich und man sollte die Produkte in ihrer zugeordnet Sektion sehen.
+
+Test ID: EL-59
+Beschreibung:Kann ich mit dem Produkt auf der Logbuch Seite interagieren.
+Schritte:1. Auf Produkt tippen.
+Erwartete Ergebenis:Der Balken in dem das Produkt ist, sollte sich weiten und die Werte des jeweiligen Produkts werden angezeigt.
+
+Test ID: EL-60
+Beschreibung:Kann man Produkte aus dem Logbuch bearbeiten.
+Schritte:Auf das Produkt was man bearbeiten möchte tippen.
+Auf den Knopf mit dem Stift Symbol tippen.
+Erwartete Ergebenis:Nun sollte sich ein Fenster öffnen wo man sowohl die Menge als auch die Sektion ändern kann in dem das Produkt gespeichert wird.
+
+Test ID: EL-61
+Beschreibung:Kann man die Bearbeitung abbrechen.
+Schritte:Auf den Knopf Abbrechen tippen.
+Erwartete Ergebenis:Nun sollte die Bearbeitung abgebrochen sein und man kehrt auf die Logbuch Seite zurück.
+
+Test ID: EL-62
+Beschreibung:Kann man die Bearbeitung speichern.
+Schritte:Auf den Knopf Speichern tippen.
+Erwartete Ergebenis:Nun sollte das Produkt in der neuen gewünschten Sektion mit dem neuen Wert abgespeichert sein.
+
+Test ID: EL-63
+Beschreibung:Kann ich Produkte aus dem Logbuch entfernen.
+Schritte:Auf das Produkt was man entfernen möchte.
+Auf den Knopf mit dem Mülleimer Symbol tippen.
+Erwartete Ergebenis:Nun sollte das Produkt entfernt worden sein und verschwinden automatisch aus dem Logbuch.
+
+10. Home-Bildschirm
+
+Test ID: EL-64
+Beschreibung:Werden mir meine im Logbuch eingespeicherten Produkte im Home-Bildschirm angezeigt.
+Schritte:1. Auf den Knopf Home tippen.
+Erwartete Ergebenis:Die Letzen Mahlzeiten werden angezeigt, die Balken füllen sich den Werten entsprechend grün und man sieht eine Übersicht der Kalorien,Kohlenhydrate,Eiweiss und Fette je nach Tagesziel Setzung.
+
+11. Ziele Nachverfolgen
+
+Test ID: EL-65
+Beschreibung:Lässt sich Ziele Nachverfolgen öffnen.
+Schritte:1. Auf den Knopf Ziele Nachverfolgen öffnen.
+Erwartete Ergebenis:Die Seite Ziele Nachverfolgen öffnet sich.
+
+12. App Speicherung kontrollieren
+
+Test ID: EL-66
+Beschreibung:Speichert die App alle meine Einträge und Daten auch wenn ich sie schließe und wieder Starte.
+Schritte:App schließen (indem man den Tab schließt)
+App öffnen indem man auf den Link wieder tippt.
+Erwartete Ergebenis:Beim schließen und wieder öffnen der App, sind alle Daten gespeichert. App stellt sich nicht auf Anfang zurück.
