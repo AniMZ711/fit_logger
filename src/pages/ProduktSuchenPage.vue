@@ -9,37 +9,27 @@
   </q-header>
 
   <q-page-container class="editmeals">
+    <!-- Positionierung der Suchleiste und des Buttons über Zeilen & Spalten, damit sich die UI der Display-Größe anpasst: -->
     <div class="row item-center">
       <div class="col col-1"></div>
       <div class="col col-10 text-center items-center">
-        <!--style="max-width: 300px" in class tag-->
+       
+        <!-- Inputfiled für die Eingabe des Namen des gesuchten Produkts + Button der beim Klick die Methode zum Produkt suchen öffnet, welche sucht und das Ergebnis ausgibt:  -->
         <q-input color="green" filled v-model="searchQuery" label="Produktnamen eingeben..." type="text">
           <template v-slot:after>
             <q-btn rounded size="lg" color="green" icon="search" @click="searchProduct"></q-btn>
           </template>
         </q-input>
+      
       </div>
     </div>
 
-    <!--  <div class="Ausgabebereich1">
-    <q-scroll-area style="height: 400px; max-width: 90%">
-      <div class="ScrollContainer">
-        <ul>
-          <li v-for="product in filteredProducts" :key="product.id">
-            {{ product.name }}: - {{ product.quantity }} Gramm,
-            {{ product.calories }} Kalorien, {{ product.carbs }} Gramm
-            Kohlenhydrate, {{ product.protein }} Gramm Protein,
-            {{ product.fat }} Gramm Fett
-          </li>
-        </ul>
-      </div>
-    </q-scroll-area>
-  </div>
-</template> -->
-
+     <!-- Positionierung des Ausgabebereichs über Zeilen & Spalten, damit sich die UI der Display-Größe anpasst: -->
     <div class="row">
       <div class="col col-1"></div>
       <div class="col col-10 text-center items-center">
+       
+        <!-- Ausgabe in Form einer Liste, bei der man von jedem Objekt Details öffnen kann: -->
         <ul>
           <li v-for="product in filteredProducts" :key="product.id">
             <details>
@@ -53,11 +43,14 @@
             </details>
           </li>
         </ul>
+
       </div>
       <div class="col col-1"></div>
     </div>
+    
   </q-page-container>
 </template>
+
 <script>
 import { defineComponent } from "vue";
 
@@ -92,23 +85,3 @@ export default defineComponent({
 });
 </script>
 
-<style>
-.searchbar {
-  position: fixed;
-  width: 90%;
-  top: 8em;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
-.button {
-  margin-top: 8em;
-  text-align: center;
-}
-
-.Ausgabebereich1 {
-  margin-top: 12em;
-  text-align: center;
-}
-</style>

@@ -7,10 +7,57 @@
     </q-toolbar>
   </q-header>
 
+
+  <!-- Pop-Up mit Produktauswahl, das sich automatisch beim öffnen der Seite öffnet  -->
+  <q-dialog v-model="showProducts">
+    <q-card style="width: 350px; height:550px">
+      <q-btn
+        class="absolute"
+        style="right: -1em"
+        flat
+        icon="close"
+        color="primary"
+        v-close-popup
+        to ="/produkteinpflegen"
+      />
+
+      <div class="q-px-lg q-ma-sm">
+          <ul>
+            <li v-for="item in items" :key="item.id">
+              <details>
+                <summary>
+                  <span class="word"> {{ item.name }}</span>
+                  <q-btn
+                    round
+                    color="green"
+                    icon="edit"
+                    @click="editProduct(item)"
+                    v-close-popup
+                  >
+                  </q-btn>
+                </summary>
+                 Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
+                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp;
+                <q-btn
+                    round
+                    color="green"
+                    icon="edit"
+                    @click="editProduct(item)"
+                    v-close-popup
+                  >
+                  </q-btn>
+              </details>
+            </li>
+          </ul>
+        </div>
+      
+    </q-card>
+  </q-dialog>
+  
+  <!-- Positionierung des Eingabebereichs über Zeilen & Spalten, damit sich die UI der Display-Größe anpasst: -->
   <div class="row text-center item-center">
     <div class="col col-1"></div>
     <div class="col col-10">
-      <!-- <div class="Eingabebereich" style="padding-bottom: 50px"> -->
       <br />
       
       <form v-if="editMode">
@@ -84,17 +131,19 @@
           required
         />
 
-        <div class="AktualisierenButton">
+        <!-- Buttons zum speichern oder bzw. abrrechen: -->
+        <div class="AktualisierenAbbrechenButtons">
           <q-btn
             rounded
+            padding="10px"
             color="green"
             icon="save"
            @click="updateProduct"
             size="lg"
-            padding="10px"
             to="/produkteinpflegen"
             >Speichern</q-btn
           >
+
           <q-btn
             rounded
             padding="10px"
@@ -107,74 +156,11 @@
           >
         </div>
 
-        <!-- <div class="AbbrechenButton">
-          <q-btn
-            rounded
-            color="green"
-            icon="cancel"
-            @click="cancelEdit"
-            size="lg"
-            >Abbrechen</q-btn
-          >
-        </div> -->
       </form>
     </div>
     <div class="col col-1"></div>
   </div>
 
-  <!--   <div class="row text-center item-center">
-    <div class="col col-1"></div>
-    <div class="col col-10">
-      <br />
-      <q-btn
-        @click="showProducts = true"
-        label="Produkt bearbeiten "
-        rounded
-        color="green"
-        size="lg"
-        icon="edit"
-      >
-      </q-btn>
-    </div>
-    <div class="col col-1"></div>
-  </div> -->
-
-  <q-dialog v-model="showProducts">
-    <q-card style="width: 350px; height:550px">
-      <q-btn
-        class="absolute"
-        style="right: -1em"
-        flat
-        icon="close"
-        color="primary"
-        v-close-popup
-        to ="/produkteinpflegen"
-      />
-
-      <div class="q-px-lg q-ma-sm">
-          <ul>
-            <li v-for="item in items" :key="item.id">
-              <details>
-                <summary>
-                  <span class="word"> {{ item.name }}</span>
-                  <q-btn
-                    round
-                    color="green"
-                    icon="edit"
-                    @click="editProduct(item)"
-                    v-close-popup
-                  >
-                  </q-btn>
-                </summary>
-                 Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
-                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp;
-              </details>
-            </li>
-          </ul>
-        </div>
-      
-    </q-card>
-  </q-dialog>
 </template>
 
 <script>
@@ -262,39 +248,9 @@ export default defineComponent({
   overflow: y;
 }
 
-.Eingabebereich {
-  position: fixed;
-  width: 90%;
-  top: 20em;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
-.SpeicherButton {
+.AktualisierenAbbrechenButtons {
   margin-top: 2em;
   text-align: center;
 }
 
-.Ausgabebereich {
-  margin-top: 30em;
-  position: fixed;
-  left: 5%;
-  margin-right: 5%;
-}
-
-.AktualisierenButton {
-  margin-top: 1em;
-  text-align: center;
-}
-
-.AbbrechenButton {
-  margin-top: 1em;
-  text-align: center;
-}
-
-.show-all-products {
-  text-align: center;
-  margin-top: 1em;
-}
 </style>

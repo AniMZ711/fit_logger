@@ -7,18 +7,19 @@
     </q-toolbar>
   </q-header>
 
-  <div>
+ <!--   Eingabebreich-Leiste für den Namen des zu komponierenden Produkts: -->
     <div class="NameEingeben">
       <q-input
         color="green"
-        label="Name der neuen Mahlzeit"
+        label="Name der neuen Mahlzeit... "
         type="text"
         id="mealNameInput"
         v-model="mealName"
       />
     </div>
 
-    <div class="Suchleiste">
+    <!-- Eingabeleiste für den Namen des Produkts, das man zur Komponierung hinzufügen möchte: -->
+    <div class="Produktsuche">
       <q-input
         color="green"
         filled
@@ -26,6 +27,8 @@
         label="Suche die Produkte, die du komponieren möchtest ... "
         type="text"
       >
+      
+      <!-- Button, der die Suche ausführt und anzeigt: -->
         <template v-slot:after>
           <q-btn
             rounded
@@ -34,25 +37,25 @@
             icon="search"
             @click="
               showSearch1 = true;
-              searchProducts();
-            "
+              searchProducts();"
           ></q-btn>
         </template>
+
       </q-input>
     </div>
 
+    <!-- Pop-Up Page für die Auswahl der gesuchten Produkte (mit Detailansicht) in Form einer Liste, in der man die Produkte die man zur Komposition hinzufügen möchte auswählen kann: -->
     <q-dialog v-model="showSearch1">
       <q-card class="q-pa-md">
         <q-btn
           class="absolute"
-          style="top: 10px; right: 10px"
+          style="top: 2px; right: 2px"
           flat
           icon="close"
           color="primary"
           v-close-popup
         />
 
-        <div>
           <div>
             <ul>
               <li v-for="product in filteredProducts" :key="product.id">
@@ -75,27 +78,10 @@
               </li>
             </ul>
           </div>
-        </div>
       </q-card>
     </q-dialog>
 
-    <!-- <div v-if="searchResults.length > 0">
-      <div class="AusgabebereichSuchergebnis">
-        <h6>Wähle die Produkte aus, die du komponieren möchtest:</h6>
-        <q-scroll-area style="height: 250px; max-width: 90%">
-          <ul>
-            <li v-for="product in searchResults" :key="product.id">
-              <label>
-                <input type="checkbox" v-model="selectedProducts[product.id]" />
-                {{ product.name }}
-              </label>
-            </li>
-          </ul>
-        </q-scroll-area>
-      </div>
-    </div> -->
-
-    <div>
+   <!--  Bereich für die Auswahl der Menge die man von den ausgewählten Produkten hinzufügen möchte -->
       <div class="Mengenauswahl">
         <h6>Wähle die Menge:</h6>
         <ul>
@@ -103,10 +89,6 @@
             {{ product.name }}: {{ calculateTotal(product, "quantity") }} Gramm
             &nbsp;
 
-            <!-- {{ calculateTotal(product, "calories") }} Gesamt Kalorien,
-          {{ calculateTotal(product, "carbs") }} Gesamt Kohlenhydrate,
-          {{ calculateTotal(product, "protein") }} Gesamt Protein,
-          {{ calculateTotal(product, "fat") }} Gesamt Fett -->
             <select v-model="productFactor[product.id]">
               <option value="1/4">1/4</option>
               <option value="1/2">1/2</option>
@@ -124,6 +106,8 @@
         </ul>
       </div>
 
+
+      <!-- Ausgabe/Übersicht des neuen Produkts mit Detailansicht: -->
       <div class="row">
         <div class="col col-1"></div>
         <div class="col col-10 text-center items-center">
@@ -144,16 +128,11 @@
             {{ calculateMealTotal("fat") }}g
           </details>
 
-          <!--  {{ calculateMealTotal("quantity") }} Gramm <br />
-        {{ calculateMealTotal("calories") }} Kalorien <br />
-        {{ calculateMealTotal("carbs") }} Kohlenhydrate <br />
-        {{ calculateMealTotal("protein") }} Protein <br />
-        {{ calculateMealTotal("fat") }} Fett -->
-
           <div class="col col-1"></div>
         </div>
       </div>
 
+      <!-- Button zum speichern der komponierten Mahlzeit: -->
       <div class="save-button">
         <q-btn
           @click="saveMeal"
@@ -165,8 +144,7 @@
           >Speichern</q-btn
         >
       </div>
-    </div>
-  </div>
+ 
 </template>
 
 <script>
@@ -182,7 +160,7 @@ export default defineComponent({
       filteredProducts: [],
       selectedProducts: [],
       productFactor: {},
-      pageName: "Essen komponieren",
+      pageName: "Mahlzeit komponieren",
     };
   },
   computed: {
@@ -291,6 +269,7 @@ export default defineComponent({
 </script>
 
 <style>
+/* Positionierung der Eingabeleiste für den Namen des neuen Produkts: */
 .NameEingeben {
   margin-top: 2em;
   width: 90%;
@@ -298,32 +277,24 @@ export default defineComponent({
   margin-right: 5%;
 }
 
-.Suchleiste {
+/* Positionierung des Suchbereichs: */
+.Produktsuche {
   margin-top: 2em;
   width: 90%;
   margin-left: 5%;
   margin-right: 5%;
 }
 
+/* Positionierung der Mengen-Auswahl: */
+.Mengenauswahl {
+  text-align: center;
+}
+
+/* Positionierung des Speicher-Buttons: */
 .save-button {
   text-align: center;
   margin-top: 2em;
   margin-bottom: 5em;
 }
 
-.show-all-products {
-  text-align: center;
-}
-
-.AusgabebereichSuchergebnis {
-  text-align: center;
-}
-
-.Mengenauswahl {
-  text-align: center;
-}
-
-.Summenübersicht {
-  text-align: center;
-}
 </style>

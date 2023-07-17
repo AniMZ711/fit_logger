@@ -7,8 +7,10 @@
     </q-toolbar>
   </q-header>
 
+  <!-- Pop-Up mit Auswahl der Produkte in Form einer Liste und Button zum löschen: -->
   <q-dialog v-model="showProducts">
     <q-card style="width: 350px; height:550px">
+     
       <q-btn
         class="absolute"
         style="right: -1em;"
@@ -19,7 +21,6 @@
       />
 
       <div class="q-px-lg q-ma-sm">
-          
           <ul>
             <li v-for="item in items" :key="item.id">
               <details>
@@ -37,11 +38,11 @@
               </details>
             </li>
           </ul>
-      
-    </div>
+      </div>
      
     </q-card>
   </q-dialog>
+
 </template>
 
 <script>
@@ -98,41 +99,5 @@ export default defineComponent({
 <style>
 * {
   overflow: y;
-}
-
-.Eingabebereich {
-  position: fixed;
-  width: 90%;
-  top: 20em;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
-.SpeicherButton {
-  margin-top: 2em;
-  text-align: center;
-}
-
-.Ausgabebereich {
-  margin-top: 30em;
-  position: fixed;
-  left: 5%;
-  margin-right: 5%;
-}
-
-.AktualisierenButton {
-  margin-top: 1em;
-  text-align: center;
-}
-
-.AbbrechenButton {
-  margin-top: 1em;
-  text-align: center;
-}
-
-.show-all-products {
-  text-align: center;
-  margin-top: 1em;
 }
 </style>

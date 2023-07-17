@@ -7,12 +7,14 @@
     </q-toolbar>
   </q-header>
 
+  <!-- Positionierung des Eingabebereichs über Zeilen & Spalten, damit sich die UI der Display-Größe anpasst: -->
   <div class="row text-center item-center">
     <div class="col col-1"></div>
     <div class="col col-10">
-      <!-- <div class="Eingabebereich" style="padding-bottom: 50px"> -->
       <br />
+
       <form v-if="!editMode" @submit.prevent="addProduct">
+      <!--  Eingabefeld für den Produktnamen: -->
         <q-input
           filled
           label="Produktname"
@@ -23,6 +25,7 @@
           required
         />
 
+         <!--  Eingabefeld für die Produkmenge: -->
         <q-input
           filled
           color="green"
@@ -35,6 +38,7 @@
           required
         />
 
+         <!--  Eingabefeld für die Kalorien: -->
         <q-input
           filled
           color="green"
@@ -47,6 +51,7 @@
           required
         />
 
+         <!--  Eingabefeld für die Kohlenhydrate: -->
         <q-input
           filled
           color="green"
@@ -59,6 +64,7 @@
           required
         />
 
+         <!--  Eingabefeld für den Eiweißgehalt: -->
         <q-input
           filled
           color="green"
@@ -71,6 +77,7 @@
           required
         />
 
+         <!--  Eingabefeld für den Fettgehalt: -->
         <q-input
           filled
           color="green"
@@ -82,105 +89,20 @@
           max="5000"
           required
         />
-
-        <div class="SpeicherButton">
+        
+        <!-- Button, der das Produkt erstellt, abspeichert und das Pop-Up aufruft -->
+        <div class="ErstellenButton">
           <q-btn color="green" icon="edit" type="submit" size="lg" rounded @click="showBestätigung = true"
             >Produkt erstellen</q-btn
           >
         </div>
       </form>
 
-      <form v-if="editMode" @submit.prevent="updateProduct">
-        <q-input
-          filled
-          label="Name"
-          color="green"
-          type="text"
-          id="name"
-          v-model="newProduct.name"
-          required
-        />
-
-        <q-input
-          filled
-          color="green"
-          label="Menge (g)"
-          type="number"
-          id="quantity"
-          v-model.number="newProduct.quantity"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          label="Kalorien (kcal)"
-          color="green"
-          type="number"
-          id="calories"
-          v-model.number="newProduct.calories"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          label="Kohlenhydrate (g)"
-          color="green"
-          type="number"
-          id="carbs"
-          v-model.number="newProduct.carbs"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          label="Proteine (g)"
-          color="green"
-          type="number"
-          id="protein"
-          v-model.number="newProduct.protein"
-          min="0"
-          max="5000"
-          required
-        />
-
-        <q-input
-          filled
-          label="Fett (g)"
-          color="green"
-          type="number"
-          id="fat"
-          v-model.number="newProduct.fat"
-          min="0"
-          max="5000"
-          required
-        />
-        <div class="AktualisierenButton">
-          <q-btn rounded color="green" icon="update" type="submit" size="lg"
-            >Aktualisieren</q-btn
-          >
-        </div>
-        <div class="AbbrechenButton">
-          <q-btn
-            rounded
-            color="green"
-            icon="cancel"
-            @click="cancelEdit"
-            size="lg"
-            >Abbrechen</q-btn
-          >
-        </div>
-      </form>
-      <!-- </div> -->
     </div>
     <div class="col col-1"></div>
   </div>
 
+  <!-- Pop-Up, welches angezeigt wird, nachdem man ein Produkt erstellt hat: -->
   <q-dialog v-model="showBestätigung">
     <q-card class="q-pa-md">
       <q-btn
@@ -197,85 +119,6 @@
     </q-card>
   </q-dialog>
 
-  <!--  <div class="Ausgabebereich">
-    <q-scroll-area style="height: 240px; max-width: 90%">
-      <div class="ScrollContainer">
-        <ul>
-          <li v-for="item in items" :key="item.id">
-            {{ item.name }} - {{ item.calories }} Kalorien
-            <q-btn round color="green" icon="edit" @click="editProduct(item)">
-            </q-btn>
-            <q-btn
-              round
-              color="green"
-              icon="delete"
-              @click="deleteProduct(item)"
-            ></q-btn>
-          </li>
-        </ul>
-      </div>
-    </q-scroll-area>
-  </div> -->
-
-  <!-- <div class="row text-center item-center">
-    <div class="col col-1"></div>
-    <div class="col col-10">
-      <br />
-      <q-btn
-        @click="showProducts = true"
-        label="Produkt bearbeiten "
-        rounded
-        color="green"
-        size="lg"
-        icon="edit"
-      >
-      </q-btn>
-    </div>
-    <div class="col col-1"></div>
-  </div> -->
-
-  <q-dialog v-model="showProducts">
-    <q-card class="q-pa-md">
-      <q-btn
-        class="absolute"
-        style="top: 10px; right: 10px"
-        flat
-        icon="close"
-        color="primary"
-        v-close-popup
-      />
-
-      <div>
-        <div>
-          <ul>
-            <li v-for="item in items" :key="item.id">
-              <details>
-                <summary>
-                  <span class="word"> {{ item.name }}</span>
-                  <span class="badge"> {{ item.calories }} kcal </span>
-                </summary>
-                Kalorien: {{ item.calories }} | Kohlenhydrate: {{ item.carbs }}g
-                | Proteine: {{ item.protein }}g | Fett: {{ item.fat }}g &nbsp;
-                <q-btn
-                  round
-                  color="green"
-                  icon="edit"
-                  @click="editProduct(item)"
-                >
-                </q-btn>
-                <q-btn
-                  round
-                  color="green"
-                  icon="delete"
-                  @click="deleteProduct(item)"
-                ></q-btn>
-              </details>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </q-card>
-  </q-dialog>
 </template>
 
 <script>
@@ -357,40 +200,10 @@ export default defineComponent({
 * {
   overflow: y;
 }
-
-.Eingabebereich {
-  position: fixed;
-  width: 90%;
-  top: 20em;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-}
-
-.SpeicherButton {
+/* Positionierung des Buttons für die Abspeicherung des Produkts: */
+.ErstellenButton {
   margin-top: 2em;
   text-align: center;
 }
 
-.Ausgabebereich {
-  margin-top: 30em;
-  position: fixed;
-  left: 5%;
-  margin-right: 5%;
-}
-
-.AktualisierenButton {
-  margin-top: 1em;
-  text-align: center;
-}
-
-.AbbrechenButton {
-  margin-top: 1em;
-  text-align: center;
-}
-
-.show-all-products {
-  text-align: center;
-  margin-top: 1em;
-}
 </style>
