@@ -10,16 +10,31 @@
 
   <div class="q-pa-md">
     <div class="q-gutter-md row items-start">
-      <q-select filled v-model="single" :options="options.daten" label="Zeitraum" style="width: 250px" color="black"
-        bg-color="green">
+      <q-select
+        filled
+        v-model="single"
+        :options="options.daten"
+        label="Zeitraum"
+        style="width: 250px"
+        color="black"
+        bg-color="green"
+      >
         <template v-slot:prepend>
           <q-icon name="event" />
           <!-- Dropdown für Auswahl des Zeitraums-->
         </template>
       </q-select>
 
-      <q-select filled v-model="multiple" multiple :options="options.werte" label="Daten" style="width: 250px"
-        color="black" bg-color="green">
+      <q-select
+        filled
+        v-model="multiple"
+        multiple
+        :options="options.werte"
+        label="Daten"
+        style="width: 250px"
+        color="black"
+        bg-color="green"
+      >
         <template v-slot:prepend>
           <q-icon name="addchart" />
           <!-- Dropdown für Auswahl des Datenarten-->
@@ -164,10 +179,10 @@ export default {
 
       // Iteration über die gespeicherten Daten im Webstorage
       for (const data of dataValues) {
-        fatData.value.push(data.fat);
-        proteinData.value.push(data.protein);
-        carbsData.value.push(data.carbs);
-        kcalData.value.push(data.kcal);
+        fatData.value.push(meal.fat);
+        proteinData.value.push(meal.protein);
+        carbsData.value.push(meal.carbs);
+        kcalData.value.push(meal.kcal);
       }
 
       const chartData = {
