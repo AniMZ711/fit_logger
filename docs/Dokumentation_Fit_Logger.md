@@ -126,6 +126,28 @@ An das System sind keine externen Systeme angebunden.
 
 ## 5. Bausteinsicht
 
+5.1 Benutzeroberfläche (UI):
+
+- Home-Bildschirm: Benutzer können auf den Home-Bilschirm zugreife, auf dem sie ihre tägliche Kalorienaufnahme, den Fortschritt ihrer Ziele und andere relevante Informationen sehen, wie zB. ihre letzte Mahlzeit.
+- Nahrungsmittelverfolgung: Eine Benutzeroberfläche wird bereitgestellt, um Nahrungsmittel hinzuzufügen, zu bearbeiten und zu löschen. Benutzer könne Informationen wie Name, Kalorien, Kohlenhydrate, Proteine, Fette und Portionsmenge eingeben.
+- Statistik: Benutzer können Statistiken über ihre Kalorienaufnahme, Makronährstoffverteilung und Fortschritt bei der Erreichung ihrer Ziele anzeigen.
+- Logbuch: Benutzer können über Mahlzeiten Buch führen, sie können Mahlzeiten nach Tageszeiten für Verschieden Tage eintragen und einsehen.
+
+  5.2 Datenbank und lokaler Speicher:
+
+- Benutzerdaten: Die Datenbank speichert Benutzerinformationen wie zB ihre selbst eingetragegen Ziele.
+- Nahrungsmitteldaten: Die Datenbank enthält Informationen über verschiedene Nahrungsmittel, einschließlich Kalorien, Makronährstoffe und Portionsgrößen.
+- Mahlzeiten: Die Datenbank speichert Informationen über gespeicherte Mahlzeiten, einschließlich der enthaltenen Nahrungsmittel und Mengen.
+
+  5.3 Sensordatenverarbeitung:
+
+- Barcode-Scanner: Die Anwendung verwendet einen Barcode-Scanner, um Nahrungsmittelinformationen aus Barcodes auf Verpackungen zu erfassen und automatisch in die Nahrungsmittelverfolgung einzufügen.
+
+  5.4 Algorithmen und Datenanalyse:
+
+- Kalorienberechnung: Es werden Algorithmen verwendet, mit dem die gesamte Kalorienaufnahme basierend auf den eingegebenen Nahrungsmitteln und Portionsgrößen berechnet werden.
+- Zielverfolgung: Die Anwendung verwendet Algorithmen, um den Fortschritt der Benutzer bei der Erreichung ihrer Ziele zu verfolgen und anzuzeigen.
+
 ## 6. Laufzeitsicht
 
 Die Laufzeitsicht beschreibt die dynamische Sicht der FitLogger-App und zeigt die Interaktionen zwischen den verschiedenen Komponenten während der Laufzeit.
@@ -174,7 +196,7 @@ In der Laufzeitsicht sieht der Nutzer dann farblich unterschiedliche Linien im D
 - Die Anwendung wird über das Internet über eine Webbrowser auf verschiedenen Geräten wie Computern, Laptops. Tablets und mobilen Geräten (Smartphones) ausgeführt.
 - Die Benutzeroberfläche wird vom Server an den Browser des Benutzers übertragen und dort ausgeführt
 
-  7.2 Serberseitige Logik (Backend):
+  7.2 Serverseitige Logik (Backend):
 
 * Die serverseitige Logik wird auf einem Server bereitgestellt.
 * Die Server verwenden gängige Webtechnologien wie Node.js oder Java, um Anfragen von den Benutzergeräten entgegenzunehmen, zu verarbeiten und entsprechende Antworten zu generieren
@@ -185,6 +207,14 @@ In der Laufzeitsicht sieht der Nutzer dann farblich unterschiedliche Linien im D
 * Sie speichert Aktivitätsdaten und relevante Informationen.
 
 ## 8. Datenperspektive
+
+8.1 Datenerstellung: Die Anwendung kann anhand der vom User eingeben Namen/Werte (Menge,Kalorien,Kohlenhydrate,Proteine,Fette), Mahlzeiten/Produkte erstellen und somit sein Essverhalten dokumentieren und auch darüber die Übersicht behalten.
+
+8.2 Datenspeicherung: Die erfassten Daten werden lokal auf dem Gerät des Benutzers gespeichert, im lokalen Speicher des Browsers. Diese Daten können dann zur Anzeige und Verarbeitung verwendet werden.
+
+8.3 Datenverarbeitung: Die Anwendung enhält Logik um die erfassten Daten zu verarbeiten. Beispielsweise um die Werte zu berechnen, sei es für die Anzeige der Erfolge auf dem Home-Bildschirm oder auch der Statistik auf der Ziele Nachverfolgen Sektion.
+
+8.4 Benutzerkontrolle: Die Anwendung ermöglicht es Benutzern, die Kontrolle über ihre eigenen Daten zu behalten. Dies beinhaltet Funktionen wie das Löschen von gespeicherten Daten oder die Bearbeitung fehlerhaft gespeicherter Daten.
 
 ## 9. Infrastruktursicht
 
