@@ -83,25 +83,6 @@ export default defineComponent({
       window.localStorage.setItem("products", JSON.stringify(this.items));
       this.resetForm();
     },
-    addProduct() {
-      this.items.push({
-        id: Date.now(),
-        name: this.newProduct.name,
-        quantity: this.newProduct.quantity,
-        calories: this.newProduct.calories,
-        carbs: this.newProduct.carbs,
-        protein: this.newProduct.protein,
-        fat: this.newProduct.fat,
-      });
-      this.saveProducts();
-    },
-    updateProduct() {
-      this.items.splice(this.editProductIndex, 1, this.newProduct);
-      this.saveProducts();
-      this.editMode = false;
-      this.editProductIndex = null;
-      this.resetForm();
-    },
     deleteProduct(product) {
       const index = this.items.indexOf(product);
       if (index !== -1) {
@@ -109,29 +90,9 @@ export default defineComponent({
         this.saveProducts();
       }
     },
-    editProduct(product) {
-      this.editMode = true;
-      this.editProductIndex = this.items.indexOf(product);
-      this.newProduct = { ...product };
-    },
-    cancelEdit() {
-      this.editMode = false;
-      this.editProductIndex = null;
-      this.resetForm();
-    },
-    resetForm() {
-      this.newProduct = {
-        id: null,
-        name: "",
-        quantity: 0,
-        calories: 0,
-        carbs: 0,
-        protein: 0,
-        fat: 0,
-      };
     },
   },
-});
+);
 </script>
 
 <style>

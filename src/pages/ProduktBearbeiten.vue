@@ -216,7 +216,7 @@ export default defineComponent({
       window.localStorage.setItem("products", JSON.stringify(this.items));
       this.resetForm();
     },
-
+    // Produkt aktualisieren 
     updateProduct() {
       console.log("updateProduct");
       console.log(this.newProduct);
@@ -226,13 +226,7 @@ export default defineComponent({
       this.editProductIndex = -1;
       this.resetForm();
     },
-    deleteProduct(product) {
-      const index = this.items.indexOf(product);
-      if (index !== -1) {
-        this.items.splice(index, 1);
-        this.saveProducts();
-      }
-    },
+    // Produkt bearbeiten
     editProduct(product) {
       this.editMode = true;
       this.editProductIndex = this.items.indexOf(product);
@@ -241,11 +235,13 @@ export default defineComponent({
       console.log("editProduct");
       console.log(this.newProduct);
     },
+    // Abbruch-Funktion
     cancelEdit() {
       this.editMode = false;
       this.editProductIndex = null;
       this.resetForm();
     },
+    // Zurücksetz-Funktion
     resetForm() {
       this.newProduct = {
         id: null,
