@@ -56,6 +56,8 @@ export default defineComponent({
 </script>
 
 <style>
+/* Positionierung der Buttons: */
+
 .zielButton {
   margin-top: 2em;
   text-align: center;

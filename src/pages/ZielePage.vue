@@ -8,7 +8,8 @@
     </q-toolbar>
   </q-header>
 
-  <div class="Eingabebereich1">
+  <!-- Eingabebreich zur Ziel-Bearbeitung mit einzelnen Eingabefeldern: -->
+  <div class="EingabebereichZielBearbeiten">
     <form v-if="true" @submit.prevent="saveGoal">
       <q-input
         filled
@@ -73,7 +74,9 @@
         required
         :disable="!editMode"
       />
-      <div class="AddButton">
+      
+      <!-- Buttons zum Speichern/Abbrechen/Bearbeiten: -->
+      <div class="Buttons">
         <q-btn
           v-if="editMode"
           rounded
@@ -196,7 +199,8 @@ export default defineComponent({
 </script>
 
 <style>
-.Eingabebereich1 {
+/* Positionierung des Eingabereichs: */
+.EingabebereichZielBearbeiten {
   position: fixed;
   width: 90%;
   top: 15em;
@@ -205,7 +209,8 @@ export default defineComponent({
   transform: translate(-50%, -50%);
 }
 
-.AddButton {
+/* Positionierung der Buttons: */
+.Buttons {
   margin-top: 2em;
   text-align: center;
 }
