@@ -42,12 +42,6 @@
    - 8.3 Datenflüsse
 
 9. Infrastruktursicht
-
-   - 9.1 Übersicht
-   - 9.2 Technische Umgebung
-   - 9.3 Bereitstellung
-   - 9.4 Betrieb
-
 10. Konzepte
 11. Entwurfsentscheidungen und Technologieeinsatz
 
@@ -224,7 +218,12 @@ In der Laufzeitsicht sieht der Nutzer dann farblich unterschiedliche Linien im D
 
 ## 9. Infrastruktursicht
 
-Die App kann sowohl online über den Server erreicht werden als auch lokal über eine Installation verwendet werden.
+Die PWA kann über den localen Start eines Servers erreicht werden und auf dem Gerät installiert werden.
+Es gibt keinen Datenbankserver wie bspw. MySQL-Server. Wir nutzen den LocalStorage von jedem Gerät bzw. Browser den der
+Nutzer verwendet. 
+Die Betriebssysteme welche unterstützt werden, sind die gängigsten zwei (Windows, MacOs, Android, IOS).
+Netzwerkkomponenten wie Router, Switches finden bei uns keine Anwendung oder Notwendigkeit.
+Genauso haben wir nicht Firewalls implementiert, da wir keinerlei Personenbezogenendaten abfragt bzw. benutzt werden.
 
 ## 10. Konzepte
 
