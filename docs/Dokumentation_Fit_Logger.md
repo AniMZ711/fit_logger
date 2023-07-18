@@ -124,6 +124,12 @@ An das System sind keine externen Systeme angebunden.
 
 ## 4. Lösungsstrategie
 
+Um die definierten Ziele zu realiesieren haben wir agil gearbeitet in kleineren Teams, welche jeweils für einen Entwicklungsbereich verantwortlich waren - Ui/UX, Datenbank und Logik. Wir teilten die Aufgaben den Teams entsprechend. Wir hatten wöchentiche Meetings um unsere Fortschritt und die nächsten Meilensteine besprochen.
+
+Um das Endkonzept in der vorgegeben Zeit zu realisieren haben wir uns, mit Hilfe des Lean-Ansatz, auf das Wesentliche konzentriert. Und nachdem die Basisfunktionen implementiert wurden, sind Sicherheitsabfragen ergänzt worden.
+
+Es wurde dabei parallel an mehreren Problemen gearbeitet, um dadurch Zeit zu sparen und schneller voranzukommen.
+
 ## 5. Bausteinsicht
 
 5.1 Benutzeroberfläche (UI):
@@ -218,7 +224,15 @@ In der Laufzeitsicht sieht der Nutzer dann farblich unterschiedliche Linien im D
 
 ## 9. Infrastruktursicht
 
+Die App kann sowohl online über den Server erreicht werden als auch lokal über eine Installation verwendet werden.
+
 ## 10. Konzepte
+
+Um die Grundidee mit USP für das Entwicklungsprojekt zu realisieren musste erst ein Konzept erstellt werden. Dabei schauten wir uns mehrere Beispiele von Lösungen in der Branche an und haben uns dann für ein Appkonzept entschieden. Dabei interierten wir über viele Ideen und kamen dann zu dem Ergebnis das letzenendes implementiert wurde.
+
+Die ersten Konzepte umfassten eine Vielzahl an Features und Funktionen, welche einen viel großeren Aufwand bedeutete. Das führte dazu, dass wir den Lean-Ansatz an unser Projekt angewendet haben. Die App sollte das Einpflegen von Nahrungsmitteln, Mahlzeit komposition, Barcode-Scanning, eine Historie für die Mahlzeiten und Zieltracking untestützen.
+
+Das Konzept wurde dann zusätzlichen um Sicherheitsabfragen erwitern, welchen den User Experience steigern sollten.
 
 ## 11. Entwurfsentscheidungen und Technologieeinsatz
 
