@@ -23,7 +23,9 @@
             Tagesziel bearbeiten
           </q-btn>
         </div>
-        <div class="statistikButton">
+    
+    <!-- Buttons für die Statistik-Page auskommentiert, da die Seite nicht funktioniert: -->
+        <!--   <div class="statistikButton">
           <q-btn
             size="lg"
             class="statistikButton"
@@ -34,7 +36,7 @@
           >
             Ziele nachverfolgen
           </q-btn>
-        </div>
+        </div> -->
 
         <br />
       </q-page>
@@ -63,8 +65,8 @@ export default defineComponent({
   text-align: center;
 }
 
-.statistikButton {
+/* .statistikButton {
   margin-top: 1em;
   text-align: center;
-}
+} */
 </style>
